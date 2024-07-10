@@ -1,0 +1,194 @@
+[0.074s] colcon DEBUG Command line arguments: ['/usr/bin/colcon', 'list', '-p', '--base-paths', '/mnt/nvme_partition/workspaces/lse_go2_ws']
+[0.074s] colcon DEBUG Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='list', build_base='build', ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['/mnt/nvme_partition/workspaces/lse_go2_ws'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], topological_order=False, names_only=False, paths_only=True, topological_graph=False, topological_graph_dot=False, topological_graph_density=False, topological_graph_legend=False, topological_graph_dot_cluster=False, topological_graph_dot_include_skipped=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7f1d70d99e40>, verb_extension=<colcon_package_information.verb.list.ListVerb object at 0x7f1d70d99450>, main=<bound method ListVerb.main of <colcon_package_information.verb.list.ListVerb object at 0x7f1d70d99450>>, mixin_verb=('list',))
+[0.149s] colcon.colcon_core.package_discovery Level 1 discover_packages(colcon_meta) check parameters
+[0.150s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) check parameters
+[0.150s] colcon.colcon_core.package_discovery Level 1 discover_packages(ignore) check parameters
+[0.150s] colcon.colcon_core.package_discovery Level 1 discover_packages(path) check parameters
+[0.150s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) discover
+[0.150s] colcon.colcon_core.package_discovery INFO Crawling recursively for packages in '/mnt/nvme_partition/workspaces/lse_go2_ws'
+[0.150s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extensions ['ignore', 'ignore_ament_install']
+[0.150s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extension 'ignore'
+[0.150s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extension 'ignore_ament_install'
+[0.150s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extensions ['colcon_pkg']
+[0.150s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extension 'colcon_pkg'
+[0.150s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extensions ['colcon_meta']
+[0.150s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extension 'colcon_meta'
+[0.150s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extensions ['ros']
+[0.150s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extension 'ros'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extensions ['cmake', 'python']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extension 'cmake'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extension 'python'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extensions ['python_setup_py']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws) by extension 'python_setup_py'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/log) by extensions ['ignore', 'ignore_ament_install']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/log) by extension 'ignore'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/log) ignored
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extensions ['ignore', 'ignore_ament_install']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extension 'ignore'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extension 'ignore_ament_install'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extensions ['colcon_pkg']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extension 'colcon_pkg'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extensions ['colcon_meta']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extension 'colcon_meta'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extensions ['ros']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extension 'ros'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extensions ['cmake', 'python']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extension 'cmake'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extension 'python'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extensions ['python_setup_py']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src) by extension 'python_setup_py'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/rl_control) by extensions ['ignore', 'ignore_ament_install']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/rl_control) by extension 'ignore'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/rl_control) by extension 'ignore_ament_install'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/rl_control) by extensions ['colcon_pkg']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/rl_control) by extension 'colcon_pkg'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/rl_control) by extensions ['colcon_meta']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/rl_control) by extension 'colcon_meta'
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/rl_control) by extensions ['ros']
+[0.158s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/rl_control) by extension 'ros'
+[0.160s] colcon.colcon_core.package_identification DEBUG Package '/mnt/nvme_partition/workspaces/lse_go2_ws/src/rl_control' with type 'ros.ament_python' and name 'rl_control'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extensions ['ignore', 'ignore_ament_install']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extension 'ignore'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extension 'ignore_ament_install'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extensions ['colcon_pkg']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extension 'colcon_pkg'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extensions ['colcon_meta']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extension 'colcon_meta'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extensions ['ros']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extension 'ros'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extensions ['cmake', 'python']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extension 'cmake'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extension 'python'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extensions ['python_setup_py']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2) by extension 'python_setup_py'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extensions ['ignore', 'ignore_ament_install']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extension 'ignore'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extension 'ignore_ament_install'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extensions ['colcon_pkg']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extension 'colcon_pkg'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extensions ['colcon_meta']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extension 'colcon_meta'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extensions ['ros']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extension 'ros'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extensions ['cmake', 'python']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extension 'cmake'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extension 'python'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extensions ['python_setup_py']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws) by extension 'python_setup_py'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build) by extensions ['ignore', 'ignore_ament_install']
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build) by extension 'ignore'
+[0.160s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build) ignored
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install) by extensions ['ignore', 'ignore_ament_install']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install) by extension 'ignore'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install) ignored
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/log) by extensions ['ignore', 'ignore_ament_install']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/log) by extension 'ignore'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/log) ignored
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extensions ['ignore', 'ignore_ament_install']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extension 'ignore'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extension 'ignore_ament_install'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extensions ['colcon_pkg']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extension 'colcon_pkg'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extensions ['colcon_meta']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extension 'colcon_meta'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extensions ['ros']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extension 'ros'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extensions ['cmake', 'python']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extension 'cmake'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extension 'python'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extensions ['python_setup_py']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src) by extension 'python_setup_py'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extensions ['ignore', 'ignore_ament_install']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extension 'ignore'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extension 'ignore_ament_install'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extensions ['colcon_pkg']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extension 'colcon_pkg'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extensions ['colcon_meta']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extension 'colcon_meta'
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extensions ['ros']
+[0.161s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extension 'ros'
+[0.162s] colcon.colcon_core.package_identification DEBUG Package '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds' with type 'ros.cmake' and name 'cyclonedds'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['ignore', 'ignore_ament_install']
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'ignore'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'ignore_ament_install'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['colcon_pkg']
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'colcon_pkg'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['colcon_meta']
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'colcon_meta'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['ros']
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'ros'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['cmake', 'python']
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'cmake'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'python'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['python_setup_py']
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'python_setup_py'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['ignore', 'ignore_ament_install']
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'ignore'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'ignore_ament_install'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['colcon_pkg']
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'colcon_pkg'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['colcon_meta']
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'colcon_meta'
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['ros']
+[0.162s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'ros'
+[0.163s] colcon.colcon_core.package_identification DEBUG Package '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp' with type 'ros.ament_cmake' and name 'rmw_cyclonedds_cpp'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['ignore', 'ignore_ament_install']
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'ignore'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'ignore_ament_install'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['colcon_pkg']
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'colcon_pkg'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['colcon_meta']
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'colcon_meta'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['ros']
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'ros'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['cmake', 'python']
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'cmake'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'python'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['python_setup_py']
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'python_setup_py'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extensions ['ignore', 'ignore_ament_install']
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extension 'ignore'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extension 'ignore_ament_install'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extensions ['colcon_pkg']
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extension 'colcon_pkg'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extensions ['colcon_meta']
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extension 'colcon_meta'
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extensions ['ros']
+[0.163s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extension 'ros'
+[0.164s] colcon.colcon_core.package_identification DEBUG Package '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api' with type 'ros.ament_cmake' and name 'unitree_api'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extensions ['ignore', 'ignore_ament_install']
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extension 'ignore'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extension 'ignore_ament_install'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extensions ['colcon_pkg']
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extension 'colcon_pkg'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extensions ['colcon_meta']
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extension 'colcon_meta'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extensions ['ros']
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extension 'ros'
+[0.164s] colcon.colcon_core.package_identification DEBUG Package '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go' with type 'ros.ament_cmake' and name 'unitree_go'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extensions ['ignore', 'ignore_ament_install']
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extension 'ignore'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extension 'ignore_ament_install'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extensions ['colcon_pkg']
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extension 'colcon_pkg'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extensions ['colcon_meta']
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extension 'colcon_meta'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extensions ['ros']
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extension 'ros'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extensions ['cmake', 'python']
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extension 'cmake'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extension 'python'
+[0.164s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extensions ['python_setup_py']
+[0.165s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example) by extension 'python_setup_py'
+[0.165s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example/src) by extensions ['ignore', 'ignore_ament_install']
+[0.165s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example/src) by extension 'ignore'
+[0.165s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example/src) by extension 'ignore_ament_install'
+[0.165s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example/src) by extensions ['colcon_pkg']
+[0.165s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example/src) by extension 'colcon_pkg'
+[0.165s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example/src) by extensions ['colcon_meta']
+[0.165s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example/src) by extension 'colcon_meta'
+[0.165s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example/src) by extensions ['ros']
+[0.165s] colcon.colcon_core.package_identification Level 1 _identify(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example/src) by extension 'ros'
+[0.165s] colcon.colcon_core.package_identification DEBUG Package '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/example/src' with type 'ros.ament_cmake' and name 'unitree_ros2_example'
+[0.165s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) using defaults
+[0.173s] colcon.colcon_metadata.metadata.colcon_pkg INFO Updating descriptor of package '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds' from colcon.pkg: {'cmake-args': ['-DBUILD_IDLC=AUTO']}
