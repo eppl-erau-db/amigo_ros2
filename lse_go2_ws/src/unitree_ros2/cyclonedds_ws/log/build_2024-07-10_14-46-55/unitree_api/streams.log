@@ -1,0 +1,437 @@
+[0.005s] Invoking command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/unitree_api': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api -DCMAKE_INSTALL_PREFIX=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api
+[0.029s] -- The C compiler identification is GNU 11.4.0
+[0.077s] -- The CXX compiler identification is GNU 11.4.0
+[0.081s] -- Detecting C compiler ABI info
+[0.110s] -- Detecting C compiler ABI info - done
+[0.114s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.114s] -- Detecting C compile features
+[0.114s] -- Detecting C compile features - done
+[0.116s] -- Detecting CXX compiler ABI info
+[0.150s] -- Detecting CXX compiler ABI info - done
+[0.154s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.154s] -- Detecting CXX compile features
+[0.154s] -- Detecting CXX compile features - done
+[0.157s] -- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.229s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.273s] -- Found geometry_msgs: 4.2.4 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.294s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.296s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.301s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.310s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.320s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.379s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[0.384s] -- Found rosidl_generator_dds_idl: 0.8.1 (/opt/ros/humble/share/rosidl_generator_dds_idl/cmake)
+[0.531s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[0.766s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.846s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.858s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[0.859s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[0.872s] -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[0.872s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.873s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[0.873s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+[0.883s] -- Found PythonExtra: .so  
+[0.923s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.931s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.932s] -- Added test 'lint_cmake' to check CMake code style
+[0.932s] -- Added test 'xmllint' to check XML markup files
+[0.933s] -- Configuring done
+[0.954s] -- Generating done
+[0.955s] -- Build files have been written to: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/unitree_api
+[0.961s] Invoked command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/unitree_api' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api -DCMAKE_INSTALL_PREFIX=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api
+[0.961s] Invoking command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/unitree_api': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/unitree_api -- -j32 -l32
+[0.979s] [  1%] [34m[1mGenerating C code for ROS interfaces[0m
+[0.982s] [  2%] [34m[1mGenerating DDS interfaces[0m
+[0.983s] [  3%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[0.986s] [  3%] Built target ament_cmake_python_copy_unitree_api
+[1.101s] running egg_info
+[1.101s] creating unitree_api.egg-info
+[1.101s] writing unitree_api.egg-info/PKG-INFO
+[1.101s] writing dependency_links to unitree_api.egg-info/dependency_links.txt
+[1.102s] writing top-level names to unitree_api.egg-info/top_level.txt
+[1.102s] writing manifest file 'unitree_api.egg-info/SOURCES.txt'
+[1.103s] reading manifest file 'unitree_api.egg-info/SOURCES.txt'
+[1.104s] writing manifest file 'unitree_api.egg-info/SOURCES.txt'
+[1.123s] [  3%] Built target ament_cmake_python_build_unitree_api_egg
+[1.130s] [  3%] Built target unitree_api__dds_connext_idl
+[1.229s] [  3%] Built target unitree_api__cpp
+[1.233s] [  4%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[1.233s] [  5%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[1.236s] [  6%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[1.252s] [  7%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_c.dir/rosidl_generator_c/unitree_api/msg/detail/request__functions.c.o[0m
+[1.254s] [ 11%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_c.dir/rosidl_generator_c/unitree_api/msg/detail/request_identity__functions.c.o[0m
+[1.254s] [ 11%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_c.dir/rosidl_generator_c/unitree_api/msg/detail/request_lease__functions.c.o[0m
+[1.254s] [ 11%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_c.dir/rosidl_generator_c/unitree_api/msg/detail/request_header__functions.c.o[0m
+[1.255s] [ 12%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_c.dir/rosidl_generator_c/unitree_api/msg/detail/request_policy__functions.c.o[0m
+[1.255s] [ 13%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_c.dir/rosidl_generator_c/unitree_api/msg/detail/response__functions.c.o[0m
+[1.255s] [ 14%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_c.dir/rosidl_generator_c/unitree_api/msg/detail/response_header__functions.c.o[0m
+[1.255s] [ 15%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_c.dir/rosidl_generator_c/unitree_api/msg/detail/response_status__functions.c.o[0m
+[1.290s] [ 17%] [32m[1mLinking C shared library libunitree_api__rosidl_generator_c.so[0m
+[1.308s] [ 17%] Built target unitree_api__rosidl_generator_c
+[1.313s] [ 18%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[1.315s] [ 20%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[1.315s] [ 20%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[1.410s] [ 21%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/unitree_api/msg/request__type_support.cpp.o[0m
+[1.411s] [ 22%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/unitree_api/msg/request_header__type_support.cpp.o[0m
+[1.411s] [ 25%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/unitree_api/msg/request_lease__type_support.cpp.o[0m
+[1.412s] [ 25%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/unitree_api/msg/request_identity__type_support.cpp.o[0m
+[1.412s] [ 28%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/unitree_api/msg/request_policy__type_support.cpp.o[0m
+[1.412s] [ 28%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/unitree_api/msg/response_header__type_support.cpp.o[0m
+[1.412s] [ 28%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/unitree_api/msg/response__type_support.cpp.o[0m
+[1.412s] [ 29%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/unitree_api/msg/response_status__type_support.cpp.o[0m
+[1.528s] [ 36%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/unitree_api/msg/detail/request__type_support.cpp.o[0m
+[1.528s] [ 36%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/unitree_api/msg/detail/request_header__type_support.cpp.o[0m
+[1.528s] [ 36%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_c.dir/rosidl_typesupport_c/unitree_api/msg/request__type_support.cpp.o[0m
+[1.528s] [ 36%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_c.dir/rosidl_typesupport_c/unitree_api/msg/request_identity__type_support.cpp.o[0m
+[1.528s] [ 36%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_c.dir/rosidl_typesupport_c/unitree_api/msg/request_header__type_support.cpp.o[0m
+[1.528s] [ 38%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_c.dir/rosidl_typesupport_c/unitree_api/msg/request_lease__type_support.cpp.o[0m
+[1.529s] [ 38%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/unitree_api/msg/detail/request_lease__type_support.cpp.o[0m
+[1.529s] [ 39%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_c.dir/rosidl_typesupport_c/unitree_api/msg/request_policy__type_support.cpp.o[0m
+[1.529s] [ 39%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/unitree_api/msg/detail/request_identity__type_support.cpp.o[0m
+[1.529s] [ 40%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/unitree_api/msg/detail/response__type_support.cpp.o[0m
+[1.529s] [ 42%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/unitree_api/msg/detail/request_policy__type_support.cpp.o[0m
+[1.529s] [ 43%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/unitree_api/msg/detail/response_status__type_support.cpp.o[0m
+[1.529s] [ 44%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/unitree_api/msg/detail/response_header__type_support.cpp.o[0m
+[1.529s] [ 45%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_c.dir/rosidl_typesupport_c/unitree_api/msg/response_header__type_support.cpp.o[0m
+[1.534s] [ 47%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_c.dir/rosidl_typesupport_c/unitree_api/msg/response_status__type_support.cpp.o[0m
+[1.534s] [ 47%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_c.dir/rosidl_typesupport_c/unitree_api/msg/response__type_support.cpp.o[0m
+[1.563s] [ 48%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/unitree_api/msg/detail/request_identity__type_support.c.o[0m
+[1.563s] [ 50%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/unitree_api/msg/detail/request__type_support.c.o[0m
+[1.564s] [ 51%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/unitree_api/msg/detail/request_header__type_support.c.o[0m
+[1.564s] [ 52%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/unitree_api/msg/detail/request_policy__type_support.c.o[0m
+[1.564s] [ 53%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/unitree_api/msg/detail/response__type_support.c.o[0m
+[1.564s] [ 54%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/unitree_api/msg/detail/request_lease__type_support.c.o[0m
+[1.564s] [ 56%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/unitree_api/msg/detail/response_header__type_support.c.o[0m
+[1.564s] [ 56%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/unitree_api/msg/detail/response_status__type_support.c.o[0m
+[1.565s] [ 57%] [32m[1mLinking CXX shared library libunitree_api__rosidl_typesupport_c.so[0m
+[1.591s] [ 59%] [32m[1mLinking C shared library libunitree_api__rosidl_typesupport_introspection_c.so[0m
+[1.595s] [ 59%] Built target unitree_api__rosidl_typesupport_c
+[1.610s] [ 59%] Built target unitree_api__rosidl_typesupport_introspection_c
+[1.641s] [ 60%] [32m[1mLinking CXX shared library libunitree_api__rosidl_typesupport_cpp.so[0m
+[1.657s] [ 62%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/unitree_api/msg/detail/request__type_support_c.cpp.o[0m
+[1.657s] [ 62%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/unitree_api/msg/detail/request_header__type_support_c.cpp.o[0m
+[1.657s] [ 63%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/unitree_api/msg/detail/request_identity__type_support_c.cpp.o[0m
+[1.657s] [ 64%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/unitree_api/msg/detail/request_lease__type_support_c.cpp.o[0m
+[1.658s] [ 65%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/unitree_api/msg/detail/request_policy__type_support_c.cpp.o[0m
+[1.659s] [ 67%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/unitree_api/msg/detail/response__type_support_c.cpp.o[0m
+[1.659s] [ 68%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/unitree_api/msg/detail/response_status__type_support_c.cpp.o[0m
+[1.659s] [ 69%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/unitree_api/msg/detail/response_header__type_support_c.cpp.o[0m
+[1.674s] [ 69%] Built target unitree_api__rosidl_typesupport_cpp
+[1.677s] [ 72%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/unitree_api/msg/detail/dds_fastrtps/response_status__type_support.cpp.o[0m
+[1.677s] [ 72%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/unitree_api/msg/detail/dds_fastrtps/request_header__type_support.cpp.o[0m
+[1.677s] [ 72%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/unitree_api/msg/detail/dds_fastrtps/request__type_support.cpp.o[0m
+[1.677s] [ 73%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/unitree_api/msg/detail/dds_fastrtps/request_identity__type_support.cpp.o[0m
+[1.677s] [ 75%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/unitree_api/msg/detail/dds_fastrtps/request_lease__type_support.cpp.o[0m
+[1.677s] [ 77%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/unitree_api/msg/detail/dds_fastrtps/response__type_support.cpp.o[0m
+[1.678s] [ 76%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/unitree_api/msg/detail/dds_fastrtps/request_policy__type_support.cpp.o[0m
+[1.678s] [ 78%] [32mBuilding CXX object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/unitree_api/msg/detail/dds_fastrtps/response_header__type_support.cpp.o[0m
+[1.895s] [ 79%] [32m[1mLinking CXX shared library libunitree_api__rosidl_typesupport_introspection_cpp.so[0m
+[1.968s] [ 79%] Built target unitree_api__rosidl_typesupport_introspection_cpp
+[1.969s] [ 80%] [32m[1mLinking CXX shared library libunitree_api__rosidl_typesupport_fastrtps_c.so[0m
+[2.024s] [ 80%] Built target unitree_api__rosidl_typesupport_fastrtps_c
+[2.028s] [ 81%] [32m[1mLinking CXX shared library libunitree_api__rosidl_typesupport_fastrtps_cpp.so[0m
+[2.064s] [ 81%] Built target unitree_api__rosidl_typesupport_fastrtps_cpp
+[2.072s] [ 81%] Built target unitree_api
+[2.080s] [ 82%] [34m[1mGenerating Python code for ROS interfaces[0m
+[2.484s] [ 82%] Built target unitree_api__py
+[2.495s] [ 84%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_py.dir/rosidl_generator_py/unitree_api/msg/_request_header_s.c.o[0m
+[2.495s] [ 85%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_py.dir/rosidl_generator_py/unitree_api/msg/_request_s.c.o[0m
+[2.496s] [ 86%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_py.dir/rosidl_generator_py/unitree_api/msg/_request_identity_s.c.o[0m
+[2.496s] [ 87%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_py.dir/rosidl_generator_py/unitree_api/msg/_request_lease_s.c.o[0m
+[2.496s] [ 88%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_py.dir/rosidl_generator_py/unitree_api/msg/_request_policy_s.c.o[0m
+[2.496s] [ 89%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_py.dir/rosidl_generator_py/unitree_api/msg/_response_s.c.o[0m
+[2.496s] [ 90%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_py.dir/rosidl_generator_py/unitree_api/msg/_response_header_s.c.o[0m
+[2.497s] [ 92%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_generator_py.dir/rosidl_generator_py/unitree_api/msg/_response_status_s.c.o[0m
+[2.614s] [ 93%] [32m[1mLinking C shared library rosidl_generator_py/unitree_api/libunitree_api__rosidl_generator_py.so[0m
+[2.657s] [ 93%] Built target unitree_api__rosidl_generator_py
+[2.685s] [ 94%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/unitree_api/_unitree_api_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[2.716s] [ 95%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/unitree_api/_unitree_api_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[2.723s] [ 96%] [32mBuilding C object CMakeFiles/unitree_api__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/unitree_api/_unitree_api_s.ep.rosidl_typesupport_c.c.o[0m
+[2.796s] [ 97%] [32m[1mLinking C shared library rosidl_generator_py/unitree_api/unitree_api_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so[0m
+[2.826s] [ 97%] Built target unitree_api__rosidl_typesupport_fastrtps_c__pyext
+[2.843s] [ 98%] [32m[1mLinking C shared library rosidl_generator_py/unitree_api/unitree_api_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so[0m
+[2.852s] [100%] [32m[1mLinking C shared library rosidl_generator_py/unitree_api/unitree_api_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so[0m
+[2.882s] [100%] Built target unitree_api__rosidl_typesupport_introspection_c__pyext
+[2.887s] [100%] Built target unitree_api__rosidl_typesupport_c__pyext
+[2.896s] Invoked command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/unitree_api' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/unitree_api -- -j32 -l32
+[3.074s] Invoking command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/unitree_api': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/unitree_api
+[3.080s] -- Install configuration: ""
+[3.080s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/ament_index/resource_index/rosidl_interfaces/unitree_api
+[3.080s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api
+[3.080s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/response_status.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/request_header.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/response.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/response_header.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/request_policy.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/request_identity.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/rosidl_generator_c__visibility_control.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/request.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/request_lease.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__type_support.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__struct.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__type_support.h
+[3.081s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__functions.h
+[3.082s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__struct.h
+[3.082s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__functions.h
+[3.082s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__type_support.h
+[3.082s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__type_support.h
+[3.082s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__functions.h
+[3.082s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__functions.c
+[3.082s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__struct.h
+[3.082s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__functions.c
+[3.082s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__type_support.h
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__functions.c
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__struct.h
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__type_support.h
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__struct.h
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__struct.h
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__functions.c
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__functions.c
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__functions.c
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__functions.h
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__functions.h
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__functions.h
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__struct.h
+[3.083s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__struct.h
+[3.084s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__functions.c
+[3.084s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__type_support.h
+[3.084s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__functions.h
+[3.084s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__type_support.h
+[3.084s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__functions.c
+[3.084s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__functions.h
+[3.084s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/environment/library_path.sh
+[3.084s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/environment/library_path.dsv
+[3.084s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_generator_c.so
+[3.085s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_generator_c.so" to ""
+[3.085s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api
+[3.085s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg
+[3.085s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[3.085s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail
+[3.085s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__rosidl_typesupport_fastrtps_c.h
+[3.085s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__rosidl_typesupport_fastrtps_c.h
+[3.085s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__rosidl_typesupport_fastrtps_c.h
+[3.085s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__rosidl_typesupport_fastrtps_c.h
+[3.085s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__rosidl_typesupport_fastrtps_c.h
+[3.085s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__rosidl_typesupport_fastrtps_c.h
+[3.085s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__rosidl_typesupport_fastrtps_c.h
+[3.085s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__rosidl_typesupport_fastrtps_c.h
+[3.086s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_fastrtps_c.so
+[3.086s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_fastrtps_c.so" to ""
+[3.086s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api
+[3.086s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg
+[3.086s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/response_header.hpp
+[3.086s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/request.hpp
+[3.086s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/response_status.hpp
+[3.086s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/request_header.hpp
+[3.095s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/request_lease.hpp
+[3.095s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/request_policy.hpp
+[3.095s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/request_identity.hpp
+[3.095s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/response.hpp
+[3.095s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail
+[3.095s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__builder.hpp
+[3.095s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__struct.hpp
+[3.095s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__traits.hpp
+[3.095s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__struct.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__builder.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__builder.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__builder.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__builder.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__traits.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__traits.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__builder.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__struct.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__builder.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__traits.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__struct.hpp
+[3.096s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__struct.hpp
+[3.097s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__traits.hpp
+[3.097s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__traits.hpp
+[3.097s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__traits.hpp
+[3.097s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__traits.hpp
+[3.097s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__struct.hpp
+[3.097s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__struct.hpp
+[3.097s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__builder.hpp
+[3.097s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__struct.hpp
+[3.097s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api
+[3.097s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg
+[3.097s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[3.097s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail
+[3.098s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__rosidl_typesupport_fastrtps_cpp.hpp
+[3.098s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__rosidl_typesupport_fastrtps_cpp.hpp
+[3.098s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__rosidl_typesupport_fastrtps_cpp.hpp
+[3.098s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__rosidl_typesupport_fastrtps_cpp.hpp
+[3.098s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__rosidl_typesupport_fastrtps_cpp.hpp
+[3.098s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__rosidl_typesupport_fastrtps_cpp.hpp
+[3.098s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/dds_fastrtps
+[3.098s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__rosidl_typesupport_fastrtps_cpp.hpp
+[3.098s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__rosidl_typesupport_fastrtps_cpp.hpp
+[3.098s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_fastrtps_cpp.so
+[3.099s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_fastrtps_cpp.so" to ""
+[3.099s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api
+[3.099s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg
+[3.114s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[3.114s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__type_support.c
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__type_support.c
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__rosidl_typesupport_introspection_c.h
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__type_support.c
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__rosidl_typesupport_introspection_c.h
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__rosidl_typesupport_introspection_c.h
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__type_support.c
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__rosidl_typesupport_introspection_c.h
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__rosidl_typesupport_introspection_c.h
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__type_support.c
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__rosidl_typesupport_introspection_c.h
+[3.115s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__type_support.c
+[3.116s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__type_support.c
+[3.116s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__type_support.c
+[3.116s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__rosidl_typesupport_introspection_c.h
+[3.116s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__rosidl_typesupport_introspection_c.h
+[3.116s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_introspection_c.so
+[3.116s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_introspection_c.so" to ""
+[3.116s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_c.so
+[3.117s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_c.so" to ""
+[3.117s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api
+[3.117s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg
+[3.117s] -- Up-to-date: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail
+[3.117s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__rosidl_typesupport_introspection_cpp.hpp
+[3.117s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__rosidl_typesupport_introspection_cpp.hpp
+[3.117s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__type_support.cpp
+[3.117s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__type_support.cpp
+[3.117s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_header__type_support.cpp
+[3.117s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__type_support.cpp
+[3.117s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__type_support.cpp
+[3.117s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__rosidl_typesupport_introspection_cpp.hpp
+[3.117s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response__type_support.cpp
+[3.118s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_identity__rosidl_typesupport_introspection_cpp.hpp
+[3.118s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_policy__type_support.cpp
+[3.118s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__type_support.cpp
+[3.118s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_status__rosidl_typesupport_introspection_cpp.hpp
+[3.118s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request__rosidl_typesupport_introspection_cpp.hpp
+[3.118s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/response_header__rosidl_typesupport_introspection_cpp.hpp
+[3.118s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/include/unitree_api/unitree_api/msg/detail/request_lease__rosidl_typesupport_introspection_cpp.hpp
+[3.118s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_introspection_cpp.so
+[3.119s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_introspection_cpp.so" to ""
+[3.119s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_cpp.so
+[3.119s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_typesupport_cpp.so" to ""
+[3.119s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/environment/pythonpath.sh
+[3.119s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/environment/pythonpath.dsv
+[3.119s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api-0.0.0-py3.10.egg-info
+[3.119s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api-0.0.0-py3.10.egg-info/dependency_links.txt
+[3.119s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api-0.0.0-py3.10.egg-info/SOURCES.txt
+[3.119s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api-0.0.0-py3.10.egg-info/top_level.txt
+[3.119s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api-0.0.0-py3.10.egg-info/PKG-INFO
+[3.120s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api
+[3.120s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/unitree_api_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[3.120s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/_unitree_api_s.ep.rosidl_typesupport_introspection_c.c
+[3.120s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/_unitree_api_s.ep.rosidl_typesupport_c.c
+[3.120s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/__init__.py
+[3.120s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg
+[3.120s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_response_s.c
+[3.120s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_identity_s.c
+[3.120s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_response_status.py
+[3.120s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_lease_s.c
+[3.120s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_response_header_s.c
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_policy.py
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_identity.py
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_response.py
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_s.c
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_policy_s.c
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_response_header.py
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/__init__.py
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_response_status_s.c
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_lease.py
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_header_s.c
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_header.py
+[3.121s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request.py
+[3.122s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/_unitree_api_s.ep.rosidl_typesupport_fastrtps_c.c
+[3.122s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/unitree_api_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[3.122s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/unitree_api_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[3.122s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/libunitree_api__rosidl_generator_py.so
+[3.162s] Listing '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api'...
+[3.162s] Compiling '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/__init__.py'...
+[3.162s] Listing '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg'...
+[3.162s] Compiling '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/__init__.py'...
+[3.163s] Compiling '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request.py'...
+[3.163s] Compiling '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_header.py'...
+[3.163s] Compiling '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_identity.py'...
+[3.163s] Compiling '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_lease.py'...
+[3.163s] Compiling '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_request_policy.py'...
+[3.163s] Compiling '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_response.py'...
+[3.163s] Compiling '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_response_header.py'...
+[3.163s] Compiling '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/msg/_response_status.py'...
+[3.166s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/unitree_api_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[3.166s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/unitree_api_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""
+[3.166s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/unitree_api_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[3.167s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/unitree_api_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""
+[3.167s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/unitree_api_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[3.167s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages/unitree_api/unitree_api_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""
+[3.167s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_generator_py.so
+[3.167s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/lib/libunitree_api__rosidl_generator_py.so" to ""
+[3.167s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/Request.idl
+[3.168s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/RequestHeader.idl
+[3.168s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/RequestIdentity.idl
+[3.168s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/RequestLease.idl
+[3.168s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/RequestPolicy.idl
+[3.168s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/Response.idl
+[3.168s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/ResponseHeader.idl
+[3.168s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/ResponseStatus.idl
+[3.168s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/Request.msg
+[3.168s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/RequestHeader.msg
+[3.168s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/RequestIdentity.msg
+[3.168s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/RequestLease.msg
+[3.169s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/RequestPolicy.msg
+[3.169s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/Response.msg
+[3.169s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/ResponseHeader.msg
+[3.169s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/ResponseStatus.msg
+[3.169s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/dds_connext
+[3.169s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/dds_connext/Request_.idl
+[3.169s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/dds_connext/RequestPolicy_.idl
+[3.169s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/dds_connext/Response_.idl
+[3.169s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/dds_connext/RequestIdentity_.idl
+[3.169s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/dds_connext/RequestLease_.idl
+[3.169s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/dds_connext/ResponseStatus_.idl
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/dds_connext/ResponseHeader_.idl
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/msg/dds_connext/RequestHeader_.idl
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/ament_index/resource_index/package_run_dependencies/unitree_api
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/ament_index/resource_index/parent_prefix_path/unitree_api
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/environment/ament_prefix_path.sh
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/environment/ament_prefix_path.dsv
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/environment/path.sh
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/environment/path.dsv
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/local_setup.bash
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/local_setup.sh
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/local_setup.zsh
+[3.170s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/local_setup.dsv
+[3.171s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/package.dsv
+[3.171s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/ament_index/resource_index/packages/unitree_api
+[3.171s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/export_unitree_api__rosidl_generator_cExport.cmake
+[3.171s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/export_unitree_api__rosidl_generator_cExport-noconfig.cmake
+[3.171s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/export_unitree_api__rosidl_typesupport_fastrtps_cExport.cmake
+[3.171s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/export_unitree_api__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[3.171s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/export_unitree_api__rosidl_generator_cppExport.cmake
+[3.171s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/export_unitree_api__rosidl_typesupport_fastrtps_cppExport.cmake
+[3.171s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/export_unitree_api__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[3.171s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/unitree_api__rosidl_typesupport_introspection_cExport.cmake
+[3.172s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/unitree_api__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[3.172s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/unitree_api__rosidl_typesupport_cExport.cmake
+[3.172s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/unitree_api__rosidl_typesupport_cExport-noconfig.cmake
+[3.172s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/unitree_api__rosidl_typesupport_introspection_cppExport.cmake
+[3.172s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/unitree_api__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[3.172s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/unitree_api__rosidl_typesupport_cppExport.cmake
+[3.172s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/unitree_api__rosidl_typesupport_cppExport-noconfig.cmake
+[3.172s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/export_unitree_api__rosidl_generator_pyExport.cmake
+[3.173s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/export_unitree_api__rosidl_generator_pyExport-noconfig.cmake
+[3.173s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/rosidl_cmake-extras.cmake
+[3.173s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/ament_cmake_export_dependencies-extras.cmake
+[3.173s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/ament_cmake_export_include_directories-extras.cmake
+[3.173s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/ament_cmake_export_libraries-extras.cmake
+[3.173s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/ament_cmake_export_targets-extras.cmake
+[3.173s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[3.173s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[3.173s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/unitree_apiConfig.cmake
+[3.173s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/cmake/unitree_apiConfig-version.cmake
+[3.173s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/unitree_api/share/unitree_api/package.xml
+[3.176s] Invoked command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/unitree_api' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/unitree_api

@@ -1,0 +1,84 @@
+[0.003s] Invoking command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/rmw_cyclonedds_cpp': CMAKE_PREFIX_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds:/opt/ros/humble LD_LIBRARY_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib:${LD_LIBRARY_PATH} PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/bin:${PATH} PKG_CONFIG_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/x86_64-linux-gnu/pkgconfig:/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/pkgconfig /usr/bin/cmake /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp -DCMAKE_INSTALL_PREFIX=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp
+[0.027s] -- The C compiler identification is GNU 11.4.0
+[0.052s] -- The CXX compiler identification is GNU 11.4.0
+[0.056s] -- Detecting C compiler ABI info
+[0.085s] -- Detecting C compiler ABI info - done
+[0.089s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.089s] -- Detecting C compile features
+[0.089s] -- Detecting C compile features - done
+[0.091s] -- Detecting CXX compiler ABI info
+[0.125s] -- Detecting CXX compiler ABI info - done
+[0.129s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.129s] -- Detecting CXX compile features
+[0.129s] -- Detecting CXX compile features - done
+[0.130s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[0.202s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.240s] -- Found rcutils: 5.1.6 (/opt/ros/humble/share/rcutils/cmake)
+[0.246s] -- Found rcpputils: 2.4.3 (/opt/ros/humble/share/rcpputils/cmake)
+[0.247s] -- Found tracetools: 4.1.1 (/opt/ros/humble/share/tracetools/cmake)
+[0.249s] -- Cyclone DDS is NOT compiled with support for shared memory
+[0.249s] -- Found rmw: 6.1.2 (/opt/ros/humble/share/rmw/cmake)
+[0.254s] -- Found rmw_dds_common: 1.6.0 (/opt/ros/humble/share/rmw_dds_common/cmake)
+[0.259s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.261s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.264s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.268s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.276s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.285s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.326s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.327s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.327s] -- Configured cppcheck include dirs: 
+[0.327s] -- Configured cppcheck exclude dirs and/or files: 
+[0.327s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.328s] -- Configured cpplint exclude dirs and/or files: 
+[0.328s] -- Added test 'lint_cmake' to check CMake code style
+[0.329s] -- Added test 'uncrustify' to check C / C++ code style
+[0.329s] -- Configured uncrustify additional arguments: 
+[0.329s] -- Added test 'xmllint' to check XML markup files
+[0.330s] -- Configuring done
+[0.333s] -- Generating done
+[0.334s] -- Build files have been written to: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/rmw_cyclonedds_cpp
+[0.337s] Invoked command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/rmw_cyclonedds_cpp' returned '0': CMAKE_PREFIX_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds:/opt/ros/humble LD_LIBRARY_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib:${LD_LIBRARY_PATH} PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/bin:${PATH} PKG_CONFIG_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/x86_64-linux-gnu/pkgconfig:/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/pkgconfig /usr/bin/cmake /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp -DCMAKE_INSTALL_PREFIX=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp
+[0.338s] Invoking command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/rmw_cyclonedds_cpp': CMAKE_PREFIX_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds:/opt/ros/humble LD_LIBRARY_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib:${LD_LIBRARY_PATH} PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/bin:${PATH} PKG_CONFIG_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/x86_64-linux-gnu/pkgconfig:/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/pkgconfig /usr/bin/cmake --build /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/rmw_cyclonedds_cpp -- -j32 -l32
+[0.357s] [  8%] [32mBuilding CXX object CMakeFiles/rmw_cyclonedds_cpp.dir/src/rmw_get_network_flow_endpoints.cpp.o[0m
+[0.357s] [ 25%] [32mBuilding CXX object CMakeFiles/rmw_cyclonedds_cpp.dir/src/serdata.cpp.o[0m
+[0.358s] [ 33%] [32mBuilding CXX object CMakeFiles/rmw_cyclonedds_cpp.dir/src/serdes.cpp.o[0m
+[0.358s] [ 33%] [32mBuilding CXX object CMakeFiles/rmw_cyclonedds_cpp.dir/src/rmw_node.cpp.o[0m
+[0.358s] [ 41%] [32mBuilding CXX object CMakeFiles/rmw_cyclonedds_cpp.dir/src/u16string.cpp.o[0m
+[0.358s] [ 50%] [32mBuilding CXX object CMakeFiles/rmw_cyclonedds_cpp.dir/src/exception.cpp.o[0m
+[0.360s] [ 58%] [32mBuilding CXX object CMakeFiles/rmw_cyclonedds_cpp.dir/src/demangle.cpp.o[0m
+[0.360s] [ 66%] [32mBuilding CXX object CMakeFiles/rmw_cyclonedds_cpp.dir/src/deserialization_exception.cpp.o[0m
+[0.360s] [ 75%] [32mBuilding CXX object CMakeFiles/rmw_cyclonedds_cpp.dir/src/Serialization.cpp.o[0m
+[0.361s] [ 83%] [32mBuilding CXX object CMakeFiles/rmw_cyclonedds_cpp.dir/src/TypeSupport2.cpp.o[0m
+[0.361s] [ 91%] [32mBuilding CXX object CMakeFiles/rmw_cyclonedds_cpp.dir/src/TypeSupport.cpp.o[0m
+[3.518s] [100%] [32m[1mLinking CXX shared library librmw_cyclonedds_cpp.so[0m
+[3.643s] [100%] Built target rmw_cyclonedds_cpp
+[3.648s] Invoked command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/rmw_cyclonedds_cpp' returned '0': CMAKE_PREFIX_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds:/opt/ros/humble LD_LIBRARY_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib:${LD_LIBRARY_PATH} PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/bin:${PATH} PKG_CONFIG_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/x86_64-linux-gnu/pkgconfig:/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/pkgconfig /usr/bin/cmake --build /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/rmw_cyclonedds_cpp -- -j32 -l32
+[3.663s] Invoking command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/rmw_cyclonedds_cpp': CMAKE_PREFIX_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds:/opt/ros/humble LD_LIBRARY_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib:${LD_LIBRARY_PATH} PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/bin:${PATH} PKG_CONFIG_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/x86_64-linux-gnu/pkgconfig:/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/pkgconfig /usr/bin/cmake --install /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/rmw_cyclonedds_cpp
+[3.666s] -- Install configuration: ""
+[3.666s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/ament_index/resource_index/rmw_typesupport_c/rmw_cyclonedds_cpp
+[3.666s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/ament_index/resource_index/rmw_typesupport_cpp/rmw_cyclonedds_cpp
+[3.666s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/ament_index/resource_index/rmw_typesupport/rmw_cyclonedds_cpp
+[3.666s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/ament_index/resource_index/package_run_dependencies/rmw_cyclonedds_cpp
+[3.666s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/ament_index/resource_index/parent_prefix_path/rmw_cyclonedds_cpp
+[3.666s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/environment/ament_prefix_path.sh
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/environment/ament_prefix_path.dsv
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/environment/path.sh
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/environment/path.dsv
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/local_setup.bash
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/local_setup.sh
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/local_setup.zsh
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/local_setup.dsv
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/package.dsv
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/ament_index/resource_index/packages/rmw_cyclonedds_cpp
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/cmake/export_rmw_cyclonedds_cppExport.cmake
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/cmake/export_rmw_cyclonedds_cppExport-noconfig.cmake
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/cmake/ament_cmake_export_dependencies-extras.cmake
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/cmake/ament_cmake_export_targets-extras.cmake
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/cmake/rmw_cyclonedds_cppConfig.cmake
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/cmake/rmw_cyclonedds_cppConfig-version.cmake
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/package.xml
+[3.667s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/lib/librmw_cyclonedds_cpp.so
+[3.668s] -- Set runtime path of "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/lib/librmw_cyclonedds_cpp.so" to ""
+[3.668s] -- Installing: /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/rmw_cyclonedds_cpp/share/ament_index/resource_index/rmw_output_patterns/rmw_cyclonedds_cpp
+[3.669s] Invoked command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/rmw_cyclonedds_cpp' returned '0': CMAKE_PREFIX_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds:/opt/ros/humble LD_LIBRARY_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib:${LD_LIBRARY_PATH} PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/bin:${PATH} PKG_CONFIG_PATH=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/x86_64-linux-gnu/pkgconfig:/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/pkgconfig /usr/bin/cmake --install /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/rmw_cyclonedds_cpp

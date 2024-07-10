@@ -1,0 +1,29 @@
+{
+  "package_name": "unitree_go",
+  "non_idl_tuples": [
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/AudioData.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/BmsCmd.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/BmsState.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/Error.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/Go2FrontVideoData.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/HeightMap.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/IMUState.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/InterfaceConfig.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/LidarState.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/LowCmd.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/LowState.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/MotorCmd.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/MotorCmds.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/MotorState.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/MotorStates.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/PathPoint.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/Req.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/Res.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/SportModeCmd.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/SportModeState.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/TimeSpec.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/UwbState.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/UwbSwitch.msg",
+    "/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go:msg/WirelessController.msg"
+  ]
+}

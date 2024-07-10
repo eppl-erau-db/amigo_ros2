@@ -1,0 +1,206 @@
+[0.102s] [34mcolcon[0m [1;30mDEBUG[0m [32mCommand line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'cyclonedds'][0m
+[0.102s] [34mcolcon[0m [1;30mDEBUG[0m [32mParsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=32, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['cyclonedds'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7f2eadd44cd0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f2eadd45660>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f2eadd45660>>, mixin_verb=('build',))[0m
+[0.188s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) check parameters
+[0.188s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) check parameters
+[0.188s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) check parameters
+[0.188s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) check parameters
+[0.188s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) discover
+[0.188s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) discover
+[0.188s] [34mcolcon.colcon_core.package_discovery[0m [1;30mINFO[0m Crawling recursively for packages in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws'
+[0.188s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.188s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore'
+[0.188s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore_ament_install'
+[0.188s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_pkg']
+[0.188s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_pkg'
+[0.188s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_meta']
+[0.188s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_meta'
+[0.188s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ros']
+[0.188s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ros'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['cmake', 'python']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'cmake'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['python_setup_py']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python_setup_py'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extension 'ignore'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) ignored
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extension 'ignore'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) ignored
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extension 'ignore'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) ignored
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore_ament_install'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_pkg']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_pkg'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_meta']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_meta'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ros']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ros'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['cmake', 'python']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'cmake'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['python_setup_py']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python_setup_py'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/cyclonedds) by extensions ['ignore', 'ignore_ament_install']
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/cyclonedds) by extension 'ignore'
+[0.197s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/cyclonedds) by extension 'ignore_ament_install'
+[0.198s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/cyclonedds) by extensions ['colcon_pkg']
+[0.198s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/cyclonedds) by extension 'colcon_pkg'
+[0.198s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/cyclonedds) by extensions ['colcon_meta']
+[0.198s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/cyclonedds) by extension 'colcon_meta'
+[0.198s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/cyclonedds) by extensions ['ros']
+[0.198s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/cyclonedds) by extension 'ros'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/cyclonedds' with type 'ros.cmake' and name 'cyclonedds'[0m
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extensions ['ignore', 'ignore_ament_install']
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extension 'ignore'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extension 'ignore_ament_install'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extensions ['colcon_pkg']
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extension 'colcon_pkg'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extensions ['colcon_meta']
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extension 'colcon_meta'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extensions ['ros']
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extension 'ros'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extensions ['cmake', 'python']
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extension 'cmake'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extension 'python'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extensions ['python_setup_py']
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds) by extension 'python_setup_py'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['ignore', 'ignore_ament_install']
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'ignore'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'ignore_ament_install'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['colcon_pkg']
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'colcon_pkg'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['colcon_meta']
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'colcon_meta'
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['ros']
+[0.200s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'ros'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/rmw_cyclonedds/rmw_cyclonedds_cpp' with type 'ros.ament_cmake' and name 'rmw_cyclonedds_cpp'[0m
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extensions ['ignore', 'ignore_ament_install']
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extension 'ignore'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extension 'ignore_ament_install'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extensions ['colcon_pkg']
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extension 'colcon_pkg'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extensions ['colcon_meta']
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extension 'colcon_meta'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extensions ['ros']
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extension 'ros'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extensions ['cmake', 'python']
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extension 'cmake'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extension 'python'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extensions ['python_setup_py']
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree) by extension 'python_setup_py'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_api) by extensions ['ignore', 'ignore_ament_install']
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_api) by extension 'ignore'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_api) by extension 'ignore_ament_install'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_api) by extensions ['colcon_pkg']
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_api) by extension 'colcon_pkg'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_api) by extensions ['colcon_meta']
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_api) by extension 'colcon_meta'
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_api) by extensions ['ros']
+[0.201s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_api) by extension 'ros'
+[0.202s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/unitree/unitree_api' with type 'ros.ament_cmake' and name 'unitree_api'[0m
+[0.202s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_go) by extensions ['ignore', 'ignore_ament_install']
+[0.202s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_go) by extension 'ignore'
+[0.202s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_go) by extension 'ignore_ament_install'
+[0.202s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_go) by extensions ['colcon_pkg']
+[0.202s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_go) by extension 'colcon_pkg'
+[0.202s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_go) by extensions ['colcon_meta']
+[0.202s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_go) by extension 'colcon_meta'
+[0.202s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_go) by extensions ['ros']
+[0.202s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/unitree/unitree_go) by extension 'ros'
+[0.202s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/unitree/unitree_go' with type 'ros.ament_cmake' and name 'unitree_go'[0m
+[0.202s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) using defaults
+[0.202s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) discover
+[0.202s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) using defaults
+[0.202s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) discover
+[0.202s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) using defaults
+[0.212s] [34mcolcon.colcon_metadata.metadata.colcon_pkg[0m [1;30mINFO[0m Updating descriptor of package 'src/cyclonedds' from colcon.pkg: {'cmake-args': ['-DBUILD_IDLC=AUTO']}
+[0.212s] [34mcolcon.colcon_core.package_selection[0m [1;30mINFO[0m Skipping not selected package 'unitree_api' in 'src/unitree/unitree_api'
+[0.212s] [34mcolcon.colcon_core.package_selection[0m [1;30mINFO[0m Skipping not selected package 'unitree_go' in 'src/unitree/unitree_go'
+[0.212s] [34mcolcon.colcon_core.package_selection[0m [1;30mINFO[0m Skipping not selected package 'rmw_cyclonedds_cpp' in 'src/rmw_cyclonedds/rmw_cyclonedds_cpp'
+[0.213s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) check parameters
+[0.213s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) discover
+[0.214s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) using defaults
+[0.215s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'cyclonedds' build argument 'cmake_args' from command line to 'None'
+[0.215s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m overwrite package 'cyclonedds' build argument 'cmake_args' from package metadata with '['-DBUILD_IDLC=AUTO']' (before: 'None')
+[0.215s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'cyclonedds' build argument 'cmake_target' from command line to 'None'
+[0.215s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'cyclonedds' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.215s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'cyclonedds' build argument 'cmake_clean_cache' from command line to 'False'
+[0.215s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'cyclonedds' build argument 'cmake_clean_first' from command line to 'False'
+[0.215s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'cyclonedds' build argument 'cmake_force_configure' from command line to 'False'
+[0.215s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'cyclonedds' build argument 'ament_cmake_args' from command line to 'None'
+[0.215s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'cyclonedds' build argument 'catkin_cmake_args' from command line to 'None'
+[0.215s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'cyclonedds' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.215s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'cyclonedds' with the following arguments: {'ament_cmake_args': None, 'build_base': '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/cyclonedds', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': ['-DBUILD_IDLC=AUTO'], 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds', 'merge_install': False, 'path': '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds', 'symlink_install': False, 'test_result_base': None}[0m
+[0.215s] [34mcolcon.colcon_core.executor[0m [1;30mINFO[0m Executing jobs using 'parallel' executor
+[0.216s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete[0m
+[0.216s] [34mcolcon.colcon_ros.task.cmake.build[0m [1;30mINFO[0m Building ROS package in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds' with build type 'cmake'
+[0.216s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds'
+[0.219s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.219s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.219s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.221s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/cyclonedds': /usr/bin/cmake /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds -DBUILD_IDLC=AUTO -DCMAKE_INSTALL_PREFIX=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds[0m
+[1.767s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/cyclonedds' returned '0': /usr/bin/cmake /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds -DBUILD_IDLC=AUTO -DCMAKE_INSTALL_PREFIX=/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds[0m
+[1.767s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/cyclonedds': /usr/bin/cmake --build /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/cyclonedds -- -j32 -l32[0m
+[4.375s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/cyclonedds' returned '0': /usr/bin/cmake --build /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/cyclonedds -- -j32 -l32[0m
+[4.392s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/cyclonedds': /usr/bin/cmake --install /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/cyclonedds[0m
+[4.415s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/cyclonedds' returned '0': /usr/bin/cmake --install /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/build/cyclonedds[0m
+[4.424s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('cyclonedds', 'pkg_config_path')
+[4.424s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/pkg_config_path.ps1'
+[4.426s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/pkg_config_path.dsv'
+[4.426s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/pkg_config_path.sh'
+[4.427s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('cyclonedds', 'pkg_config_path_multiarch')
+[4.427s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/pkg_config_path_multiarch.ps1'
+[4.428s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/pkg_config_path_multiarch.dsv'
+[4.428s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/pkg_config_path_multiarch.sh'
+[4.428s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(cyclonedds)
+[4.434s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds' for CMake module files
+[4.434s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds' for CMake config files
+[4.435s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('cyclonedds', 'cmake_prefix_path')
+[4.435s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/cmake_prefix_path.ps1'
+[4.435s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/cmake_prefix_path.dsv'
+[4.436s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/cmake_prefix_path.sh'
+[4.436s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib'
+[4.436s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('cyclonedds', 'ld_library_path_lib')
+[4.437s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/ld_library_path_lib.ps1'
+[4.437s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/ld_library_path_lib.dsv'
+[4.437s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/ld_library_path_lib.sh'
+[4.437s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/bin'
+[4.437s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('cyclonedds', 'path')
+[4.437s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/path.ps1'
+[4.438s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/path.dsv'
+[4.438s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/path.sh'
+[4.438s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/pkgconfig/cyclonedds.pc'
+[4.439s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/lib/python3.10/site-packages'
+[4.439s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/bin'
+[4.439s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('cyclonedds', 'pythonscriptspath')
+[4.439s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/pythonscriptspath.ps1'
+[4.440s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/pythonscriptspath.dsv'
+[4.440s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/hook/pythonscriptspath.sh'
+[4.440s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/package.ps1'
+[4.441s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/package.dsv'
+[4.442s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/package.sh'
+[4.442s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/package.bash'
+[4.443s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/cyclonedds/package.zsh'
+[4.443s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/cyclonedds/share/colcon-core/packages/cyclonedds)
+[4.443s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mclosing loop[0m
+[4.443s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mloop closed[0m
+[4.443s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete finished with '0'[0m
+[4.444s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoining thread[0m
+[4.449s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[4.449s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[4.449s] [34mcolcon.colcon_notification.desktop_notification[0m [1;30mINFO[0m Sending desktop notification using 'notify2'
+[4.467s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoined thread[0m
+[4.467s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/local_setup.ps1'
+[4.468s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/_local_setup_util_ps1.py'
+[4.469s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/setup.ps1'
+[4.469s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/local_setup.sh'
+[4.470s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/_local_setup_util_sh.py'
+[4.470s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/setup.sh'
+[4.470s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/local_setup.bash'
+[4.471s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/setup.bash'
+[4.471s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/local_setup.zsh'
+[4.471s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/setup.zsh'
