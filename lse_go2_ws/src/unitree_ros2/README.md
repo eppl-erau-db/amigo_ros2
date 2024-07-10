@@ -1,9 +1,6 @@
-ctrl+alt+T open the terminal, clone the repository: https://github.com/gabearod2/unitree_ros2
+Taken from: https://github.com/unitreerobotics/unitree_ros2
 
-```bash
-git clone https://github.com/gabearod2/unitree_ros2
-```
-where:
+Where:
 - **cyclonedds_ws**: The workspace of Unitree ros2 package. The msg for Unitree robot are supplied in the subfolder cyclonedds_ws/unitree/unitree_go and cyclonedds_ ws/unitree/unitree_api.
 - **example**: The workspace of some examples.
 
@@ -30,7 +27,7 @@ sudo gedit ~/.bashrc
 ```
 Compile cyclone-dds - edited 
 ```bash
-cd ~/workspaces/unitree_ros2/cyclonedds_ws/src
+cd /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src
 git clone https://github.com/ros2/rmw_cyclonedds -b humble
 git clone https://github.com/eclipse-cyclonedds/cyclonedds -b releases/0.10.x 
 cd ..
@@ -46,11 +43,7 @@ colcon build # Compile all packages in the workspace
 ## Connect to Unitree robot
 
 ### 1. Network configuration
-Connect Unitree robot and the computer using Ethernet cable. Then, use ifconfig to view the network interface that the robot connected. For example, "enp3s0" in the following figure.
-![image](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/W4j6OJ2awDgbO3p8/img/5d22c143-5dad-4964-81f3-55864906a9f0.png)
-
-Next, open the network settings, find the network interface that the robot connected.In IPv4 setting, change the IPv4 mode to manual, set the address to 192.168.123.99, and set the mask to 255.255.255.0. After completion, click apply and wait for the network to reconnect.
-![image](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/W4j6OJ2awDgbO3p8/img/721e1660-04dc-42b7-8d6e-14799afe2165.png)
+Connect Unitree robot and the computer using Ethernet cable. From ifconfig, get name="enpXXX".
 
 Open setup.sh file.
 ```bash
@@ -66,7 +59,7 @@ export CYCLONEDDS_URI='<CycloneDDS><Domain><General><Interfaces>
                             <NetworkInterface name="enp114s0" priority="default" multicast="default" />
                         </Interfaces></General></Domain></CycloneDDS>'
 ```
-where "enp3s0" is the network interface name of unitree robot connected.
+where "enpXXX" is the network interface name of unitree robot connected.
 Modify it to the corresponding network interface according to the actual situation. 
 
 Source the environment to setup the ROS2 support of Unitree robot: 
@@ -93,12 +86,6 @@ Ensure that the network of robot is connected correctly, open a terminal and inp
 source ~/unitree_ros2/setup.sh
 ros2 topic list
 ```
-You can see the following topics:
-![image](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/W4j6OJ2awDgbO3p8/img/5e45e8ec-9248-47eb-8380-798ed0ef468b.png)
-
-Input ros2 topic echo /sportmodestate，you can see the data of the topic as shown in the following figure：
-![image](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/W4j6OJ2awDgbO3p8/img/89214761-6cfb-4b52-bf24-7a5bd9a9806c.png)
-
 
 ### 3. Examples
 Open a terminal and input:
