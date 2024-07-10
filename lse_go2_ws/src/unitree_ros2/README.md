@@ -28,10 +28,16 @@ sudo gedit ~/.bashrc
 ```
 Compile cyclone-dds - edited 
 ```bash
-cd /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src
+cd /mnt/nvme_partition/Repos
 git clone https://github.com/ros2/rmw_cyclonedds -b humble
 git clone https://github.com/eclipse-cyclonedds/cyclonedds -b releases/0.10.x 
-cd ..
+cd /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src
+mkdir rmw_cyclonedds
+mkdir cyclonedds
+cp -r /mnt/nvme_partition/Repos/cyclonedds/* /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/cyclonedds
+cp -r /mnt/nvme_partition/Repos/rmw_cyclonedds/* /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds
+
+cd /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws
 colcon build --packages-select cyclonedds #Compile cyclone-dds package
 ```
 ### 3. Compile unitree_go and unitree_api packages
@@ -48,13 +54,13 @@ Connect Unitree robot and the computer using Ethernet cable. From ifconfig, get 
 
 Open setup.sh file.
 ```bash
-sudo gedit ~/workspaces/unitree_ros2/setup.sh
+sudo gedit /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/setup.sh
 ```
 ```bash
 #!/bin/bash
 echo "Setup unitree ros2 environment"
 source /opt/ros/humble/setup.bash
-source $HOME/workspaces/unitree_ros2/cyclonedds_ws/install/setup.bash
+source /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/cyclonedds_ws/install/setup.bash
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 export CYCLONEDDS_URI='<CycloneDDS><Domain><General><Interfaces>
                             <NetworkInterface name="enp114s0" priority="default" multicast="default" />
@@ -65,7 +71,7 @@ Modify it to the corresponding network interface according to the actual situati
 
 Source the environment to setup the ROS2 support of Unitree robot: 
 ```bash
-source ~/workspaces/unitree_ros2/setup.sh
+source /mnt/nvme_partition/workspaces/lse_go2_ws/src/unitree_ros2/setup.sh
 ```
 If you don't want to source the bash script every time when a new terminal opens, you can write the content of bash script into ~/.bashrc, but attention should be paid when there are multiple ROS environments coexisting in the system.
 
