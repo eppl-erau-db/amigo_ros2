@@ -117,6 +117,7 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
             launch_arguments={
                 'mode': 'dynamic',
+                'visualization': 'false',
                 # 'people_segmentation': 'peoplesemsegnet_shuffleseg',
             }.items(),
         ),
