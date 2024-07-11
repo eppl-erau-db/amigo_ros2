@@ -1,0 +1,3 @@
+source;share/realsense_splitter/environment/ament_prefix_path.sh
+source;share/realsense_splitter/environment/library_path.sh
+source;share/realsense_splitter/environment/path.sh

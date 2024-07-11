@@ -1,0 +1,5 @@
+/workspaces/isaac_ros-dev/build/go2_interfaces/rosidl_adapter/go2_interfaces:msg/Go2Cmd.idl
+/workspaces/isaac_ros-dev/build/go2_interfaces/rosidl_adapter/go2_interfaces:msg/Go2State.idl
+/workspaces/isaac_ros-dev/build/go2_interfaces/rosidl_adapter/go2_interfaces:msg/Go2Move.idl
+/workspaces/isaac_ros-dev/build/go2_interfaces/rosidl_adapter/go2_interfaces:msg/Go2RpyCmd.idl
+/workspaces/isaac_ros-dev/build/go2_interfaces/rosidl_adapter/go2_interfaces:msg/IMU.idl

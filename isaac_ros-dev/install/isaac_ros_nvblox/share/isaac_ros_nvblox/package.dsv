@@ -1,0 +1,8 @@
+source;share/isaac_ros_nvblox/hook/cmake_prefix_path.ps1
+source;share/isaac_ros_nvblox/hook/cmake_prefix_path.dsv
+source;share/isaac_ros_nvblox/hook/cmake_prefix_path.sh
+source;share/isaac_ros_nvblox/local_setup.bash
+source;share/isaac_ros_nvblox/local_setup.dsv
+source;share/isaac_ros_nvblox/local_setup.ps1
+source;share/isaac_ros_nvblox/local_setup.sh
+source;share/isaac_ros_nvblox/local_setup.zsh

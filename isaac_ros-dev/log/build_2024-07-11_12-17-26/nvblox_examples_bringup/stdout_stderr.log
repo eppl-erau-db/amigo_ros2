@@ -1,0 +1,58 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspaces/isaac_ros-dev/build/nvblox_examples_bringup
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/nvblox/nvblox_base.yaml
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/nvblox/specializations/nvblox_dynamics.yaml
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/nvblox/specializations/nvblox_realsense.yaml
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/nvblox/specializations/nvblox_segmentation.yaml
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/nvblox/specializations/nvblox_sim.yaml
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/sensors/realsense.yaml
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/visualization/isaac_sim_dynamics_example.rviz
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/visualization/isaac_sim_example.rviz
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/visualization/isaac_sim_people_example.rviz
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/visualization/realsense_dynamics_example.rviz
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/visualization/realsense_example.rviz
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/config/visualization/realsense_people_example.rviz
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/launch/isaac_sim_example.launch.py
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/launch/navigation/nvblox_carter_navigation.launch.py
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/launch/perception/nvblox.launch.py
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/launch/perception/segmentation.launch.py
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/launch/perception/vslam.launch.py
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/launch/realsense_example.launch.py
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/launch/sensors/realsense.launch.py
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/launch/sensors/record_realsense.launch.py
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/launch/visualization/foxglove_bridge.launch.py
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/launch/visualization/rviz.launch.py
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/launch/visualization/visualization.launch.py
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/ament_index/resource_index/package_run_dependencies/nvblox_examples_bringup
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/ament_index/resource_index/parent_prefix_path/nvblox_examples_bringup
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/environment/ament_prefix_path.sh
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/environment/ament_prefix_path.dsv
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/environment/path.sh
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/environment/path.dsv
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/local_setup.bash
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/local_setup.sh
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/local_setup.zsh
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/local_setup.dsv
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/package.dsv
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/ament_index/resource_index/packages/nvblox_examples_bringup
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/cmake/nvblox_examples_bringupConfig.cmake
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/cmake/nvblox_examples_bringupConfig-version.cmake
+-- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/package.xml

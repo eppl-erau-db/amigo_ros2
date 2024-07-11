@@ -1,0 +1,787 @@
+[0.000000] (-) TimerEvent: {}
+[0.000551] (-) JobUnselected: {'identifier': 'cyclonedds'}
+[0.000986] (-) JobUnselected: {'identifier': 'go2_bringup'}
+[0.001218] (-) JobUnselected: {'identifier': 'go2_control'}
+[0.001458] (-) JobUnselected: {'identifier': 'go2_description'}
+[0.001533] (-) JobUnselected: {'identifier': 'go2_driver'}
+[0.001590] (-) JobUnselected: {'identifier': 'go2_interfaces'}
+[0.001642] (-) JobUnselected: {'identifier': 'isaac_ros_apriltag_interfaces'}
+[0.001692] (-) JobUnselected: {'identifier': 'isaac_ros_bi3d_interfaces'}
+[0.001742] (-) JobUnselected: {'identifier': 'isaac_ros_common'}
+[0.001791] (-) JobUnselected: {'identifier': 'isaac_ros_launch_utils'}
+[0.001839] (-) JobUnselected: {'identifier': 'isaac_ros_nitros_bridge_interfaces'}
+[0.001902] (-) JobUnselected: {'identifier': 'isaac_ros_nova_interfaces'}
+[0.001952] (-) JobUnselected: {'identifier': 'isaac_ros_nvblox'}
+[0.002002] (-) JobUnselected: {'identifier': 'isaac_ros_pointcloud_interfaces'}
+[0.002050] (-) JobUnselected: {'identifier': 'isaac_ros_tensor_list_interfaces'}
+[0.002097] (-) JobUnselected: {'identifier': 'isaac_ros_test'}
+[0.002145] (-) JobUnselected: {'identifier': 'nvblox_examples_bringup'}
+[0.002194] (-) JobUnselected: {'identifier': 'nvblox_image_padding'}
+[0.002242] (-) JobUnselected: {'identifier': 'nvblox_msgs'}
+[0.002291] (-) JobUnselected: {'identifier': 'nvblox_nav2'}
+[0.002340] (-) JobUnselected: {'identifier': 'nvblox_ros'}
+[0.002390] (-) JobUnselected: {'identifier': 'nvblox_ros_common'}
+[0.002438] (-) JobUnselected: {'identifier': 'nvblox_ros_python_utils'}
+[0.002486] (-) JobUnselected: {'identifier': 'nvblox_rviz_plugin'}
+[0.002536] (-) JobUnselected: {'identifier': 'realsense2_camera'}
+[0.002587] (-) JobUnselected: {'identifier': 'realsense2_camera_msgs'}
+[0.002636] (-) JobUnselected: {'identifier': 'realsense2_description'}
+[0.002687] (-) JobUnselected: {'identifier': 'rmw_cyclonedds_cpp'}
+[0.002739] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.002782] (-) JobUnselected: {'identifier': 'semantic_label_conversion'}
+[0.002830] (-) JobUnselected: {'identifier': 'unitree_api'}
+[0.002872] (-) JobUnselected: {'identifier': 'unitree_go'}
+[0.002912] (-) JobUnselected: {'identifier': 'unitree_ros2_example'}
+[0.003039] (realsense_splitter) JobQueued: {'identifier': 'realsense_splitter', 'dependencies': OrderedDict([('isaac_ros_common', '/workspaces/isaac_ros-dev/install/isaac_ros_common'), ('realsense2_camera_msgs', '/workspaces/isaac_ros-dev/install/realsense2_camera_msgs')])}
+[0.003115] (realsense_splitter) JobStarted: {'identifier': 'realsense_splitter'}
+[0.035293] (realsense_splitter) JobProgress: {'identifier': 'realsense_splitter', 'progress': 'cmake'}
+[0.035958] (realsense_splitter) Command: {'cmd': ['/usr/bin/cmake', '/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/realsense_splitter', '-DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/realsense_splitter'], 'cwd': '/workspaces/isaac_ros-dev/build/realsense_splitter', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LIBRARY_PATH', '/usr/local/cuda/lib64/stubs'), ('PYTHONWARNINGS', 'ignore:::setuptools.command.install,ignore:::setuptools.command.easy_install,ignore:::pkg_resources,ignore:::setuptools.command.develop'), ('NV_LIBCUBLAS_VERSION', '12.2.5.6-1'), ('USER', 'lse'), ('HOSTNAME', 'lse-desktop'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/lib:/workspaces/isaac_ros-dev/install/isaac_ros_common/lib:/workspaces/isaac_ros-dev/install/unitree_go/lib:/workspaces/isaac_ros-dev/install/unitree_api/lib:/workspaces/isaac_ros-dev/install/rplidar_ros/lib:/workspaces/isaac_ros-dev/install/rmw_cyclonedds_cpp/lib:/workspaces/isaac_ros-dev/install/realsense2_camera/lib:/workspaces/isaac_ros-dev/install/nvblox_ros/lib:/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin/lib:/workspaces/isaac_ros-dev/install/nvblox_image_padding/lib:/workspaces/isaac_ros-dev/install/nvblox_ros_common/lib:/workspaces/isaac_ros-dev/install/nvblox_nav2/lib:/workspaces/isaac_ros-dev/install/nvblox_msgs/lib:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces/lib:/workspaces/isaac_ros-dev/install/go2_interfaces/lib:/workspaces/isaac_ros-dev/install/cyclonedds/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/lib/aarch64-linux-gnu/tegra/weston:/usr/lib/aarch64-linux-gnu/tegra-egl:/usr/local/cuda-12.2/targets/aarch64-linux/lib:/usr/lib/aarch64-linux-gnu/tegra:/opt/nvidia/vpi3/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/lib/aarch64-linux-gnu-host:/opt/tritonserver/lib'), ('HOME', '/home/admin'), ('CYCLONEDDS_URI', '<CycloneDDS><Domain><General><Interfaces>\n                            <NetworkInterface name="eth0" priority="default" multicast="default" />\n                        </Interfaces></General></Domain></CycloneDDS>'), ('NV_LIBCUBLAS_DEV_VERSION', '12.2.5.6-1'), ('ROS_PYTHON_VERSION', '3'), ('USER_UID', '1000'), ('NV_LIBNPP_PACKAGE', 'libnpp-12-2=12.2.1.4-1'), ('CUDA_VERSION', '12.2.12'), ('COLCON_PREFIX_PATH', '/workspaces/isaac_ros-dev/install'), ('ROS_DISTRO', 'humble'), ('NV_LIBCUBLAS_PACKAGE_NAME', 'libcublas-12-2'), ('NVIDIA_REQUIRE_CUDA', 'cuda>=12.2'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/workspaces/isaac_ros-dev/install/cyclonedds/lib/aarch64-linux-gnu/pkgconfig:/workspaces/isaac_ros-dev/install/cyclonedds/lib/pkgconfig'), ('NV_LIBCUSPARSE_VERSION', '12.1.2.141-1'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('NV_CUDA_LIB_VERSION', '12.2.12-1'), ('NV_NVML_DEV_VERSION', '12.2.140-1'), ('USERNAME', 'admin'), ('NV_LIBNPP_DEV_PACKAGE', 'libnpp-dev-12-2=12.2.1.4-1'), ('TERM', 'xterm'), ('ISAAC_ROS_WS', '/workspaces/isaac_ros-dev'), ('NV_CUDA_CUDART_VERSION', '12.2.140-1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/workspaces/isaac_ros-dev/install/isaac_ros_common/bin:/workspaces/isaac_ros-dev/install/nvblox_ros/bin:/workspaces/isaac_ros-dev/install/cyclonedds/bin:/opt/ros/humble/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/src/tensorrt/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/nvidia/tao'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/usr/local/share/middleware_profiles/rtps_udp_profile.xml'), ('NV_LIBCUBLAS_DEV_PACKAGE_NAME', 'libcublas-dev-12-2'), ('NV_LIBCUBLAS_PACKAGE', 'libcublas-12-2=12.2.5.6-1'), ('NVARCH', 'arm64'), ('NV_LIBCUSPARSE_DEV_VERSION', '12.1.2.141-1'), ('DISPLAY', ':1'), ('NVIDIA_PRODUCT_NAME', 'CUDA'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('NV_CUDA_CUDART_DEV_VERSION', '12.2.140-1'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_ROOT', '/opt/ros/humble'), ('AMENT_PREFIX_PATH', '/workspaces/isaac_ros-dev/install/unitree_ros2_example:/workspaces/isaac_ros-dev/install/go2_driver:/workspaces/isaac_ros-dev/install/unitree_go:/workspaces/isaac_ros-dev/install/unitree_api:/workspaces/isaac_ros-dev/install/isaac_ros_nvblox:/workspaces/isaac_ros-dev/install/nvblox_examples_bringup:/workspaces/isaac_ros-dev/install/semantic_label_conversion:/workspaces/isaac_ros-dev/install/rplidar_ros:/workspaces/isaac_ros-dev/install/rmw_cyclonedds_cpp:/workspaces/isaac_ros-dev/install/realsense2_description:/workspaces/isaac_ros-dev/install/realsense2_camera:/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/workspaces/isaac_ros-dev/install/nvblox_ros:/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin:/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils:/workspaces/isaac_ros-dev/install/nvblox_image_padding:/workspaces/isaac_ros-dev/install/nvblox_ros_common:/workspaces/isaac_ros-dev/install/nvblox_nav2:/workspaces/isaac_ros-dev/install/nvblox_msgs:/workspaces/isaac_ros-dev/install/isaac_ros_test:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils:/workspaces/isaac_ros-dev/install/isaac_ros_common:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces:/workspaces/isaac_ros-dev/install/go2_bringup:/workspaces/isaac_ros-dev/install/go2_control:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/opt/ros/humble'), ('DEBIAN_FRONTEND', 'noninteractive'), ('SHELL', '/bin/bash'), ('TRT_INCLUDE_PATH', '/usr/include/aarch64-linux-gnu'), ('NV_LIBCUBLAS_DEV_PACKAGE', 'libcublas-dev-12-2=12.2.5.6-1'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('NVIDIA_REQUIRE_JETPACK_HOST_MOUNTS', 'base-only'), ('NV_NVTX_VERSION', '12.2.140-1'), ('NV_LIBNPP_VERSION', '12.2.1.4-1'), ('PWD', '/workspaces/isaac_ros-dev/build/realsense_splitter'), ('PYTHONPATH', '/workspaces/isaac_ros-dev/install/unitree_go/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/unitree_api/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/nvblox_ros_python_utils:/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/isaac_ros_test:/workspaces/isaac_ros-dev/install/isaac_ros_test/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/isaac_ros_launch_utils:/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/go2_control:/workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('NVIDIA_VISIBLE_DEVICES', 'all'), ('USER_GID', '1000'), ('COLCON', '1'), ('NV_LIBNPP_DEV_VERSION', '12.2.1.4-1'), ('CMAKE_PREFIX_PATH', '/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/workspaces/isaac_ros-dev/install/isaac_ros_common:/workspaces/isaac_ros-dev/install/unitree_ros2_example:/workspaces/isaac_ros-dev/install/go2_driver:/workspaces/isaac_ros-dev/install/unitree_go:/workspaces/isaac_ros-dev/install/unitree_api:/workspaces/isaac_ros-dev/install/isaac_ros_nvblox:/workspaces/isaac_ros-dev/install/nvblox_examples_bringup:/workspaces/isaac_ros-dev/install/semantic_label_conversion:/workspaces/isaac_ros-dev/install/rplidar_ros:/workspaces/isaac_ros-dev/install/rmw_cyclonedds_cpp:/workspaces/isaac_ros-dev/install/realsense2_description:/workspaces/isaac_ros-dev/install/realsense2_camera:/workspaces/isaac_ros-dev/install/nvblox_ros:/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin:/workspaces/isaac_ros-dev/install/nvblox_image_padding:/workspaces/isaac_ros-dev/install/nvblox_ros_common:/workspaces/isaac_ros-dev/install/nvblox_nav2:/workspaces/isaac_ros-dev/install/nvblox_msgs:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces:/workspaces/isaac_ros-dev/install/go2_bringup:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/workspaces/isaac_ros-dev/install/cyclonedds:/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils:/workspaces/isaac_ros-dev/install/isaac_ros_test:/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils:/workspaces/isaac_ros-dev/install/go2_control:/opt/ros/humble'), ('TRT_LIB_PATH', '/usr/lib/aarch64-linux-gnu')]), 'shell': False}
+[0.099395] (-) TimerEvent: {}
+[0.170255] (realsense_splitter) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.199517] (-) TimerEvent: {}
+[0.291324] (realsense_splitter) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.299653] (-) TimerEvent: {}
+[0.318795] (realsense_splitter) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.399868] (-) TimerEvent: {}
+[0.500616] (-) TimerEvent: {}
+[0.506389] (realsense_splitter) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.531610] (realsense_splitter) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.532648] (realsense_splitter) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.533352] (realsense_splitter) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.540774] (realsense_splitter) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.600787] (-) TimerEvent: {}
+[0.701481] (-) TimerEvent: {}
+[0.731412] (realsense_splitter) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.750394] (realsense_splitter) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.751451] (realsense_splitter) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.753097] (realsense_splitter) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.776148] (realsense_splitter) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.801580] (-) TimerEvent: {}
+[0.902185] (-) TimerEvent: {}
+[1.002817] (-) TimerEvent: {}
+[1.103680] (-) TimerEvent: {}
+[1.204228] (-) TimerEvent: {}
+[1.304784] (-) TimerEvent: {}
+[1.405324] (-) TimerEvent: {}
+[1.506100] (-) TimerEvent: {}
+[1.606697] (-) TimerEvent: {}
+[1.707352] (-) TimerEvent: {}
+[1.808053] (-) TimerEvent: {}
+[1.908894] (-) TimerEvent: {}
+[2.009532] (-) TimerEvent: {}
+[2.110421] (-) TimerEvent: {}
+[2.211061] (-) TimerEvent: {}
+[2.237770] (realsense_splitter) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[2.311227] (-) TimerEvent: {}
+[2.411847] (-) TimerEvent: {}
+[2.512893] (-) TimerEvent: {}
+[2.564555] (realsense_splitter) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[2.604755] (realsense_splitter) StdoutLine: {'line': b'-- Found rclcpp: 16.0.9 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[2.612946] (-) TimerEvent: {}
+[2.713408] (-) TimerEvent: {}
+[2.747550] (realsense_splitter) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[2.768160] (realsense_splitter) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[2.794872] (realsense_splitter) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[2.813468] (-) TimerEvent: {}
+[2.830621] (realsense_splitter) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.881891] (realsense_splitter) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.913560] (-) TimerEvent: {}
+[3.013992] (-) TimerEvent: {}
+[3.052297] (realsense_splitter) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[3.058028] (realsense_splitter) StdoutLine: {'line': b'-- Found rmw_cyclonedds_cpp: 1.3.4 (/workspaces/isaac_ros-dev/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/cmake)\n'}
+[3.114084] (-) TimerEvent: {}
+[3.139595] (realsense_splitter) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_cyclonedds_cpp' as default\n"}
+[3.176153] (realsense_splitter) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[3.214275] (-) TimerEvent: {}
+[3.314924] (-) TimerEvent: {}
+[3.347488] (realsense_splitter) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[3.348286] (realsense_splitter) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[3.417189] (-) TimerEvent: {}
+[3.514589] (realsense_splitter) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[3.516575] (realsense_splitter) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[3.517240] (-) TimerEvent: {}
+[3.617767] (-) TimerEvent: {}
+[3.718599] (-) TimerEvent: {}
+[3.819403] (-) TimerEvent: {}
+[3.830104] (realsense_splitter) StdoutLine: {'line': b'-- Found rclcpp_components: 16.0.9 (/opt/ros/humble/share/rclcpp_components/cmake)\n'}
+[3.919616] (-) TimerEvent: {}
+[3.981839] (realsense_splitter) StdoutLine: {'line': b'-- Found sensor_msgs: 4.2.4 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[4.019765] (-) TimerEvent: {}
+[4.120514] (-) TimerEvent: {}
+[4.204623] (realsense_splitter) StdoutLine: {'line': b'-- Found message_filters: 4.3.4 (/opt/ros/humble/share/message_filters/cmake)\n'}
+[4.214720] (realsense_splitter) StdoutLine: {'line': b'-- Found realsense2_camera_msgs: 4.51.1 (/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/share/realsense2_camera_msgs/cmake)\n'}
+[4.220606] (-) TimerEvent: {}
+[4.304718] (realsense_splitter) StdoutLine: {'line': b'-- Found isaac_ros_common: 3.0.1 (/workspaces/isaac_ros-dev/install/isaac_ros_common/share/isaac_ros_common/cmake)\n'}
+[4.305348] (realsense_splitter) StdoutLine: {'line': b'-- Loading isaac_ros_common extras\n'}
+[4.305636] (realsense_splitter) StdoutLine: {'line': b'-- CMAKE_BUILD_TYPE: Release\n'}
+[4.320941] (-) TimerEvent: {}
+[4.377911] (realsense_splitter) StdoutLine: {'line': b'-- Found CUDA: /usr/local/cuda (found version "12.2") \n'}
+[4.379133] (realsense_splitter) StdoutLine: {'line': b'-- Loading isaac_ros_common extras (modules)\n'}
+[4.421123] (-) TimerEvent: {}
+[4.432094] (realsense_splitter) StdoutLine: {'line': b'-- Found CUDAToolkit: /usr/local/cuda/include (found version "12.2.140") \n'}
+[4.521345] (-) TimerEvent: {}
+[4.599871] (realsense_splitter) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[4.621478] (-) TimerEvent: {}
+[4.722129] (-) TimerEvent: {}
+[4.822875] (-) TimerEvent: {}
+[4.830795] (realsense_splitter) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[4.833398] (realsense_splitter) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[4.833697] (realsense_splitter) StdoutLine: {'line': b'-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/realsense_splitter/include>\n'}
+[4.833832] (realsense_splitter) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[4.836084] (realsense_splitter) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[4.836209] (realsense_splitter) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[4.838402] (realsense_splitter) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[4.840786] (realsense_splitter) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[4.840956] (realsense_splitter) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[4.842460] (realsense_splitter) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[4.849504] (realsense_splitter) StdoutLine: {'line': b'-- Configuring done\n'}
+[4.882116] (realsense_splitter) StdoutLine: {'line': b'-- Generating done\n'}
+[4.885045] (realsense_splitter) StdoutLine: {'line': b'-- Build files have been written to: /workspaces/isaac_ros-dev/build/realsense_splitter\n'}
+[4.910325] (realsense_splitter) CommandEnded: {'returncode': 0}
+[4.912376] (realsense_splitter) JobProgress: {'identifier': 'realsense_splitter', 'progress': 'build'}
+[4.914358] (realsense_splitter) Command: {'cmd': ['/usr/bin/cmake', '--build', '/workspaces/isaac_ros-dev/build/realsense_splitter', '--', '-j8', '-l8'], 'cwd': '/workspaces/isaac_ros-dev/build/realsense_splitter', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LIBRARY_PATH', '/usr/local/cuda/lib64/stubs'), ('PYTHONWARNINGS', 'ignore:::setuptools.command.install,ignore:::setuptools.command.easy_install,ignore:::pkg_resources,ignore:::setuptools.command.develop'), ('NV_LIBCUBLAS_VERSION', '12.2.5.6-1'), ('USER', 'lse'), ('HOSTNAME', 'lse-desktop'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/lib:/workspaces/isaac_ros-dev/install/isaac_ros_common/lib:/workspaces/isaac_ros-dev/install/unitree_go/lib:/workspaces/isaac_ros-dev/install/unitree_api/lib:/workspaces/isaac_ros-dev/install/rplidar_ros/lib:/workspaces/isaac_ros-dev/install/rmw_cyclonedds_cpp/lib:/workspaces/isaac_ros-dev/install/realsense2_camera/lib:/workspaces/isaac_ros-dev/install/nvblox_ros/lib:/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin/lib:/workspaces/isaac_ros-dev/install/nvblox_image_padding/lib:/workspaces/isaac_ros-dev/install/nvblox_ros_common/lib:/workspaces/isaac_ros-dev/install/nvblox_nav2/lib:/workspaces/isaac_ros-dev/install/nvblox_msgs/lib:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces/lib:/workspaces/isaac_ros-dev/install/go2_interfaces/lib:/workspaces/isaac_ros-dev/install/cyclonedds/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/lib/aarch64-linux-gnu/tegra/weston:/usr/lib/aarch64-linux-gnu/tegra-egl:/usr/local/cuda-12.2/targets/aarch64-linux/lib:/usr/lib/aarch64-linux-gnu/tegra:/opt/nvidia/vpi3/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/lib/aarch64-linux-gnu-host:/opt/tritonserver/lib'), ('HOME', '/home/admin'), ('CYCLONEDDS_URI', '<CycloneDDS><Domain><General><Interfaces>\n                            <NetworkInterface name="eth0" priority="default" multicast="default" />\n                        </Interfaces></General></Domain></CycloneDDS>'), ('NV_LIBCUBLAS_DEV_VERSION', '12.2.5.6-1'), ('ROS_PYTHON_VERSION', '3'), ('USER_UID', '1000'), ('NV_LIBNPP_PACKAGE', 'libnpp-12-2=12.2.1.4-1'), ('CUDA_VERSION', '12.2.12'), ('COLCON_PREFIX_PATH', '/workspaces/isaac_ros-dev/install'), ('ROS_DISTRO', 'humble'), ('NV_LIBCUBLAS_PACKAGE_NAME', 'libcublas-12-2'), ('NVIDIA_REQUIRE_CUDA', 'cuda>=12.2'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/workspaces/isaac_ros-dev/install/cyclonedds/lib/aarch64-linux-gnu/pkgconfig:/workspaces/isaac_ros-dev/install/cyclonedds/lib/pkgconfig'), ('NV_LIBCUSPARSE_VERSION', '12.1.2.141-1'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('NV_CUDA_LIB_VERSION', '12.2.12-1'), ('NV_NVML_DEV_VERSION', '12.2.140-1'), ('USERNAME', 'admin'), ('NV_LIBNPP_DEV_PACKAGE', 'libnpp-dev-12-2=12.2.1.4-1'), ('TERM', 'xterm'), ('ISAAC_ROS_WS', '/workspaces/isaac_ros-dev'), ('NV_CUDA_CUDART_VERSION', '12.2.140-1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/workspaces/isaac_ros-dev/install/isaac_ros_common/bin:/workspaces/isaac_ros-dev/install/nvblox_ros/bin:/workspaces/isaac_ros-dev/install/cyclonedds/bin:/opt/ros/humble/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/src/tensorrt/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/nvidia/tao'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/usr/local/share/middleware_profiles/rtps_udp_profile.xml'), ('NV_LIBCUBLAS_DEV_PACKAGE_NAME', 'libcublas-dev-12-2'), ('NV_LIBCUBLAS_PACKAGE', 'libcublas-12-2=12.2.5.6-1'), ('NVARCH', 'arm64'), ('NV_LIBCUSPARSE_DEV_VERSION', '12.1.2.141-1'), ('DISPLAY', ':1'), ('NVIDIA_PRODUCT_NAME', 'CUDA'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('NV_CUDA_CUDART_DEV_VERSION', '12.2.140-1'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_ROOT', '/opt/ros/humble'), ('AMENT_PREFIX_PATH', '/workspaces/isaac_ros-dev/install/unitree_ros2_example:/workspaces/isaac_ros-dev/install/go2_driver:/workspaces/isaac_ros-dev/install/unitree_go:/workspaces/isaac_ros-dev/install/unitree_api:/workspaces/isaac_ros-dev/install/isaac_ros_nvblox:/workspaces/isaac_ros-dev/install/nvblox_examples_bringup:/workspaces/isaac_ros-dev/install/semantic_label_conversion:/workspaces/isaac_ros-dev/install/rplidar_ros:/workspaces/isaac_ros-dev/install/rmw_cyclonedds_cpp:/workspaces/isaac_ros-dev/install/realsense2_description:/workspaces/isaac_ros-dev/install/realsense2_camera:/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/workspaces/isaac_ros-dev/install/nvblox_ros:/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin:/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils:/workspaces/isaac_ros-dev/install/nvblox_image_padding:/workspaces/isaac_ros-dev/install/nvblox_ros_common:/workspaces/isaac_ros-dev/install/nvblox_nav2:/workspaces/isaac_ros-dev/install/nvblox_msgs:/workspaces/isaac_ros-dev/install/isaac_ros_test:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils:/workspaces/isaac_ros-dev/install/isaac_ros_common:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces:/workspaces/isaac_ros-dev/install/go2_bringup:/workspaces/isaac_ros-dev/install/go2_control:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/opt/ros/humble'), ('DEBIAN_FRONTEND', 'noninteractive'), ('SHELL', '/bin/bash'), ('TRT_INCLUDE_PATH', '/usr/include/aarch64-linux-gnu'), ('NV_LIBCUBLAS_DEV_PACKAGE', 'libcublas-dev-12-2=12.2.5.6-1'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('NVIDIA_REQUIRE_JETPACK_HOST_MOUNTS', 'base-only'), ('NV_NVTX_VERSION', '12.2.140-1'), ('NV_LIBNPP_VERSION', '12.2.1.4-1'), ('PWD', '/workspaces/isaac_ros-dev/build/realsense_splitter'), ('PYTHONPATH', '/workspaces/isaac_ros-dev/install/unitree_go/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/unitree_api/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/nvblox_ros_python_utils:/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/isaac_ros_test:/workspaces/isaac_ros-dev/install/isaac_ros_test/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/isaac_ros_launch_utils:/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/go2_control:/workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('NVIDIA_VISIBLE_DEVICES', 'all'), ('USER_GID', '1000'), ('COLCON', '1'), ('NV_LIBNPP_DEV_VERSION', '12.2.1.4-1'), ('CMAKE_PREFIX_PATH', '/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/workspaces/isaac_ros-dev/install/isaac_ros_common:/workspaces/isaac_ros-dev/install/unitree_ros2_example:/workspaces/isaac_ros-dev/install/go2_driver:/workspaces/isaac_ros-dev/install/unitree_go:/workspaces/isaac_ros-dev/install/unitree_api:/workspaces/isaac_ros-dev/install/isaac_ros_nvblox:/workspaces/isaac_ros-dev/install/nvblox_examples_bringup:/workspaces/isaac_ros-dev/install/semantic_label_conversion:/workspaces/isaac_ros-dev/install/rplidar_ros:/workspaces/isaac_ros-dev/install/rmw_cyclonedds_cpp:/workspaces/isaac_ros-dev/install/realsense2_description:/workspaces/isaac_ros-dev/install/realsense2_camera:/workspaces/isaac_ros-dev/install/nvblox_ros:/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin:/workspaces/isaac_ros-dev/install/nvblox_image_padding:/workspaces/isaac_ros-dev/install/nvblox_ros_common:/workspaces/isaac_ros-dev/install/nvblox_nav2:/workspaces/isaac_ros-dev/install/nvblox_msgs:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces:/workspaces/isaac_ros-dev/install/go2_bringup:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/workspaces/isaac_ros-dev/install/cyclonedds:/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils:/workspaces/isaac_ros-dev/install/isaac_ros_test:/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils:/workspaces/isaac_ros-dev/install/go2_control:/opt/ros/humble'), ('TRT_LIB_PATH', '/usr/lib/aarch64-linux-gnu')]), 'shell': False}
+[4.922946] (-) TimerEvent: {}
+[5.023426] (-) TimerEvent: {}
+[5.065592] (realsense_splitter) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/realsense_splitter_component.dir/src/realsense_splitter_node.cpp.o\x1b[0m\n'}
+[5.123576] (-) TimerEvent: {}
+[5.224329] (-) TimerEvent: {}
+[5.325151] (-) TimerEvent: {}
+[5.425986] (-) TimerEvent: {}
+[5.526822] (-) TimerEvent: {}
+[5.627654] (-) TimerEvent: {}
+[5.728466] (-) TimerEvent: {}
+[5.829300] (-) TimerEvent: {}
+[5.930148] (-) TimerEvent: {}
+[6.030942] (-) TimerEvent: {}
+[6.131770] (-) TimerEvent: {}
+[6.232630] (-) TimerEvent: {}
+[6.333451] (-) TimerEvent: {}
+[6.434321] (-) TimerEvent: {}
+[6.535322] (-) TimerEvent: {}
+[6.636143] (-) TimerEvent: {}
+[6.736949] (-) TimerEvent: {}
+[6.837780] (-) TimerEvent: {}
+[6.938608] (-) TimerEvent: {}
+[7.039433] (-) TimerEvent: {}
+[7.140248] (-) TimerEvent: {}
+[7.241072] (-) TimerEvent: {}
+[7.341924] (-) TimerEvent: {}
+[7.442740] (-) TimerEvent: {}
+[7.543564] (-) TimerEvent: {}
+[7.644383] (-) TimerEvent: {}
+[7.745201] (-) TimerEvent: {}
+[7.846042] (-) TimerEvent: {}
+[7.946839] (-) TimerEvent: {}
+[8.047648] (-) TimerEvent: {}
+[8.148468] (-) TimerEvent: {}
+[8.249298] (-) TimerEvent: {}
+[8.350111] (-) TimerEvent: {}
+[8.450917] (-) TimerEvent: {}
+[8.551738] (-) TimerEvent: {}
+[8.652540] (-) TimerEvent: {}
+[8.753325] (-) TimerEvent: {}
+[8.854058] (-) TimerEvent: {}
+[8.954889] (-) TimerEvent: {}
+[9.055735] (-) TimerEvent: {}
+[9.156590] (-) TimerEvent: {}
+[9.257405] (-) TimerEvent: {}
+[9.358262] (-) TimerEvent: {}
+[9.459069] (-) TimerEvent: {}
+[9.559876] (-) TimerEvent: {}
+[9.660681] (-) TimerEvent: {}
+[9.761491] (-) TimerEvent: {}
+[9.862313] (-) TimerEvent: {}
+[9.963124] (-) TimerEvent: {}
+[10.063936] (-) TimerEvent: {}
+[10.164750] (-) TimerEvent: {}
+[10.265562] (-) TimerEvent: {}
+[10.366394] (-) TimerEvent: {}
+[10.467212] (-) TimerEvent: {}
+[10.568022] (-) TimerEvent: {}
+[10.668815] (-) TimerEvent: {}
+[10.769611] (-) TimerEvent: {}
+[10.870455] (-) TimerEvent: {}
+[10.971275] (-) TimerEvent: {}
+[11.072081] (-) TimerEvent: {}
+[11.172898] (-) TimerEvent: {}
+[11.273716] (-) TimerEvent: {}
+[11.374564] (-) TimerEvent: {}
+[11.475392] (-) TimerEvent: {}
+[11.576213] (-) TimerEvent: {}
+[11.677020] (-) TimerEvent: {}
+[11.777816] (-) TimerEvent: {}
+[11.878627] (-) TimerEvent: {}
+[11.979435] (-) TimerEvent: {}
+[12.080238] (-) TimerEvent: {}
+[12.181040] (-) TimerEvent: {}
+[12.281843] (-) TimerEvent: {}
+[12.382686] (-) TimerEvent: {}
+[12.483489] (-) TimerEvent: {}
+[12.584273] (-) TimerEvent: {}
+[12.685043] (-) TimerEvent: {}
+[12.785825] (-) TimerEvent: {}
+[12.886641] (-) TimerEvent: {}
+[12.987458] (-) TimerEvent: {}
+[13.088251] (-) TimerEvent: {}
+[13.189049] (-) TimerEvent: {}
+[13.289836] (-) TimerEvent: {}
+[13.390637] (-) TimerEvent: {}
+[13.491428] (-) TimerEvent: {}
+[13.592217] (-) TimerEvent: {}
+[13.693025] (-) TimerEvent: {}
+[13.793831] (-) TimerEvent: {}
+[13.894690] (-) TimerEvent: {}
+[13.995495] (-) TimerEvent: {}
+[14.096291] (-) TimerEvent: {}
+[14.197094] (-) TimerEvent: {}
+[14.297924] (-) TimerEvent: {}
+[14.398976] (-) TimerEvent: {}
+[14.500027] (-) TimerEvent: {}
+[14.600843] (-) TimerEvent: {}
+[14.701649] (-) TimerEvent: {}
+[14.802473] (-) TimerEvent: {}
+[14.903268] (-) TimerEvent: {}
+[15.004354] (-) TimerEvent: {}
+[15.105420] (-) TimerEvent: {}
+[15.206274] (-) TimerEvent: {}
+[15.307114] (-) TimerEvent: {}
+[15.407941] (-) TimerEvent: {}
+[15.508753] (-) TimerEvent: {}
+[15.609546] (-) TimerEvent: {}
+[15.710373] (-) TimerEvent: {}
+[15.811181] (-) TimerEvent: {}
+[15.912155] (-) TimerEvent: {}
+[16.013082] (-) TimerEvent: {}
+[16.113755] (-) TimerEvent: {}
+[16.214656] (-) TimerEvent: {}
+[16.315515] (-) TimerEvent: {}
+[16.416382] (-) TimerEvent: {}
+[16.517087] (-) TimerEvent: {}
+[16.617707] (-) TimerEvent: {}
+[16.718517] (-) TimerEvent: {}
+[16.819177] (-) TimerEvent: {}
+[16.919979] (-) TimerEvent: {}
+[17.020801] (-) TimerEvent: {}
+[17.121849] (-) TimerEvent: {}
+[17.222627] (-) TimerEvent: {}
+[17.323293] (-) TimerEvent: {}
+[17.424137] (-) TimerEvent: {}
+[17.524782] (-) TimerEvent: {}
+[17.625411] (-) TimerEvent: {}
+[17.726063] (-) TimerEvent: {}
+[17.826750] (-) TimerEvent: {}
+[17.927565] (-) TimerEvent: {}
+[18.028379] (-) TimerEvent: {}
+[18.129186] (-) TimerEvent: {}
+[18.229951] (-) TimerEvent: {}
+[18.330834] (-) TimerEvent: {}
+[18.431471] (-) TimerEvent: {}
+[18.532304] (-) TimerEvent: {}
+[18.632912] (-) TimerEvent: {}
+[18.733496] (-) TimerEvent: {}
+[18.834158] (-) TimerEvent: {}
+[18.934953] (-) TimerEvent: {}
+[19.035662] (-) TimerEvent: {}
+[19.136410] (-) TimerEvent: {}
+[19.236939] (-) TimerEvent: {}
+[19.337480] (-) TimerEvent: {}
+[19.438175] (-) TimerEvent: {}
+[19.538864] (-) TimerEvent: {}
+[19.639326] (-) TimerEvent: {}
+[19.740013] (-) TimerEvent: {}
+[19.840567] (-) TimerEvent: {}
+[19.941439] (-) TimerEvent: {}
+[20.042121] (-) TimerEvent: {}
+[20.143011] (-) TimerEvent: {}
+[20.243908] (-) TimerEvent: {}
+[20.344768] (-) TimerEvent: {}
+[20.445436] (-) TimerEvent: {}
+[20.546369] (-) TimerEvent: {}
+[20.647266] (-) TimerEvent: {}
+[20.747919] (-) TimerEvent: {}
+[20.848573] (-) TimerEvent: {}
+[20.949233] (-) TimerEvent: {}
+[21.049904] (-) TimerEvent: {}
+[21.150780] (-) TimerEvent: {}
+[21.251429] (-) TimerEvent: {}
+[21.352087] (-) TimerEvent: {}
+[21.452739] (-) TimerEvent: {}
+[21.560497] (-) TimerEvent: {}
+[21.661395] (-) TimerEvent: {}
+[21.762053] (-) TimerEvent: {}
+[21.862701] (-) TimerEvent: {}
+[21.963341] (-) TimerEvent: {}
+[22.064002] (-) TimerEvent: {}
+[22.164669] (-) TimerEvent: {}
+[22.265330] (-) TimerEvent: {}
+[22.366007] (-) TimerEvent: {}
+[22.466652] (-) TimerEvent: {}
+[22.567292] (-) TimerEvent: {}
+[22.667926] (-) TimerEvent: {}
+[22.768596] (-) TimerEvent: {}
+[22.869229] (-) TimerEvent: {}
+[22.969844] (-) TimerEvent: {}
+[23.070508] (-) TimerEvent: {}
+[23.171148] (-) TimerEvent: {}
+[23.271781] (-) TimerEvent: {}
+[23.372414] (-) TimerEvent: {}
+[23.473245] (-) TimerEvent: {}
+[23.573936] (-) TimerEvent: {}
+[23.674817] (-) TimerEvent: {}
+[23.775482] (-) TimerEvent: {}
+[23.876138] (-) TimerEvent: {}
+[23.976985] (-) TimerEvent: {}
+[24.077626] (-) TimerEvent: {}
+[24.178500] (-) TimerEvent: {}
+[24.279348] (-) TimerEvent: {}
+[24.380006] (-) TimerEvent: {}
+[24.480878] (-) TimerEvent: {}
+[24.581545] (-) TimerEvent: {}
+[24.682438] (-) TimerEvent: {}
+[24.783095] (-) TimerEvent: {}
+[24.883751] (-) TimerEvent: {}
+[24.984398] (-) TimerEvent: {}
+[25.085053] (-) TimerEvent: {}
+[25.185721] (-) TimerEvent: {}
+[25.286630] (-) TimerEvent: {}
+[25.387266] (-) TimerEvent: {}
+[25.488125] (-) TimerEvent: {}
+[25.588778] (-) TimerEvent: {}
+[25.689641] (-) TimerEvent: {}
+[25.790308] (-) TimerEvent: {}
+[25.891152] (-) TimerEvent: {}
+[25.991810] (-) TimerEvent: {}
+[26.092455] (-) TimerEvent: {}
+[26.193323] (-) TimerEvent: {}
+[26.294216] (-) TimerEvent: {}
+[26.394885] (-) TimerEvent: {}
+[26.495748] (-) TimerEvent: {}
+[26.596444] (-) TimerEvent: {}
+[26.697291] (-) TimerEvent: {}
+[26.797976] (-) TimerEvent: {}
+[26.898631] (-) TimerEvent: {}
+[26.999285] (-) TimerEvent: {}
+[27.099923] (-) TimerEvent: {}
+[27.200598] (-) TimerEvent: {}
+[27.301265] (-) TimerEvent: {}
+[27.402141] (-) TimerEvent: {}
+[27.503050] (-) TimerEvent: {}
+[27.603957] (-) TimerEvent: {}
+[27.704834] (-) TimerEvent: {}
+[27.805453] (-) TimerEvent: {}
+[27.906326] (-) TimerEvent: {}
+[28.006959] (-) TimerEvent: {}
+[28.107828] (-) TimerEvent: {}
+[28.208700] (-) TimerEvent: {}
+[28.309326] (-) TimerEvent: {}
+[28.409975] (-) TimerEvent: {}
+[28.510832] (-) TimerEvent: {}
+[28.611459] (-) TimerEvent: {}
+[28.712066] (-) TimerEvent: {}
+[28.812674] (-) TimerEvent: {}
+[28.913295] (-) TimerEvent: {}
+[29.013949] (-) TimerEvent: {}
+[29.114573] (-) TimerEvent: {}
+[29.215199] (-) TimerEvent: {}
+[29.315829] (-) TimerEvent: {}
+[29.416460] (-) TimerEvent: {}
+[29.517077] (-) TimerEvent: {}
+[29.617696] (-) TimerEvent: {}
+[29.718576] (-) TimerEvent: {}
+[29.819215] (-) TimerEvent: {}
+[29.919833] (-) TimerEvent: {}
+[30.020687] (-) TimerEvent: {}
+[30.121713] (-) TimerEvent: {}
+[30.222402] (-) TimerEvent: {}
+[30.323052] (-) TimerEvent: {}
+[30.423675] (-) TimerEvent: {}
+[30.524310] (-) TimerEvent: {}
+[30.624939] (-) TimerEvent: {}
+[30.725573] (-) TimerEvent: {}
+[30.826233] (-) TimerEvent: {}
+[30.926881] (-) TimerEvent: {}
+[31.027493] (-) TimerEvent: {}
+[31.128112] (-) TimerEvent: {}
+[31.228783] (-) TimerEvent: {}
+[31.329410] (-) TimerEvent: {}
+[31.430037] (-) TimerEvent: {}
+[31.530664] (-) TimerEvent: {}
+[31.631471] (-) TimerEvent: {}
+[31.732346] (-) TimerEvent: {}
+[31.833199] (-) TimerEvent: {}
+[31.933892] (-) TimerEvent: {}
+[32.034532] (-) TimerEvent: {}
+[32.135159] (-) TimerEvent: {}
+[32.236057] (-) TimerEvent: {}
+[32.336936] (-) TimerEvent: {}
+[32.437776] (-) TimerEvent: {}
+[32.538681] (-) TimerEvent: {}
+[32.639577] (-) TimerEvent: {}
+[32.740228] (-) TimerEvent: {}
+[32.841067] (-) TimerEvent: {}
+[32.941980] (-) TimerEvent: {}
+[33.042863] (-) TimerEvent: {}
+[33.143486] (-) TimerEvent: {}
+[33.244111] (-) TimerEvent: {}
+[33.344953] (-) TimerEvent: {}
+[33.445606] (-) TimerEvent: {}
+[33.546521] (-) TimerEvent: {}
+[33.647171] (-) TimerEvent: {}
+[33.747816] (-) TimerEvent: {}
+[33.848446] (-) TimerEvent: {}
+[33.949052] (-) TimerEvent: {}
+[34.049938] (-) TimerEvent: {}
+[34.150575] (-) TimerEvent: {}
+[34.251186] (-) TimerEvent: {}
+[34.351819] (-) TimerEvent: {}
+[34.452448] (-) TimerEvent: {}
+[34.553053] (-) TimerEvent: {}
+[34.653940] (-) TimerEvent: {}
+[34.754777] (-) TimerEvent: {}
+[34.855660] (-) TimerEvent: {}
+[34.956546] (-) TimerEvent: {}
+[35.057243] (-) TimerEvent: {}
+[35.157886] (-) TimerEvent: {}
+[35.258556] (-) TimerEvent: {}
+[35.359196] (-) TimerEvent: {}
+[35.459859] (-) TimerEvent: {}
+[35.560519] (-) TimerEvent: {}
+[35.661176] (-) TimerEvent: {}
+[35.762052] (-) TimerEvent: {}
+[35.862723] (-) TimerEvent: {}
+[35.963348] (-) TimerEvent: {}
+[36.063983] (-) TimerEvent: {}
+[36.164611] (-) TimerEvent: {}
+[36.265236] (-) TimerEvent: {}
+[36.365879] (-) TimerEvent: {}
+[36.466486] (-) TimerEvent: {}
+[36.567123] (-) TimerEvent: {}
+[36.667766] (-) TimerEvent: {}
+[36.768423] (-) TimerEvent: {}
+[36.869069] (-) TimerEvent: {}
+[36.969729] (-) TimerEvent: {}
+[37.070407] (-) TimerEvent: {}
+[37.171098] (-) TimerEvent: {}
+[37.271731] (-) TimerEvent: {}
+[37.372377] (-) TimerEvent: {}
+[37.473038] (-) TimerEvent: {}
+[37.573656] (-) TimerEvent: {}
+[37.674337] (-) TimerEvent: {}
+[37.774971] (-) TimerEvent: {}
+[37.875630] (-) TimerEvent: {}
+[37.976271] (-) TimerEvent: {}
+[38.076904] (-) TimerEvent: {}
+[38.177540] (-) TimerEvent: {}
+[38.278186] (-) TimerEvent: {}
+[38.378810] (-) TimerEvent: {}
+[38.479432] (-) TimerEvent: {}
+[38.580076] (-) TimerEvent: {}
+[38.680709] (-) TimerEvent: {}
+[38.781583] (-) TimerEvent: {}
+[38.882263] (-) TimerEvent: {}
+[38.982922] (-) TimerEvent: {}
+[39.083593] (-) TimerEvent: {}
+[39.184238] (-) TimerEvent: {}
+[39.284863] (-) TimerEvent: {}
+[39.385493] (-) TimerEvent: {}
+[39.486137] (-) TimerEvent: {}
+[39.586759] (-) TimerEvent: {}
+[39.687396] (-) TimerEvent: {}
+[39.788015] (-) TimerEvent: {}
+[39.888657] (-) TimerEvent: {}
+[39.989340] (-) TimerEvent: {}
+[40.090005] (-) TimerEvent: {}
+[40.190633] (-) TimerEvent: {}
+[40.291273] (-) TimerEvent: {}
+[40.391924] (-) TimerEvent: {}
+[40.492596] (-) TimerEvent: {}
+[40.593238] (-) TimerEvent: {}
+[40.693881] (-) TimerEvent: {}
+[40.794494] (-) TimerEvent: {}
+[40.895127] (-) TimerEvent: {}
+[40.995774] (-) TimerEvent: {}
+[41.096414] (-) TimerEvent: {}
+[41.197058] (-) TimerEvent: {}
+[41.297700] (-) TimerEvent: {}
+[41.398379] (-) TimerEvent: {}
+[41.499059] (-) TimerEvent: {}
+[41.599876] (-) TimerEvent: {}
+[41.700672] (-) TimerEvent: {}
+[41.801489] (-) TimerEvent: {}
+[41.902347] (-) TimerEvent: {}
+[42.003169] (-) TimerEvent: {}
+[42.103984] (-) TimerEvent: {}
+[42.204773] (-) TimerEvent: {}
+[42.305570] (-) TimerEvent: {}
+[42.406428] (-) TimerEvent: {}
+[42.507256] (-) TimerEvent: {}
+[42.608047] (-) TimerEvent: {}
+[42.708830] (-) TimerEvent: {}
+[42.809628] (-) TimerEvent: {}
+[42.910473] (-) TimerEvent: {}
+[43.011305] (-) TimerEvent: {}
+[43.112131] (-) TimerEvent: {}
+[43.212908] (-) TimerEvent: {}
+[43.313594] (-) TimerEvent: {}
+[43.414423] (-) TimerEvent: {}
+[43.515183] (-) TimerEvent: {}
+[43.615942] (-) TimerEvent: {}
+[43.716740] (-) TimerEvent: {}
+[43.817498] (-) TimerEvent: {}
+[43.918219] (-) TimerEvent: {}
+[44.019037] (-) TimerEvent: {}
+[44.119832] (-) TimerEvent: {}
+[44.220499] (-) TimerEvent: {}
+[44.321284] (-) TimerEvent: {}
+[44.422110] (-) TimerEvent: {}
+[44.522830] (-) TimerEvent: {}
+[44.623462] (-) TimerEvent: {}
+[44.724429] (-) TimerEvent: {}
+[44.750278] (realsense_splitter) StdoutLine: {'line': b'[ 50%] \x1b[32m\x1b[1mLinking CXX shared library librealsense_splitter_component.so\x1b[0m\n'}
+[44.824638] (-) TimerEvent: {}
+[44.925375] (-) TimerEvent: {}
+[45.026042] (-) TimerEvent: {}
+[45.126775] (-) TimerEvent: {}
+[45.163526] (realsense_splitter) StdoutLine: {'line': b'[ 50%] Built target realsense_splitter_component\n'}
+[45.222297] (realsense_splitter) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/realsense_splitter_node.dir/src/realsense_splitter_node_main.cpp.o\x1b[0m\n'}
+[45.226931] (-) TimerEvent: {}
+[45.327656] (-) TimerEvent: {}
+[45.428446] (-) TimerEvent: {}
+[45.529248] (-) TimerEvent: {}
+[45.629947] (-) TimerEvent: {}
+[45.730542] (-) TimerEvent: {}
+[45.831246] (-) TimerEvent: {}
+[45.931942] (-) TimerEvent: {}
+[46.032667] (-) TimerEvent: {}
+[46.133318] (-) TimerEvent: {}
+[46.234130] (-) TimerEvent: {}
+[46.334922] (-) TimerEvent: {}
+[46.435710] (-) TimerEvent: {}
+[46.536499] (-) TimerEvent: {}
+[46.637300] (-) TimerEvent: {}
+[46.738111] (-) TimerEvent: {}
+[46.839089] (-) TimerEvent: {}
+[46.939775] (-) TimerEvent: {}
+[47.040485] (-) TimerEvent: {}
+[47.141145] (-) TimerEvent: {}
+[47.241899] (-) TimerEvent: {}
+[47.342536] (-) TimerEvent: {}
+[47.443257] (-) TimerEvent: {}
+[47.544025] (-) TimerEvent: {}
+[47.644773] (-) TimerEvent: {}
+[47.745726] (-) TimerEvent: {}
+[47.846415] (-) TimerEvent: {}
+[47.947157] (-) TimerEvent: {}
+[48.047871] (-) TimerEvent: {}
+[48.148598] (-) TimerEvent: {}
+[48.249340] (-) TimerEvent: {}
+[48.350126] (-) TimerEvent: {}
+[48.450815] (-) TimerEvent: {}
+[48.551440] (-) TimerEvent: {}
+[48.652059] (-) TimerEvent: {}
+[48.752683] (-) TimerEvent: {}
+[48.853302] (-) TimerEvent: {}
+[48.953934] (-) TimerEvent: {}
+[49.054539] (-) TimerEvent: {}
+[49.155157] (-) TimerEvent: {}
+[49.255787] (-) TimerEvent: {}
+[49.356428] (-) TimerEvent: {}
+[49.457050] (-) TimerEvent: {}
+[49.557693] (-) TimerEvent: {}
+[49.658343] (-) TimerEvent: {}
+[49.758982] (-) TimerEvent: {}
+[49.859621] (-) TimerEvent: {}
+[49.960246] (-) TimerEvent: {}
+[50.060861] (-) TimerEvent: {}
+[50.161468] (-) TimerEvent: {}
+[50.262119] (-) TimerEvent: {}
+[50.362756] (-) TimerEvent: {}
+[50.463633] (-) TimerEvent: {}
+[50.564285] (-) TimerEvent: {}
+[50.664917] (-) TimerEvent: {}
+[50.765553] (-) TimerEvent: {}
+[50.866229] (-) TimerEvent: {}
+[50.966874] (-) TimerEvent: {}
+[51.067748] (-) TimerEvent: {}
+[51.168397] (-) TimerEvent: {}
+[51.269024] (-) TimerEvent: {}
+[51.369661] (-) TimerEvent: {}
+[51.470312] (-) TimerEvent: {}
+[51.570972] (-) TimerEvent: {}
+[51.671592] (-) TimerEvent: {}
+[51.772238] (-) TimerEvent: {}
+[51.872915] (-) TimerEvent: {}
+[51.973561] (-) TimerEvent: {}
+[52.074460] (-) TimerEvent: {}
+[52.175101] (-) TimerEvent: {}
+[52.275954] (-) TimerEvent: {}
+[52.376633] (-) TimerEvent: {}
+[52.477501] (-) TimerEvent: {}
+[52.578163] (-) TimerEvent: {}
+[52.678793] (-) TimerEvent: {}
+[52.779434] (-) TimerEvent: {}
+[52.880276] (-) TimerEvent: {}
+[52.980919] (-) TimerEvent: {}
+[53.081569] (-) TimerEvent: {}
+[53.182218] (-) TimerEvent: {}
+[53.282857] (-) TimerEvent: {}
+[53.383494] (-) TimerEvent: {}
+[53.484151] (-) TimerEvent: {}
+[53.584782] (-) TimerEvent: {}
+[53.685399] (-) TimerEvent: {}
+[53.786000] (-) TimerEvent: {}
+[53.886615] (-) TimerEvent: {}
+[53.987236] (-) TimerEvent: {}
+[54.087852] (-) TimerEvent: {}
+[54.188492] (-) TimerEvent: {}
+[54.289137] (-) TimerEvent: {}
+[54.389780] (-) TimerEvent: {}
+[54.490436] (-) TimerEvent: {}
+[54.591095] (-) TimerEvent: {}
+[54.691733] (-) TimerEvent: {}
+[54.792378] (-) TimerEvent: {}
+[54.893011] (-) TimerEvent: {}
+[54.993646] (-) TimerEvent: {}
+[55.094308] (-) TimerEvent: {}
+[55.194936] (-) TimerEvent: {}
+[55.295577] (-) TimerEvent: {}
+[55.396212] (-) TimerEvent: {}
+[55.496863] (-) TimerEvent: {}
+[55.597493] (-) TimerEvent: {}
+[55.698151] (-) TimerEvent: {}
+[55.798750] (-) TimerEvent: {}
+[55.899348] (-) TimerEvent: {}
+[56.000004] (-) TimerEvent: {}
+[56.100611] (-) TimerEvent: {}
+[56.201230] (-) TimerEvent: {}
+[56.301876] (-) TimerEvent: {}
+[56.402517] (-) TimerEvent: {}
+[56.503145] (-) TimerEvent: {}
+[56.603775] (-) TimerEvent: {}
+[56.704390] (-) TimerEvent: {}
+[56.804957] (-) TimerEvent: {}
+[56.905525] (-) TimerEvent: {}
+[57.006128] (-) TimerEvent: {}
+[57.106698] (-) TimerEvent: {}
+[57.207291] (-) TimerEvent: {}
+[57.307926] (-) TimerEvent: {}
+[57.408583] (-) TimerEvent: {}
+[57.509205] (-) TimerEvent: {}
+[57.609834] (-) TimerEvent: {}
+[57.710511] (-) TimerEvent: {}
+[57.811161] (-) TimerEvent: {}
+[57.911781] (-) TimerEvent: {}
+[58.012394] (-) TimerEvent: {}
+[58.113009] (-) TimerEvent: {}
+[58.213633] (-) TimerEvent: {}
+[58.314276] (-) TimerEvent: {}
+[58.414878] (-) TimerEvent: {}
+[58.515530] (-) TimerEvent: {}
+[58.616132] (-) TimerEvent: {}
+[58.716739] (-) TimerEvent: {}
+[58.817320] (-) TimerEvent: {}
+[58.917967] (-) TimerEvent: {}
+[59.018611] (-) TimerEvent: {}
+[59.119235] (-) TimerEvent: {}
+[59.219828] (-) TimerEvent: {}
+[59.320432] (-) TimerEvent: {}
+[59.421046] (-) TimerEvent: {}
+[59.521961] (-) TimerEvent: {}
+[59.622614] (-) TimerEvent: {}
+[59.723234] (-) TimerEvent: {}
+[59.823837] (-) TimerEvent: {}
+[59.924432] (-) TimerEvent: {}
+[60.025040] (-) TimerEvent: {}
+[60.125650] (-) TimerEvent: {}
+[60.226272] (-) TimerEvent: {}
+[60.326894] (-) TimerEvent: {}
+[60.427491] (-) TimerEvent: {}
+[60.528178] (-) TimerEvent: {}
+[60.628788] (-) TimerEvent: {}
+[60.729462] (-) TimerEvent: {}
+[60.830165] (-) TimerEvent: {}
+[60.930787] (-) TimerEvent: {}
+[61.031491] (-) TimerEvent: {}
+[61.132105] (-) TimerEvent: {}
+[61.232741] (-) TimerEvent: {}
+[61.333376] (-) TimerEvent: {}
+[61.433999] (-) TimerEvent: {}
+[61.534604] (-) TimerEvent: {}
+[61.635226] (-) TimerEvent: {}
+[61.735839] (-) TimerEvent: {}
+[61.836470] (-) TimerEvent: {}
+[61.937080] (-) TimerEvent: {}
+[62.037697] (-) TimerEvent: {}
+[62.138333] (-) TimerEvent: {}
+[62.238942] (-) TimerEvent: {}
+[62.339556] (-) TimerEvent: {}
+[62.440170] (-) TimerEvent: {}
+[62.540788] (-) TimerEvent: {}
+[62.641376] (-) TimerEvent: {}
+[62.741973] (-) TimerEvent: {}
+[62.842595] (-) TimerEvent: {}
+[62.943221] (-) TimerEvent: {}
+[63.043834] (-) TimerEvent: {}
+[63.144429] (-) TimerEvent: {}
+[63.245007] (-) TimerEvent: {}
+[63.345594] (-) TimerEvent: {}
+[63.446255] (-) TimerEvent: {}
+[63.546871] (-) TimerEvent: {}
+[63.647509] (-) TimerEvent: {}
+[63.748131] (-) TimerEvent: {}
+[63.848756] (-) TimerEvent: {}
+[63.949388] (-) TimerEvent: {}
+[64.050044] (-) TimerEvent: {}
+[64.150688] (-) TimerEvent: {}
+[64.251323] (-) TimerEvent: {}
+[64.351978] (-) TimerEvent: {}
+[64.452620] (-) TimerEvent: {}
+[64.553250] (-) TimerEvent: {}
+[64.653957] (-) TimerEvent: {}
+[64.689417] (realsense_splitter) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable realsense_splitter_node\x1b[0m\n'}
+[64.754202] (-) TimerEvent: {}
+[64.855060] (-) TimerEvent: {}
+[64.943896] (realsense_splitter) StdoutLine: {'line': b'[100%] Built target realsense_splitter_node\n'}
+[64.955146] (-) TimerEvent: {}
+[64.971493] (realsense_splitter) CommandEnded: {'returncode': 0}
+[65.055338] (-) TimerEvent: {}
+[65.073185] (realsense_splitter) JobProgress: {'identifier': 'realsense_splitter', 'progress': 'install'}
+[65.098585] (realsense_splitter) Command: {'cmd': ['/usr/bin/cmake', '--install', '/workspaces/isaac_ros-dev/build/realsense_splitter'], 'cwd': '/workspaces/isaac_ros-dev/build/realsense_splitter', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LIBRARY_PATH', '/usr/local/cuda/lib64/stubs'), ('PYTHONWARNINGS', 'ignore:::setuptools.command.install,ignore:::setuptools.command.easy_install,ignore:::pkg_resources,ignore:::setuptools.command.develop'), ('NV_LIBCUBLAS_VERSION', '12.2.5.6-1'), ('USER', 'lse'), ('HOSTNAME', 'lse-desktop'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/lib:/workspaces/isaac_ros-dev/install/isaac_ros_common/lib:/workspaces/isaac_ros-dev/install/unitree_go/lib:/workspaces/isaac_ros-dev/install/unitree_api/lib:/workspaces/isaac_ros-dev/install/rplidar_ros/lib:/workspaces/isaac_ros-dev/install/rmw_cyclonedds_cpp/lib:/workspaces/isaac_ros-dev/install/realsense2_camera/lib:/workspaces/isaac_ros-dev/install/nvblox_ros/lib:/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin/lib:/workspaces/isaac_ros-dev/install/nvblox_image_padding/lib:/workspaces/isaac_ros-dev/install/nvblox_ros_common/lib:/workspaces/isaac_ros-dev/install/nvblox_nav2/lib:/workspaces/isaac_ros-dev/install/nvblox_msgs/lib:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces/lib:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces/lib:/workspaces/isaac_ros-dev/install/go2_interfaces/lib:/workspaces/isaac_ros-dev/install/cyclonedds/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/lib/aarch64-linux-gnu/tegra/weston:/usr/lib/aarch64-linux-gnu/tegra-egl:/usr/local/cuda-12.2/targets/aarch64-linux/lib:/usr/lib/aarch64-linux-gnu/tegra:/opt/nvidia/vpi3/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/lib/aarch64-linux-gnu-host:/opt/tritonserver/lib'), ('HOME', '/home/admin'), ('CYCLONEDDS_URI', '<CycloneDDS><Domain><General><Interfaces>\n                            <NetworkInterface name="eth0" priority="default" multicast="default" />\n                        </Interfaces></General></Domain></CycloneDDS>'), ('NV_LIBCUBLAS_DEV_VERSION', '12.2.5.6-1'), ('ROS_PYTHON_VERSION', '3'), ('USER_UID', '1000'), ('NV_LIBNPP_PACKAGE', 'libnpp-12-2=12.2.1.4-1'), ('CUDA_VERSION', '12.2.12'), ('COLCON_PREFIX_PATH', '/workspaces/isaac_ros-dev/install'), ('ROS_DISTRO', 'humble'), ('NV_LIBCUBLAS_PACKAGE_NAME', 'libcublas-12-2'), ('NVIDIA_REQUIRE_CUDA', 'cuda>=12.2'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/workspaces/isaac_ros-dev/install/cyclonedds/lib/aarch64-linux-gnu/pkgconfig:/workspaces/isaac_ros-dev/install/cyclonedds/lib/pkgconfig'), ('NV_LIBCUSPARSE_VERSION', '12.1.2.141-1'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('NV_CUDA_LIB_VERSION', '12.2.12-1'), ('NV_NVML_DEV_VERSION', '12.2.140-1'), ('USERNAME', 'admin'), ('NV_LIBNPP_DEV_PACKAGE', 'libnpp-dev-12-2=12.2.1.4-1'), ('TERM', 'xterm'), ('ISAAC_ROS_WS', '/workspaces/isaac_ros-dev'), ('NV_CUDA_CUDART_VERSION', '12.2.140-1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/workspaces/isaac_ros-dev/install/isaac_ros_common/bin:/workspaces/isaac_ros-dev/install/nvblox_ros/bin:/workspaces/isaac_ros-dev/install/cyclonedds/bin:/opt/ros/humble/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/src/tensorrt/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/nvidia/tao'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/usr/local/share/middleware_profiles/rtps_udp_profile.xml'), ('NV_LIBCUBLAS_DEV_PACKAGE_NAME', 'libcublas-dev-12-2'), ('NV_LIBCUBLAS_PACKAGE', 'libcublas-12-2=12.2.5.6-1'), ('NVARCH', 'arm64'), ('NV_LIBCUSPARSE_DEV_VERSION', '12.1.2.141-1'), ('DISPLAY', ':1'), ('NVIDIA_PRODUCT_NAME', 'CUDA'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('NV_CUDA_CUDART_DEV_VERSION', '12.2.140-1'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_ROOT', '/opt/ros/humble'), ('AMENT_PREFIX_PATH', '/workspaces/isaac_ros-dev/install/unitree_ros2_example:/workspaces/isaac_ros-dev/install/go2_driver:/workspaces/isaac_ros-dev/install/unitree_go:/workspaces/isaac_ros-dev/install/unitree_api:/workspaces/isaac_ros-dev/install/isaac_ros_nvblox:/workspaces/isaac_ros-dev/install/nvblox_examples_bringup:/workspaces/isaac_ros-dev/install/semantic_label_conversion:/workspaces/isaac_ros-dev/install/rplidar_ros:/workspaces/isaac_ros-dev/install/rmw_cyclonedds_cpp:/workspaces/isaac_ros-dev/install/realsense2_description:/workspaces/isaac_ros-dev/install/realsense2_camera:/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/workspaces/isaac_ros-dev/install/nvblox_ros:/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin:/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils:/workspaces/isaac_ros-dev/install/nvblox_image_padding:/workspaces/isaac_ros-dev/install/nvblox_ros_common:/workspaces/isaac_ros-dev/install/nvblox_nav2:/workspaces/isaac_ros-dev/install/nvblox_msgs:/workspaces/isaac_ros-dev/install/isaac_ros_test:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils:/workspaces/isaac_ros-dev/install/isaac_ros_common:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces:/workspaces/isaac_ros-dev/install/go2_bringup:/workspaces/isaac_ros-dev/install/go2_control:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/opt/ros/humble'), ('DEBIAN_FRONTEND', 'noninteractive'), ('SHELL', '/bin/bash'), ('TRT_INCLUDE_PATH', '/usr/include/aarch64-linux-gnu'), ('NV_LIBCUBLAS_DEV_PACKAGE', 'libcublas-dev-12-2=12.2.5.6-1'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('NVIDIA_REQUIRE_JETPACK_HOST_MOUNTS', 'base-only'), ('NV_NVTX_VERSION', '12.2.140-1'), ('NV_LIBNPP_VERSION', '12.2.1.4-1'), ('PWD', '/workspaces/isaac_ros-dev/build/realsense_splitter'), ('PYTHONPATH', '/workspaces/isaac_ros-dev/install/unitree_go/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/unitree_api/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/nvblox_ros_python_utils:/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/isaac_ros_test:/workspaces/isaac_ros-dev/install/isaac_ros_test/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/isaac_ros_launch_utils:/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces/local/lib/python3.10/dist-packages:/workspaces/isaac_ros-dev/build/go2_control:/workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('NVIDIA_VISIBLE_DEVICES', 'all'), ('USER_GID', '1000'), ('COLCON', '1'), ('NV_LIBNPP_DEV_VERSION', '12.2.1.4-1'), ('CMAKE_PREFIX_PATH', '/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/workspaces/isaac_ros-dev/install/isaac_ros_common:/workspaces/isaac_ros-dev/install/unitree_ros2_example:/workspaces/isaac_ros-dev/install/go2_driver:/workspaces/isaac_ros-dev/install/unitree_go:/workspaces/isaac_ros-dev/install/unitree_api:/workspaces/isaac_ros-dev/install/isaac_ros_nvblox:/workspaces/isaac_ros-dev/install/nvblox_examples_bringup:/workspaces/isaac_ros-dev/install/semantic_label_conversion:/workspaces/isaac_ros-dev/install/rplidar_ros:/workspaces/isaac_ros-dev/install/rmw_cyclonedds_cpp:/workspaces/isaac_ros-dev/install/realsense2_description:/workspaces/isaac_ros-dev/install/realsense2_camera:/workspaces/isaac_ros-dev/install/nvblox_ros:/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin:/workspaces/isaac_ros-dev/install/nvblox_image_padding:/workspaces/isaac_ros-dev/install/nvblox_ros_common:/workspaces/isaac_ros-dev/install/nvblox_nav2:/workspaces/isaac_ros-dev/install/nvblox_msgs:/workspaces/isaac_ros-dev/install/isaac_ros_tensor_list_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_pointcloud_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nova_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_nitros_bridge_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_bi3d_interfaces:/workspaces/isaac_ros-dev/install/isaac_ros_apriltag_interfaces:/workspaces/isaac_ros-dev/install/go2_bringup:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/workspaces/isaac_ros-dev/install/cyclonedds:/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils:/workspaces/isaac_ros-dev/install/isaac_ros_test:/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils:/workspaces/isaac_ros-dev/install/go2_control:/opt/ros/humble'), ('TRT_LIB_PATH', '/usr/lib/aarch64-linux-gnu')]), 'shell': False}
+[65.123249] (realsense_splitter) StdoutLine: {'line': b'-- Install configuration: "Release"\n'}
+[65.123699] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/include\n'}
+[65.123891] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/include/realsense_splitter\n'}
+[65.124064] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/include/realsense_splitter/qos.hpp\n'}
+[65.124252] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/include/realsense_splitter/realsense_splitter_node.hpp\n'}
+[65.124430] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/lib/librealsense_splitter_component.so\n'}
+[65.130317] (realsense_splitter) StdoutLine: {'line': b'-- Set runtime path of "/workspaces/isaac_ros-dev/install/realsense_splitter/lib/librealsense_splitter_component.so" to ""\n'}
+[65.130576] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/lib/realsense_splitter/realsense_splitter_node\n'}
+[65.131124] (realsense_splitter) StdoutLine: {'line': b'-- Set runtime path of "/workspaces/isaac_ros-dev/install/realsense_splitter/lib/realsense_splitter/realsense_splitter_node" to ""\n'}
+[65.131401] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/library_path.sh\n'}
+[65.131661] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/library_path.dsv\n'}
+[65.132071] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/ament_index/resource_index/package_run_dependencies/realsense_splitter\n'}
+[65.132399] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/ament_index/resource_index/parent_prefix_path/realsense_splitter\n'}
+[65.132665] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/ament_prefix_path.sh\n'}
+[65.132935] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/ament_prefix_path.dsv\n'}
+[65.133171] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/path.sh\n'}
+[65.133419] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/path.dsv\n'}
+[65.133640] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/local_setup.bash\n'}
+[65.133878] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/local_setup.sh\n'}
+[65.134286] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/local_setup.zsh\n'}
+[65.134518] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/local_setup.dsv\n'}
+[65.134725] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/package.dsv\n'}
+[65.135024] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/ament_index/resource_index/packages/realsense_splitter\n'}
+[65.135312] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/ament_index/resource_index/rclcpp_components/realsense_splitter\n'}
+[65.135622] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/realsense_splitterTargetsExport.cmake\n'}
+[65.135892] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/realsense_splitterTargetsExport-release.cmake\n'}
+[65.136126] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[65.136348] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[65.136588] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[65.136809] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[65.137024] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/realsense_splitterConfig.cmake\n'}
+[65.137206] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/realsense_splitterConfig-version.cmake\n'}
+[65.137416] (realsense_splitter) StdoutLine: {'line': b'-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/package.xml\n'}
+[65.141483] (realsense_splitter) CommandEnded: {'returncode': 0}
+[65.155409] (-) TimerEvent: {}
+[65.256077] (-) TimerEvent: {}
+[65.313233] (realsense_splitter) JobEnded: {'identifier': 'realsense_splitter', 'rc': 0}
+[65.315660] (-) EventReactorShutdown: {}

@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from isaac_ros_bi3d_interfaces/msg/Bi3DInferenceParametersArray.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module isaac_ros_bi3d_interfaces {
+  module msg {
+    struct Bi3DInferenceParametersArray {
+      std_msgs::msg::Header header;
+
+      sequence<int32> disparity_values;
+    };
+  };
+};

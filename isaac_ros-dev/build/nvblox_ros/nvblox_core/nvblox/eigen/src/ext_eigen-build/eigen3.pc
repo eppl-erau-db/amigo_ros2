@@ -1,0 +1,9 @@
+prefix=/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/eigen
+exec_prefix=${prefix}
+
+Name: Eigen3
+Description: A C++ template library for linear algebra: vectors, matrices, and related algorithms
+Requires:
+Version: 3.4.0
+Libs:
+Cflags: -I${prefix}/include/eigen3

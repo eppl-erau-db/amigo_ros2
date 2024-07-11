@@ -1,0 +1,7 @@
+{
+  "package_name": "isaac_ros_apriltag_interfaces",
+  "non_idl_tuples": [
+    "/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces:msg/AprilTagDetection.msg",
+    "/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces:msg/AprilTagDetectionArray.msg"
+  ]
+}

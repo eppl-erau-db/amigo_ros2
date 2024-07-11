@@ -1,0 +1,2 @@
+nvblox::NvbloxNode;lib/libnvblox_ros_lib.so
+nvblox::NvbloxHumanNode;lib/libnvblox_ros_lib.so

@@ -1,0 +1,4 @@
+source;share/isaac_ros_common/local_setup.bash
+source;share/isaac_ros_common/local_setup.dsv
+source;share/isaac_ros_common/local_setup.sh
+source;share/isaac_ros_common/local_setup.zsh

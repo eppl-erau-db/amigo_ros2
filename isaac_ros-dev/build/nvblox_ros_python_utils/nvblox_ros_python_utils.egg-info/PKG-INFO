@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: nvblox-ros-python-utils
+Version: 0.0.0
+Summary: Python utilities used across nvblox_ros
+Maintainer: Isaac ROS Maintainers
+Maintainer-email: isaac-ros-maintainers@nvidia.com
+License: Apache-2.0

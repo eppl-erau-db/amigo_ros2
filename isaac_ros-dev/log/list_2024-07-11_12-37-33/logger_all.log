@@ -1,0 +1,702 @@
+[0.302s] colcon DEBUG Command line arguments: ['/usr/bin/colcon', 'list', '-p', '--base-paths', '/home/lse/workspaces/isaac_ros-dev']
+[0.303s] colcon DEBUG Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='list', build_base='build', ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['/home/lse/workspaces/isaac_ros-dev'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], topological_order=False, names_only=False, paths_only=True, topological_graph=False, topological_graph_dot=False, topological_graph_density=False, topological_graph_legend=False, topological_graph_dot_cluster=False, topological_graph_dot_include_skipped=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0xffff8bec65f0>, verb_extension=<colcon_package_information.verb.list.ListVerb object at 0xffff8c051cc0>, main=<bound method ListVerb.main of <colcon_package_information.verb.list.ListVerb object at 0xffff8c051cc0>>, mixin_verb=('list',))
+[0.692s] colcon.colcon_core.package_discovery Level 1 discover_packages(colcon_meta) check parameters
+[0.692s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) check parameters
+[0.693s] colcon.colcon_core.package_discovery Level 1 discover_packages(ignore) check parameters
+[0.693s] colcon.colcon_core.package_discovery Level 1 discover_packages(path) check parameters
+[0.693s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) discover
+[0.693s] colcon.colcon_core.package_discovery INFO Crawling recursively for packages in '/home/lse/workspaces/isaac_ros-dev'
+[0.693s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extensions ['ignore', 'ignore_ament_install']
+[0.693s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extension 'ignore'
+[0.694s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extension 'ignore_ament_install'
+[0.694s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extensions ['colcon_pkg']
+[0.694s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extension 'colcon_pkg'
+[0.694s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extensions ['colcon_meta']
+[0.694s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extension 'colcon_meta'
+[0.694s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extensions ['ros']
+[0.694s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extension 'ros'
+[0.720s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extensions ['cmake', 'python']
+[0.720s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extension 'cmake'
+[0.721s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extension 'python'
+[0.721s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extensions ['python_setup_py']
+[0.721s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev) by extension 'python_setup_py'
+[0.721s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/build) by extensions ['ignore', 'ignore_ament_install']
+[0.721s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/build) by extension 'ignore'
+[0.722s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/build) ignored
+[0.722s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/install) by extensions ['ignore', 'ignore_ament_install']
+[0.722s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/install) by extension 'ignore'
+[0.722s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/install) ignored
+[0.723s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/log) by extensions ['ignore', 'ignore_ament_install']
+[0.723s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/log) by extension 'ignore'
+[0.723s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/log) ignored
+[0.723s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extensions ['ignore', 'ignore_ament_install']
+[0.723s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extension 'ignore'
+[0.723s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extension 'ignore_ament_install'
+[0.723s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extensions ['colcon_pkg']
+[0.723s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extension 'colcon_pkg'
+[0.723s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extensions ['colcon_meta']
+[0.724s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extension 'colcon_meta'
+[0.724s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extensions ['ros']
+[0.724s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extension 'ros'
+[0.724s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extensions ['cmake', 'python']
+[0.724s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extension 'cmake'
+[0.724s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extension 'python'
+[0.724s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extensions ['python_setup_py']
+[0.724s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src) by extension 'python_setup_py'
+[0.724s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_bringup) by extensions ['ignore', 'ignore_ament_install']
+[0.725s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_bringup) by extension 'ignore'
+[0.725s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_bringup) by extension 'ignore_ament_install'
+[0.725s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_bringup) by extensions ['colcon_pkg']
+[0.725s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_bringup) by extension 'colcon_pkg'
+[0.725s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_bringup) by extensions ['colcon_meta']
+[0.725s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_bringup) by extension 'colcon_meta'
+[0.725s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_bringup) by extensions ['ros']
+[0.725s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_bringup) by extension 'ros'
+[0.740s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/go2_bringup' with type 'ros.ament_cmake' and name 'go2_bringup'
+[0.740s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_control) by extensions ['ignore', 'ignore_ament_install']
+[0.741s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_control) by extension 'ignore'
+[0.741s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_control) by extension 'ignore_ament_install'
+[0.741s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_control) by extensions ['colcon_pkg']
+[0.741s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_control) by extension 'colcon_pkg'
+[0.741s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_control) by extensions ['colcon_meta']
+[0.741s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_control) by extension 'colcon_meta'
+[0.741s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_control) by extensions ['ros']
+[0.741s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_control) by extension 'ros'
+[0.743s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/go2_control' with type 'ros.ament_python' and name 'go2_control'
+[0.744s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_description) by extensions ['ignore', 'ignore_ament_install']
+[0.744s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_description) by extension 'ignore'
+[0.744s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_description) by extension 'ignore_ament_install'
+[0.744s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_description) by extensions ['colcon_pkg']
+[0.744s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_description) by extension 'colcon_pkg'
+[0.745s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_description) by extensions ['colcon_meta']
+[0.745s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_description) by extension 'colcon_meta'
+[0.745s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_description) by extensions ['ros']
+[0.745s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_description) by extension 'ros'
+[0.746s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/go2_description' with type 'ros.ament_cmake' and name 'go2_description'
+[0.746s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_driver) by extensions ['ignore', 'ignore_ament_install']
+[0.747s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_driver) by extension 'ignore'
+[0.747s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_driver) by extension 'ignore_ament_install'
+[0.747s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_driver) by extensions ['colcon_pkg']
+[0.747s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_driver) by extension 'colcon_pkg'
+[0.747s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_driver) by extensions ['colcon_meta']
+[0.747s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_driver) by extension 'colcon_meta'
+[0.747s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_driver) by extensions ['ros']
+[0.747s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_driver) by extension 'ros'
+[0.749s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/go2_driver' with type 'ros.ament_cmake' and name 'go2_driver'
+[0.749s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.750s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_interfaces) by extension 'ignore'
+[0.750s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_interfaces) by extension 'ignore_ament_install'
+[0.750s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_interfaces) by extensions ['colcon_pkg']
+[0.750s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_interfaces) by extension 'colcon_pkg'
+[0.750s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_interfaces) by extensions ['colcon_meta']
+[0.750s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_interfaces) by extension 'colcon_meta'
+[0.751s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_interfaces) by extensions ['ros']
+[0.751s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/go2_interfaces) by extension 'ros'
+[0.752s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/go2_interfaces' with type 'ros.ament_cmake' and name 'go2_interfaces'
+[0.752s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extensions ['ignore', 'ignore_ament_install']
+[0.753s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extension 'ignore'
+[0.753s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extension 'ignore_ament_install'
+[0.753s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extensions ['colcon_pkg']
+[0.753s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extension 'colcon_pkg'
+[0.753s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extensions ['colcon_meta']
+[0.753s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extension 'colcon_meta'
+[0.753s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extensions ['ros']
+[0.753s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extension 'ros'
+[0.754s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extensions ['cmake', 'python']
+[0.754s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extension 'cmake'
+[0.754s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extension 'python'
+[0.754s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extensions ['python_setup_py']
+[0.754s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common) by extension 'python_setup_py'
+[0.754s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extensions ['ignore', 'ignore_ament_install']
+[0.755s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extension 'ignore'
+[0.755s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extension 'ignore_ament_install'
+[0.755s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extensions ['colcon_pkg']
+[0.755s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extension 'colcon_pkg'
+[0.755s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extensions ['colcon_meta']
+[0.755s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extension 'colcon_meta'
+[0.755s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extensions ['ros']
+[0.755s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extension 'ros'
+[0.755s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extensions ['cmake', 'python']
+[0.755s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extension 'cmake'
+[0.755s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extension 'python'
+[0.756s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extensions ['python_setup_py']
+[0.756s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker) by extension 'python_setup_py'
+[0.756s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extensions ['ignore', 'ignore_ament_install']
+[0.756s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extension 'ignore'
+[0.756s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extension 'ignore_ament_install'
+[0.756s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extensions ['colcon_pkg']
+[0.756s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extension 'colcon_pkg'
+[0.756s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extensions ['colcon_meta']
+[0.756s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extension 'colcon_meta'
+[0.756s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extensions ['ros']
+[0.757s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extension 'ros'
+[0.757s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extensions ['cmake', 'python']
+[0.757s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extension 'cmake'
+[0.757s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extension 'python'
+[0.757s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extensions ['python_setup_py']
+[0.757s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/middleware_profiles) by extension 'python_setup_py'
+[0.757s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extensions ['ignore', 'ignore_ament_install']
+[0.757s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extension 'ignore'
+[0.757s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extension 'ignore_ament_install'
+[0.758s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extensions ['colcon_pkg']
+[0.758s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extension 'colcon_pkg'
+[0.758s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extensions ['colcon_meta']
+[0.758s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extension 'colcon_meta'
+[0.758s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extensions ['ros']
+[0.758s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extension 'ros'
+[0.758s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extensions ['cmake', 'python']
+[0.758s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extension 'cmake'
+[0.758s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extension 'python'
+[0.758s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extensions ['python_setup_py']
+[0.759s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/patches) by extension 'python_setup_py'
+[0.759s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extensions ['ignore', 'ignore_ament_install']
+[0.759s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extension 'ignore'
+[0.759s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extension 'ignore_ament_install'
+[0.759s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extensions ['colcon_pkg']
+[0.759s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extension 'colcon_pkg'
+[0.759s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extensions ['colcon_meta']
+[0.759s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extension 'colcon_meta'
+[0.759s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extensions ['ros']
+[0.760s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extension 'ros'
+[0.760s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extensions ['cmake', 'python']
+[0.760s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extension 'cmake'
+[0.760s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extension 'python'
+[0.760s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extensions ['python_setup_py']
+[0.760s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/rosdep) by extension 'python_setup_py'
+[0.760s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extensions ['ignore', 'ignore_ament_install']
+[0.760s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extension 'ignore'
+[0.760s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extension 'ignore_ament_install'
+[0.761s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extensions ['colcon_pkg']
+[0.761s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extension 'colcon_pkg'
+[0.761s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extensions ['colcon_meta']
+[0.761s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extension 'colcon_meta'
+[0.761s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extensions ['ros']
+[0.761s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extension 'ros'
+[0.761s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extensions ['cmake', 'python']
+[0.761s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extension 'cmake'
+[0.761s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extension 'python'
+[0.761s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extensions ['python_setup_py']
+[0.761s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/scripts) by extension 'python_setup_py'
+[0.762s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extensions ['ignore', 'ignore_ament_install']
+[0.762s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extension 'ignore'
+[0.762s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extension 'ignore_ament_install'
+[0.762s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extensions ['colcon_pkg']
+[0.762s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extension 'colcon_pkg'
+[0.762s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extensions ['colcon_meta']
+[0.762s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extension 'colcon_meta'
+[0.762s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extensions ['ros']
+[0.762s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extension 'ros'
+[0.762s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extensions ['cmake', 'python']
+[0.762s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extension 'cmake'
+[0.763s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extension 'python'
+[0.763s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extensions ['python_setup_py']
+[0.763s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/docker/udev_rules) by extension 'python_setup_py'
+[0.763s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.763s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces) by extension 'ignore'
+[0.763s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces) by extension 'ignore_ament_install'
+[0.763s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces) by extensions ['colcon_pkg']
+[0.763s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces) by extension 'colcon_pkg'
+[0.763s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces) by extensions ['colcon_meta']
+[0.763s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces) by extension 'colcon_meta'
+[0.764s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces) by extensions ['ros']
+[0.764s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces) by extension 'ros'
+[0.765s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_apriltag_interfaces' with type 'ros.ament_cmake' and name 'isaac_ros_apriltag_interfaces'
+[0.766s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_bi3d_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.766s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_bi3d_interfaces) by extension 'ignore'
+[0.766s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_bi3d_interfaces) by extension 'ignore_ament_install'
+[0.767s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_bi3d_interfaces) by extensions ['colcon_pkg']
+[0.767s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_bi3d_interfaces) by extension 'colcon_pkg'
+[0.767s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_bi3d_interfaces) by extensions ['colcon_meta']
+[0.767s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_bi3d_interfaces) by extension 'colcon_meta'
+[0.767s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_bi3d_interfaces) by extensions ['ros']
+[0.767s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_bi3d_interfaces) by extension 'ros'
+[0.768s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_bi3d_interfaces' with type 'ros.ament_cmake' and name 'isaac_ros_bi3d_interfaces'
+[0.769s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_common) by extensions ['ignore', 'ignore_ament_install']
+[0.769s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_common) by extension 'ignore'
+[0.769s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_common) by extension 'ignore_ament_install'
+[0.769s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_common) by extensions ['colcon_pkg']
+[0.769s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_common) by extension 'colcon_pkg'
+[0.769s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_common) by extensions ['colcon_meta']
+[0.769s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_common) by extension 'colcon_meta'
+[0.770s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_common) by extensions ['ros']
+[0.770s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_common) by extension 'ros'
+[0.771s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_common' with type 'ros.ament_cmake' and name 'isaac_ros_common'
+[0.771s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_launch_utils) by extensions ['ignore', 'ignore_ament_install']
+[0.772s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_launch_utils) by extension 'ignore'
+[0.772s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_launch_utils) by extension 'ignore_ament_install'
+[0.772s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_launch_utils) by extensions ['colcon_pkg']
+[0.772s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_launch_utils) by extension 'colcon_pkg'
+[0.772s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_launch_utils) by extensions ['colcon_meta']
+[0.772s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_launch_utils) by extension 'colcon_meta'
+[0.772s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_launch_utils) by extensions ['ros']
+[0.772s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_launch_utils) by extension 'ros'
+[0.773s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_launch_utils' with type 'ros.ament_python' and name 'isaac_ros_launch_utils'
+[0.774s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nitros_bridge_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.774s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nitros_bridge_interfaces) by extension 'ignore'
+[0.774s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nitros_bridge_interfaces) by extension 'ignore_ament_install'
+[0.775s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nitros_bridge_interfaces) by extensions ['colcon_pkg']
+[0.775s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nitros_bridge_interfaces) by extension 'colcon_pkg'
+[0.775s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nitros_bridge_interfaces) by extensions ['colcon_meta']
+[0.775s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nitros_bridge_interfaces) by extension 'colcon_meta'
+[0.775s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nitros_bridge_interfaces) by extensions ['ros']
+[0.775s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nitros_bridge_interfaces) by extension 'ros'
+[0.777s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nitros_bridge_interfaces' with type 'ros.ament_cmake' and name 'isaac_ros_nitros_bridge_interfaces'
+[0.777s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nova_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.777s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nova_interfaces) by extension 'ignore'
+[0.777s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nova_interfaces) by extension 'ignore_ament_install'
+[0.777s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nova_interfaces) by extensions ['colcon_pkg']
+[0.777s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nova_interfaces) by extension 'colcon_pkg'
+[0.778s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nova_interfaces) by extensions ['colcon_meta']
+[0.778s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nova_interfaces) by extension 'colcon_meta'
+[0.778s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nova_interfaces) by extensions ['ros']
+[0.778s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nova_interfaces) by extension 'ros'
+[0.779s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_nova_interfaces' with type 'ros.ament_cmake' and name 'isaac_ros_nova_interfaces'
+[0.780s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_pointcloud_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.780s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_pointcloud_interfaces) by extension 'ignore'
+[0.780s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_pointcloud_interfaces) by extension 'ignore_ament_install'
+[0.780s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_pointcloud_interfaces) by extensions ['colcon_pkg']
+[0.780s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_pointcloud_interfaces) by extension 'colcon_pkg'
+[0.780s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_pointcloud_interfaces) by extensions ['colcon_meta']
+[0.780s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_pointcloud_interfaces) by extension 'colcon_meta'
+[0.780s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_pointcloud_interfaces) by extensions ['ros']
+[0.780s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_pointcloud_interfaces) by extension 'ros'
+[0.782s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_pointcloud_interfaces' with type 'ros.ament_cmake' and name 'isaac_ros_pointcloud_interfaces'
+[0.782s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.783s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces) by extension 'ignore'
+[0.783s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces) by extension 'ignore_ament_install'
+[0.783s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces) by extensions ['colcon_pkg']
+[0.783s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces) by extension 'colcon_pkg'
+[0.783s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces) by extensions ['colcon_meta']
+[0.783s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces) by extension 'colcon_meta'
+[0.783s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces) by extensions ['ros']
+[0.783s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces) by extension 'ros'
+[0.785s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces' with type 'ros.ament_cmake' and name 'isaac_ros_tensor_list_interfaces'
+[0.785s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_test) by extensions ['ignore', 'ignore_ament_install']
+[0.786s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_test) by extension 'ignore'
+[0.786s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_test) by extension 'ignore_ament_install'
+[0.786s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_test) by extensions ['colcon_pkg']
+[0.786s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_test) by extension 'colcon_pkg'
+[0.786s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_test) by extensions ['colcon_meta']
+[0.786s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_test) by extension 'colcon_meta'
+[0.786s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_test) by extensions ['ros']
+[0.787s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_test) by extension 'ros'
+[0.788s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_test' with type 'ros.ament_python' and name 'isaac_ros_test'
+[0.788s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extensions ['ignore', 'ignore_ament_install']
+[0.788s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extension 'ignore'
+[0.789s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extension 'ignore_ament_install'
+[0.789s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extensions ['colcon_pkg']
+[0.789s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extension 'colcon_pkg'
+[0.789s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extensions ['colcon_meta']
+[0.789s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extension 'colcon_meta'
+[0.789s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extensions ['ros']
+[0.789s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extension 'ros'
+[0.789s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extensions ['cmake', 'python']
+[0.789s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extension 'cmake'
+[0.789s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extension 'python'
+[0.790s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extensions ['python_setup_py']
+[0.790s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts) by extension 'python_setup_py'
+[0.790s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extensions ['ignore', 'ignore_ament_install']
+[0.790s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extension 'ignore'
+[0.790s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extension 'ignore_ament_install'
+[0.790s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extensions ['colcon_pkg']
+[0.790s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extension 'colcon_pkg'
+[0.791s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extensions ['colcon_meta']
+[0.791s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extension 'colcon_meta'
+[0.791s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extensions ['ros']
+[0.791s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extension 'ros'
+[0.791s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extensions ['cmake', 'python']
+[0.791s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extension 'cmake'
+[0.791s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extension 'python'
+[0.791s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extensions ['python_setup_py']
+[0.791s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/deploy) by extension 'python_setup_py'
+[0.791s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extensions ['ignore', 'ignore_ament_install']
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extension 'ignore'
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extension 'ignore_ament_install'
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extensions ['colcon_pkg']
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extension 'colcon_pkg'
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extensions ['colcon_meta']
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extension 'colcon_meta'
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extensions ['ros']
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extension 'ros'
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extensions ['cmake', 'python']
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extension 'cmake'
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extension 'python'
+[0.792s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extensions ['python_setup_py']
+[0.793s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_common/scripts/utils) by extension 'python_setup_py'
+[0.793s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extensions ['ignore', 'ignore_ament_install']
+[0.793s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extension 'ignore'
+[0.793s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extension 'ignore_ament_install'
+[0.793s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extensions ['colcon_pkg']
+[0.793s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extension 'colcon_pkg'
+[0.793s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extensions ['colcon_meta']
+[0.793s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extension 'colcon_meta'
+[0.793s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extensions ['ros']
+[0.793s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extension 'ros'
+[0.794s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extensions ['cmake', 'python']
+[0.794s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extension 'cmake'
+[0.794s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extension 'python'
+[0.794s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extensions ['python_setup_py']
+[0.794s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox) by extension 'python_setup_py'
+[0.794s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/isaac_ros_nvblox) by extensions ['ignore', 'ignore_ament_install']
+[0.794s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/isaac_ros_nvblox) by extension 'ignore'
+[0.794s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/isaac_ros_nvblox) by extension 'ignore_ament_install'
+[0.794s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/isaac_ros_nvblox) by extensions ['colcon_pkg']
+[0.794s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/isaac_ros_nvblox) by extension 'colcon_pkg'
+[0.795s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/isaac_ros_nvblox) by extensions ['colcon_meta']
+[0.795s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/isaac_ros_nvblox) by extension 'colcon_meta'
+[0.795s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/isaac_ros_nvblox) by extensions ['ros']
+[0.795s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/isaac_ros_nvblox) by extension 'ros'
+[0.797s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/isaac_ros_nvblox' with type 'ros.ament_cmake' and name 'isaac_ros_nvblox'
+[0.797s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extensions ['ignore', 'ignore_ament_install']
+[0.797s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extension 'ignore'
+[0.798s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extension 'ignore_ament_install'
+[0.798s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extensions ['colcon_pkg']
+[0.798s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extension 'colcon_pkg'
+[0.798s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extensions ['colcon_meta']
+[0.798s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extension 'colcon_meta'
+[0.798s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extensions ['ros']
+[0.798s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extension 'ros'
+[0.798s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extensions ['cmake', 'python']
+[0.799s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extension 'cmake'
+[0.799s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extension 'python'
+[0.799s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extensions ['python_setup_py']
+[0.799s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples) by extension 'python_setup_py'
+[0.799s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_examples_bringup) by extensions ['ignore', 'ignore_ament_install']
+[0.799s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_examples_bringup) by extension 'ignore'
+[0.799s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_examples_bringup) by extension 'ignore_ament_install'
+[0.799s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_examples_bringup) by extensions ['colcon_pkg']
+[0.800s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_examples_bringup) by extension 'colcon_pkg'
+[0.800s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_examples_bringup) by extensions ['colcon_meta']
+[0.800s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_examples_bringup) by extension 'colcon_meta'
+[0.800s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_examples_bringup) by extensions ['ros']
+[0.800s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_examples_bringup) by extension 'ros'
+[0.802s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_examples_bringup' with type 'ros.ament_cmake' and name 'nvblox_examples_bringup'
+[0.802s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_image_padding) by extensions ['ignore', 'ignore_ament_install']
+[0.802s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_image_padding) by extension 'ignore'
+[0.803s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_image_padding) by extension 'ignore_ament_install'
+[0.803s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_image_padding) by extensions ['colcon_pkg']
+[0.803s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_image_padding) by extension 'colcon_pkg'
+[0.803s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_image_padding) by extensions ['colcon_meta']
+[0.803s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_image_padding) by extension 'colcon_meta'
+[0.803s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_image_padding) by extensions ['ros']
+[0.803s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_image_padding) by extension 'ros'
+[0.805s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/nvblox_image_padding' with type 'ros.ament_cmake' and name 'nvblox_image_padding'
+[0.806s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/realsense_splitter) by extensions ['ignore', 'ignore_ament_install']
+[0.806s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/realsense_splitter) by extension 'ignore'
+[0.806s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/realsense_splitter) ignored
+[0.806s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/semantic_label_conversion) by extensions ['ignore', 'ignore_ament_install']
+[0.807s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/semantic_label_conversion) by extension 'ignore'
+[0.807s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/semantic_label_conversion) by extension 'ignore_ament_install'
+[0.807s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/semantic_label_conversion) by extensions ['colcon_pkg']
+[0.807s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/semantic_label_conversion) by extension 'colcon_pkg'
+[0.807s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/semantic_label_conversion) by extensions ['colcon_meta']
+[0.807s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/semantic_label_conversion) by extension 'colcon_meta'
+[0.807s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/semantic_label_conversion) by extensions ['ros']
+[0.807s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/semantic_label_conversion) by extension 'ros'
+[0.810s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/semantic_label_conversion' with type 'ros.ament_cmake' and name 'semantic_label_conversion'
+[0.810s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extensions ['ignore', 'ignore_ament_install']
+[0.810s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extension 'ignore'
+[0.811s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extension 'ignore_ament_install'
+[0.811s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extensions ['colcon_pkg']
+[0.811s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extension 'colcon_pkg'
+[0.811s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extensions ['colcon_meta']
+[0.811s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extension 'colcon_meta'
+[0.811s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extensions ['ros']
+[0.811s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extension 'ros'
+[0.811s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extensions ['cmake', 'python']
+[0.811s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extension 'cmake'
+[0.811s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extension 'python'
+[0.812s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extensions ['python_setup_py']
+[0.812s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove) by extension 'python_setup_py'
+[0.812s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extensions ['ignore', 'ignore_ament_install']
+[0.812s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extension 'ignore'
+[0.812s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extension 'ignore_ament_install'
+[0.812s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extensions ['colcon_pkg']
+[0.812s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extension 'colcon_pkg'
+[0.812s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extensions ['colcon_meta']
+[0.812s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extension 'colcon_meta'
+[0.813s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extensions ['ros']
+[0.813s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extension 'ros'
+[0.813s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extensions ['cmake', 'python']
+[0.813s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extension 'cmake'
+[0.813s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extension 'python'
+[0.813s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extensions ['python_setup_py']
+[0.813s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_foxglove/src) by extension 'python_setup_py'
+[0.814s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.814s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs) by extension 'ignore'
+[0.814s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs) by extension 'ignore_ament_install'
+[0.814s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs) by extensions ['colcon_pkg']
+[0.814s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs) by extension 'colcon_pkg'
+[0.814s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs) by extensions ['colcon_meta']
+[0.814s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs) by extension 'colcon_meta'
+[0.815s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs) by extensions ['ros']
+[0.815s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs) by extension 'ros'
+[0.817s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs' with type 'ros.ament_cmake' and name 'nvblox_msgs'
+[0.818s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_nav2) by extensions ['ignore', 'ignore_ament_install']
+[0.818s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_nav2) by extension 'ignore'
+[0.818s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_nav2) by extension 'ignore_ament_install'
+[0.818s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_nav2) by extensions ['colcon_pkg']
+[0.818s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_nav2) by extension 'colcon_pkg'
+[0.818s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_nav2) by extensions ['colcon_meta']
+[0.818s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_nav2) by extension 'colcon_meta'
+[0.818s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_nav2) by extensions ['ros']
+[0.818s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_nav2) by extension 'ros'
+[0.821s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_nav2' with type 'ros.ament_cmake' and name 'nvblox_nav2'
+[0.822s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros) by extensions ['ignore', 'ignore_ament_install']
+[0.822s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros) by extension 'ignore'
+[0.822s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros) by extension 'ignore_ament_install'
+[0.823s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros) by extensions ['colcon_pkg']
+[0.823s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros) by extension 'colcon_pkg'
+[0.823s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros) by extensions ['colcon_meta']
+[0.823s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros) by extension 'colcon_meta'
+[0.823s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros) by extensions ['ros']
+[0.823s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros) by extension 'ros'
+[0.827s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros' with type 'ros.ament_cmake' and name 'nvblox_ros'
+[0.827s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common) by extensions ['ignore', 'ignore_ament_install']
+[0.828s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common) by extension 'ignore'
+[0.828s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common) by extension 'ignore_ament_install'
+[0.828s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common) by extensions ['colcon_pkg']
+[0.828s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common) by extension 'colcon_pkg'
+[0.828s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common) by extensions ['colcon_meta']
+[0.828s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common) by extension 'colcon_meta'
+[0.828s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common) by extensions ['ros']
+[0.828s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common) by extension 'ros'
+[0.840s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common' with type 'ros.ament_cmake' and name 'nvblox_ros_common'
+[0.841s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_python_utils) by extensions ['ignore', 'ignore_ament_install']
+[0.841s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_python_utils) by extension 'ignore'
+[0.841s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_python_utils) by extension 'ignore_ament_install'
+[0.842s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_python_utils) by extensions ['colcon_pkg']
+[0.842s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_python_utils) by extension 'colcon_pkg'
+[0.842s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_python_utils) by extensions ['colcon_meta']
+[0.842s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_python_utils) by extension 'colcon_meta'
+[0.842s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_python_utils) by extensions ['ros']
+[0.842s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_python_utils) by extension 'ros'
+[0.844s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_python_utils' with type 'ros.ament_python' and name 'nvblox_ros_python_utils'
+[0.844s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_rviz_plugin) by extensions ['ignore', 'ignore_ament_install']
+[0.844s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_rviz_plugin) by extension 'ignore'
+[0.844s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_rviz_plugin) by extension 'ignore_ament_install'
+[0.845s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_rviz_plugin) by extensions ['colcon_pkg']
+[0.845s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_rviz_plugin) by extension 'colcon_pkg'
+[0.845s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_rviz_plugin) by extensions ['colcon_meta']
+[0.845s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_rviz_plugin) by extension 'colcon_meta'
+[0.845s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_rviz_plugin) by extensions ['ros']
+[0.845s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_rviz_plugin) by extension 'ros'
+[0.847s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_rviz_plugin' with type 'ros.ament_cmake' and name 'nvblox_rviz_plugin'
+[0.848s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extensions ['ignore', 'ignore_ament_install']
+[0.848s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extension 'ignore'
+[0.848s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extension 'ignore_ament_install'
+[0.848s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extensions ['colcon_pkg']
+[0.848s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extension 'colcon_pkg'
+[0.848s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extensions ['colcon_meta']
+[0.848s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extension 'colcon_meta'
+[0.848s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extensions ['ros']
+[0.849s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extension 'ros'
+[0.849s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extensions ['cmake', 'python']
+[0.849s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extension 'cmake'
+[0.849s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extension 'python'
+[0.849s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extensions ['python_setup_py']
+[0.849s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/resources) by extension 'python_setup_py'
+[0.849s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extensions ['ignore', 'ignore_ament_install']
+[0.849s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extension 'ignore'
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extension 'ignore_ament_install'
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extensions ['colcon_pkg']
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extension 'colcon_pkg'
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extensions ['colcon_meta']
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extension 'colcon_meta'
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extensions ['ros']
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extension 'ros'
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extensions ['cmake', 'python']
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extension 'cmake'
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extension 'python'
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extensions ['python_setup_py']
+[0.850s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros) by extension 'python_setup_py'
+[0.851s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera) by extensions ['ignore', 'ignore_ament_install']
+[0.851s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera) by extension 'ignore'
+[0.851s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera) by extension 'ignore_ament_install'
+[0.851s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera) by extensions ['colcon_pkg']
+[0.851s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera) by extension 'colcon_pkg'
+[0.851s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera) by extensions ['colcon_meta']
+[0.851s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera) by extension 'colcon_meta'
+[0.851s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera) by extensions ['ros']
+[0.851s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera) by extension 'ros'
+[0.855s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera' with type 'ros.ament_cmake' and name 'realsense2_camera'
+[0.855s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.855s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera_msgs) by extension 'ignore'
+[0.856s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera_msgs) by extension 'ignore_ament_install'
+[0.856s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera_msgs) by extensions ['colcon_pkg']
+[0.856s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera_msgs) by extension 'colcon_pkg'
+[0.856s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera_msgs) by extensions ['colcon_meta']
+[0.856s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera_msgs) by extension 'colcon_meta'
+[0.856s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera_msgs) by extensions ['ros']
+[0.856s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera_msgs) by extension 'ros'
+[0.858s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera_msgs' with type 'ros.ament_cmake' and name 'realsense2_camera_msgs'
+[0.858s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description) by extensions ['ignore', 'ignore_ament_install']
+[0.861s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description) by extension 'ignore'
+[0.861s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description) by extension 'ignore_ament_install'
+[0.861s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description) by extensions ['colcon_pkg']
+[0.861s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description) by extension 'colcon_pkg'
+[0.861s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description) by extensions ['colcon_meta']
+[0.862s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description) by extension 'colcon_meta'
+[0.862s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description) by extensions ['ros']
+[0.862s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description) by extension 'ros'
+[0.864s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description' with type 'ros.ament_cmake' and name 'realsense2_description'
+[0.864s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extensions ['ignore', 'ignore_ament_install']
+[0.864s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extension 'ignore'
+[0.864s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extension 'ignore_ament_install'
+[0.865s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extensions ['colcon_pkg']
+[0.865s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extension 'colcon_pkg'
+[0.865s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extensions ['colcon_meta']
+[0.865s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extension 'colcon_meta'
+[0.865s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extensions ['ros']
+[0.865s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extension 'ros'
+[0.865s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extensions ['cmake', 'python']
+[0.865s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extension 'cmake'
+[0.865s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extension 'python'
+[0.865s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extensions ['python_setup_py']
+[0.865s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/realsense-ros/scripts) by extension 'python_setup_py'
+[0.866s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/rplidar_ros2) by extensions ['ignore', 'ignore_ament_install']
+[0.866s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/rplidar_ros2) by extension 'ignore'
+[0.866s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/rplidar_ros2) by extension 'ignore_ament_install'
+[0.866s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/rplidar_ros2) by extensions ['colcon_pkg']
+[0.866s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/rplidar_ros2) by extension 'colcon_pkg'
+[0.866s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/rplidar_ros2) by extensions ['colcon_meta']
+[0.866s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/rplidar_ros2) by extension 'colcon_meta'
+[0.866s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/rplidar_ros2) by extensions ['ros']
+[0.866s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/rplidar_ros2) by extension 'ros'
+[0.868s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/rplidar_ros2' with type 'ros.ament_cmake' and name 'rplidar_ros'
+[0.868s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extensions ['ignore', 'ignore_ament_install']
+[0.868s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extension 'ignore'
+[0.868s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extension 'ignore_ament_install'
+[0.868s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extensions ['colcon_pkg']
+[0.869s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extension 'colcon_pkg'
+[0.869s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extensions ['colcon_meta']
+[0.869s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extension 'colcon_meta'
+[0.869s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extensions ['ros']
+[0.869s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extension 'ros'
+[0.869s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extensions ['cmake', 'python']
+[0.869s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extension 'cmake'
+[0.869s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extension 'python'
+[0.869s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extensions ['python_setup_py']
+[0.869s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2) by extension 'python_setup_py'
+[0.870s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extensions ['ignore', 'ignore_ament_install']
+[0.870s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extension 'ignore'
+[0.870s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extension 'ignore_ament_install'
+[0.870s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extensions ['colcon_pkg']
+[0.870s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extension 'colcon_pkg'
+[0.870s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extensions ['colcon_meta']
+[0.870s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extension 'colcon_meta'
+[0.870s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extensions ['ros']
+[0.871s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extension 'ros'
+[0.871s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extensions ['cmake', 'python']
+[0.871s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extension 'cmake'
+[0.871s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extension 'python'
+[0.871s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extensions ['python_setup_py']
+[0.871s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws) by extension 'python_setup_py'
+[0.871s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extensions ['ignore', 'ignore_ament_install']
+[0.871s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extension 'ignore'
+[0.871s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extension 'ignore_ament_install'
+[0.872s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extensions ['colcon_pkg']
+[0.872s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extension 'colcon_pkg'
+[0.872s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extensions ['colcon_meta']
+[0.872s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extension 'colcon_meta'
+[0.872s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extensions ['ros']
+[0.872s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extension 'ros'
+[0.872s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extensions ['cmake', 'python']
+[0.872s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extension 'cmake'
+[0.872s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extension 'python'
+[0.872s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extensions ['python_setup_py']
+[0.872s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src) by extension 'python_setup_py'
+[0.873s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extensions ['ignore', 'ignore_ament_install']
+[0.873s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extension 'ignore'
+[0.873s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extension 'ignore_ament_install'
+[0.873s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extensions ['colcon_pkg']
+[0.873s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extension 'colcon_pkg'
+[0.874s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extensions ['colcon_meta']
+[0.874s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extension 'colcon_meta'
+[0.875s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extensions ['ros']
+[0.875s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds) by extension 'ros'
+[0.876s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds' with type 'ros.cmake' and name 'cyclonedds'
+[0.877s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['ignore', 'ignore_ament_install']
+[0.877s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'ignore'
+[0.877s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'ignore_ament_install'
+[0.878s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['colcon_pkg']
+[0.878s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'colcon_pkg'
+[0.878s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['colcon_meta']
+[0.878s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'colcon_meta'
+[0.878s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['ros']
+[0.878s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'ros'
+[0.879s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['cmake', 'python']
+[0.879s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'cmake'
+[0.879s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'python'
+[0.879s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extensions ['python_setup_py']
+[0.879s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds) by extension 'python_setup_py'
+[0.879s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['ignore', 'ignore_ament_install']
+[0.880s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'ignore'
+[0.880s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'ignore_ament_install'
+[0.880s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['colcon_pkg']
+[0.881s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'colcon_pkg'
+[0.881s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['colcon_meta']
+[0.881s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'colcon_meta'
+[0.881s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extensions ['ros']
+[0.881s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp) by extension 'ros'
+[0.923s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/rmw_cyclonedds/rmw_cyclonedds_cpp' with type 'ros.ament_cmake' and name 'rmw_cyclonedds_cpp'
+[0.923s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['ignore', 'ignore_ament_install']
+[0.924s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'ignore'
+[0.924s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'ignore_ament_install'
+[0.924s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['colcon_pkg']
+[0.924s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'colcon_pkg'
+[0.924s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['colcon_meta']
+[0.924s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'colcon_meta'
+[0.925s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['ros']
+[0.925s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'ros'
+[0.925s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['cmake', 'python']
+[0.925s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'cmake'
+[0.925s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'python'
+[0.925s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extensions ['python_setup_py']
+[0.925s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree) by extension 'python_setup_py'
+[0.926s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extensions ['ignore', 'ignore_ament_install']
+[0.928s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extension 'ignore'
+[0.928s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extension 'ignore_ament_install'
+[0.928s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extensions ['colcon_pkg']
+[0.929s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extension 'colcon_pkg'
+[0.929s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extensions ['colcon_meta']
+[0.929s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extension 'colcon_meta'
+[0.929s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extensions ['ros']
+[0.931s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api) by extension 'ros'
+[0.933s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_api' with type 'ros.ament_cmake' and name 'unitree_api'
+[0.933s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extensions ['ignore', 'ignore_ament_install']
+[0.933s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extension 'ignore'
+[0.933s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extension 'ignore_ament_install'
+[0.934s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extensions ['colcon_pkg']
+[0.934s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extension 'colcon_pkg'
+[0.934s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extensions ['colcon_meta']
+[0.934s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extension 'colcon_meta'
+[0.934s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extensions ['ros']
+[0.934s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go) by extension 'ros'
+[0.936s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree/unitree_go' with type 'ros.ament_cmake' and name 'unitree_go'
+[0.936s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extensions ['ignore', 'ignore_ament_install']
+[0.936s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extension 'ignore'
+[0.936s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extension 'ignore_ament_install'
+[0.936s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extensions ['colcon_pkg']
+[0.937s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extension 'colcon_pkg'
+[0.937s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extensions ['colcon_meta']
+[0.937s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extension 'colcon_meta'
+[0.937s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extensions ['ros']
+[0.937s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extension 'ros'
+[0.937s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extensions ['cmake', 'python']
+[0.937s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extension 'cmake'
+[0.937s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extension 'python'
+[0.937s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extensions ['python_setup_py']
+[0.937s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example) by extension 'python_setup_py'
+[0.938s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example/src) by extensions ['ignore', 'ignore_ament_install']
+[0.938s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example/src) by extension 'ignore'
+[0.938s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example/src) by extension 'ignore_ament_install'
+[0.938s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example/src) by extensions ['colcon_pkg']
+[0.938s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example/src) by extension 'colcon_pkg'
+[0.938s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example/src) by extensions ['colcon_meta']
+[0.938s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example/src) by extension 'colcon_meta'
+[0.938s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example/src) by extensions ['ros']
+[0.938s] colcon.colcon_core.package_identification Level 1 _identify(/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example/src) by extension 'ros'
+[0.940s] colcon.colcon_core.package_identification DEBUG Package '/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/example/src' with type 'ros.ament_cmake' and name 'unitree_ros2_example'
+[0.940s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) using defaults
+[0.975s] colcon.colcon_metadata.metadata.colcon_pkg INFO Updating descriptor of package '/home/lse/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds' from colcon.pkg: {'cmake-args': ['-DBUILD_IDLC=AUTO']}

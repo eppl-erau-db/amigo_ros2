@@ -88,14 +88,14 @@ def generate_launch_description():
 
     map_file = LaunchConfiguration('map_file')
 
-    # robot_localization_node = Node(
-    #     package='robot_localization',
-    #     executable='ekf_node',
-    #     name='ekf_filter_node',
-    #     output='screen',
-    #     parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
-    #     remappings=[('/odometry/filtered', '/first_odom')]
-    # )
+    robot_localization_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
+        remappings=[('/odometry/filtered', '/first_odom')]
+    )
 
     # robot_localization_node_map = Node(
     #     package='robot_localization',
@@ -111,7 +111,7 @@ def generate_launch_description():
         base_footprint_to_base_link_tf,
         cam_imu_tf,
         robot_state_publisher_node,
-        # robot_localization_node,
+        robot_localization_node,
         # robot_localization_node_map,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),

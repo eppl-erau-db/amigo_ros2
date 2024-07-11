@@ -1,0 +1,12 @@
+setup.py
+realsense2_camera_msgs/__init__.py
+realsense2_camera_msgs.egg-info/PKG-INFO
+realsense2_camera_msgs.egg-info/SOURCES.txt
+realsense2_camera_msgs.egg-info/dependency_links.txt
+realsense2_camera_msgs.egg-info/top_level.txt
+realsense2_camera_msgs/msg/__init__.py
+realsense2_camera_msgs/msg/_extrinsics.py
+realsense2_camera_msgs/msg/_imu_info.py
+realsense2_camera_msgs/msg/_metadata.py
+realsense2_camera_msgs/srv/__init__.py
+realsense2_camera_msgs/srv/_device_info.py

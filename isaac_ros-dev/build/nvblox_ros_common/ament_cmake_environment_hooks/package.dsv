@@ -1,0 +1,4 @@
+source;share/nvblox_ros_common/local_setup.bash
+source;share/nvblox_ros_common/local_setup.dsv
+source;share/nvblox_ros_common/local_setup.sh
+source;share/nvblox_ros_common/local_setup.zsh

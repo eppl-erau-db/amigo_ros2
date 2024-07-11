@@ -1,0 +1,46 @@
+[35m[1mConsolidate compiler generated dependencies of target realsense2_camera[0m
+[ 87%] Built target realsense2_camera
+[35m[1mConsolidate compiler generated dependencies of target realsense2_camera_node[0m
+[100%] Built target realsense2_camera_node
+-- Install configuration: "Release"
+-- Execute custom install script
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/lib/realsense2_camera/realsense2_camera_node
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/lib/librealsense2_camera.so
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/base_realsense_node.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/constants.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/dynamic_params.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/image_publisher.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/named_filter.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/profile_manager.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/realsense_node_factory.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/ros_param_backend.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/ros_sensor.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/ros_utils.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/sensor_params.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/include/t265_realsense_node.h
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/launch/default.rviz
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/launch/rs_d400_and_t265_launch.py
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/launch/rs_intra_process_demo_launch.py
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/launch/rs_launch.py
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/launch/rs_multi_camera_launch.py
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/environment/library_path.sh
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/environment/library_path.dsv
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/ament_index/resource_index/package_run_dependencies/realsense2_camera
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/ament_index/resource_index/parent_prefix_path/realsense2_camera
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/environment/path.sh
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/environment/path.dsv
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/local_setup.bash
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/local_setup.sh
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/local_setup.zsh
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/local_setup.dsv
+-- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/package.dsv
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/ament_index/resource_index/packages/realsense2_camera
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/ament_index/resource_index/rclcpp_components/realsense2_camera
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/cmake/ament_cmake_export_libraries-extras.cmake
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/cmake/realsense2_cameraConfig.cmake
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/cmake/realsense2_cameraConfig-version.cmake
+-- Up-to-date symlink: /workspaces/isaac_ros-dev/install/realsense2_camera/share/realsense2_camera/package.xml

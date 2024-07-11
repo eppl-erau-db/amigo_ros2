@@ -1,0 +1,21 @@
+running develop
+running egg_info
+creating isaac_ros_launch_utils.egg-info
+writing isaac_ros_launch_utils.egg-info/PKG-INFO
+writing dependency_links to isaac_ros_launch_utils.egg-info/dependency_links.txt
+writing requirements to isaac_ros_launch_utils.egg-info/requires.txt
+writing top-level names to isaac_ros_launch_utils.egg-info/top_level.txt
+writing manifest file 'isaac_ros_launch_utils.egg-info/SOURCES.txt'
+ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+reading manifest file 'isaac_ros_launch_utils.egg-info/SOURCES.txt'
+writing manifest file 'isaac_ros_launch_utils.egg-info/SOURCES.txt'
+running build_ext
+Creating /workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/lib/python3.10/site-packages/isaac-ros-launch-utils.egg-link (link to .)
+
+Installed /workspaces/isaac_ros-dev/build/isaac_ros_launch_utils
+running symlink_data
+creating /workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/share/ament_index
+creating /workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/share/ament_index/resource_index
+creating /workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/share/ament_index/resource_index/packages
+symbolically linking /workspaces/isaac_ros-dev/build/isaac_ros_launch_utils/resource/isaac_ros_launch_utils -> /workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/share/ament_index/resource_index/packages
+symbolically linking /workspaces/isaac_ros-dev/build/isaac_ros_launch_utils/package.xml -> /workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/share/isaac_ros_launch_utils

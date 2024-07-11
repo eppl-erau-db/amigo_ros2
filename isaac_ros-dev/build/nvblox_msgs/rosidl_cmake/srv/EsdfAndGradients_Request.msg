@@ -1,0 +1,2 @@
+geometry_msgs/Point aabb_min_m
+geometry_msgs/Vector3 aabb_size_m

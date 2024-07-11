@@ -1,0 +1,31 @@
+running develop
+running egg_info
+creating go2_control.egg-info
+writing go2_control.egg-info/PKG-INFO
+writing dependency_links to go2_control.egg-info/dependency_links.txt
+writing entry points to go2_control.egg-info/entry_points.txt
+writing requirements to go2_control.egg-info/requires.txt
+writing top-level names to go2_control.egg-info/top_level.txt
+writing manifest file 'go2_control.egg-info/SOURCES.txt'
+reading manifest file 'go2_control.egg-info/SOURCES.txt'
+writing manifest file 'go2_control.egg-info/SOURCES.txt'
+running build_ext
+Creating /workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages/go2-control.egg-link (link to .)
+Installing base_to_base_tf script to /workspaces/isaac_ros-dev/install/go2_control/lib/go2_control
+Installing go2_driver script to /workspaces/isaac_ros-dev/install/go2_control/lib/go2_control
+Installing go2_state script to /workspaces/isaac_ros-dev/install/go2_control/lib/go2_control
+Installing odom_node script to /workspaces/isaac_ros-dev/install/go2_control/lib/go2_control
+Installing vslam_odom_node script to /workspaces/isaac_ros-dev/install/go2_control/lib/go2_control
+
+Installed /workspaces/isaac_ros-dev/build/go2_control
+running symlink_data
+creating /workspaces/isaac_ros-dev/install/go2_control/share/ament_index
+creating /workspaces/isaac_ros-dev/install/go2_control/share/ament_index/resource_index
+creating /workspaces/isaac_ros-dev/install/go2_control/share/ament_index/resource_index/packages
+symbolically linking /workspaces/isaac_ros-dev/build/go2_control/resource/go2_control -> /workspaces/isaac_ros-dev/install/go2_control/share/ament_index/resource_index/packages
+symbolically linking /workspaces/isaac_ros-dev/build/go2_control/package.xml -> /workspaces/isaac_ros-dev/install/go2_control/share/go2_control
+creating /workspaces/isaac_ros-dev/install/go2_control/share/go2_control/launch
+creating /workspaces/isaac_ros-dev/install/go2_control/share/go2_control/urdf
+creating /workspaces/isaac_ros-dev/install/go2_control/share/go2_control/dae
+creating /workspaces/isaac_ros-dev/install/go2_control/share/go2_control/meshes
+creating /workspaces/isaac_ros-dev/install/go2_control/share/go2_control/config

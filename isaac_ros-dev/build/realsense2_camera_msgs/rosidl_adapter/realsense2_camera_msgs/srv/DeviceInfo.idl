@@ -1,0 +1,25 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from realsense2_camera_msgs/srv/DeviceInfo.srv
+// generated code does not contain a copyright notice
+
+
+module realsense2_camera_msgs {
+  module srv {
+    struct DeviceInfo_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct DeviceInfo_Response {
+      string device_name;
+
+      string serial_number;
+
+      string firmware_version;
+
+      string usb_type_descriptor;
+
+      string firmware_update_id;
+
+      string sensors;
+    };
+  };
+};

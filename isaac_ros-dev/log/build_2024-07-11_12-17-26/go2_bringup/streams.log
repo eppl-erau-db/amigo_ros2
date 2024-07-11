@@ -1,0 +1,44 @@
+[0.098s] Invoking command in '/workspaces/isaac_ros-dev/build/go2_bringup': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_control:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/build/go2_control:/workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /workspaces/isaac_ros-dev/src/go2_bringup -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/go2_bringup
+[0.224s] -- The C compiler identification is GNU 11.4.0
+[0.381s] -- The CXX compiler identification is GNU 11.4.0
+[0.397s] -- Detecting C compiler ABI info
+[0.639s] -- Detecting C compiler ABI info - done
+[0.662s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.662s] -- Detecting C compile features
+[0.663s] -- Detecting C compile features - done
+[0.669s] -- Detecting CXX compiler ABI info
+[0.906s] -- Detecting CXX compiler ABI info - done
+[0.917s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.917s] -- Detecting CXX compile features
+[0.918s] -- Detecting CXX compile features - done
+[0.926s] -- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+[2.704s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[2.859s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[3.131s] -- Configuring done
+[3.138s] -- Generating done
+[3.141s] -- Build files have been written to: /workspaces/isaac_ros-dev/build/go2_bringup
+[3.163s] Invoked command in '/workspaces/isaac_ros-dev/build/go2_bringup' returned '0': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_control:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/build/go2_control:/workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /workspaces/isaac_ros-dev/src/go2_bringup -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/go2_bringup
+[3.164s] Invoking command in '/workspaces/isaac_ros-dev/build/go2_bringup': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_control:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/build/go2_control:/workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/go2_bringup -- -j8 -l8
+[3.354s] Invoked command in '/workspaces/isaac_ros-dev/build/go2_bringup' returned '0': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_control:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/build/go2_control:/workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/go2_bringup -- -j8 -l8
+[3.414s] Invoking command in '/workspaces/isaac_ros-dev/build/go2_bringup': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_control:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/build/go2_control:/workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/go2_bringup
+[3.433s] -- Install configuration: ""
+[3.433s] -- Execute custom install script
+[3.434s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup//launch/go2_navigation.launch.py
+[3.459s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup//launch/go2_navigation_nvblox.launch.py
+[3.479s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup//launch/mapping.launch.py
+[3.502s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/ament_index/resource_index/package_run_dependencies/go2_bringup
+[3.521s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/ament_index/resource_index/parent_prefix_path/go2_bringup
+[3.541s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/environment/ament_prefix_path.sh
+[3.562s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/environment/ament_prefix_path.dsv
+[3.583s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/environment/path.sh
+[3.606s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/environment/path.dsv
+[3.631s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/local_setup.bash
+[3.652s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/local_setup.sh
+[3.674s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/local_setup.zsh
+[3.693s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/local_setup.dsv
+[3.713s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/package.dsv
+[3.732s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/ament_index/resource_index/packages/go2_bringup
+[3.753s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/cmake/go2_bringupConfig.cmake
+[3.775s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/cmake/go2_bringupConfig-version.cmake
+[3.798s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_bringup/share/go2_bringup/package.xml
+[3.823s] Invoked command in '/workspaces/isaac_ros-dev/build/go2_bringup' returned '0': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_control:/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces:/workspaces/isaac_ros-dev/install/go2_description:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/go2_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/build/go2_control:/workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages:/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/go2_bringup

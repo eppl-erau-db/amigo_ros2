@@ -1,0 +1,30 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/workspaces/isaac_ros-dev/build/nvblox_ros_python_utils",
+        "/home/lse/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/lib/python3.10/site-packages",
+        "/workspaces/isaac_ros-dev/build/isaac_ros_test",
+        "/home/lse/workspaces/isaac_ros-dev/install/isaac_ros_test/lib/python3.10/site-packages",
+        "/workspaces/isaac_ros-dev/build/isaac_ros_launch_utils",
+        "/home/lse/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/lib/python3.10/site-packages",
+        "/workspaces/isaac_ros-dev/build/go2_control",
+        "/home/lse/workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages",
+        "/home/lse/old_workspaces/workspaces/unitree_ros2/cyclonedds_ws/install/unitree_go/local/lib/python3.10/dist-packages",
+        "/home/lse/old_workspaces/workspaces/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/workspaces/isaac_ros-dev/build/nvblox_ros_python_utils",
+        "/home/lse/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/lib/python3.10/site-packages",
+        "/workspaces/isaac_ros-dev/build/isaac_ros_test",
+        "/home/lse/workspaces/isaac_ros-dev/install/isaac_ros_test/lib/python3.10/site-packages",
+        "/workspaces/isaac_ros-dev/build/isaac_ros_launch_utils",
+        "/home/lse/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/lib/python3.10/site-packages",
+        "/workspaces/isaac_ros-dev/build/go2_control",
+        "/home/lse/workspaces/isaac_ros-dev/install/go2_control/lib/python3.10/site-packages",
+        "/home/lse/old_workspaces/workspaces/unitree_ros2/cyclonedds_ws/install/unitree_go/local/lib/python3.10/dist-packages",
+        "/home/lse/old_workspaces/workspaces/unitree_ros2/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

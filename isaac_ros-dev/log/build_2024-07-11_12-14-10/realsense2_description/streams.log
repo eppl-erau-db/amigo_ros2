@@ -1,0 +1,68 @@
+[0.026s] Invoking command in '/workspaces/isaac_ros-dev/build/realsense2_description': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/realsense2_description
+[0.120s] -- The C compiler identification is GNU 11.4.0
+[0.228s] -- The CXX compiler identification is GNU 11.4.0
+[0.251s] -- Detecting C compiler ABI info
+[0.398s] -- Detecting C compiler ABI info - done
+[0.424s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.425s] -- Detecting C compile features
+[0.426s] -- Detecting C compile features - done
+[0.436s] -- Detecting CXX compiler ABI info
+[0.596s] -- Detecting CXX compiler ABI info - done
+[0.622s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.624s] -- Detecting CXX compile features
+[0.626s] -- Detecting CXX compile features - done
+[0.634s] -- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+[1.982s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[2.104s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[2.341s] -- Configuring done
+[2.352s] -- Generating done
+[2.355s] -- Build files have been written to: /workspaces/isaac_ros-dev/build/realsense2_description
+[2.367s] Invoked command in '/workspaces/isaac_ros-dev/build/realsense2_description' returned '0': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /workspaces/isaac_ros-dev/src/realsense-ros/realsense2_description -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/realsense2_description
+[2.371s] Invoking command in '/workspaces/isaac_ros-dev/build/realsense2_description': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/realsense2_description -- -j8 -l8
+[2.450s] Invoked command in '/workspaces/isaac_ros-dev/build/realsense2_description' returned '0': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/realsense2_description -- -j8 -l8
+[2.493s] Invoking command in '/workspaces/isaac_ros-dev/build/realsense2_description': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/realsense2_description
+[2.510s] -- Install configuration: ""
+[2.510s] -- Execute custom install script
+[2.512s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/launch/launch_utils.py
+[2.529s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/launch/view_model.launch.py
+[2.547s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/meshes/d415.stl
+[2.565s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/meshes/d435.dae
+[2.583s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/meshes/d455.stl
+[2.601s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/meshes/l515.dae
+[2.619s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/meshes/plug.stl
+[2.636s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/meshes/plug_collision.stl
+[2.653s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/rviz/urdf.rviz
+[2.671s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/_d415.urdf.xacro
+[2.688s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/_d435.urdf.xacro
+[2.705s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/_d435i.urdf.xacro
+[2.723s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/_d435i_imu_modules.urdf.xacro
+[2.741s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/_d455.urdf.xacro
+[2.758s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/_l515.urdf.xacro
+[2.776s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/_materials.urdf.xacro
+[2.793s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/_r410.urdf.xacro
+[2.810s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/_r430.urdf.xacro
+[2.827s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/_usb_plug.urdf.xacro
+[2.846s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/test_d415_camera.urdf.xacro
+[2.864s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/test_d435_camera.urdf.xacro
+[2.881s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/test_d435_multiple_cameras.urdf.xacro
+[2.899s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/test_d435i_camera.urdf.xacro
+[2.918s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/test_d455_camera.urdf.xacro
+[2.935s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/test_l515_camera.urdf.xacro
+[2.954s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/test_r410_camera.urdf.xacro
+[2.972s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/urdf/test_r430_camera.urdf.xacro
+[2.990s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/ament_index/resource_index/package_run_dependencies/realsense2_description
+[3.009s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/ament_index/resource_index/parent_prefix_path/realsense2_description
+[3.028s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/environment/ament_prefix_path.sh
+[3.048s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/environment/ament_prefix_path.dsv
+[3.067s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/environment/path.sh
+[3.085s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/environment/path.dsv
+[3.104s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/local_setup.bash
+[3.122s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/local_setup.sh
+[3.143s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/local_setup.zsh
+[3.158s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/local_setup.dsv
+[3.177s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/package.dsv
+[3.193s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/ament_index/resource_index/packages/realsense2_description
+[3.212s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/cmake/realsense2_descriptionConfig.cmake
+[3.231s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/cmake/realsense2_descriptionConfig-version.cmake
+[3.247s] -- Symlinking: /workspaces/isaac_ros-dev/install/realsense2_description/share/realsense2_description/package.xml
+[3.272s] Invoked command in '/workspaces/isaac_ros-dev/build/realsense2_description' returned '0': AMENT_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs:/opt/ros/humble LD_LIBRARY_PATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/realsense2_description

@@ -1,0 +1,23 @@
+[4.152s] Invoking command in '/workspaces/isaac_ros-dev/build/nvblox_ros_python_utils': PYTHONPATH=/workspaces/isaac_ros-dev/build/nvblox_ros_python_utils/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /workspaces/isaac_ros-dev/build/nvblox_ros_python_utils/build --no-deps symlink_data
+[5.041s] running develop
+[5.594s] running egg_info
+[5.594s] creating nvblox_ros_python_utils.egg-info
+[5.626s] writing nvblox_ros_python_utils.egg-info/PKG-INFO
+[5.627s] writing dependency_links to nvblox_ros_python_utils.egg-info/dependency_links.txt
+[5.627s] writing requirements to nvblox_ros_python_utils.egg-info/requires.txt
+[5.627s] writing top-level names to nvblox_ros_python_utils.egg-info/top_level.txt
+[5.628s] writing manifest file 'nvblox_ros_python_utils.egg-info/SOURCES.txt'
+[5.780s] ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+[6.074s] reading manifest file 'nvblox_ros_python_utils.egg-info/SOURCES.txt'
+[6.075s] writing manifest file 'nvblox_ros_python_utils.egg-info/SOURCES.txt'
+[6.280s] running build_ext
+[6.297s] Creating /workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/lib/python3.10/site-packages/nvblox-ros-python-utils.egg-link (link to .)
+[6.299s] 
+[6.299s] Installed /workspaces/isaac_ros-dev/build/nvblox_ros_python_utils
+[6.299s] running symlink_data
+[6.299s] creating /workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/share/ament_index
+[6.299s] creating /workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/share/ament_index/resource_index
+[6.299s] creating /workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/share/ament_index/resource_index/packages
+[6.300s] symbolically linking /workspaces/isaac_ros-dev/build/nvblox_ros_python_utils/resource/nvblox_ros_python_utils -> /workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/share/ament_index/resource_index/packages
+[6.300s] symbolically linking /workspaces/isaac_ros-dev/build/nvblox_ros_python_utils/package.xml -> /workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/share/nvblox_ros_python_utils
+[6.608s] Invoked command in '/workspaces/isaac_ros-dev/build/nvblox_ros_python_utils' returned '0': PYTHONPATH=/workspaces/isaac_ros-dev/build/nvblox_ros_python_utils/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /workspaces/isaac_ros-dev/build/nvblox_ros_python_utils/build --no-deps symlink_data

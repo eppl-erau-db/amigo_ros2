@@ -1,0 +1,4 @@
+source;share/isaac_ros_pointcloud_interfaces/local_setup.bash
+source;share/isaac_ros_pointcloud_interfaces/local_setup.dsv
+source;share/isaac_ros_pointcloud_interfaces/local_setup.sh
+source;share/isaac_ros_pointcloud_interfaces/local_setup.zsh

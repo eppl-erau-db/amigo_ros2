@@ -1,0 +1,4 @@
+source;share/nvblox_image_padding/local_setup.bash
+source;share/nvblox_image_padding/local_setup.dsv
+source;share/nvblox_image_padding/local_setup.sh
+source;share/nvblox_image_padding/local_setup.zsh

@@ -1,0 +1,12 @@
+{
+  "package_name": "nvblox_msgs",
+  "non_idl_tuples": [
+    "/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs:srv/FilePath.srv",
+    "/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs:srv/EsdfAndGradients.srv",
+    "/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs:msg/SemanticLabelsStamped.msg",
+    "/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs:msg/MeshBlock.msg",
+    "/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs:msg/Mesh.msg",
+    "/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs:msg/Index3D.msg",
+    "/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs:msg/DistanceMapSlice.msg"
+  ]
+}

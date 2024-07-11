@@ -1,0 +1,17 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/isaac_ros_apriltag_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/isaac_ros_apriltag_interfaces/msg/detail/dds_fastrtps/april_tag_detection__type_support.cpp.o"
+  "CMakeFiles/isaac_ros_apriltag_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/isaac_ros_apriltag_interfaces/msg/detail/dds_fastrtps/april_tag_detection__type_support.cpp.o.d"
+  "CMakeFiles/isaac_ros_apriltag_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/isaac_ros_apriltag_interfaces/msg/detail/dds_fastrtps/april_tag_detection_array__type_support.cpp.o"
+  "CMakeFiles/isaac_ros_apriltag_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/isaac_ros_apriltag_interfaces/msg/detail/dds_fastrtps/april_tag_detection_array__type_support.cpp.o.d"
+  "libisaac_ros_apriltag_interfaces__rosidl_typesupport_fastrtps_cpp.pdb"
+  "libisaac_ros_apriltag_interfaces__rosidl_typesupport_fastrtps_cpp.so"
+  "rosidl_typesupport_fastrtps_cpp/isaac_ros_apriltag_interfaces/msg/detail/april_tag_detection__rosidl_typesupport_fastrtps_cpp.hpp"
+  "rosidl_typesupport_fastrtps_cpp/isaac_ros_apriltag_interfaces/msg/detail/april_tag_detection_array__rosidl_typesupport_fastrtps_cpp.hpp"
+  "rosidl_typesupport_fastrtps_cpp/isaac_ros_apriltag_interfaces/msg/detail/dds_fastrtps/april_tag_detection__type_support.cpp"
+  "rosidl_typesupport_fastrtps_cpp/isaac_ros_apriltag_interfaces/msg/detail/dds_fastrtps/april_tag_detection_array__type_support.cpp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/isaac_ros_apriltag_interfaces__rosidl_typesupport_fastrtps_cpp.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

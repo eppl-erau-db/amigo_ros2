@@ -1,0 +1,358 @@
+[0.065s] Invoking command in '/workspaces/isaac_ros-dev/build/nvblox_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/nvblox_msgs
+[2.515s] -- The C compiler identification is GNU 11.4.0
+[2.517s] -- The CXX compiler identification is GNU 11.4.0
+[2.517s] -- Detecting C compiler ABI info
+[2.518s] -- Detecting C compiler ABI info - done
+[2.519s] -- Check for working C compiler: /usr/bin/cc - skipped
+[2.519s] -- Detecting C compile features
+[2.519s] -- Detecting C compile features - done
+[2.520s] -- Detecting CXX compiler ABI info
+[2.520s] -- Detecting CXX compiler ABI info - done
+[2.520s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[2.520s] -- Detecting CXX compile features
+[2.521s] -- Detecting CXX compile features - done
+[2.521s] -- CMAKE_BUILD_TYPE: Release
+[2.521s] -- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+[2.523s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[2.524s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[2.524s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[2.524s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.524s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[2.524s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.550s] -- Found std_msgs: 4.2.4 (/opt/ros/humble/share/std_msgs/cmake)
+[2.656s] -- Found geometry_msgs: 4.2.4 (/opt/ros/humble/share/geometry_msgs/cmake)
+[3.441s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[3.995s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[4.732s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[4.789s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[4.796s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[4.858s] -- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[4.858s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[4.858s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[4.858s] -- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+[4.917s] -- Found PythonExtra: .so  
+[5.055s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[5.074s] -- Configuring done
+[5.191s] -- Generating done
+[5.196s] -- Build files have been written to: /workspaces/isaac_ros-dev/build/nvblox_msgs
+[5.222s] Invoked command in '/workspaces/isaac_ros-dev/build/nvblox_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/nvblox_msgs
+[5.223s] Invoking command in '/workspaces/isaac_ros-dev/build/nvblox_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/nvblox_msgs -- -j8 -l8
+[5.762s] [  1%] [34m[1mGenerating C code for ROS interfaces[0m
+[5.772s] [  2%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[5.773s] [  2%] Built target ament_cmake_python_symlink_nvblox_msgs
+[6.475s] running egg_info
+[6.477s] creating nvblox_msgs.egg-info
+[6.512s] writing nvblox_msgs.egg-info/PKG-INFO
+[6.512s] writing dependency_links to nvblox_msgs.egg-info/dependency_links.txt
+[6.513s] writing top-level names to nvblox_msgs.egg-info/top_level.txt
+[6.513s] writing manifest file 'nvblox_msgs.egg-info/SOURCES.txt'
+[6.793s] ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+[7.164s] reading manifest file 'nvblox_msgs.egg-info/SOURCES.txt'
+[7.164s] writing manifest file 'nvblox_msgs.egg-info/SOURCES.txt'
+[7.306s] [  2%] Built target nvblox_msgs__cpp
+[7.344s] [  3%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[7.359s] [  5%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[7.359s] [  6%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[7.467s] [  6%] Built target ament_cmake_python_build_nvblox_msgs_egg
+[7.481s] [  7%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_c.dir/rosidl_generator_c/nvblox_msgs/srv/detail/file_path__functions.c.o[0m
+[7.486s] [  8%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_c.dir/rosidl_generator_c/nvblox_msgs/srv/detail/esdf_and_gradients__functions.c.o[0m
+[7.513s] [ 10%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_c.dir/rosidl_generator_c/nvblox_msgs/msg/detail/mesh_block__functions.c.o[0m
+[7.522s] [ 11%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_c.dir/rosidl_generator_c/nvblox_msgs/msg/detail/semantic_labels_stamped__functions.c.o[0m
+[7.550s] [ 12%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_c.dir/rosidl_generator_c/nvblox_msgs/msg/detail/mesh__functions.c.o[0m
+[7.973s] [ 13%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_c.dir/rosidl_generator_c/nvblox_msgs/msg/detail/index3_d__functions.c.o[0m
+[8.011s] [ 15%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_c.dir/rosidl_generator_c/nvblox_msgs/msg/detail/distance_map_slice__functions.c.o[0m
+[8.416s] [ 16%] [32m[1mLinking C shared library libnvblox_msgs__rosidl_generator_c.so[0m
+[8.625s] [ 16%] Built target nvblox_msgs__rosidl_generator_c
+[8.693s] [ 17%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[8.734s] [ 18%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[8.739s] [ 20%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[8.901s] [ 21%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/nvblox_msgs/srv/file_path__type_support.cpp.o[0m
+[8.967s] [ 22%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/nvblox_msgs/srv/esdf_and_gradients__type_support.cpp.o[0m
+[8.993s] [ 24%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/nvblox_msgs/msg/semantic_labels_stamped__type_support.cpp.o[0m
+[9.395s] [ 25%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/nvblox_msgs/srv/detail/file_path__type_support.cpp.o[0m
+[10.068s] [ 26%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/nvblox_msgs/msg/mesh_block__type_support.cpp.o[0m
+[10.103s] [ 27%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/nvblox_msgs/srv/detail/dds_fastrtps/file_path__type_support.cpp.o[0m
+[10.451s] [ 29%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/nvblox_msgs/msg/mesh__type_support.cpp.o[0m
+[10.594s] [ 30%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/nvblox_msgs/msg/index3_d__type_support.cpp.o[0m
+[11.707s] [ 31%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/nvblox_msgs/srv/file_path__type_support.cpp.o[0m
+[11.732s] [ 32%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/nvblox_msgs/srv/detail/esdf_and_gradients__type_support.cpp.o[0m
+[11.807s] [ 34%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/nvblox_msgs/msg/detail/semantic_labels_stamped__type_support.cpp.o[0m
+[11.856s] [ 35%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/nvblox_msgs/msg/distance_map_slice__type_support.cpp.o[0m
+[11.987s] [ 36%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/nvblox_msgs/srv/detail/file_path__type_support.c.o[0m
+[12.019s] [ 37%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/nvblox_msgs/srv/detail/file_path__type_support_c.cpp.o[0m
+[12.028s] [ 39%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/nvblox_msgs/srv/esdf_and_gradients__type_support.cpp.o[0m
+[12.109s] [ 40%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/nvblox_msgs/srv/detail/esdf_and_gradients__type_support.c.o[0m
+[12.301s] [ 41%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/nvblox_msgs/msg/semantic_labels_stamped__type_support.cpp.o[0m
+[12.392s] [ 43%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/nvblox_msgs/msg/detail/semantic_labels_stamped__type_support.c.o[0m
+[12.573s] [ 44%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/nvblox_msgs/msg/detail/mesh_block__type_support.c.o[0m
+[12.587s] [ 45%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/nvblox_msgs/msg/mesh_block__type_support.cpp.o[0m
+[12.651s] [ 46%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/nvblox_msgs/msg/detail/mesh__type_support.c.o[0m
+[12.931s] [ 48%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/nvblox_msgs/msg/mesh__type_support.cpp.o[0m
+[12.984s] [ 49%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/nvblox_msgs/msg/detail/index3_d__type_support.c.o[0m
+[13.127s] [ 50%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/nvblox_msgs/srv/detail/dds_fastrtps/esdf_and_gradients__type_support.cpp.o[0m
+[13.134s] [ 51%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/nvblox_msgs/msg/index3_d__type_support.cpp.o[0m
+[13.150s] [ 53%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/nvblox_msgs/msg/distance_map_slice__type_support.cpp.o[0m
+[13.244s] [ 54%] [32m[1mLinking CXX shared library libnvblox_msgs__rosidl_typesupport_cpp.so[0m
+[13.274s] [ 55%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/nvblox_msgs/msg/detail/distance_map_slice__type_support.c.o[0m
+[13.370s] [ 56%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/nvblox_msgs/msg/detail/dds_fastrtps/semantic_labels_stamped__type_support.cpp.o[0m
+[13.449s] [ 56%] Built target nvblox_msgs__rosidl_typesupport_cpp
+[13.461s] [ 58%] [32m[1mLinking CXX shared library libnvblox_msgs__rosidl_typesupport_c.so[0m
+[13.501s] [ 59%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/nvblox_msgs/msg/detail/dds_fastrtps/mesh_block__type_support.cpp.o[0m
+[13.605s] [ 60%] [32m[1mLinking C shared library libnvblox_msgs__rosidl_typesupport_introspection_c.so[0m
+[13.833s] [ 60%] Built target nvblox_msgs__rosidl_typesupport_introspection_c
+[13.838s] [ 60%] Built target nvblox_msgs__rosidl_typesupport_c
+[13.874s] [ 62%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/nvblox_msgs/msg/detail/dds_fastrtps/mesh__type_support.cpp.o[0m
+[13.896s] [ 63%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/nvblox_msgs/srv/detail/esdf_and_gradients__type_support_c.cpp.o[0m
+[14.071s] [ 64%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/nvblox_msgs/msg/detail/mesh_block__type_support.cpp.o[0m
+[14.442s] [ 65%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/nvblox_msgs/msg/detail/semantic_labels_stamped__type_support_c.cpp.o[0m
+[14.501s] [ 67%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/nvblox_msgs/msg/detail/mesh__type_support.cpp.o[0m
+[16.062s] [ 68%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/nvblox_msgs/msg/detail/dds_fastrtps/index3_d__type_support.cpp.o[0m
+[16.212s] [ 69%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/nvblox_msgs/msg/detail/dds_fastrtps/distance_map_slice__type_support.cpp.o[0m
+[16.297s] [ 70%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/nvblox_msgs/msg/detail/mesh_block__type_support_c.cpp.o[0m
+[16.380s] [ 72%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/nvblox_msgs/msg/detail/mesh__type_support_c.cpp.o[0m
+[16.737s] [ 73%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/nvblox_msgs/msg/detail/index3_d__type_support_c.cpp.o[0m
+[17.105s] [ 74%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/nvblox_msgs/msg/detail/distance_map_slice__type_support_c.cpp.o[0m
+[17.412s] [ 75%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/nvblox_msgs/msg/detail/index3_d__type_support.cpp.o[0m
+[17.856s] [ 77%] [32mBuilding CXX object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/nvblox_msgs/msg/detail/distance_map_slice__type_support.cpp.o[0m
+[18.645s] [ 78%] [32m[1mLinking CXX shared library libnvblox_msgs__rosidl_typesupport_fastrtps_c.so[0m
+[18.650s] [ 79%] [32m[1mLinking CXX shared library libnvblox_msgs__rosidl_typesupport_fastrtps_cpp.so[0m
+[18.838s] [ 79%] Built target nvblox_msgs__rosidl_typesupport_fastrtps_c
+[18.885s] [ 79%] Built target nvblox_msgs__rosidl_typesupport_fastrtps_cpp
+[19.140s] [ 81%] [32m[1mLinking CXX shared library libnvblox_msgs__rosidl_typesupport_introspection_cpp.so[0m
+[19.332s] [ 81%] Built target nvblox_msgs__rosidl_typesupport_introspection_cpp
+[19.374s] [ 81%] Built target nvblox_msgs
+[19.428s] [ 82%] [34m[1mGenerating Python code for ROS interfaces[0m
+[25.684s] [ 82%] Built target nvblox_msgs__py
+[25.883s] [ 83%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_py.dir/rosidl_generator_py/nvblox_msgs/srv/_file_path_s.c.o[0m
+[25.903s] [ 84%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_py.dir/rosidl_generator_py/nvblox_msgs/srv/_esdf_and_gradients_s.c.o[0m
+[26.727s] [ 86%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_py.dir/rosidl_generator_py/nvblox_msgs/msg/_distance_map_slice_s.c.o[0m
+[27.419s] [ 87%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_py.dir/rosidl_generator_py/nvblox_msgs/msg/_index3_d_s.c.o[0m
+[27.726s] [ 88%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_py.dir/rosidl_generator_py/nvblox_msgs/msg/_mesh_s.c.o[0m
+[28.178s] [ 89%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_py.dir/rosidl_generator_py/nvblox_msgs/msg/_mesh_block_s.c.o[0m
+[28.661s] [ 91%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_generator_py.dir/rosidl_generator_py/nvblox_msgs/msg/_semantic_labels_stamped_s.c.o[0m
+[29.070s] [ 92%] [32m[1mLinking C shared library rosidl_generator_py/nvblox_msgs/libnvblox_msgs__rosidl_generator_py.so[0m
+[29.231s] [ 92%] Built target nvblox_msgs__rosidl_generator_py
+[29.373s] [ 93%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/nvblox_msgs/_nvblox_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[30.152s] [ 94%] [32m[1mLinking C shared library rosidl_generator_py/nvblox_msgs/nvblox_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so[0m
+[30.330s] [ 94%] Built target nvblox_msgs__rosidl_typesupport_fastrtps_c__pyext
+[30.405s] [ 96%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/nvblox_msgs/_nvblox_msgs_s.ep.rosidl_typesupport_c.c.o[0m
+[30.963s] [ 97%] [32m[1mLinking C shared library rosidl_generator_py/nvblox_msgs/nvblox_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so[0m
+[31.136s] [ 97%] Built target nvblox_msgs__rosidl_typesupport_c__pyext
+[31.229s] [ 98%] [32mBuilding C object CMakeFiles/nvblox_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/nvblox_msgs/_nvblox_msgs_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[31.757s] [100%] [32m[1mLinking C shared library rosidl_generator_py/nvblox_msgs/nvblox_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so[0m
+[31.914s] [100%] Built target nvblox_msgs__rosidl_typesupport_introspection_c__pyext
+[31.958s] Invoked command in '/workspaces/isaac_ros-dev/build/nvblox_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/nvblox_msgs -- -j8 -l8
+[32.462s] Invoking command in '/workspaces/isaac_ros-dev/build/nvblox_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/nvblox_msgs
+[37.398s] -- Install configuration: "Release"
+[37.398s] -- Execute custom install script
+[37.398s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/ament_index/resource_index/rosidl_interfaces/nvblox_msgs
+[37.398s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/distance_map_slice__functions.h
+[37.398s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/distance_map_slice__struct.h
+[37.398s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/distance_map_slice__type_support.h
+[37.398s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/index3_d__functions.h
+[37.399s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/index3_d__struct.h
+[37.399s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/index3_d__type_support.h
+[37.399s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh__functions.h
+[37.399s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh__struct.h
+[37.399s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh__type_support.h
+[37.399s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh_block__functions.h
+[37.399s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh_block__struct.h
+[37.399s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh_block__type_support.h
+[37.399s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/semantic_labels_stamped__functions.h
+[37.399s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/semantic_labels_stamped__struct.h
+[37.399s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/semantic_labels_stamped__type_support.h
+[37.400s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/distance_map_slice.h
+[37.400s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/index3_d.h
+[37.400s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/mesh.h
+[37.400s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/mesh_block.h
+[37.400s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/rosidl_generator_c__visibility_control.h
+[37.400s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/semantic_labels_stamped.h
+[37.400s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/esdf_and_gradients__functions.h
+[37.400s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/esdf_and_gradients__struct.h
+[37.400s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/esdf_and_gradients__type_support.h
+[37.400s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/file_path__functions.h
+[37.400s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/file_path__struct.h
+[37.401s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/file_path__type_support.h
+[37.401s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/esdf_and_gradients.h
+[37.401s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/file_path.h
+[37.401s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/environment/library_path.sh
+[37.402s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/environment/library_path.dsv
+[37.402s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/distance_map_slice__rosidl_typesupport_fastrtps_c.h
+[37.402s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/index3_d__rosidl_typesupport_fastrtps_c.h
+[37.402s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh__rosidl_typesupport_fastrtps_c.h
+[37.402s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh_block__rosidl_typesupport_fastrtps_c.h
+[37.402s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/semantic_labels_stamped__rosidl_typesupport_fastrtps_c.h
+[37.402s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[37.402s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/esdf_and_gradients__rosidl_typesupport_fastrtps_c.h
+[37.402s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/file_path__rosidl_typesupport_fastrtps_c.h
+[37.403s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/distance_map_slice__rosidl_typesupport_introspection_c.h
+[37.403s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/index3_d__rosidl_typesupport_introspection_c.h
+[37.403s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh__rosidl_typesupport_introspection_c.h
+[37.403s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh_block__rosidl_typesupport_introspection_c.h
+[37.403s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/semantic_labels_stamped__rosidl_typesupport_introspection_c.h
+[37.403s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[37.403s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/esdf_and_gradients__rosidl_typesupport_introspection_c.h
+[37.403s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/file_path__rosidl_typesupport_introspection_c.h
+[37.403s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/distance_map_slice__builder.hpp
+[37.403s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/distance_map_slice__struct.hpp
+[37.403s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/distance_map_slice__traits.hpp
+[37.404s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/index3_d__builder.hpp
+[37.404s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/index3_d__struct.hpp
+[37.404s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/index3_d__traits.hpp
+[37.404s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh__builder.hpp
+[37.405s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh__struct.hpp
+[37.405s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh__traits.hpp
+[37.406s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh_block__builder.hpp
+[37.406s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh_block__struct.hpp
+[37.406s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh_block__traits.hpp
+[37.406s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/semantic_labels_stamped__builder.hpp
+[37.406s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/semantic_labels_stamped__struct.hpp
+[37.406s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/semantic_labels_stamped__traits.hpp
+[37.406s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/distance_map_slice.hpp
+[37.406s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/index3_d.hpp
+[37.406s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/mesh.hpp
+[37.406s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/mesh_block.hpp
+[37.407s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/semantic_labels_stamped.hpp
+[37.407s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/esdf_and_gradients__builder.hpp
+[37.407s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/esdf_and_gradients__struct.hpp
+[37.407s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/esdf_and_gradients__traits.hpp
+[37.407s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/file_path__builder.hpp
+[37.407s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/file_path__struct.hpp
+[37.407s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/file_path__traits.hpp
+[37.407s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/esdf_and_gradients.hpp
+[37.407s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/file_path.hpp
+[37.407s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/distance_map_slice__rosidl_typesupport_fastrtps_cpp.hpp
+[37.407s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/index3_d__rosidl_typesupport_fastrtps_cpp.hpp
+[37.408s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh__rosidl_typesupport_fastrtps_cpp.hpp
+[37.408s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh_block__rosidl_typesupport_fastrtps_cpp.hpp
+[37.408s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/semantic_labels_stamped__rosidl_typesupport_fastrtps_cpp.hpp
+[37.408s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[37.408s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/esdf_and_gradients__rosidl_typesupport_fastrtps_cpp.hpp
+[37.408s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/file_path__rosidl_typesupport_fastrtps_cpp.hpp
+[37.408s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/distance_map_slice__rosidl_typesupport_introspection_cpp.hpp
+[37.408s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/index3_d__rosidl_typesupport_introspection_cpp.hpp
+[37.408s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh__rosidl_typesupport_introspection_cpp.hpp
+[37.408s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/mesh_block__rosidl_typesupport_introspection_cpp.hpp
+[37.408s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/msg/detail/semantic_labels_stamped__rosidl_typesupport_introspection_cpp.hpp
+[37.409s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/esdf_and_gradients__rosidl_typesupport_introspection_cpp.hpp
+[37.409s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/include/nvblox_msgs/nvblox_msgs/srv/detail/file_path__rosidl_typesupport_introspection_cpp.hpp
+[37.409s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/environment/pythonpath.sh
+[37.409s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/environment/pythonpath.dsv
+[37.409s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs-3.0.1-py3.10.egg-info/PKG-INFO
+[37.409s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs-3.0.1-py3.10.egg-info/SOURCES.txt
+[37.409s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs-3.0.1-py3.10.egg-info/dependency_links.txt
+[37.409s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs-3.0.1-py3.10.egg-info/top_level.txt
+[37.409s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/__init__.py
+[37.409s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/_nvblox_msgs_s.ep.rosidl_typesupport_c.c
+[37.410s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/_nvblox_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+[37.410s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/_nvblox_msgs_s.ep.rosidl_typesupport_introspection_c.c
+[37.410s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/libnvblox_msgs__rosidl_generator_py.so
+[37.410s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/__init__.py
+[37.410s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_distance_map_slice.py
+[37.410s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_distance_map_slice_s.c
+[37.410s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_index3_d.py
+[37.410s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_index3_d_s.c
+[37.410s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_mesh.py
+[37.410s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_mesh_block.py
+[37.410s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_mesh_block_s.c
+[37.411s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_mesh_s.c
+[37.411s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_semantic_labels_stamped.py
+[37.411s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_semantic_labels_stamped_s.c
+[37.411s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/nvblox_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[37.411s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/nvblox_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[37.411s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/nvblox_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[37.411s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/srv/__init__.py
+[37.411s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/srv/_esdf_and_gradients.py
+[37.411s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/srv/_esdf_and_gradients_s.c
+[37.411s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/srv/_file_path.py
+[37.412s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/srv/_file_path_s.c
+[37.412s] -- Up-to-date symlink: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/nvblox_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[37.412s] -- Up-to-date symlink: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/nvblox_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[37.412s] -- Up-to-date symlink: /workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/nvblox_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[37.412s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/srv/FilePath.idl
+[37.412s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/srv/EsdfAndGradients.idl
+[37.412s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/msg/SemanticLabelsStamped.idl
+[37.412s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/msg/MeshBlock.idl
+[37.412s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/msg/Mesh.idl
+[37.413s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/msg/Index3D.idl
+[37.413s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/msg/DistanceMapSlice.idl
+[37.413s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/srv/FilePath.srv
+[37.430s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/srv/FilePath_Request.msg
+[37.449s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/srv/FilePath_Response.msg
+[37.470s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/srv/EsdfAndGradients.srv
+[37.490s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/srv/EsdfAndGradients_Request.msg
+[37.513s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/srv/EsdfAndGradients_Response.msg
+[37.535s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/msg/SemanticLabelsStamped.msg
+[37.555s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/msg/MeshBlock.msg
+[37.575s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/msg/Mesh.msg
+[37.593s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/msg/Index3D.msg
+[37.611s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/msg/DistanceMapSlice.msg
+[37.630s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/ament_index/resource_index/package_run_dependencies/nvblox_msgs
+[37.652s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/ament_index/resource_index/parent_prefix_path/nvblox_msgs
+[37.674s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/environment/ament_prefix_path.sh
+[37.695s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/environment/ament_prefix_path.dsv
+[37.716s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/environment/path.sh
+[37.736s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/environment/path.dsv
+[37.760s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/local_setup.bash
+[37.783s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/local_setup.sh
+[37.803s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/local_setup.zsh
+[37.824s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/local_setup.dsv
+[37.844s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/package.dsv
+[37.864s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/ament_index/resource_index/packages/nvblox_msgs
+[37.888s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/rosidl_cmake-extras.cmake
+[37.911s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[37.932s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[37.962s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[37.981s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[38.002s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[38.022s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[38.043s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/nvblox_msgsConfig.cmake
+[38.063s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/nvblox_msgsConfig-version.cmake
+[38.083s] -- Symlinking: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/package.xml
+[38.107s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_generator_c.so
+[38.108s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_generator_c.so" to ""
+[38.109s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_fastrtps_c.so
+[38.110s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_fastrtps_c.so" to ""
+[38.110s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_introspection_c.so
+[38.111s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_introspection_c.so" to ""
+[38.112s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_c.so
+[38.112s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_c.so" to ""
+[38.113s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_fastrtps_cpp.so
+[38.114s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""
+[38.114s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_introspection_cpp.so
+[38.115s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_introspection_cpp.so" to ""
+[38.115s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_cpp.so
+[38.116s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_typesupport_cpp.so" to ""
+[38.200s] Listing '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs'...
+[38.200s] Compiling '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/__init__.py'...
+[38.200s] Listing '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg'...
+[38.200s] Compiling '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/__init__.py'...
+[38.200s] Compiling '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_distance_map_slice.py'...
+[38.200s] Compiling '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_index3_d.py'...
+[38.201s] Compiling '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_mesh.py'...
+[38.201s] Compiling '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_mesh_block.py'...
+[38.201s] Compiling '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/msg/_semantic_labels_stamped.py'...
+[38.201s] Listing '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/srv'...
+[38.201s] Compiling '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/srv/__init__.py'...
+[38.201s] Compiling '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/srv/_esdf_and_gradients.py'...
+[38.201s] Compiling '/workspaces/isaac_ros-dev/install/nvblox_msgs/local/lib/python3.10/dist-packages/nvblox_msgs/srv/_file_path.py'...
+[38.213s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_generator_py.so
+[38.213s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/nvblox_msgs/lib/libnvblox_msgs__rosidl_generator_py.so" to ""
+[38.213s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/export_nvblox_msgs__rosidl_generator_cExport.cmake
+[38.213s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/export_nvblox_msgs__rosidl_generator_cExport-release.cmake
+[38.214s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/export_nvblox_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+[38.214s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/export_nvblox_msgs__rosidl_typesupport_fastrtps_cExport-release.cmake
+[38.214s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/nvblox_msgs__rosidl_typesupport_introspection_cExport.cmake
+[38.214s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/nvblox_msgs__rosidl_typesupport_introspection_cExport-release.cmake
+[38.215s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/nvblox_msgs__rosidl_typesupport_cExport.cmake
+[38.215s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/nvblox_msgs__rosidl_typesupport_cExport-release.cmake
+[38.215s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/export_nvblox_msgs__rosidl_generator_cppExport.cmake
+[38.215s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/export_nvblox_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+[38.216s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/export_nvblox_msgs__rosidl_typesupport_fastrtps_cppExport-release.cmake
+[38.216s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/nvblox_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[38.216s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/nvblox_msgs__rosidl_typesupport_introspection_cppExport-release.cmake
+[38.216s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/nvblox_msgs__rosidl_typesupport_cppExport.cmake
+[38.217s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/nvblox_msgs__rosidl_typesupport_cppExport-release.cmake
+[38.217s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/export_nvblox_msgs__rosidl_generator_pyExport.cmake
+[38.217s] -- Installing: /workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/cmake/export_nvblox_msgs__rosidl_generator_pyExport-release.cmake
+[38.241s] Invoked command in '/workspaces/isaac_ros-dev/build/nvblox_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/nvblox_msgs

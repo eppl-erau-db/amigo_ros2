@@ -1,0 +1,4 @@
+source;share/isaac_ros_apriltag_interfaces/environment/ament_prefix_path.sh
+source;share/isaac_ros_apriltag_interfaces/environment/library_path.sh
+source;share/isaac_ros_apriltag_interfaces/environment/path.sh
+source;share/isaac_ros_apriltag_interfaces/environment/pythonpath.sh

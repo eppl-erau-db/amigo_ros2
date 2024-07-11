@@ -1,0 +1,4 @@
+source;share/realsense_splitter/local_setup.bash
+source;share/realsense_splitter/local_setup.dsv
+source;share/realsense_splitter/local_setup.sh
+source;share/realsense_splitter/local_setup.zsh

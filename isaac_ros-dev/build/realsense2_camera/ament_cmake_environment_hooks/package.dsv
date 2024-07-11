@@ -1,0 +1,4 @@
+source;share/realsense2_camera/local_setup.bash
+source;share/realsense2_camera/local_setup.dsv
+source;share/realsense2_camera/local_setup.sh
+source;share/realsense2_camera/local_setup.zsh

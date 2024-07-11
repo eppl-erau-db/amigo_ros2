@@ -1,0 +1,80 @@
+Determining if the strlcpy exist failed with the following output:
+Change Dir: /workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_7ee2d/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_7ee2d.dir/build.make CMakeFiles/cmTC_7ee2d.dir/build
+gmake[1]: Entering directory '/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7ee2d.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -std=gnu99 -o CMakeFiles/cmTC_7ee2d.dir/CheckSymbolExists.c.o -c /workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp/CheckSymbolExists.c: In function ‘main’:
+/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: ‘strlcpy’ undeclared (first use in this function); did you mean ‘strncpy’?
+    8 |   return ((int*)(&strlcpy))[argc];
+      |                   ^~~~~~~
+      |                   strncpy
+/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+gmake[1]: *** [CMakeFiles/cmTC_7ee2d.dir/build.make:78: CMakeFiles/cmTC_7ee2d.dir/CheckSymbolExists.c.o] Error 1
+gmake[1]: Leaving directory '/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_7ee2d/fast] Error 2
+
+
+File /workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <string.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strlcpy
+  return ((int*)(&strlcpy))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strlcat exist failed with the following output:
+Change Dir: /workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_eb0de/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_eb0de.dir/build.make CMakeFiles/cmTC_eb0de.dir/build
+gmake[1]: Entering directory '/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_eb0de.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -std=gnu99 -o CMakeFiles/cmTC_eb0de.dir/CheckSymbolExists.c.o -c /workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp/CheckSymbolExists.c: In function ‘main’:
+/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: ‘strlcat’ undeclared (first use in this function); did you mean ‘strncat’?
+    8 |   return ((int*)(&strlcat))[argc];
+      |                   ^~~~~~~
+      |                   strncat
+/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+gmake[1]: *** [CMakeFiles/cmTC_eb0de.dir/build.make:78: CMakeFiles/cmTC_eb0de.dir/CheckSymbolExists.c.o] Error 1
+gmake[1]: Leaving directory '/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_eb0de/fast] Error 2
+
+
+File /workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <string.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strlcat
+  return ((int*)(&strlcat))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY failed with the following output:
+Change Dir: /workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_350fa/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_350fa.dir/build.make CMakeFiles/cmTC_350fa.dir/build
+gmake[1]: Entering directory '/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_350fa.dir/src.c.o
+/usr/bin/cc -DCOMPILER_HAS_HIDDEN_INLINE_VISIBILITY  -fvisibility-inlines-hidden -std=gnu99 -o CMakeFiles/cmTC_350fa.dir/src.c.o -c /workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp/src.c
+cc1: warning: command-line option '-fvisibility-inlines-hidden' is valid for C++/ObjC++ but not for C
+Linking C executable cmTC_350fa
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_350fa.dir/link.txt --verbose=1
+/usr/bin/cc CMakeFiles/cmTC_350fa.dir/src.c.o -o cmTC_350fa 
+gmake[1]: Leaving directory '/workspaces/isaac_ros-dev/build/cyclonedds/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main(void) { return 0; }

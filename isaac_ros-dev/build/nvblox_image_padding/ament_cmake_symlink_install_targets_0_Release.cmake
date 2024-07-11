@@ -1,0 +1,1 @@
+ament_cmake_symlink_install_targets("TARGET_FILES" "/workspaces/isaac_ros-dev/build/nvblox_image_padding/image_padding_cropping_node" "TARGETS" "image_padding_cropping_node" "DESTINATION" "lib/nvblox_image_padding")

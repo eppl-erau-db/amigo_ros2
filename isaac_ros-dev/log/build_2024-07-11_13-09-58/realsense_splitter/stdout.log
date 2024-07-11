@@ -1,0 +1,92 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+-- Found rclcpp: 16.0.9 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_cyclonedds_cpp: 1.3.4 (/workspaces/isaac_ros-dev/install/rmw_cyclonedds_cpp/share/rmw_cyclonedds_cpp/cmake)
+-- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found rclcpp_components: 16.0.9 (/opt/ros/humble/share/rclcpp_components/cmake)
+-- Found sensor_msgs: 4.2.4 (/opt/ros/humble/share/sensor_msgs/cmake)
+-- Found message_filters: 4.3.4 (/opt/ros/humble/share/message_filters/cmake)
+-- Found realsense2_camera_msgs: 4.51.1 (/workspaces/isaac_ros-dev/install/realsense2_camera_msgs/share/realsense2_camera_msgs/cmake)
+-- Found isaac_ros_common: 3.0.1 (/workspaces/isaac_ros-dev/install/isaac_ros_common/share/isaac_ros_common/cmake)
+-- Loading isaac_ros_common extras
+-- CMAKE_BUILD_TYPE: Release
+-- Found CUDA: /usr/local/cuda (found version "12.2") 
+-- Loading isaac_ros_common extras (modules)
+-- Found CUDAToolkit: /usr/local/cuda/include (found version "12.2.140") 
+-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'copyright' to check source files copyright and LICENSE
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_examples/realsense_splitter/include>
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'cpplint' to check C / C++ code against the Google style
+-- Configured cpplint exclude dirs and/or files: 
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspaces/isaac_ros-dev/build/realsense_splitter
+[ 25%] [32mBuilding CXX object CMakeFiles/realsense_splitter_component.dir/src/realsense_splitter_node.cpp.o[0m
+[ 50%] [32m[1mLinking CXX shared library librealsense_splitter_component.so[0m
+[ 50%] Built target realsense_splitter_component
+[ 75%] [32mBuilding CXX object CMakeFiles/realsense_splitter_node.dir/src/realsense_splitter_node_main.cpp.o[0m
+[100%] [32m[1mLinking CXX executable realsense_splitter_node[0m
+[100%] Built target realsense_splitter_node
+-- Install configuration: "Release"
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/include
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/include/realsense_splitter
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/include/realsense_splitter/qos.hpp
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/include/realsense_splitter/realsense_splitter_node.hpp
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/lib/librealsense_splitter_component.so
+-- Set runtime path of "/workspaces/isaac_ros-dev/install/realsense_splitter/lib/librealsense_splitter_component.so" to ""
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/lib/realsense_splitter/realsense_splitter_node
+-- Set runtime path of "/workspaces/isaac_ros-dev/install/realsense_splitter/lib/realsense_splitter/realsense_splitter_node" to ""
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/library_path.sh
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/library_path.dsv
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/ament_index/resource_index/package_run_dependencies/realsense_splitter
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/ament_index/resource_index/parent_prefix_path/realsense_splitter
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/ament_prefix_path.sh
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/ament_prefix_path.dsv
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/path.sh
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/environment/path.dsv
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/local_setup.bash
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/local_setup.sh
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/local_setup.zsh
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/local_setup.dsv
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/package.dsv
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/ament_index/resource_index/packages/realsense_splitter
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/ament_index/resource_index/rclcpp_components/realsense_splitter
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/realsense_splitterTargetsExport.cmake
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/realsense_splitterTargetsExport-release.cmake
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/ament_cmake_export_libraries-extras.cmake
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/ament_cmake_export_targets-extras.cmake
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/realsense_splitterConfig.cmake
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/cmake/realsense_splitterConfig-version.cmake
+-- Installing: /workspaces/isaac_ros-dev/install/realsense_splitter/share/realsense_splitter/package.xml

@@ -1,0 +1,6 @@
+Invoking command in '/workspaces/isaac_ros-dev/build/go2_interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /workspaces/isaac_ros-dev/src/go2_interfaces -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/go2_interfaces
+Invoked command in '/workspaces/isaac_ros-dev/build/go2_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /workspaces/isaac_ros-dev/src/go2_interfaces -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/go2_interfaces
+Invoking command in '/workspaces/isaac_ros-dev/build/go2_interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/go2_interfaces -- -j8 -l8
+Invoked command in '/workspaces/isaac_ros-dev/build/go2_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/go2_interfaces -- -j8 -l8
+Invoking command in '/workspaces/isaac_ros-dev/build/go2_interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/go2_interfaces
+Invoked command in '/workspaces/isaac_ros-dev/build/go2_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/go2_interfaces

@@ -1,0 +1,8 @@
+{
+  "package_name": "isaac_ros_tensor_list_interfaces",
+  "non_idl_tuples": [
+    "/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces:msg/TensorShape.msg",
+    "/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces:msg/Tensor.msg",
+    "/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_tensor_list_interfaces:msg/TensorList.msg"
+  ]
+}

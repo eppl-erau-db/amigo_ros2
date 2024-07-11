@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/CMakeFiles/ext_eigen"
+		},
+		{
+			"file" : "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/CMakeFiles/ext_eigen.rule"
+		},
+		{
+			"file" : "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/CMakeFiles/ext_eigen-complete.rule"
+		},
+		{
+			"file" : "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/eigen/src/ext_eigen-stamp/ext_eigen-build.rule"
+		},
+		{
+			"file" : "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/eigen/src/ext_eigen-stamp/ext_eigen-configure.rule"
+		},
+		{
+			"file" : "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/eigen/src/ext_eigen-stamp/ext_eigen-download.rule"
+		},
+		{
+			"file" : "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/eigen/src/ext_eigen-stamp/ext_eigen-install.rule"
+		},
+		{
+			"file" : "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/eigen/src/ext_eigen-stamp/ext_eigen-mkdir.rule"
+		},
+		{
+			"file" : "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/eigen/src/ext_eigen-stamp/ext_eigen-patch.rule"
+		},
+		{
+			"file" : "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/eigen/src/ext_eigen-stamp/ext_eigen-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"ext_eigen"
+		],
+		"name" : "ext_eigen"
+	}
+}

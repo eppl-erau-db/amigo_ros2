@@ -1,0 +1,10 @@
+{
+  "package_name": "go2_interfaces",
+  "non_idl_tuples": [
+    "/workspaces/isaac_ros-dev/src/go2_interfaces:msg/Go2Cmd.msg",
+    "/workspaces/isaac_ros-dev/src/go2_interfaces:msg/Go2State.msg",
+    "/workspaces/isaac_ros-dev/src/go2_interfaces:msg/Go2Move.msg",
+    "/workspaces/isaac_ros-dev/src/go2_interfaces:msg/Go2RpyCmd.msg",
+    "/workspaces/isaac_ros-dev/src/go2_interfaces:msg/IMU.msg"
+  ]
+}

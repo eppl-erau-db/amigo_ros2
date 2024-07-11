@@ -1,0 +1,6 @@
+Invoking command in '/workspaces/isaac_ros-dev/build/cyclonedds': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds -DBUILD_IDLC=AUTO -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/cyclonedds
+Invoked command in '/workspaces/isaac_ros-dev/build/cyclonedds' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/cyclonedds -DBUILD_IDLC=AUTO -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/cyclonedds
+Invoking command in '/workspaces/isaac_ros-dev/build/cyclonedds': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/cyclonedds -- -j8 -l8
+Invoked command in '/workspaces/isaac_ros-dev/build/cyclonedds' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/cyclonedds -- -j8 -l8
+Invoking command in '/workspaces/isaac_ros-dev/build/cyclonedds': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/cyclonedds
+Invoked command in '/workspaces/isaac_ros-dev/build/cyclonedds' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/cyclonedds

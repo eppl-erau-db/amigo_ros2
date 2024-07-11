@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from isaac_ros_apriltag_interfaces/msg/AprilTagDetection.msg
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Point.idl"
+#include "geometry_msgs/msg/PoseWithCovarianceStamped.idl"
+
+module isaac_ros_apriltag_interfaces {
+  module msg {
+    typedef geometry_msgs::msg::Point geometry_msgs__msg__Point;
+    typedef geometry_msgs__msg__Point geometry_msgs__msg__Point__4[4];
+    struct AprilTagDetection {
+      string family;
+
+      int32 id;
+
+      @verbatim (language="comment", text=
+        "centre in (x,y) pixel coordinates")
+      geometry_msgs::msg::Point center;
+
+      @verbatim (language="comment", text=
+        "corners of tag ((x1,y1),(x2,y2),...)")
+      geometry_msgs__msg__Point__4 corners;
+
+      geometry_msgs::msg::PoseWithCovarianceStamped pose;
+    };
+  };
+};

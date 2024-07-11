@@ -1,0 +1,300 @@
+[1.655s] Invoking command in '/workspaces/isaac_ros-dev/build/go2_interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /workspaces/isaac_ros-dev/src/go2_interfaces -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/go2_interfaces
+[2.493s] -- The C compiler identification is GNU 11.4.0
+[2.494s] -- The CXX compiler identification is GNU 11.4.0
+[2.494s] -- Detecting C compiler ABI info
+[2.495s] -- Detecting C compiler ABI info - done
+[2.495s] -- Check for working C compiler: /usr/bin/cc - skipped
+[2.495s] -- Detecting C compile features
+[2.496s] -- Detecting C compile features - done
+[2.496s] -- Detecting CXX compiler ABI info
+[2.496s] -- Detecting CXX compiler ABI info - done
+[2.498s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[2.498s] -- Detecting CXX compile features
+[2.498s] -- Detecting CXX compile features - done
+[2.498s] -- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+[3.722s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[3.853s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[3.946s] -- Found geometry_msgs: 4.2.4 (/opt/ros/humble/share/geometry_msgs/cmake)
+[4.045s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[4.074s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[4.085s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[4.122s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[4.166s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[4.378s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[5.097s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[6.385s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[6.870s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[6.961s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[6.985s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[7.113s] -- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[7.113s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[7.114s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[7.114s] -- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+[7.182s] -- Found PythonExtra: .so  
+[7.377s] -- Configuring done
+[7.516s] -- Generating done
+[7.524s] -- Build files have been written to: /workspaces/isaac_ros-dev/build/go2_interfaces
+[7.572s] Invoked command in '/workspaces/isaac_ros-dev/build/go2_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /workspaces/isaac_ros-dev/src/go2_interfaces -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/go2_interfaces
+[7.582s] Invoking command in '/workspaces/isaac_ros-dev/build/go2_interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/go2_interfaces -- -j8 -l8
+[14.573s] ERROR setuptools_scm._file_finders.git listing git files failed - pretending there aren't any
+[14.576s] [  1%] [34m[1mGenerating C code for ROS interfaces[0m
+[14.576s] [  3%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[14.576s] [  3%] Built target ament_cmake_python_symlink_go2_interfaces
+[14.576s] running egg_info
+[14.576s] creating go2_interfaces.egg-info
+[14.577s] writing go2_interfaces.egg-info/PKG-INFO
+[14.577s] writing dependency_links to go2_interfaces.egg-info/dependency_links.txt
+[14.577s] writing top-level names to go2_interfaces.egg-info/top_level.txt
+[14.577s] writing manifest file 'go2_interfaces.egg-info/SOURCES.txt'
+[14.577s] [  4%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_generator_c.dir/rosidl_generator_c/go2_interfaces/msg/detail/go2_move__functions.c.o[0m
+[14.577s] [  6%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_generator_c.dir/rosidl_generator_c/go2_interfaces/msg/detail/go2_state__functions.c.o[0m
+[14.577s] [  7%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_generator_c.dir/rosidl_generator_c/go2_interfaces/msg/detail/go2_cmd__functions.c.o[0m
+[14.577s] [  9%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_generator_c.dir/rosidl_generator_c/go2_interfaces/msg/detail/imu__functions.c.o[0m
+[14.577s] [  9%] Built target go2_interfaces__cpp
+[14.577s] [ 11%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_generator_c.dir/rosidl_generator_c/go2_interfaces/msg/detail/go2_rpy_cmd__functions.c.o[0m
+[14.578s] [ 12%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[14.578s] [ 14%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[14.578s] [ 15%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[14.578s] [ 17%] [32m[1mLinking C shared library libgo2_interfaces__rosidl_generator_c.so[0m
+[14.578s] [ 17%] Built target go2_interfaces__rosidl_generator_c
+[14.578s] [ 19%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[14.578s] [ 20%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[14.578s] [ 22%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[14.578s] reading manifest file 'go2_interfaces.egg-info/SOURCES.txt'
+[14.578s] writing manifest file 'go2_interfaces.egg-info/SOURCES.txt'
+[14.578s] [ 22%] Built target ament_cmake_python_build_go2_interfaces_egg
+[14.579s] [ 23%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/go2_interfaces/msg/go2_cmd__type_support.cpp.o[0m
+[14.579s] [ 25%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/go2_interfaces/msg/go2_state__type_support.cpp.o[0m
+[14.579s] [ 26%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/go2_interfaces/msg/go2_move__type_support.cpp.o[0m
+[14.579s] [ 28%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/go2_interfaces/msg/detail/dds_fastrtps/go2_cmd__type_support.cpp.o[0m
+[14.579s] [ 30%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/go2_interfaces/msg/detail/go2_cmd__type_support.cpp.o[0m
+[14.579s] [ 31%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/go2_interfaces/msg/go2_cmd__type_support.cpp.o[0m
+[14.579s] [ 33%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/go2_interfaces/msg/go2_state__type_support.cpp.o[0m
+[14.579s] [ 34%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/go2_interfaces/msg/go2_rpy_cmd__type_support.cpp.o[0m
+[14.579s] [ 36%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/go2_interfaces/msg/imu__type_support.cpp.o[0m
+[14.579s] [ 38%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/go2_interfaces/msg/go2_move__type_support.cpp.o[0m
+[14.580s] [ 39%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/go2_interfaces/msg/detail/go2_state__type_support.cpp.o[0m
+[14.580s] [ 41%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/go2_interfaces/msg/detail/go2_cmd__type_support.c.o[0m
+[14.580s] [ 42%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/go2_interfaces/msg/detail/go2_cmd__type_support_c.cpp.o[0m
+[14.580s] [ 44%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/go2_interfaces/msg/go2_rpy_cmd__type_support.cpp.o[0m
+[14.580s] [ 46%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/go2_interfaces/msg/detail/go2_state__type_support.c.o[0m
+[14.580s] [ 47%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/go2_interfaces/msg/imu__type_support.cpp.o[0m
+[14.580s] [ 49%] [32m[1mLinking CXX shared library libgo2_interfaces__rosidl_typesupport_c.so[0m
+[14.580s] [ 50%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/go2_interfaces/msg/detail/go2_move__type_support.c.o[0m
+[14.580s] [ 50%] Built target go2_interfaces__rosidl_typesupport_c
+[14.581s] [ 52%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/go2_interfaces/msg/detail/go2_move__type_support.cpp.o[0m
+[14.581s] [ 53%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/go2_interfaces/msg/detail/go2_rpy_cmd__type_support.c.o[0m
+[14.676s] [ 55%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/go2_interfaces/msg/detail/go2_rpy_cmd__type_support.cpp.o[0m
+[14.748s] [ 57%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/go2_interfaces/msg/detail/imu__type_support.c.o[0m
+[15.043s] [ 58%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/go2_interfaces/msg/detail/dds_fastrtps/go2_state__type_support.cpp.o[0m
+[15.108s] [ 60%] [32m[1mLinking C shared library libgo2_interfaces__rosidl_typesupport_introspection_c.so[0m
+[15.116s] [ 61%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/go2_interfaces/msg/detail/imu__type_support.cpp.o[0m
+[15.240s] [ 63%] [32m[1mLinking CXX shared library libgo2_interfaces__rosidl_typesupport_cpp.so[0m
+[15.352s] [ 63%] Built target go2_interfaces__rosidl_typesupport_introspection_c
+[15.420s] [ 65%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/go2_interfaces/msg/detail/go2_state__type_support_c.cpp.o[0m
+[15.501s] [ 66%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/go2_interfaces/msg/detail/go2_move__type_support_c.cpp.o[0m
+[15.556s] [ 66%] Built target go2_interfaces__rosidl_typesupport_cpp
+[15.635s] [ 68%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/go2_interfaces/msg/detail/go2_rpy_cmd__type_support_c.cpp.o[0m
+[16.063s] [ 69%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/go2_interfaces/msg/detail/imu__type_support_c.cpp.o[0m
+[16.471s] [ 71%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/go2_interfaces/msg/detail/dds_fastrtps/go2_move__type_support.cpp.o[0m
+[16.723s] [ 73%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/go2_interfaces/msg/detail/dds_fastrtps/go2_rpy_cmd__type_support.cpp.o[0m
+[16.822s] [ 74%] [32mBuilding CXX object CMakeFiles/go2_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/go2_interfaces/msg/detail/dds_fastrtps/imu__type_support.cpp.o[0m
+[17.292s] [ 76%] [32m[1mLinking CXX shared library libgo2_interfaces__rosidl_typesupport_introspection_cpp.so[0m
+[17.785s] [ 76%] Built target go2_interfaces__rosidl_typesupport_introspection_cpp
+[18.189s] [ 77%] [32m[1mLinking CXX shared library libgo2_interfaces__rosidl_typesupport_fastrtps_c.so[0m
+[18.616s] [ 77%] Built target go2_interfaces__rosidl_typesupport_fastrtps_c
+[18.669s] [ 79%] [32m[1mLinking CXX shared library libgo2_interfaces__rosidl_typesupport_fastrtps_cpp.so[0m
+[18.896s] [ 79%] Built target go2_interfaces__rosidl_typesupport_fastrtps_cpp
+[18.938s] [ 79%] Built target go2_interfaces
+[18.982s] [ 80%] [34m[1mGenerating Python code for ROS interfaces[0m
+[21.535s] [ 80%] Built target go2_interfaces__py
+[21.694s] [ 82%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_generator_py.dir/rosidl_generator_py/go2_interfaces/msg/_go2_cmd_s.c.o[0m
+[21.736s] [ 84%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_generator_py.dir/rosidl_generator_py/go2_interfaces/msg/_go2_state_s.c.o[0m
+[21.743s] [ 85%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_generator_py.dir/rosidl_generator_py/go2_interfaces/msg/_go2_rpy_cmd_s.c.o[0m
+[21.761s] [ 87%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_generator_py.dir/rosidl_generator_py/go2_interfaces/msg/_go2_move_s.c.o[0m
+[22.406s] [ 88%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_generator_py.dir/rosidl_generator_py/go2_interfaces/msg/_imu_s.c.o[0m
+[23.212s] [ 90%] [32m[1mLinking C shared library rosidl_generator_py/go2_interfaces/libgo2_interfaces__rosidl_generator_py.so[0m
+[23.552s] [ 90%] Built target go2_interfaces__rosidl_generator_py
+[23.775s] [ 92%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/go2_interfaces/_go2_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[23.799s] [ 93%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/go2_interfaces/_go2_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[24.475s] [ 95%] [32m[1mLinking C shared library rosidl_generator_py/go2_interfaces/go2_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so[0m
+[24.534s] [ 96%] [32m[1mLinking C shared library rosidl_generator_py/go2_interfaces/go2_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so[0m
+[24.701s] [ 96%] Built target go2_interfaces__rosidl_typesupport_fastrtps_c__pyext
+[24.824s] [ 96%] Built target go2_interfaces__rosidl_typesupport_introspection_c__pyext
+[24.885s] [ 98%] [32mBuilding C object CMakeFiles/go2_interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/go2_interfaces/_go2_interfaces_s.ep.rosidl_typesupport_c.c.o[0m
+[25.468s] [100%] [32m[1mLinking C shared library rosidl_generator_py/go2_interfaces/go2_interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so[0m
+[25.766s] [100%] Built target go2_interfaces__rosidl_typesupport_c__pyext
+[25.842s] Invoked command in '/workspaces/isaac_ros-dev/build/go2_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/go2_interfaces -- -j8 -l8
+[28.585s] Invoking command in '/workspaces/isaac_ros-dev/build/go2_interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/go2_interfaces
+[31.920s] -- Install configuration: ""
+[31.920s] -- Execute custom install script
+[31.920s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/ament_index/resource_index/rosidl_interfaces/go2_interfaces
+[31.921s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_cmd__functions.h
+[31.921s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_cmd__struct.h
+[31.921s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_cmd__type_support.h
+[31.921s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_move__functions.h
+[31.921s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_move__struct.h
+[31.921s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_move__type_support.h
+[31.921s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_rpy_cmd__functions.h
+[31.921s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_rpy_cmd__struct.h
+[31.921s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_rpy_cmd__type_support.h
+[31.921s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_state__functions.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_state__struct.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_state__type_support.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/imu__functions.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/imu__struct.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/imu__type_support.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/go2_cmd.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/go2_move.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/go2_rpy_cmd.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/go2_state.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/imu.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/rosidl_generator_c__visibility_control.h
+[31.922s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/environment/library_path.sh
+[31.923s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/environment/library_path.dsv
+[31.923s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_cmd__rosidl_typesupport_fastrtps_c.h
+[31.923s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_move__rosidl_typesupport_fastrtps_c.h
+[31.923s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_rpy_cmd__rosidl_typesupport_fastrtps_c.h
+[31.923s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_state__rosidl_typesupport_fastrtps_c.h
+[31.923s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/imu__rosidl_typesupport_fastrtps_c.h
+[31.923s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[31.923s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_cmd__builder.hpp
+[31.923s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_cmd__struct.hpp
+[31.924s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_cmd__traits.hpp
+[31.924s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_move__builder.hpp
+[31.924s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_move__struct.hpp
+[31.924s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_move__traits.hpp
+[31.924s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_rpy_cmd__builder.hpp
+[31.924s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_rpy_cmd__struct.hpp
+[31.924s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_rpy_cmd__traits.hpp
+[31.924s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_state__builder.hpp
+[31.924s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_state__struct.hpp
+[31.924s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_state__traits.hpp
+[31.925s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/imu__builder.hpp
+[31.925s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/imu__struct.hpp
+[31.925s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/imu__traits.hpp
+[31.925s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/go2_cmd.hpp
+[31.925s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/go2_move.hpp
+[31.925s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/go2_rpy_cmd.hpp
+[31.925s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/go2_state.hpp
+[31.925s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/imu.hpp
+[31.925s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_cmd__rosidl_typesupport_fastrtps_cpp.hpp
+[31.925s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_move__rosidl_typesupport_fastrtps_cpp.hpp
+[31.925s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_rpy_cmd__rosidl_typesupport_fastrtps_cpp.hpp
+[31.926s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_state__rosidl_typesupport_fastrtps_cpp.hpp
+[31.926s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/imu__rosidl_typesupport_fastrtps_cpp.hpp
+[31.926s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[31.926s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_cmd__rosidl_typesupport_introspection_c.h
+[31.926s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_move__rosidl_typesupport_introspection_c.h
+[31.926s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_rpy_cmd__rosidl_typesupport_introspection_c.h
+[31.926s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_state__rosidl_typesupport_introspection_c.h
+[31.926s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/imu__rosidl_typesupport_introspection_c.h
+[31.928s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[31.928s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_cmd__rosidl_typesupport_introspection_cpp.hpp
+[31.928s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_move__rosidl_typesupport_introspection_cpp.hpp
+[31.929s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_rpy_cmd__rosidl_typesupport_introspection_cpp.hpp
+[31.929s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/go2_state__rosidl_typesupport_introspection_cpp.hpp
+[31.929s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/include/go2_interfaces/go2_interfaces/msg/detail/imu__rosidl_typesupport_introspection_cpp.hpp
+[31.929s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/environment/pythonpath.sh
+[31.929s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/environment/pythonpath.dsv
+[31.929s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces-0.0.0-py3.10.egg-info/PKG-INFO
+[31.929s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces-0.0.0-py3.10.egg-info/SOURCES.txt
+[31.929s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces-0.0.0-py3.10.egg-info/dependency_links.txt
+[31.929s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces-0.0.0-py3.10.egg-info/top_level.txt
+[31.929s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/__init__.py
+[31.930s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/_go2_interfaces_s.ep.rosidl_typesupport_c.c
+[31.930s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/_go2_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
+[31.930s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/_go2_interfaces_s.ep.rosidl_typesupport_introspection_c.c
+[31.930s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/go2_interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[31.930s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/go2_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[31.930s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/go2_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[31.930s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/libgo2_interfaces__rosidl_generator_py.so
+[31.930s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/__init__.py
+[31.930s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_cmd.py
+[31.930s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_cmd_s.c
+[31.930s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_move.py
+[31.931s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_move_s.c
+[31.933s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_rpy_cmd.py
+[31.951s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_rpy_cmd_s.c
+[31.971s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_state.py
+[32.001s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_state_s.c
+[32.022s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_imu.py
+[32.041s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_imu_s.c
+[32.059s] -- Up-to-date symlink: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/go2_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[32.060s] -- Up-to-date symlink: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/go2_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[32.061s] -- Up-to-date symlink: /workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/go2_interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[32.062s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/msg/Go2Cmd.idl
+[32.081s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/msg/Go2State.idl
+[32.101s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/msg/Go2Move.idl
+[32.121s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/msg/Go2RpyCmd.idl
+[32.139s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/msg/IMU.idl
+[32.157s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/msg/Go2Cmd.msg
+[32.181s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/msg/Go2State.msg
+[32.202s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/msg/Go2Move.msg
+[32.223s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/msg/Go2RpyCmd.msg
+[32.241s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/msg/IMU.msg
+[32.262s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/ament_index/resource_index/package_run_dependencies/go2_interfaces
+[32.281s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/ament_index/resource_index/parent_prefix_path/go2_interfaces
+[32.301s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/environment/ament_prefix_path.sh
+[32.320s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/environment/ament_prefix_path.dsv
+[32.338s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/environment/path.sh
+[32.357s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/environment/path.dsv
+[32.375s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/local_setup.bash
+[32.395s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/local_setup.sh
+[32.413s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/local_setup.zsh
+[32.434s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/local_setup.dsv
+[32.452s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/package.dsv
+[32.468s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/ament_index/resource_index/packages/go2_interfaces
+[32.486s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/rosidl_cmake-extras.cmake
+[32.504s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake
+[32.523s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake
+[32.542s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/ament_cmake_export_libraries-extras.cmake
+[32.561s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/ament_cmake_export_targets-extras.cmake
+[32.582s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[32.602s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[32.621s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/go2_interfacesConfig.cmake
+[32.644s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/go2_interfacesConfig-version.cmake
+[32.663s] -- Symlinking: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/package.xml
+[32.681s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_generator_c.so
+[32.683s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_generator_c.so" to ""
+[32.684s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_fastrtps_c.so
+[32.686s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_fastrtps_c.so" to ""
+[32.687s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_fastrtps_cpp.so
+[32.688s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_fastrtps_cpp.so" to ""
+[32.689s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_introspection_c.so
+[32.690s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_introspection_c.so" to ""
+[32.691s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_c.so
+[32.692s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_c.so" to ""
+[32.692s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_introspection_cpp.so
+[32.693s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_introspection_cpp.so" to ""
+[32.694s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_cpp.so
+[32.695s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_typesupport_cpp.so" to ""
+[32.780s] Listing '/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces'...
+[32.780s] Compiling '/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/__init__.py'...
+[32.780s] Listing '/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg'...
+[32.780s] Compiling '/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/__init__.py'...
+[32.781s] Compiling '/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_cmd.py'...
+[32.781s] Compiling '/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_move.py'...
+[32.781s] Compiling '/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_rpy_cmd.py'...
+[32.781s] Compiling '/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_go2_state.py'...
+[32.781s] Compiling '/workspaces/isaac_ros-dev/install/go2_interfaces/local/lib/python3.10/dist-packages/go2_interfaces/msg/_imu.py'...
+[32.795s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_generator_py.so
+[32.795s] -- Set runtime path of "/workspaces/isaac_ros-dev/install/go2_interfaces/lib/libgo2_interfaces__rosidl_generator_py.so" to ""
+[32.795s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/export_go2_interfaces__rosidl_generator_cExport.cmake
+[32.796s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/export_go2_interfaces__rosidl_generator_cExport-noconfig.cmake
+[32.797s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/export_go2_interfaces__rosidl_typesupport_fastrtps_cExport.cmake
+[32.797s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/export_go2_interfaces__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[32.797s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/export_go2_interfaces__rosidl_generator_cppExport.cmake
+[32.797s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/export_go2_interfaces__rosidl_typesupport_fastrtps_cppExport.cmake
+[32.798s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/export_go2_interfaces__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[32.798s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/go2_interfaces__rosidl_typesupport_introspection_cExport.cmake
+[32.798s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/go2_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[32.798s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/go2_interfaces__rosidl_typesupport_cExport.cmake
+[32.799s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/go2_interfaces__rosidl_typesupport_cExport-noconfig.cmake
+[32.799s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/go2_interfaces__rosidl_typesupport_introspection_cppExport.cmake
+[32.799s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/go2_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[32.799s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/go2_interfaces__rosidl_typesupport_cppExport.cmake
+[32.800s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/go2_interfaces__rosidl_typesupport_cppExport-noconfig.cmake
+[32.800s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/export_go2_interfaces__rosidl_generator_pyExport.cmake
+[32.801s] -- Installing: /workspaces/isaac_ros-dev/install/go2_interfaces/share/go2_interfaces/cmake/export_go2_interfaces__rosidl_generator_pyExport-noconfig.cmake
+[32.808s] Invoked command in '/workspaces/isaac_ros-dev/build/go2_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/go2_interfaces

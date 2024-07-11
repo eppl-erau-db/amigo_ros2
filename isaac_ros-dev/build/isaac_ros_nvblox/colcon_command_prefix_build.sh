@@ -1,0 +1,12 @@
+# generated from colcon_core/shell/template/command_prefix.sh.em
+. "/workspaces/isaac_ros-dev/install/isaac_ros_common/share/isaac_ros_common/package.sh"
+. "/workspaces/isaac_ros-dev/install/isaac_ros_launch_utils/share/isaac_ros_launch_utils/package.sh"
+. "/workspaces/isaac_ros-dev/install/isaac_ros_test/share/isaac_ros_test/package.sh"
+. "/workspaces/isaac_ros-dev/install/nvblox_msgs/share/nvblox_msgs/package.sh"
+. "/workspaces/isaac_ros-dev/install/nvblox_ros_common/share/nvblox_ros_common/package.sh"
+. "/workspaces/isaac_ros-dev/install/nvblox_ros_python_utils/share/nvblox_ros_python_utils/package.sh"
+. "/workspaces/isaac_ros-dev/install/nvblox_image_padding/share/nvblox_image_padding/package.sh"
+. "/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin/share/nvblox_rviz_plugin/package.sh"
+. "/workspaces/isaac_ros-dev/install/semantic_label_conversion/share/semantic_label_conversion/package.sh"
+. "/workspaces/isaac_ros-dev/install/nvblox_ros/share/nvblox_ros/package.sh"
+. "/workspaces/isaac_ros-dev/install/nvblox_examples_bringup/share/nvblox_examples_bringup/package.sh"

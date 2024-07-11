@@ -1,0 +1,52 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from isaac_ros_pointcloud_interfaces/msg/FlatScan.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module isaac_ros_pointcloud_interfaces {
+  module msg {
+    @verbatim (language="comment", text=
+      "2D points stored as polar coordinates" "\n"
+      "both the angles and ranges arrays should be of the same size" "\n"
+      "the nth points' angle is the nth value in the 'angles' array" "\n"
+      "the nth points' range is the nth value in the 'ranges' array" "\n"
+      "the nth points' intensity is the nth value in the 'intensities' array")
+    struct FlatScan {
+      @verbatim (language="comment", text=
+        "in frame frame_id, angles are measured around" "\n"
+        "the positive Z axis (counterclockwise, if Z is up)" "\n"
+        "with zero angle being forward along the x axis")
+      std_msgs::msg::Header header;
+
+      @verbatim (language="comment", text=
+        "minimum range value")
+      @unit (value="m")
+      float range_min;
+
+      @verbatim (language="comment", text=
+        "maximum range value")
+      @unit (value="m")
+      float range_max;
+
+      @verbatim (language="comment", text=
+        "value of beam angle with respect to" "\n"
+        "header.frame_id frame")
+      @unit (value="rad")
+      sequence<float> angles;
+
+      @verbatim (language="comment", text=
+        "range data" "\n"
+        "(Note: values < range_min or > range_max should be discarded)")
+      @unit (value="m")
+      sequence<float> ranges;
+
+      @verbatim (language="comment", text=
+        "intensity data.  If your" "\n"
+        "device does not provide intensities, please leave" "\n"
+        "the array empty")
+      @unit (value="device-specific units")
+      sequence<float> intensities;
+    };
+  };
+};

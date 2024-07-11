@@ -1,0 +1,5 @@
+add_test( MemoryLeakTest.UnifiedVectorInt /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_for_memory_leaks [==[--gtest_filter=MemoryLeakTest.UnifiedVectorInt]==] --gtest_also_run_disabled_tests)
+set_tests_properties( MemoryLeakTest.UnifiedVectorInt PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
+add_test( MemoryLeakTest.3DMatchMeshing /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_for_memory_leaks [==[--gtest_filter=MemoryLeakTest.3DMatchMeshing]==] --gtest_also_run_disabled_tests)
+set_tests_properties( MemoryLeakTest.3DMatchMeshing PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
+set( test_for_memory_leaks_TESTS MemoryLeakTest.UnifiedVectorInt MemoryLeakTest.3DMatchMeshing)

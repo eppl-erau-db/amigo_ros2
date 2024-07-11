@@ -1,0 +1,3 @@
+source;share/isaac_ros_common/environment/ament_prefix_path.sh
+source;share/isaac_ros_common/environment/library_path.sh
+source;share/isaac_ros_common/environment/path.sh

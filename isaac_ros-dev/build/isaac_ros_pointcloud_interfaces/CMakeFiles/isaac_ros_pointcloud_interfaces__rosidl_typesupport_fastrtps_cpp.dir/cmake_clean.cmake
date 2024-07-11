@@ -1,0 +1,13 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/isaac_ros_pointcloud_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/isaac_ros_pointcloud_interfaces/msg/detail/dds_fastrtps/flat_scan__type_support.cpp.o"
+  "CMakeFiles/isaac_ros_pointcloud_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/isaac_ros_pointcloud_interfaces/msg/detail/dds_fastrtps/flat_scan__type_support.cpp.o.d"
+  "libisaac_ros_pointcloud_interfaces__rosidl_typesupport_fastrtps_cpp.pdb"
+  "libisaac_ros_pointcloud_interfaces__rosidl_typesupport_fastrtps_cpp.so"
+  "rosidl_typesupport_fastrtps_cpp/isaac_ros_pointcloud_interfaces/msg/detail/dds_fastrtps/flat_scan__type_support.cpp"
+  "rosidl_typesupport_fastrtps_cpp/isaac_ros_pointcloud_interfaces/msg/detail/flat_scan__rosidl_typesupport_fastrtps_cpp.hpp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/isaac_ros_pointcloud_interfaces__rosidl_typesupport_fastrtps_cpp.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

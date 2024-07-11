@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from nvblox_msgs/msg/MeshBlock.msg
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Point32.idl"
+#include "std_msgs/msg/ColorRGBA.idl"
+
+module nvblox_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "All of the constituent parts must either have the same length or be length 0.")
+    struct MeshBlock {
+      sequence<geometry_msgs::msg::Point32> vertices;
+
+      sequence<geometry_msgs::msg::Point32> normals;
+
+      sequence<std_msgs::msg::ColorRGBA> colors;
+
+      sequence<int32> triangles;
+    };
+  };
+};

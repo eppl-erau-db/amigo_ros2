@@ -1,0 +1,46 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from isaac_ros_nova_interfaces/msg/CorrelatedTimestamp.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module isaac_ros_nova_interfaces {
+  module msg {
+    @verbatim (language="comment", text=
+      "Correlated timestamp" "\n"
+      "Nova has three seperate clocks that we must keep track of, the PTP hardware clock (PHC), the" "\n"
+      "Timer's System Counter (TSC), and the system clock mainatined by the kernel (sys)." "\n"
+      "This struct contains two pairs of correlated timestamps, phc_val_ anc tsc_val are taken" "\n"
+      "simultanously, and phc2_val and sys_val_ are taken simultanously." "\n"
+      "phc and tsc are captured at the same time")
+    struct CorrelatedTimestamp {
+      std_msgs::msg::Header header;
+
+      @verbatim (language="comment", text=
+        "PTP Hardware Clock (PHC)")
+      uint64 phc_val;
+
+      @verbatim (language="comment", text=
+        "Timer's System Counter (TSC)")
+      uint64 tsc_val;
+
+      @verbatim (language="comment", text=
+        "phc2 and tsc are captures at the same time." "\n"
+        "PTP Hardware Clock (PHC), same clock as phc_val_ above, but taken at a" "\n"
+        "different time")
+      uint64 phc2_val;
+
+      @verbatim (language="comment", text=
+        "System Clock (Sys)")
+      uint64 sys_val;
+
+      @verbatim (language="comment", text=
+        "Latency of reading the PHC, slightly subtle, as this only applies to PHC2" "\n"
+        "Basically the simultanous reading of sys<->phc2 within nvpps does not account" "\n"
+        "The time it takes to read from the PHC, which can be several microseconds." "\n"
+        "The value of phc2 published by the correlated_timestamp_driver already accounts for" "\n"
+        "This value, and phc_latency is provided to expose this value to GXF for sanity checking")
+      uint64 phc_latency;
+    };
+  };
+};

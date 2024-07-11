@@ -1,0 +1,5 @@
+if(EXISTS "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_3d_interpolation[1]_tests.cmake")
+  include("/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_3d_interpolation[1]_tests.cmake")
+else()
+  add_test(test_3d_interpolation_NOT_BUILT test_3d_interpolation_NOT_BUILT)
+endif()

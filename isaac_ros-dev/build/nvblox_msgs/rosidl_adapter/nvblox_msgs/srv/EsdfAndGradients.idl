@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from nvblox_msgs/srv/EsdfAndGradients.srv
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Point.idl"
+#include "geometry_msgs/msg/Vector3.idl"
+#include "std_msgs/msg/Float32.idl"
+#include "std_msgs/msg/Float32MultiArray.idl"
+
+module nvblox_msgs {
+  module srv {
+    struct EsdfAndGradients_Request {
+      geometry_msgs::msg::Point aabb_min_m;
+
+      geometry_msgs::msg::Vector3 aabb_size_m;
+    };
+    struct EsdfAndGradients_Response {
+      std_msgs::msg::Float32 voxel_size;
+
+      std_msgs::msg::Float32MultiArray esdf_and_gradients;
+    };
+  };
+};

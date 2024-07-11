@@ -1,0 +1,6 @@
+{
+  "package_name": "isaac_ros_bi3d_interfaces",
+  "non_idl_tuples": [
+    "/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_bi3d_interfaces:msg/Bi3DInferenceParametersArray.msg"
+  ]
+}

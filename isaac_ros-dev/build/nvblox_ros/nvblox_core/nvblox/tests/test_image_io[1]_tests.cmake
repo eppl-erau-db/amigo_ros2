@@ -1,0 +1,7 @@
+add_test( ImageIO.SaveToPng /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_image_io [==[--gtest_filter=ImageIO.SaveToPng]==] --gtest_also_run_disabled_tests)
+set_tests_properties( ImageIO.SaveToPng PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
+add_test( ImageIO.3DMatchDepthToMonoAndSave /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_image_io [==[--gtest_filter=ImageIO.3DMatchDepthToMonoAndSave]==] --gtest_also_run_disabled_tests)
+set_tests_properties( ImageIO.3DMatchDepthToMonoAndSave PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
+add_test( ImageIO.3DMatchColorImageLoadAndSave /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_image_io [==[--gtest_filter=ImageIO.3DMatchColorImageLoadAndSave]==] --gtest_also_run_disabled_tests)
+set_tests_properties( ImageIO.3DMatchColorImageLoadAndSave PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
+set( test_image_io_TESTS ImageIO.SaveToPng ImageIO.3DMatchDepthToMonoAndSave ImageIO.3DMatchColorImageLoadAndSave)

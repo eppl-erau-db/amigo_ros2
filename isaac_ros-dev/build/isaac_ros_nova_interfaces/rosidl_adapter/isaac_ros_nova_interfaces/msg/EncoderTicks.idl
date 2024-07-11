@@ -1,0 +1,27 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from isaac_ros_nova_interfaces/msg/EncoderTicks.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module isaac_ros_nova_interfaces {
+  module msg {
+    @verbatim (language="comment", text=
+      "Encoder Ticks")
+    struct EncoderTicks {
+      std_msgs::msg::Header header;
+
+      @verbatim (language="comment", text=
+        "Ticks from the left wheel")
+      uint32 left_ticks;
+
+      @verbatim (language="comment", text=
+        "Ticks from the right wheel")
+      uint32 right_ticks;
+
+      @verbatim (language="comment", text=
+        "Timestamp from the encoder")
+      uint64 encoder_timestamp;
+    };
+  };
+};

@@ -1,0 +1,37 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from nvblox_msgs/msg/Mesh.msg
+// generated code does not contain a copyright notice
+
+#include "nvblox_msgs/msg/Index3D.idl"
+#include "nvblox_msgs/msg/MeshBlock.idl"
+#include "std_msgs/msg/Header.idl"
+
+module nvblox_msgs {
+  module msg {
+    struct Mesh {
+      std_msgs::msg::Header header;
+
+      @verbatim (language="comment", text=
+        "Block origins and block sizes must match." "\n"
+        "Block size is the physical size (in meters) of a block of the mesh.")
+      float block_size;
+
+      @verbatim (language="comment", text=
+        "Block indices are the 3D indices of the blocks; to get the origin of the" "\n"
+        "block, simply multiply its index by the block size." "\n"
+        "Note that we consider a block's origin to be the low-side corner of" "\n"
+        "the low-side voxel.")
+      sequence<nvblox_msgs::msg::Index3D> block_indices;
+
+      @verbatim (language="comment", text=
+        "Blocks contains the actual mesh within the block, including triangles," "\n"
+        "vertex positions, and vertex colors.")
+      sequence<nvblox_msgs::msg::MeshBlock> blocks;
+
+      @verbatim (language="comment", text=
+        "Whether to clear the entire previous map. This is set to true when" "\n"
+        "the *entire* map rather than only the pieces that changed are published.")
+      boolean clear;
+    };
+  };
+};

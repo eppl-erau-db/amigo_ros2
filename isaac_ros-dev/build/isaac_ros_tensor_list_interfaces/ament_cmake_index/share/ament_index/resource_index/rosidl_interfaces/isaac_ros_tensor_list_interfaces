@@ -1,0 +1,6 @@
+msg/Tensor.idl
+msg/Tensor.msg
+msg/TensorList.idl
+msg/TensorList.msg
+msg/TensorShape.idl
+msg/TensorShape.msg

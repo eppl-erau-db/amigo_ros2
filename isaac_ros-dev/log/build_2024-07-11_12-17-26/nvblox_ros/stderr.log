@@ -1,0 +1,12 @@
+[01m[K/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros/nvblox_core/nvblox/src/integrators/view_calculator.cu:[m[K In member function ‘[01m[Kstd::vector<Eigen::Matrix<int, 3, 1> > nvblox::ViewCalculator::getBlocksInImageViewPlanes(const DepthImage&, const Transform&, const nvblox::Camera&, float, float, float)[m[K’:
+[01m[K/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros/nvblox_core/nvblox/src/integrators/view_calculator.cu:475:54:[m[K [01;36m[Knote: [m[Kparameter passing for argument of type ‘[01m[Kstd::pair<float, float>[m[K’ when C++17 is enabled changed to match C++14 in GCC 10.1
+  475 |   std::tie(min_depth, max_depth) = i[01;36m[Kmage::minmaxGPU(depth_frame, *cuda_stream_);[m[K
+      |                                     [01;36m[K~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K      
+[01m[K/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros/nvblox_core/nvblox/src/sensors/image.cu:[m[K In function ‘[01m[Kstd::pair<float, float> nvblox::image::minmaxGPU(const DepthImage&, const nvblox::CudaStream&)[m[K’:
+[01m[K/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros/nvblox_core/nvblox/src/sensors/image.cu:67:12:[m[K [01;36m[Knote: [m[Kparameter passing for argument of type ‘[01m[Kstd::pair<float, float>[m[K’ when C++17 is enabled changed to match C++14 in GCC 10.1
+   67 |            [01;36m[K [m[K                      const CudaStream& cuda_stream) {
+      |            [01;36m[K^[m[K
+[01m[K/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros/nvblox_core/nvblox/tests/test_depth_image.cpp:[m[K In member function ‘[01m[Kvirtual void DepthImageTest_DeviceReduction_Test::TestBody()[m[K’:
+[01m[K/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros/nvblox_core/nvblox/tests/test_depth_image.cpp:98:72:[m[K [01;36m[Knote: [m[Kparameter passing for argument of type ‘[01m[Kstd::pair<float, float>[m[K’ when C++17 is enabled changed to match C++14 in GCC 10.1
+   98 |   const auto minmax = image::minmaxGPU(depth_frame_, CudaStreamOwning()[01;36m[K)[m[K;
+      |                                                                        [01;36m[K^[m[K

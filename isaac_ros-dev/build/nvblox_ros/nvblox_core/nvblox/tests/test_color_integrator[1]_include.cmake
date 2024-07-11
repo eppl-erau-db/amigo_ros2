@@ -1,0 +1,5 @@
+if(EXISTS "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_color_integrator[1]_tests.cmake")
+  include("/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_color_integrator[1]_tests.cmake")
+else()
+  add_test(test_color_integrator_NOT_BUILT test_color_integrator_NOT_BUILT)
+endif()

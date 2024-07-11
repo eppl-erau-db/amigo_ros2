@@ -1,0 +1,6 @@
+Invoking command in '/workspaces/isaac_ros-dev/build/nvblox_ros_common': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/nvblox_ros_common
+Invoked command in '/workspaces/isaac_ros-dev/build/nvblox_ros_common' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros_common -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspaces/isaac_ros-dev/install/nvblox_ros_common
+Invoking command in '/workspaces/isaac_ros-dev/build/nvblox_ros_common': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/nvblox_ros_common -- -j8 -l8
+Invoked command in '/workspaces/isaac_ros-dev/build/nvblox_ros_common' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/nvblox_ros_common -- -j8 -l8
+Invoking command in '/workspaces/isaac_ros-dev/build/nvblox_ros_common': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/nvblox_ros_common
+Invoked command in '/workspaces/isaac_ros-dev/build/nvblox_ros_common' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/nvblox_ros_common
