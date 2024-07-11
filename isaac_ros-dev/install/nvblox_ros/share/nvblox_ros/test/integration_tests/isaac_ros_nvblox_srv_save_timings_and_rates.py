@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros/test/integration_tests/isaac_ros_nvblox_srv_save_timings_and_rates.py

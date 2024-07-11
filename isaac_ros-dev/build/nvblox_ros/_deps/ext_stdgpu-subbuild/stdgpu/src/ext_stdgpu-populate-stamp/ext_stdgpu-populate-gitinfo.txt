@@ -1,3 +1,0 @@
-repository='https://github.com/stotko/stdgpu.git'
-module=''
-tag='origin'

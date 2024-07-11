@@ -1,2 +1,0 @@
-/usr/bin/ar qc libnvblox_gpu_hash.a CMakeFiles/nvblox_gpu_hash.dir/src/core/error_check.cu.o CMakeFiles/nvblox_gpu_hash.dir/src/utils/timing.cpp.o CMakeFiles/nvblox_gpu_hash.dir/src/utils/nvtx_ranges.cpp.o CMakeFiles/nvblox_gpu_hash.dir/src/gpu_hash/gpu_layer_view.cu.o CMakeFiles/nvblox_gpu_hash.dir/src/gpu_hash/gpu_set.cu.o
-/usr/bin/ranlib libnvblox_gpu_hash.a

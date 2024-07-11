@@ -1,4 +1,0 @@
-source;share/isaac_ros_nvblox/local_setup.bash
-source;share/isaac_ros_nvblox/local_setup.dsv
-source;share/isaac_ros_nvblox/local_setup.sh
-source;share/isaac_ros_nvblox/local_setup.zsh

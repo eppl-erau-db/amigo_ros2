@@ -1,6 +1,0 @@
-[console_scripts]
-base_to_base_tf = go2_control.base_to_base_tf:main
-go2_driver = go2_control.go2_driver:main
-go2_state = go2_control.go2_state:main
-odom_node = go2_control.odom_node:main
-vslam_odom_node = go2_control.vslam_odom_node:main

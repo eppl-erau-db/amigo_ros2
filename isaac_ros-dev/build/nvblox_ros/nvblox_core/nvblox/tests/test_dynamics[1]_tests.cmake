@@ -1,5 +1,0 @@
-add_test( DynamicsTester.PrimitiveScene /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_dynamics [==[--gtest_filter=DynamicsTester.PrimitiveScene]==] --gtest_also_run_disabled_tests)
-set_tests_properties( DynamicsTester.PrimitiveScene PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-add_test( DynamicsTester.HumanDataset /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_dynamics [==[--gtest_filter=DynamicsTester.HumanDataset]==] --gtest_also_run_disabled_tests)
-set_tests_properties( DynamicsTester.HumanDataset PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-set( test_dynamics_TESTS DynamicsTester.PrimitiveScene DynamicsTester.HumanDataset)

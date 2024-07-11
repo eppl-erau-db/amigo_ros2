@@ -1,4 +1,0 @@
-Invoking command in '/workspaces/isaac_ros-dev/build/realsense2_camera_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/realsense2_camera_msgs -- -j8 -l8
-Invoked command in '/workspaces/isaac_ros-dev/build/realsense2_camera_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /workspaces/isaac_ros-dev/build/realsense2_camera_msgs -- -j8 -l8
-Invoking command in '/workspaces/isaac_ros-dev/build/realsense2_camera_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/realsense2_camera_msgs
-Invoked command in '/workspaces/isaac_ros-dev/build/realsense2_camera_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /workspaces/isaac_ros-dev/build/realsense2_camera_msgs

@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros/scripts/setup_peoplesemsegnet_model.sh

@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/build/unitree_go/rosidl_typesupport_fastrtps_c/unitree_go/msg/detail/path_point__rosidl_typesupport_fastrtps_c.h

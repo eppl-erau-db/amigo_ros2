@@ -1,6 +1,0 @@
-setup.py
-unitree_go/__init__.py
-unitree_go.egg-info/PKG-INFO
-unitree_go.egg-info/SOURCES.txt
-unitree_go.egg-info/dependency_links.txt
-unitree_go.egg-info/top_level.txt

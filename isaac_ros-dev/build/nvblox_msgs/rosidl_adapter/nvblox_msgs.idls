@@ -1,7 +1,0 @@
-/workspaces/isaac_ros-dev/build/nvblox_msgs/rosidl_adapter/nvblox_msgs:srv/FilePath.idl
-/workspaces/isaac_ros-dev/build/nvblox_msgs/rosidl_adapter/nvblox_msgs:srv/EsdfAndGradients.idl
-/workspaces/isaac_ros-dev/build/nvblox_msgs/rosidl_adapter/nvblox_msgs:msg/SemanticLabelsStamped.idl
-/workspaces/isaac_ros-dev/build/nvblox_msgs/rosidl_adapter/nvblox_msgs:msg/MeshBlock.idl
-/workspaces/isaac_ros-dev/build/nvblox_msgs/rosidl_adapter/nvblox_msgs:msg/Mesh.idl
-/workspaces/isaac_ros-dev/build/nvblox_msgs/rosidl_adapter/nvblox_msgs:msg/Index3D.idl
-/workspaces/isaac_ros-dev/build/nvblox_msgs/rosidl_adapter/nvblox_msgs:msg/DistanceMapSlice.idl

@@ -1,5 +1,0 @@
-add_test( ImageCacheTest.SingleImage /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_image_cache [==[--gtest_filter=ImageCacheTest.SingleImage]==] --gtest_also_run_disabled_tests)
-set_tests_properties( ImageCacheTest.SingleImage PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-add_test( ImageCacheTest.DoubleImage /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_image_cache [==[--gtest_filter=ImageCacheTest.DoubleImage]==] --gtest_also_run_disabled_tests)
-set_tests_properties( ImageCacheTest.DoubleImage PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-set( test_image_cache_TESTS ImageCacheTest.SingleImage ImageCacheTest.DoubleImage)

@@ -1,3 +1,0 @@
-/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin/lib/libnvblox_rviz_plugin.so
-/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin/share/nvblox_rviz_plugin/cmake/nvblox_rviz_pluginExport.cmake
-/workspaces/isaac_ros-dev/install/nvblox_rviz_plugin/share/nvblox_rviz_plugin/cmake/nvblox_rviz_pluginExport-release.cmake

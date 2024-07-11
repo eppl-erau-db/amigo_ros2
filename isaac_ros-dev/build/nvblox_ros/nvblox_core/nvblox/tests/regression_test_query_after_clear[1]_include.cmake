@@ -1,5 +1,0 @@
-if(EXISTS "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/regression_test_query_after_clear[1]_tests.cmake")
-  include("/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/regression_test_query_after_clear[1]_tests.cmake")
-else()
-  add_test(regression_test_query_after_clear_NOT_BUILT regression_test_query_after_clear_NOT_BUILT)
-endif()

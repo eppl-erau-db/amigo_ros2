@@ -1,5 +1,0 @@
-add_test( BoundingSpheresTest.BlocksInside /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_bounding_spheres [==[--gtest_filter=BoundingSpheresTest.BlocksInside]==] --gtest_also_run_disabled_tests)
-set_tests_properties( BoundingSpheresTest.BlocksInside PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-add_test( BoundingSpheresTest.BlocksOutside /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_bounding_spheres [==[--gtest_filter=BoundingSpheresTest.BlocksOutside]==] --gtest_also_run_disabled_tests)
-set_tests_properties( BoundingSpheresTest.BlocksOutside PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-set( test_bounding_spheres_TESTS BoundingSpheresTest.BlocksInside BoundingSpheresTest.BlocksOutside)

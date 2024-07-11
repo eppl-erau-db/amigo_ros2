@@ -1,4 +1,0 @@
-source;share/rplidar_ros/local_setup.bash
-source;share/rplidar_ros/local_setup.dsv
-source;share/rplidar_ros/local_setup.sh
-source;share/rplidar_ros/local_setup.zsh

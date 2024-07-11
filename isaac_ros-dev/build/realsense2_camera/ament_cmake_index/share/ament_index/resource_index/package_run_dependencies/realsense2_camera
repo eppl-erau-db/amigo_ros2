@@ -1,1 +1,0 @@
-eigen;builtin_interfaces;cv_bridge;image_transport;librealsense2;rclcpp;rclcpp_components;realsense2_camera_msgs;sensor_msgs;geometry_msgs;std_msgs;nav_msgs;tf2;tf2_ros;diagnostic_updater;launch_ros

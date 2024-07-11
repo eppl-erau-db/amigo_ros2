@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/src/go2_interfaces/msg/Go2RpyCmd.msg

@@ -1,7 +1,0 @@
-add_test( DelaysTest.ExistsTest /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_delays [==[--gtest_filter=DelaysTest.ExistsTest]==] --gtest_also_run_disabled_tests)
-set_tests_properties( DelaysTest.ExistsTest PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-add_test( DelaysTest.DelayTest /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_delays [==[--gtest_filter=DelaysTest.DelayTest]==] --gtest_also_run_disabled_tests)
-set_tests_properties( DelaysTest.DelayTest PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-add_test( DelaysTest.MultipleDelayTest /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_delays [==[--gtest_filter=DelaysTest.MultipleDelayTest]==] --gtest_also_run_disabled_tests)
-set_tests_properties( DelaysTest.MultipleDelayTest PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-set( test_delays_TESTS DelaysTest.ExistsTest DelaysTest.DelayTest DelaysTest.MultipleDelayTest)

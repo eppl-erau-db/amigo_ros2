@@ -1,5 +1,0 @@
-add_test( MeshColoringTests.UniformColorSphere /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_mesh_coloring [==[--gtest_filter=MeshColoringTests.UniformColorSphere]==] --gtest_also_run_disabled_tests)
-set_tests_properties( MeshColoringTests.UniformColorSphere PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-add_test( MeshColoringTests.CPUvsGPUon3DMatch /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_mesh_coloring [==[--gtest_filter=MeshColoringTests.CPUvsGPUon3DMatch]==] --gtest_also_run_disabled_tests)
-set_tests_properties( MeshColoringTests.CPUvsGPUon3DMatch PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-set( test_mesh_coloring_TESTS MeshColoringTests.UniformColorSphere MeshColoringTests.CPUvsGPUon3DMatch)

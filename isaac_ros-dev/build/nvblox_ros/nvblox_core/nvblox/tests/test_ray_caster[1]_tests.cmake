@@ -1,7 +1,0 @@
-add_test( RayCasterTest.StraightAheadCast /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_ray_caster [==[--gtest_filter=RayCasterTest.StraightAheadCast]==] --gtest_also_run_disabled_tests)
-set_tests_properties( RayCasterTest.StraightAheadCast PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-add_test( RayCasterTest.ObliqueCast /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_ray_caster [==[--gtest_filter=RayCasterTest.ObliqueCast]==] --gtest_also_run_disabled_tests)
-set_tests_properties( RayCasterTest.ObliqueCast PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-add_test( RayCasterTest.Length0Cast /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_ray_caster [==[--gtest_filter=RayCasterTest.Length0Cast]==] --gtest_also_run_disabled_tests)
-set_tests_properties( RayCasterTest.Length0Cast PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-set( test_ray_caster_TESTS RayCasterTest.StraightAheadCast RayCasterTest.ObliqueCast RayCasterTest.Length0Cast)

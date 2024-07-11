@@ -1,5 +1,0 @@
-add_test( BlockMemoryPool.popBeyondCapacity /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_block_memory_pool [==[--gtest_filter=BlockMemoryPool.popBeyondCapacity]==] --gtest_also_run_disabled_tests)
-set_tests_properties( BlockMemoryPool.popBeyondCapacity PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-add_test( BlockMemoryPool.pushAndPop /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_block_memory_pool [==[--gtest_filter=BlockMemoryPool.pushAndPop]==] --gtest_also_run_disabled_tests)
-set_tests_properties( BlockMemoryPool.pushAndPop PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-set( test_block_memory_pool_TESTS BlockMemoryPool.popBeyondCapacity BlockMemoryPool.pushAndPop)

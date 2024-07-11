@@ -1,7 +1,0 @@
-Metadata-Version: 2.1
-Name: isaac-ros-test
-Version: 0.9.0
-Summary: Isaac ROS testing utilities
-Maintainer: Isaac ROS Maintainers
-Maintainer-email: isaac-ros-maintainers@nvidia.com
-License: NVIDIA Isaac ROS Software License

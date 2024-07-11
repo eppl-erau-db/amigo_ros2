@@ -1,3 +1,0 @@
-
-std_msgs/Float32 voxel_size
-std_msgs/Float32MultiArray esdf_and_gradients

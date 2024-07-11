@@ -1,9 +1,0 @@
-source;share/nvblox_ros_python_utils/hook/pythonpath.ps1
-source;share/nvblox_ros_python_utils/hook/pythonpath.dsv
-source;share/nvblox_ros_python_utils/hook/pythonpath.sh
-source;share/nvblox_ros_python_utils/hook/ament_prefix_path.ps1
-source;share/nvblox_ros_python_utils/hook/ament_prefix_path.dsv
-source;share/nvblox_ros_python_utils/hook/ament_prefix_path.sh
-source;../../build/nvblox_ros_python_utils/share/nvblox_ros_python_utils/hook/pythonpath_develop.ps1
-source;../../build/nvblox_ros_python_utils/share/nvblox_ros_python_utils/hook/pythonpath_develop.dsv
-source;../../build/nvblox_ros_python_utils/share/nvblox_ros_python_utils/hook/pythonpath_develop.sh

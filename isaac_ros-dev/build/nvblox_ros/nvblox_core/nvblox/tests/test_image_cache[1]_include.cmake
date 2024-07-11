@@ -1,5 +1,0 @@
-if(EXISTS "/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_image_cache[1]_tests.cmake")
-  include("/workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_image_cache[1]_tests.cmake")
-else()
-  add_test(test_image_cache_NOT_BUILT test_image_cache_NOT_BUILT)
-endif()

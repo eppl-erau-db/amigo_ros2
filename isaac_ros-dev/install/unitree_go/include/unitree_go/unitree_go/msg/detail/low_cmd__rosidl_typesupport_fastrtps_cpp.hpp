@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/build/unitree_go/rosidl_typesupport_fastrtps_cpp/unitree_go/msg/detail/low_cmd__rosidl_typesupport_fastrtps_cpp.hpp

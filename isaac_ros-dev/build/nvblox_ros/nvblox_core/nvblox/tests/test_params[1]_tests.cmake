@@ -1,7 +1,0 @@
-add_test( ParamTest.assignAndGet /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_params [==[--gtest_filter=ParamTest.assignAndGet]==] --gtest_also_run_disabled_tests)
-set_tests_properties( ParamTest.assignAndGet PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-add_test( ParamTest.assignTo /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_params [==[--gtest_filter=ParamTest.assignTo]==] --gtest_also_run_disabled_tests)
-set_tests_properties( ParamTest.assignTo PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-add_test( ParamTest.stringParam /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests/test_params [==[--gtest_filter=ParamTest.stringParam]==] --gtest_also_run_disabled_tests)
-set_tests_properties( ParamTest.stringParam PROPERTIES WORKING_DIRECTORY /workspaces/isaac_ros-dev/build/nvblox_ros/nvblox_core/nvblox/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] ENVIRONMENT [==[ASAN_OPTIONS=protect_shadow_gap=0]==])
-set( test_params_TESTS ParamTest.assignAndGet ParamTest.assignTo ParamTest.stringParam)
