@@ -81,7 +81,7 @@ def generate_launch_description():
         default_value=os.path.join(
             get_package_share_path('go2_description'),
             'maps',
-            'lab.yaml'
+            'first_floor_coas.yaml'
         ),
         description='Full path to the map file to load'
     )
@@ -94,7 +94,7 @@ def generate_launch_description():
         name='ekf_filter_node',
         output='screen',
         parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
-        remappings=[('/odometry/filtered', '/first_odom')]
+        remappings=[('/odometry/filtered', '/odom')]
     )
 
     # robot_localization_node_map = Node(
