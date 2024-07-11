@@ -113,3 +113,5 @@ Thumbs.db
 *.log
 *.sqlite3
 
+isaac_ros-dev/src/go2_description/maps/lab_map_vslam/
+
