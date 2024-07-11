@@ -1,4 +1,4 @@
-image: my_map_2.pgm
+image: first_floor_coas.pgm
 mode: trinary
 resolution: 0.05
 origin: [-12.3, -75.4, 0]
