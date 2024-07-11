@@ -1,0 +1,8 @@
+source;share/realsense2_description/hook/cmake_prefix_path.ps1
+source;share/realsense2_description/hook/cmake_prefix_path.dsv
+source;share/realsense2_description/hook/cmake_prefix_path.sh
+source;share/realsense2_description/local_setup.bash
+source;share/realsense2_description/local_setup.dsv
+source;share/realsense2_description/local_setup.ps1
+source;share/realsense2_description/local_setup.sh
+source;share/realsense2_description/local_setup.zsh

@@ -1,0 +1,8 @@
+source;share/semantic_label_conversion/hook/cmake_prefix_path.ps1
+source;share/semantic_label_conversion/hook/cmake_prefix_path.dsv
+source;share/semantic_label_conversion/hook/cmake_prefix_path.sh
+source;share/semantic_label_conversion/local_setup.bash
+source;share/semantic_label_conversion/local_setup.dsv
+source;share/semantic_label_conversion/local_setup.ps1
+source;share/semantic_label_conversion/local_setup.sh
+source;share/semantic_label_conversion/local_setup.zsh

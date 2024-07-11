@@ -1,0 +1,1 @@
+/workspaces/isaac_ros-dev/src/isaac_ros_common/isaac_ros_common/scripts/isaac_ros_asset_eula.sh
