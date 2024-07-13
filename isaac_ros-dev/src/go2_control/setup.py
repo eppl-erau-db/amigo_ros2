@@ -46,7 +46,7 @@ setup(
         
         
     ],
-    install_requires=['setuptools', 'tf_transformations'],
+    install_requires=['setuptools', 'tf-transformations'],
     zip_safe=True,
     maintainer='',
     maintainer_email='',

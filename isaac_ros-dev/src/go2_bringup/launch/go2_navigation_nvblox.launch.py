@@ -107,6 +107,13 @@ def generate_launch_description():
     #     remappings=[('/odometry/filtered', '/odom')]
     # )
 
+    set_initial_pose = Node(
+        package='go2_control',
+        executable='initial_pose_set',
+        name='initial_pose_set',
+        output='screen'
+    )
+
     return LaunchDescription([
         map_file_arg,
         base_footprint_to_base_link_tf,
@@ -136,5 +143,6 @@ def generate_launch_description():
             }.items(),
         ),
 
-        rviz2_node
+        rviz2_node,
+        set_initial_pose
     ])

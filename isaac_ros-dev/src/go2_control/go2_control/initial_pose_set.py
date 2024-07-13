@@ -19,46 +19,16 @@ def create_pose_stamped(navigator: BasicNavigator, position_x, position_y, orien
     return pose
 
 def main():
-    # --- Init
     rclpy.init()
     nav = BasicNavigator()
 
-    # --- Set initial pose
+    # Wait for Nav2 to become active
+    nav.waitUntilNav2Active()
+
+    # Set initial pose
     initial_pose = create_pose_stamped(nav, 0.0, 0.0, 0.0)
     nav.setInitialPose(initial_pose)
 
-    # --- Wait for Nav2
-    nav.waitUntilNav2Active()
-
-    # # --- Send Nav2 goal
-    # waypoints = []
-    # waypoints.append(create_pose_stamped(nav, 2.0, -2.0, 1.57))
-    # waypoints.append(create_pose_stamped(nav, 4.0, 0.8, 0.0))
-    # waypoints.append(create_pose_stamped(nav, 8.0, 1.0, -1.57))
-    # waypoints.append(create_pose_stamped(nav, 8.0, -0.5, 1.57))
-    # waypoints.append(create_pose_stamped(nav, 5.0, 5.0, 3.14))
-    # waypoints.append(create_pose_stamped(nav, 3.0, 4.0, 1.57))
-    # waypoints.append(create_pose_stamped(nav, 4.0, 5.0, 0.0))
-    # waypoints.append(create_pose_stamped(nav, 5.0, 3.0, -1.57))
-    # waypoints.append(create_pose_stamped(nav, 4.0, 0.8, 3.14))
-    # waypoints.append(create_pose_stamped(nav, -4.0, 3.5, -1.57))
-    # waypoints.append(create_pose_stamped(nav, -4.0, 0.0, 1.57))
-
-    # # --- Go to one pose
-    # # nav.goToPose(goal_pose1)
-    # # while not nav.isTaskComplete():
-    # #     feedback = nav.getFeedback()
-    # #     # print(feedback)
-
-    # # --- Follow waypoints
-    # nav.followWaypoints(waypoints)
-    # while not nav.isTaskComplete():
-    #     feedback = nav.getFeedback()
-    #     # print(feedback)
-
-    # print(nav.getResult())
-
-    # # --- Shutdown
     rclpy.shutdown()
 
 if __name__ == '__main__':
