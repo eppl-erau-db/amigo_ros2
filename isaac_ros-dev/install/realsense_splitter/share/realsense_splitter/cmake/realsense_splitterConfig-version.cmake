@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/build/realsense_splitter/ament_cmake_core/realsense_splitterConfig-version.cmake

@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/build/isaac_ros_nitros_bridge_interfaces/rosidl_generator_cpp/isaac_ros_nitros_bridge_interfaces/msg/nitros_bridge_image.hpp

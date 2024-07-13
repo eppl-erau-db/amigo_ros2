@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/build/go2_interfaces/rosidl_typesupport_fastrtps_cpp/go2_interfaces/msg/detail/go2_move__rosidl_typesupport_fastrtps_cpp.hpp

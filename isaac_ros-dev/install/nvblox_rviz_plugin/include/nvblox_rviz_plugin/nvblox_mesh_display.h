@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_rviz_plugin/include/nvblox_rviz_plugin/nvblox_mesh_display.h

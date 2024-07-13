@@ -46,7 +46,7 @@ setup(
         
         
     ],
-    install_requires=['setuptools'],
+    install_requires=['setuptools', 'tf_transformations'],
     zip_safe=True,
     maintainer='',
     maintainer_email='',
@@ -60,6 +60,7 @@ setup(
             'go2_state = go2_control.go2_state:main',
             'vslam_odom_node = go2_control.vslam_odom_node:main',
             'base_to_base_tf = go2_control.base_to_base_tf:main',
+            'initial_pose_set = go2_control.initial_pose_set:main',
         ],
     },
 )

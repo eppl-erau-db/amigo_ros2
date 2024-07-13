@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/build/go2_interfaces/rosidl_typesupport_fastrtps_c/go2_interfaces/msg/detail/go2_rpy_cmd__rosidl_typesupport_fastrtps_c.h

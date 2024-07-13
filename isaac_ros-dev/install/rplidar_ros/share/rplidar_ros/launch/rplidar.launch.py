@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/src/rplidar_ros2/launch/rplidar.launch.py

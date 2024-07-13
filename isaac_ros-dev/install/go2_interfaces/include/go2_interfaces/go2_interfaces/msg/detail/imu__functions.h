@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/build/go2_interfaces/rosidl_generator_c/go2_interfaces/msg/detail/imu__functions.h

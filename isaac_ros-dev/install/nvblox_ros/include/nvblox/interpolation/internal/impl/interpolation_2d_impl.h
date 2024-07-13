@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/src/isaac_ros_nvblox/nvblox_ros/nvblox_core/nvblox/include/nvblox/interpolation/internal/impl/interpolation_2d_impl.h

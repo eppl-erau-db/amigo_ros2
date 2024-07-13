@@ -1,8 +1,0 @@
-source;share/unitree_ros2_example/hook/cmake_prefix_path.ps1
-source;share/unitree_ros2_example/hook/cmake_prefix_path.dsv
-source;share/unitree_ros2_example/hook/cmake_prefix_path.sh
-source;share/unitree_ros2_example/local_setup.bash
-source;share/unitree_ros2_example/local_setup.dsv
-source;share/unitree_ros2_example/local_setup.ps1
-source;share/unitree_ros2_example/local_setup.sh
-source;share/unitree_ros2_example/local_setup.zsh

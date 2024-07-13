@@ -1,1 +1,0 @@
-/workspaces/isaac_ros-dev/src/realsense-ros/realsense2_camera/include/t265_realsense_node.h

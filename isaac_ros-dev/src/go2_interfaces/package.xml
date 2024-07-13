@@ -4,7 +4,7 @@
   <name>go2_interfaces</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="abizov94@gmail.com">brimo</maintainer>
+  <maintainer email="jcass358@gmail.com">brimo</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
