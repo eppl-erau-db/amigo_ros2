@@ -4,3 +4,6 @@ string task_type
 ---
 # Result definition
 bool success
+
+---
+
