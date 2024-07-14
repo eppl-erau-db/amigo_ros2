@@ -55,13 +55,13 @@ def generate_launch_description():
     poses_save_path = LaunchConfiguration('poses_save_path')
 
     # Paths to necessary files
-    urdf_path = str(get_package_share_path('go2_description') / 'urdf' / 'go2_nav2_nvblox.urdf')
-    nav2_config = str(get_package_share_path('go2_description') / 'config' / 'nav2_nvblox_params.yaml')
-    slam_toolbox_config = str(get_package_share_path('go2_description') / 'config' / 'slam_toolbox_params.yaml')
+    urdf_path = os.path.join(get_package_share_path('go2_description'), 'urdf', 'go2_nav2_nvblox.urdf')
+    nav2_config = os.path.join(get_package_share_path('go2_description'), 'config', 'nav2_nvblox_params.yaml')
+    slam_toolbox_config = os.path.join(get_package_share_path('go2_description'), 'config', 'slam_toolbox_params.yaml')
     
     # Conditional paths for rviz config
-    rviz_config_path_mapping = str(get_package_share_path('go2_description') / 'config' / 'go2_urdf_config.rviz')
-    rviz_config_path_pose_collection = str(get_package_share_path('go2_description') / 'config' / 'nav_nvblox_config.rviz')
+    rviz_config_path_mapping = os.path.join(get_package_share_path('go2_description'), 'config', 'go2_urdf_config.rviz')
+    rviz_config_path_pose_collection = os.path.join(get_package_share_path('go2_description'), 'config', 'nav_nvblox_config.rviz')
 
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
 
@@ -136,7 +136,7 @@ def generate_launch_description():
         executable='ekf_node',
         name='ekf_filter_node',
         output='screen',
-        parameters=[str(get_package_share_path('go2_description') / 'config' / 'ekf.yaml')],
+        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
         remappings=[('/odometry/filtered', '/odom')]
     )
 
@@ -158,14 +158,14 @@ def generate_launch_description():
     )
 
     map_file = PathJoinSubstitution([
-        str(get_package_share_path('go2_description')),
+        get_package_share_path('go2_description'),
         'maps',
         map_name
     ])
 
     # IncludeLaunchDescription for realsense_example.launch.py
     realsense_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([str(get_package_share_directory('nvblox_examples_bringup') / 'launch' / 'realsense_example.launch.py')]),
+        PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
         launch_arguments={
             'mode': 'dynamic',
             'visualization': visualization,
@@ -174,7 +174,7 @@ def generate_launch_description():
 
     # Conditional Launch for Navigation and SLAM
     navigation_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([str(get_package_share_path('nav2_bringup') / 'launch' / 'navigation_launch.py')]),
+        PythonLaunchDescriptionSource([os.path.join(get_package_share_path('nav2_bringup'), 'launch', 'navigation_launch.py')]),
         launch_arguments={
             'params_file': nav2_config,
             'use_sim_time': use_sim_time,
@@ -183,7 +183,7 @@ def generate_launch_description():
     )
 
     slam_toolbox_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([str(get_package_share_path('slam_toolbox') / 'launch' / 'online_async_launch.py')]),
+        PythonLaunchDescriptionSource([os.path.join(get_package_share_path('slam_toolbox'), 'launch', 'online_async_launch.py')]),
         launch_arguments={
             'params_file': slam_toolbox_config, 
             'use_sim_time': use_sim_time,
@@ -192,7 +192,7 @@ def generate_launch_description():
     )
 
     pose_collection_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([str(get_package_share_path('nav2_bringup') / 'launch' / 'bringup_launch.py')]),
+        PythonLaunchDescriptionSource([os.path.join(get_package_share_path('nav2_bringup'), 'launch', 'bringup_launch.py')]),
         launch_arguments={
             'params_file': nav2_config,
             'use_sim_time': use_sim_time,
