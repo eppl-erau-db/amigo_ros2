@@ -15,13 +15,13 @@ slam_toolbox:
     base_frame: base_footprint
     scan_topic: /scan
     use_map_saver: true
-    mode: mapping #localization
+    mode: localization
 
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
     # will use pose
-    #map_file_name: maps/my_map_serialized
-    #map_start_pose: [0.0, 0.0, 0.0]
+    #map_file_name: src/go2_description/maps/lab_serialized
+    map_start_pose: [0.0, 0.0, 0.0]
     #map_start_at_dock: true
 
     debug_logging: false

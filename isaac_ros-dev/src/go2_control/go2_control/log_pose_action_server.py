@@ -19,7 +19,7 @@ class LogPoseActionServer(Node):
         self.current_pose = Pose()  # Initialize with a default Pose object
         self.pose_subscription = self.create_subscription(
             PoseWithCovarianceStamped,
-            '/amcl_pose',
+            '/slam_toolbox_pose',
             self.pose_callback,
             10
         )
@@ -44,10 +44,10 @@ class LogPoseActionServer(Node):
         self.save_pose_log()
 
         # Print the current pose log
-        self.get_logger().info('Current Pose Log:')
-        for i, pose in enumerate(self.pose_log):
-            self.get_logger().info(f'Pose {i+1}: Position(x={pose.position.x}, y={pose.position.y}, z={pose.position.z}), '
-                                   f'Orientation(x={pose.orientation.x}, y={pose.orientation.y}, z={pose.orientation.z}, w={pose.orientation.w})')
+        # self.get_logger().info('Current Pose Log:')
+        # for i, pose in enumerate(self.pose_log):
+        #     self.get_logger().info(f'Pose {i+1}: Position(x={pose.position.x}, y={pose.position.y}, z={pose.position.z}), '
+        #                            f'Orientation(x={pose.orientation.x}, y={pose.orientation.y}, z={pose.orientation.z}, w={pose.orientation.w})')
 
         goal_handle.succeed()
         return LogPose.Result(success=True)

@@ -79,6 +79,17 @@ def generate_launch_description():
         'mapper_params_online_async.yaml'
     )
 
+    slam_toolbox = Node(
+        package='slam_toolbox',
+        executable='async_slam_toolbox_node',
+        name='slam_toolbox',
+        output='screen',
+        parameters=[slam_toolbox_config],
+        remappings=[
+            ('pose', '/slam_toolbox_pose')
+        ]
+    )
+
     nav2_config = os.path.join(
         get_package_share_directory('go2_description'),
         'config',
@@ -92,6 +103,14 @@ def generate_launch_description():
         output='screen',
         parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
         remappings=[('/odometry/filtered', '/odom')]
+    )
+
+    log_pose_action_server_node = Node(
+        package='go2_control',
+        executable='log_pose_action_server',
+        name='log_pose_action_server',
+        output='screen',
+        parameters=[{'save_path': 'pose_log.json'}],
     )
 
     return LaunchDescription([
@@ -118,14 +137,8 @@ def generate_launch_description():
                 'use_sim_time': use_sim_time,
             }.items(),
         ),
-
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('slam_toolbox'), 'launch', 'online_async_launch.py')]),
-            launch_arguments={
-                'params_file': slam_toolbox_config, 
-                'use_sim_time': use_sim_time,
-            }.items(),
-        ),
+        slam_toolbox,
+        log_pose_action_server_node,
 
         # rviz2_node
     ])
