@@ -14,11 +14,7 @@ find_package(rosidl_default_generators REQUIRED)
 
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-  "msg/Go2Cmd.msg"
-  "msg/Go2State.msg"
-  "msg/Go2Move.msg"
-  "msg/Go2RpyCmd.msg"
-  "msg/IMU.msg"
+  "action/LogPose.action"
 
   DEPENDENCIES geometry_msgs # Add packages that above messages depend on, in this case geometry_msgs for Sphere.msg
 )
