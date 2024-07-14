@@ -3,7 +3,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch_ros.actions import Node
 from launch.conditions import IfCondition
-from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution, LaunchConfigurationEquals
+from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution, PythonExpression
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from ament_index_python.packages import get_package_share_path, get_package_share_directory
 from launch_ros.parameter_descriptions import ParameterValue
@@ -74,7 +74,7 @@ def generate_launch_description():
     )
 
     rviz2_node_pose = Node(
-        condition=IfCondition(LaunchConfigurationEquals('mode', 'pose_collection') & LaunchConfigurationEquals('use_rviz', 'true')),
+        condition=IfCondition(PythonExpression(['"', mode, '" == "pose_collection" and "', use_rviz, '" == "true"'])),
         package='rviz2',
         executable='rviz2',
         arguments=['-d', rviz_config_path_pose_collection],
@@ -82,7 +82,7 @@ def generate_launch_description():
     )
 
     rviz2_node_map = Node(
-        condition=IfCondition(LaunchConfigurationEquals('mode', 'mapping') & LaunchConfigurationEquals('use_rviz', 'true')),
+        condition=IfCondition(PythonExpression(['"', mode, '" == "mapping" and "', use_rviz, '" == "true"'])),
         package='rviz2',
         executable='rviz2',
         arguments=['-d', rviz_config_path_mapping],
@@ -145,7 +145,7 @@ def generate_launch_description():
         executable='initial_pose_set',
         name='initial_pose_set',
         output='screen',
-        condition=IfCondition(LaunchConfigurationEquals('mode', 'pose_collection'))
+        condition=IfCondition(PythonExpression(['"', mode, '" == "pose_collection"']))
     )
 
     log_pose_action_server_node = Node(
@@ -154,7 +154,7 @@ def generate_launch_description():
         name='log_pose_action_server',
         output='screen',
         parameters=[{'save_path': poses_save_path}],
-        condition=IfCondition(LaunchConfigurationEquals('mode', 'pose_collection'))
+        condition=IfCondition(PythonExpression(['"', mode, '" == "pose_collection"']))
     )
 
     map_file = PathJoinSubstitution([
@@ -179,7 +179,7 @@ def generate_launch_description():
             'params_file': nav2_config,
             'use_sim_time': use_sim_time,
         }.items(),
-        condition=IfCondition(LaunchConfigurationEquals('mode', 'mapping'))
+        condition=IfCondition(PythonExpression(['"', mode, '" == "mapping"']))
     )
 
     slam_toolbox_launch = IncludeLaunchDescription(
@@ -188,7 +188,7 @@ def generate_launch_description():
             'params_file': slam_toolbox_config, 
             'use_sim_time': use_sim_time,
         }.items(),
-        condition=IfCondition(LaunchConfigurationEquals('mode', 'mapping'))
+        condition=IfCondition(PythonExpression(['"', mode, '" == "mapping"']))
     )
 
     pose_collection_launch = IncludeLaunchDescription(
@@ -198,7 +198,7 @@ def generate_launch_description():
             'use_sim_time': use_sim_time,
             'map': map_file,
         }.items(),
-        condition=IfCondition(LaunchConfigurationEquals('mode', 'pose_collection'))
+        condition=IfCondition(PythonExpression(['"', mode, '" == "pose_collection"']))
     )
 
     return LaunchDescription([
