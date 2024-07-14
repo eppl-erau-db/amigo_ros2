@@ -74,7 +74,7 @@ def generate_launch_description():
     )
 
     rviz2_node_pose = Node(
-        condition=IfCondition(LaunchConfiguration('use_rviz')) & IfCondition(mode=='pose_collection'),
+        condition=IfCondition(use_rviz and (mode == 'pose_collection')),
         package='rviz2',
         executable='rviz2',
         arguments=['-d', rviz_config_path_pose_collection],
@@ -82,7 +82,7 @@ def generate_launch_description():
     )
 
     rviz2_node_map = Node(
-        condition=IfCondition(LaunchConfiguration('use_rviz')) & IfCondition(mode=='mapping'),
+        condition=IfCondition(use_rviz and (mode == 'mapping')),
         package='rviz2',
         executable='rviz2',
         arguments=['-d', rviz_config_path_mapping],
