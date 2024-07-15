@@ -175,7 +175,7 @@ controller_server:
       GoalAlign.forward_point_distance: 0.1
       PathDist.scale: 30.0 #changed 32.0
       GoalDist.scale: 24.0 
-      RotateToGoal.scale: 25.0 # changed 32.0
+      RotateToGoal.scale: 32.0 
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
 
