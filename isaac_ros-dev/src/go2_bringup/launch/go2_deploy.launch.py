@@ -81,8 +81,8 @@ def generate_launch_description():
         default_value=os.path.join(
             get_package_share_path('go2_description'),
             'maps',
-            'lab.yaml'
-            #'first_floor_coas.yaml'
+            #'lab.yaml'
+            'first_floor_coas.yaml'
         ),
         description='Full path to the map file to load'
     )
@@ -143,6 +143,6 @@ def generate_launch_description():
             }.items(),
         ),
 
-        rviz2_node,
-        set_initial_pose
+        #rviz2_node,
+        #set_initial_pose
     ])

@@ -64,6 +64,7 @@ setup(
             'log_pose_action_client = go2_control.log_pose_action_client:main',
             'log_pose_action_server = go2_control.log_pose_action_server:main',
             'task_nav_test = go2_control.task_nav_test:main',
+            'spin_robot = go2_control.spin_robot:SpinRobot',
         ],
     },
 )
