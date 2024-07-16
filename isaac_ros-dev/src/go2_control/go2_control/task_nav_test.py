@@ -7,28 +7,47 @@ from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Path
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 import rclpy
-from go2_control.spin_robot import SpinRobot, spin_180_degrees  # Import the SpinRobot class and spin function
+from rclpy.action import ActionClient
+from nav2_msgs.action import Spin
+from builtin_interfaces.msg import Duration
+import math
 
-def perform_task_at_pose(task_pose, spin_robot):
+
+def perform_task_at_pose(task_pose):
     # Placeholder for performing the task
     # Implement the actual task logic here
     print(f"Performing task at pose: ({task_pose.pose.position.x}, {task_pose.pose.position.y})")
     time.sleep(5)  # Simulate task execution with a 5-second delay
     print("Task completed")
-    
-    # Spin 180 degrees
-    print("Spinning 180 degrees...")
-    spin_180_degrees(spin_robot)
-    print("Spin completed")
+
+def spin_robot(navigator, yaw_degrees=180, time_allowance_sec=30):
+    action_client = ActionClient(navigator, Spin, 'spin')
+
+    if not action_client.wait_for_server(timeout_sec=10.0):
+        navigator.get_logger().error('Spin action server not available')
+        return
+
+    goal_msg = Spin.Goal()
+    goal_msg.target_yaw = math.radians(yaw_degrees)  # Convert degrees to radians
+    goal_msg.time_allowance = Duration(sec=time_allowance_sec)
+
+    future = action_client.send_goal_async(goal_msg)
+    rclpy.spin_until_future_complete(navigator, future)
+
+    if future.result() is not None:
+        navigator.get_logger().info('Spin action goal accepted.')
+        result_future = future.result().get_result_async()
+        rclpy.spin_until_future_complete(navigator, result_future)
+        return result_future.result().status
+    else:
+        navigator.get_logger().error('Spin action goal rejected.')
+        return None
 
 def main():
     rclpy.init()
 
     navigator = BasicNavigator()
-
-    # Create the SpinRobot node instance
-    spin_robot = SpinRobot()
-
+  
     # Load the pose log from JSON file
     with open('pose_log.json', 'r') as f:
         pose_log = json.load(f)
@@ -70,9 +89,6 @@ def main():
                 path_msg.header.stamp = navigator.get_clock().now().to_msg()
                 path_msg.header.frame_id = 'map'
                 path_msg.poses = path_segment
-                
-                #print path_msg for debugging
-                print(path_msg)
 
                 # Smooth and follow the path segment
                 smoothed_path = navigator.smoothPath(path_msg)
@@ -93,7 +109,12 @@ def main():
             result = navigator.getResult()
             if result == TaskResult.SUCCEEDED:
                 print('Navigation to task pose succeeded')
-                perform_task_at_pose(task_pose, spin_robot)
+                perform_task_at_pose(task_pose)
+                spin_result = spin_robot(navigator)
+                if spin_result is not None and spin_result == TaskResult.SUCCEEDED:
+                    print('Spin succeeded')
+                else:
+                    print('Spin failed or was rejected')
             elif result == TaskResult.CANCELED:
                 print('Navigation to task pose was canceled')
             elif result == TaskResult.FAILED:
@@ -121,8 +142,6 @@ def main():
     while not navigator.isTaskComplete():
         pass
 
-    # Shutdown the spin_robot node
-    spin_robot.destroy_node()
     rclpy.shutdown()
 
     exit(0)
