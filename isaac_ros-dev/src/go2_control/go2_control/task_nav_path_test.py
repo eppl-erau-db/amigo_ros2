@@ -20,6 +20,7 @@ def perform_task_at_pose(task_pose):
     time.sleep(5)  # Simulate task execution with a 5-second delay
     print("Task completed")
 
+
 def spin_robot(navigator, yaw_degrees=180, time_allowance_sec=30):
     action_client = ActionClient(navigator, Spin, 'spin')
 
@@ -43,11 +44,12 @@ def spin_robot(navigator, yaw_degrees=180, time_allowance_sec=30):
         navigator.get_logger().error('Spin action goal rejected.')
         return None
 
+
 def main():
     rclpy.init()
 
     navigator = BasicNavigator()
-  
+
     # Load the pose log from JSON file
     with open('pose_log.json', 'r') as f:
         pose_log = json.load(f)
@@ -67,9 +69,8 @@ def main():
 
     # Initialize a variable to hold the path segment
     path_segment = []
-
+    pose = PoseStamped()
     for entry in pose_log:
-        pose = PoseStamped()
         pose.header.stamp = navigator.get_clock().now().to_msg()
         pose.header.frame_id = 'map'
         pose.pose.position.x = entry["position"]["x"]
@@ -82,6 +83,7 @@ def main():
 
         if entry["task_type"] == "normal":
             path_segment.append(deepcopy(pose))
+            print(f"Added pose to path_segment: {pose}")
         else:
             if path_segment:
                 # Create a Path message
@@ -90,9 +92,11 @@ def main():
                 path_msg.header.frame_id = 'map'
                 path_msg.poses = path_segment
 
-                # Smooth and follow the path segment
-                smoothed_path = navigator.smoothPath(path_msg)
-                navigator.followPath(smoothed_path)
+                print(f"Following path segment with {len(path_segment)} poses.")
+                print(f"Path segment {path_segment} ")
+                
+                # Follow the raw path segment
+                navigator.followPath(path_msg)
                 while not navigator.isTaskComplete():
                     feedback = navigator.getFeedback()
                     if feedback:
@@ -129,8 +133,8 @@ def main():
         path_msg.header.stamp = navigator.get_clock().now().to_msg()
         path_msg.poses = path_segment
         
-        smoothed_path = navigator.smoothPath(path_msg)
-        navigator.followPath(smoothed_path)
+        print(f"Following final path segment with {len(path_segment)} poses.")
+        navigator.followPath(path_msg)
         while not navigator.isTaskComplete():
             feedback = navigator.getFeedback()
             if feedback:

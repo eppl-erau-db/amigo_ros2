@@ -135,7 +135,7 @@ controller_server:
       stateful: True
       plugin: "nav2_controller::SimpleGoalChecker"
       xy_goal_tolerance: 0.25
-      yaw_goal_tolerance: 0.20 # chaged 0.25
+      yaw_goal_tolerance: 0.25 # chaged 0.25
     # DWB parameters
     FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
@@ -169,13 +169,13 @@ controller_server:
       stateful: True
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
       BaseObstacle.scale: 0.03 # changed 0.02
-      PathAlign.scale: 30.0 # changed 32.0
+      PathAlign.scale: 32.0 # changed 32.0
       PathAlign.forward_point_distance: 0.1
-      GoalAlign.scale: 22.0 #changed 24.0
+      GoalAlign.scale: 24.0 #changed 24.0
       GoalAlign.forward_point_distance: 0.1
-      PathDist.scale: 30.0 #changed 32.0
+      PathDist.scale: 32.0 #changed 32.0
       GoalDist.scale: 24.0 
-      RotateToGoal.scale: 05.0 #changed 32.0
+      RotateToGoal.scale: 60.0 #changed 32.0
       RotateToGoal.slowing_factor: 3.0 #changed 5.0
       RotateToGoal.lookahead_time: -1.0
 

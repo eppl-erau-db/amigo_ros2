@@ -1,6 +1,7 @@
 import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, LogInfo
+from launch.conditions import IfCondition
 from launch_ros.actions import Node
 from launch.substitutions import Command, LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -11,8 +12,29 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     urdf_path = os.path.join(get_package_share_path('go2_description'), 'urdf', 'go2_nav2_nvblox.urdf')
     rviz_config_path = os.path.join(get_package_share_path('go2_description'), 'config', 'nav_nvblox_config.rviz')
+    map_file = LaunchConfiguration('map_file', default=os.path.join(get_package_share_path('go2_description'), 'maps', 'first_floor_coas.yaml'))
+    rviz = LaunchConfiguration('rviz', default='false')
+    visualization = LaunchConfiguration('visualization', default='true')
     
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
+
+    declare_map_file_cmd = DeclareLaunchArgument(
+        'map_file',
+        default_value=os.path.join(get_package_share_path('go2_description'), 'maps', 'first_floor_coas.yaml'),
+        description='Full path to the map file to load'
+    )
+
+    declare_rviz_cmd = DeclareLaunchArgument(
+        'rviz',
+        default_value='false',
+        description='Whether to start RViz'
+    )
+
+    declare_visualization_cmd = DeclareLaunchArgument(
+        'visualization',
+        default_value='true',
+        description='Enable or disable visualization.'
+    )
 
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
@@ -25,7 +47,8 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         arguments=['-d', rviz_config_path],
-        output='screen'
+        output='screen',
+        condition=IfCondition(rviz)
     )
 
     state_publisher_node = Node(
@@ -76,19 +99,6 @@ def generate_launch_description():
         'nav2_nvblox_params.yaml'
     )
 
-    map_file_arg = DeclareLaunchArgument(
-        'map_file',
-        default_value=os.path.join(
-            get_package_share_path('go2_description'),
-            'maps',
-            #'lab.yaml'
-            'first_floor_coas.yaml'
-        ),
-        description='Full path to the map file to load'
-    )
-
-    map_file = LaunchConfiguration('map_file')
-
     robot_localization_node = Node(
         package='robot_localization',
         executable='ekf_node',
@@ -98,15 +108,6 @@ def generate_launch_description():
         remappings=[('/odometry/filtered', '/odom')]
     )
 
-    # robot_localization_node_map = Node(
-    #     package='robot_localization',
-    #     executable='ekf_node',
-    #     name='ekf_filter_node_map',
-    #     output='screen',
-    #     parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf_global.yaml')],
-    #     remappings=[('/odometry/filtered', '/odom')]
-    # )
-
     set_initial_pose = Node(
         package='go2_control',
         executable='initial_pose_set',
@@ -115,25 +116,23 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        map_file_arg,
+        declare_map_file_cmd,
+        declare_rviz_cmd,
+        declare_visualization_cmd,
         base_footprint_to_base_link_tf,
         cam_imu_tf,
         robot_state_publisher_node,
         robot_localization_node,
-        # robot_localization_node_map,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
             launch_arguments={
                 'mode': 'dynamic',
-                'visualization': 'false',
-                # 'people_segmentation': 'peoplesemsegnet_shuffleseg',
+                'visualization': visualization,
             }.items(),
         ),
-
         state_publisher_node,
         go2_driver_node,
         lidar_node,
-
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_path('nav2_bringup'), 'launch', 'bringup_launch.py')]),
             launch_arguments={
@@ -142,7 +141,6 @@ def generate_launch_description():
                 'map': map_file,
             }.items(),
         ),
-
-        #rviz2_node,
-        #set_initial_pose
+        rviz2_node,
+        set_initial_pose,
     ])
