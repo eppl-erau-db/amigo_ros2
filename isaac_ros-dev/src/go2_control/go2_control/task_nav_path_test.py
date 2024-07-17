@@ -17,12 +17,28 @@ def perform_task_at_pose(task_pose):
     print("Task completed")
 
 
-def handle_task_failure(navigator, task_pose):
+def handle_task_failure(navigator, goal_pose, is_last_pose=False):
     while True:
         print("Task failed. Initiating assisted teleop.")
         navigator.assistedTeleop(time_allowance=5)
         print("Assisted teleop complete. Retrying task.")
-        navigator.goToPose(task_pose)
+
+        if is_last_pose:
+            # Create a path from current pose to goal, smooth it, and navigate
+            start_pose = navigator.getCurrentPose()
+            path = navigator.getPath(start_pose, goal_pose, use_start=False)
+            if path:
+                smoothed_path = navigator.smoothPath(path, check_for_collision=False)
+                if smoothed_path:
+                    navigator.followPath(smoothed_path)
+                else:
+                    print("Failed to smooth path")
+            else:
+                print("Failed to get path")
+        else:
+            # Go to pose directly
+            navigator.goToPose(goal_pose)
+
         while not navigator.isTaskComplete():
             feedback = navigator.getFeedback()
             if feedback:
@@ -42,7 +58,6 @@ def main():
     rclpy.init()
 
     navigator = BasicNavigator()
-    wireless_control = WirelessControl()
 
     # Load the pose log from JSON file
     with open('pose_log.json', 'r') as f:
@@ -80,7 +95,7 @@ def main():
         else:
             if path_segment:
                 # Use getPathThroughPoses to get the path
-                path = navigator.getPathThroughPoses(initial_pose, path_segment, use_start=False)
+                path = navigator.getPathThroughPoses(navigator.getCurrentPose(), path_segment, use_start=False)
                 if path:
                     # Use smoothPath to smooth the path
                     smoothed_path = navigator.smoothPath(path, check_for_collision=False)
@@ -105,13 +120,12 @@ def main():
                             print('Goal was canceled!')
                         elif result == TaskResult.FAILED:
                             print('Goal failed!')
-                            result = handle_task_failure(navigator, pose)
+                            last_pose = path_segment[-1]  # Last pose in the segment
+                            result = handle_task_failure(navigator, last_pose, is_last_pose=True)
                             if result == TaskResult.SUCCEEDED:
                                 print('Retry succeeded!')
                             else:
                                 print('Retry has failed')
-                        else:
-                            print('Goal has an invalid return status!')
                 path_segment = []
 
             # Handle the task pose
@@ -164,7 +178,7 @@ def main():
 
     # Follow any remaining path segment
     if path_segment:
-        path = navigator.getPathThroughPoses(initial_pose, path_segment, use_start=False)
+        path = navigator.getPathThroughPoses(navigator.getCurrentPose(), path_segment, use_start=False)
         if path:
             smoothed_path = navigator.smoothPath(path, check_for_collision=False)
             if smoothed_path:
@@ -188,7 +202,8 @@ def main():
                     print('Goal was canceled!')
                 elif result == TaskResult.FAILED:
                     print('Goal failed!')
-                    result = handle_task_failure(navigator, initial_pose)
+                    last_pose = path_segment[-1]  # Last pose in the segment
+                    result = handle_task_failure(navigator, last_pose, is_last_pose=True)
                     if result == TaskResult.SUCCEEDED:
                         print('Retry succeeded!')
                     else:
@@ -201,6 +216,7 @@ def main():
         pass
 
     rclpy.shutdown()
+
     exit(0)
 
 
