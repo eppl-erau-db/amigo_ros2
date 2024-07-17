@@ -6,6 +6,7 @@ from copy import deepcopy
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 import rclpy
+from go2_control.go2_velocity_commands import WirelessControl
 
 
 def perform_task_at_pose(task_pose):
@@ -16,10 +17,32 @@ def perform_task_at_pose(task_pose):
     print("Task completed")
 
 
+def handle_task_failure(navigator, task_pose):
+    while True:
+        print("Task failed. Initiating assisted teleop.")
+        navigator.assistedTeleop(time_allowance=5)
+        print("Assisted teleop complete. Retrying task.")
+        navigator.goToPose(task_pose)
+        while not navigator.isTaskComplete():
+            feedback = navigator.getFeedback()
+            if feedback:
+                print('Retrying task at pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
+        result = navigator.getResult()
+        if result == TaskResult.SUCCEEDED:
+            return TaskResult.SUCCEEDED
+        elif result == TaskResult.CANCELED:
+            print('Retry was canceled!')
+        elif result == TaskResult.FAILED:
+            print('Retry failed!')
+        else:
+            print('Retry has an invalid return status!')
+
+
 def main():
     rclpy.init()
 
     navigator = BasicNavigator()
+    wireless_control = WirelessControl()
 
     # Load the pose log from JSON file
     with open('pose_log.json', 'r') as f:
@@ -82,6 +105,11 @@ def main():
                             print('Goal was canceled!')
                         elif result == TaskResult.FAILED:
                             print('Goal failed!')
+                            result = handle_task_failure(navigator, pose)
+                            if result == TaskResult.SUCCEEDED:
+                                print('Retry succeeded!')
+                            else:
+                                print('Retry has failed')
                         else:
                             print('Goal has an invalid return status!')
                 path_segment = []
@@ -102,6 +130,12 @@ def main():
                     print('Navigation to task pose was canceled')
                 elif result == TaskResult.FAILED:
                     print('Navigation to task pose failed')
+                    result = handle_task_failure(navigator, task_pose)
+                    if result == TaskResult.SUCCEEDED:
+                        print('Retry succeeded!')
+                        perform_task_at_pose(task_pose)
+                    else:
+                        print('Retry failed!')
                 else:
                     print('Navigation to task pose has an invalid return status')
             elif entry["task_type"] == "exit_pose":
@@ -118,10 +152,16 @@ def main():
                     print('Navigation to exit pose was canceled')
                 elif result == TaskResult.FAILED:
                     print('Navigation to exit pose failed')
+                    result = handle_task_failure(navigator, exit_pose)
+                    if result == TaskResult.SUCCEEDED:
+                        print('Retry succeeded!')
+                    else:
+                        print('Retry has failed')
                 else:
                     print('Navigation to exit pose has an invalid return status')
             else:
                 print('Task type invalid')
+
     # Follow any remaining path segment
     if path_segment:
         path = navigator.getPathThroughPoses(initial_pose, path_segment, use_start=False)
@@ -148,8 +188,11 @@ def main():
                     print('Goal was canceled!')
                 elif result == TaskResult.FAILED:
                     print('Goal failed!')
-                else:
-                    print('Goal has an invalid return status!')
+                    result = handle_task_failure(navigator, initial_pose)
+                    if result == TaskResult.SUCCEEDED:
+                        print('Retry succeeded!')
+                    else:
+                        print('Retry has failed!')
 
     # Go back to start
     initial_pose.header.stamp = navigator.get_clock().now().to_msg()
@@ -158,8 +201,8 @@ def main():
         pass
 
     rclpy.shutdown()
-
     exit(0)
+
 
 if __name__ == '__main__':
     main()

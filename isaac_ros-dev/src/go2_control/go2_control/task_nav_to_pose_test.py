@@ -6,6 +6,7 @@ from copy import deepcopy
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 import rclpy
+from go2_control.go2_velocity_commands import WirelessControl
 
 
 def perform_task_at_pose(task_pose):
@@ -14,6 +15,27 @@ def perform_task_at_pose(task_pose):
     print(f"Performing task at pose: ({task_pose.pose.position.x}, {task_pose.pose.position.y})")
     time.sleep(5)  # Simulate task execution with a 5-second delay
     print("Task completed")
+
+
+def handle_task_failure(navigator, task_pose):
+    while True:
+        print("Task failed. Initiating assisted teleop.")
+        navigator.assistedTeleop(time_allowance=5)
+        print("Assisted teleop complete. Retrying task.")
+        navigator.goToPose(task_pose)
+        while not navigator.isTaskComplete():
+            feedback = navigator.getFeedback()
+            if feedback:
+                print('Retrying task at pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
+        result = navigator.getResult()
+        if result == TaskResult.SUCCEEDED:
+            return TaskResult.SUCCEEDED
+        elif result == TaskResult.CANCELED:
+            print('Retry was canceled!')
+        elif result == TaskResult.FAILED:
+            print('Retry failed!')
+        else:
+            print('Retry has an invalid return status!')
 
 
 def main():
@@ -57,27 +79,32 @@ def main():
         else:
             if path_segment:
                 # Use goThroughPoses to navigate through the poses
-                if navigator.goThroughPoses(path_segment):
-                    i = 0
-                    while not navigator.isTaskComplete():
-                        i += 1
-                        feedback = navigator.getFeedback()
-                        if feedback and i % 5 == 0:
-                            print(
-                                'Estimated distance remaining to goal position: '
-                                + '{0:.3f}'.format(feedback.distance_to_goal)
-                                + '\nCurrent speed of the robot: '
-                                + '{0:.3f}'.format(feedback.speed)
-                            )
-                    result = navigator.getResult()
+                navigator.goThroughPoses(path_segment)
+                i = 0
+                while not navigator.isTaskComplete():
+                    i += 1
+                    feedback = navigator.getFeedback()
+                    if feedback and i % 5 == 0:
+                        print(
+                            'Estimated distance remaining to goal position: '
+                            + '{0:.3f}'.format(feedback.distance_to_goal)
+                            + '\nCurrent speed of the robot: '
+                            + '{0:.3f}'.format(feedback.speed)
+                        )
+                result = navigator.getResult()
+                if result == TaskResult.SUCCEEDED:
+                    print('Goal succeeded!')
+                elif result == TaskResult.CANCELED:
+                    print('Goal was canceled!')
+                elif result == TaskResult.FAILED:
+                    print('Goal failed!')
+                    result = handle_task_failure(navigator, path_segment[-1])
                     if result == TaskResult.SUCCEEDED:
-                        print('Goal succeeded!')
-                    elif result == TaskResult.CANCELED:
-                        print('Goal was canceled!')
-                    elif result == TaskResult.FAILED:
-                        print('Goal failed!')
+                        print('Retry succeeded!')
                     else:
-                        print('Goal has an invalid return status!')
+                        print('Retry has failed')
+                else:
+                    print('Goal has an invalid return status!')
                 path_segment = []
 
             # Handle the task pose
@@ -96,6 +123,12 @@ def main():
                     print('Navigation to task pose was canceled')
                 elif result == TaskResult.FAILED:
                     print('Navigation to task pose failed')
+                    result = handle_task_failure(navigator, task_pose)
+                    if result == TaskResult.SUCCEEDED:
+                        print('Retry succeeded!')
+                        perform_task_at_pose(task_pose)
+                    else:
+                        print('Retry failed!')
                 else:
                     print('Navigation to task pose has an invalid return status')
             elif entry["task_type"] == "exit_pose":
@@ -112,6 +145,11 @@ def main():
                     print('Navigation to exit pose was canceled')
                 elif result == TaskResult.FAILED:
                     print('Navigation to exit pose failed')
+                    result = handle_task_failure(navigator, exit_pose)
+                    if result == TaskResult.SUCCEEDED:
+                        print('Retry succeeded!')
+                    else:
+                        print('Retry has failed')
                 else:
                     print('Navigation to exit pose has an invalid return status')
             else:
@@ -119,27 +157,30 @@ def main():
 
     # Follow any remaining path segment
     if path_segment:
-        if navigator.goThroughPoses(path_segment):
-            i = 0
-            while not navigator.isTaskComplete():
-                i += 1
-                feedback = navigator.getFeedback()
-                if feedback and i % 5 == 0:
-                    print(
-                        'Estimated distance remaining to goal position: '
-                        + '{0:.3f}'.format(feedback.distance_to_goal)
-                        + '\nCurrent speed of the robot: '
-                        + '{0:.3f}'.format(feedback.speed)
-                    )
-            result = navigator.getResult()
+        navigator.goThroughPoses(path_segment)
+        i = 0
+        while not navigator.isTaskComplete():
+            i += 1
+            feedback = navigator.getFeedback()
+            if feedback and i % 5 == 0:
+                print(
+                    'Estimated distance remaining to goal position: '
+                    + '{0:.3f}'.format(feedback.distance_to_goal)
+                    + '\nCurrent speed of the robot: '
+                    + '{0:.3f}'.format(feedback.speed)
+                )
+        result = navigator.getResult()
+        if result == TaskResult.SUCCEEDED:
+            print('Goal succeeded!')
+        elif result == TaskResult.CANCELED:
+            print('Goal was canceled!')
+        elif result == TaskResult.FAILED:
+            print('Goal failed!')
+            result = handle_task_failure(navigator, path_segment[-1])
             if result == TaskResult.SUCCEEDED:
-                print('Goal succeeded!')
-            elif result == TaskResult.CANCELED:
-                print('Goal was canceled!')
-            elif result == TaskResult.FAILED:
-                print('Goal failed!')
+                print('Retry succeeded!')
             else:
-                print('Goal has an invalid return status!')
+                print('Retry has failed')
 
     # Go back to start
     initial_pose.header.stamp = navigator.get_clock().now().to_msg()
@@ -150,6 +191,7 @@ def main():
     rclpy.shutdown()
 
     exit(0)
+
 
 if __name__ == '__main__':
     main()
