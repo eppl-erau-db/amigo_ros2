@@ -168,16 +168,16 @@ controller_server:
       short_circuit_trajectory_evaluation: True
       stateful: True
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
-      BaseObstacle.scale: 0.03 # changed 0.02
-      PathAlign.scale: 32.0 # changed 32.0
-      PathAlign.forward_point_distance: 0.1
-      GoalAlign.scale: 24.0 #changed 24.0
-      GoalAlign.forward_point_distance: 0.1
-      PathDist.scale: 32.0 #changed 32.0
+      BaseObstacle.scale: 1.0 # changed 0.02
+      PathAlign.scale: 20.0 # changed 32.0
+      PathAlign.forward_point_distance: 0.5
+      GoalAlign.scale: 30.0 #changed 24.0
+      GoalAlign.forward_point_distance: 0.5
+      PathDist.scale: 25.0 #changed 32.0
       GoalDist.scale: 24.0 
       RotateToGoal.scale: 60.0 #changed 32.0
       RotateToGoal.slowing_factor: 3.0 #changed 5.0
-      RotateToGoal.lookahead_time: -1.0
+      RotateToGoal.lookahead_time: 0.5
 
 local_costmap:
   local_costmap:
@@ -195,8 +195,8 @@ local_costmap:
       plugins: ['nvblox_layer', "inflation_layer", 'front_2d_lidar_layer'] #changed 'voxel_layer' to 'nvblox_layer' add or remove 'front_2d_lidar_layer'
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 6.0
-        inflation_radius: 0.4
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.30
       nvblox_layer:
         plugin: "nvblox::nav2::NvbloxCostmapLayer"
         enabled: True
@@ -293,8 +293,8 @@ global_costmap:
         map_subscribe_transient_local: True
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 6.0
-        inflation_radius: 0.4
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.30
       always_send_full_costmap: True
 
 map_server:

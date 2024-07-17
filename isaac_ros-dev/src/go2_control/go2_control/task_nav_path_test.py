@@ -60,7 +60,7 @@ def main():
                 path = navigator.getPathThroughPoses(initial_pose, path_segment, use_start=False)
                 if path:
                     # Use smoothPath to smooth the path
-                    smoothed_path = navigator.smoothPath(path, check_for_collision=True)
+                    smoothed_path = navigator.smoothPath(path, check_for_collision=False)
                     if smoothed_path:
                         print(f"Following smoothed path segment with {len(smoothed_path.poses)} poses.")
                         navigator.followPath(smoothed_path)

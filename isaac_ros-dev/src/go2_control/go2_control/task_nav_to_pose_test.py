@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 
 import json
 import time
@@ -6,10 +6,6 @@ from copy import deepcopy
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 import rclpy
-from rclpy.action import ActionClient
-from nav2_msgs.action import Spin
-from builtin_interfaces.msg import Duration
-import math
 
 
 def perform_task_at_pose(task_pose):
@@ -20,57 +16,32 @@ def perform_task_at_pose(task_pose):
     print("Task completed")
 
 
-def spin_robot(navigator, yaw_degrees=180, time_allowance_sec=30):
-    action_client = ActionClient(navigator, Spin, 'spin')
-
-    if not action_client.wait_for_server(timeout_sec=10.0):
-        navigator.get_logger().error('Spin action server not available')
-        return
-
-    goal_msg = Spin.Goal()
-    goal_msg.target_yaw = math.radians(yaw_degrees)  # Convert degrees to radians
-    goal_msg.time_allowance = Duration(sec=time_allowance_sec)
-
-    future = action_client.send_goal_async(goal_msg)
-    rclpy.spin_until_future_complete(navigator, future)
-
-    if future.result() is not None:
-        navigator.get_logger().info('Spin action goal accepted.')
-        result_future = future.result().get_result_async()
-        rclpy.spin_until_future_complete(navigator, result_future)
-        return result_future.result().status
-    else:
-        navigator.get_logger().error('Spin action goal rejected.')
-        return None
-
-
 def main():
     rclpy.init()
 
     navigator = BasicNavigator()
-    
+
     # Load the pose log from JSON file
     with open('pose_log.json', 'r') as f:
         pose_log = json.load(f)
 
     # Set our demo's initial pose
     initial_pose = PoseStamped()
-    initial_pose.header.frame_id = 'map'
     initial_pose.header.stamp = navigator.get_clock().now().to_msg()
+    initial_pose.header.frame_id = 'map'
     initial_pose.pose.position.x = 0.0
     initial_pose.pose.position.y = 0.0
     initial_pose.pose.orientation.z = 0.0
     initial_pose.pose.orientation.w = 1.0
-    # navigator.setInitialPose(initial_pose)
+    navigator.setInitialPose(initial_pose)
 
     # Wait for navigation to fully activate
     navigator.waitUntilNav2Active()
 
-    # Set up all poses (waypoints and task poses)
-    all_poses = []
+    # Initialize a variable to hold the path segment
+    path_segment = []
     pose = PoseStamped()
     for entry in pose_log:
-        
         pose.header.stamp = navigator.get_clock().now().to_msg()
         pose.header.frame_id = 'map'
         pose.pose.position.x = entry["position"]["x"]
@@ -81,36 +52,94 @@ def main():
         pose.pose.orientation.z = entry["orientation"]["z"]
         pose.pose.orientation.w = entry["orientation"]["w"]
 
-        all_poses.append(deepcopy(pose))
-
-    # Follow all poses in order, handling tasks when encountered
-    for pose in all_poses:
-        print(f"Going to pose: {pose.pose.position.x}, {pose.pose.position.y}")
-        navigator.goToPose(pose)
-        while not navigator.isTaskComplete():
-            feedback = navigator.getFeedback()
-            if feedback:
-                print('Navigating to pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
-
-        result = navigator.getResult()
-        if result == TaskResult.SUCCEEDED:
-            print('Reached pose successfully')
-            # Perform task if this pose is a task pose
-            for entry in pose_log:
-                if entry["position"]["x"] == pose.pose.position.x and entry["position"]["y"] == pose.pose.position.y:
-                    if entry["task_type"] == "task":
-                        perform_task_at_pose(pose)
-                        spin_result = spin_robot(navigator)
-                        if spin_result is not None and spin_result == TaskResult.SUCCEEDED:
-                            print('Spin succeeded')
-                        else:
-                            print('Spin failed or was rejected')
-        elif result == TaskResult.CANCELED:
-            print('Navigation to pose was canceled')
-        elif result == TaskResult.FAILED:
-            print('Navigation to pose failed')
+        if entry["task_type"] == "normal":
+            path_segment.append(deepcopy(pose))
         else:
-            print('Navigation to pose has an invalid return status')
+            if path_segment:
+                # Use goThroughPoses to navigate through the poses
+                if navigator.goThroughPoses(path_segment):
+                    i = 0
+                    while not navigator.isTaskComplete():
+                        i += 1
+                        feedback = navigator.getFeedback()
+                        if feedback and i % 5 == 0:
+                            print(
+                                'Estimated distance remaining to goal position: '
+                                + '{0:.3f}'.format(feedback.distance_to_goal)
+                                + '\nCurrent speed of the robot: '
+                                + '{0:.3f}'.format(feedback.speed)
+                            )
+                    result = navigator.getResult()
+                    if result == TaskResult.SUCCEEDED:
+                        print('Goal succeeded!')
+                    elif result == TaskResult.CANCELED:
+                        print('Goal was canceled!')
+                    elif result == TaskResult.FAILED:
+                        print('Goal failed!')
+                    else:
+                        print('Goal has an invalid return status!')
+                path_segment = []
+
+            # Handle the task pose
+            if entry["task_type"] == "task":
+                task_pose = deepcopy(pose)
+                navigator.goToPose(task_pose)
+                while not navigator.isTaskComplete():
+                    feedback = navigator.getFeedback()
+                    if feedback:
+                        print('Executing task at pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
+                result = navigator.getResult()
+                if result == TaskResult.SUCCEEDED:
+                    print('Navigation to task pose succeeded')
+                    perform_task_at_pose(task_pose)
+                elif result == TaskResult.CANCELED:
+                    print('Navigation to task pose was canceled')
+                elif result == TaskResult.FAILED:
+                    print('Navigation to task pose failed')
+                else:
+                    print('Navigation to task pose has an invalid return status')
+            elif entry["task_type"] == "exit_pose":
+                exit_pose = deepcopy(pose)
+                navigator.goToPose(exit_pose)
+                while not navigator.isTaskComplete():
+                    feedback = navigator.getFeedback()
+                    if feedback:
+                        print('Executing task at exit pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
+                result = navigator.getResult()
+                if result == TaskResult.SUCCEEDED:
+                    print('Navigation to exit pose succeeded')
+                elif result == TaskResult.CANCELED:
+                    print('Navigation to exit pose was canceled')
+                elif result == TaskResult.FAILED:
+                    print('Navigation to exit pose failed')
+                else:
+                    print('Navigation to exit pose has an invalid return status')
+            else:
+                print('Task type invalid')
+
+    # Follow any remaining path segment
+    if path_segment:
+        if navigator.goThroughPoses(path_segment):
+            i = 0
+            while not navigator.isTaskComplete():
+                i += 1
+                feedback = navigator.getFeedback()
+                if feedback and i % 5 == 0:
+                    print(
+                        'Estimated distance remaining to goal position: '
+                        + '{0:.3f}'.format(feedback.distance_to_goal)
+                        + '\nCurrent speed of the robot: '
+                        + '{0:.3f}'.format(feedback.speed)
+                    )
+            result = navigator.getResult()
+            if result == TaskResult.SUCCEEDED:
+                print('Goal succeeded!')
+            elif result == TaskResult.CANCELED:
+                print('Goal was canceled!')
+            elif result == TaskResult.FAILED:
+                print('Goal failed!')
+            else:
+                print('Goal has an invalid return status!')
 
     # Go back to start
     initial_pose.header.stamp = navigator.get_clock().now().to_msg()
@@ -121,7 +150,6 @@ def main():
     rclpy.shutdown()
 
     exit(0)
-
 
 if __name__ == '__main__':
     main()
