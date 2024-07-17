@@ -54,7 +54,6 @@ def main():
 
         if entry["task_type"] == "normal":
             path_segment.append(deepcopy(pose))
-            print(f"Added pose to path_segment: {pose}")
         else:
             if path_segment:
                 # Use getPathThroughPoses to get the path
@@ -88,7 +87,7 @@ def main():
                 path_segment = []
 
             # Handle the task pose
-            if entry["task_type"] == "pose":
+            if entry["task_type"] == "task":
                 task_pose = deepcopy(pose)
                 navigator.goToPose(task_pose)
                 while not navigator.isTaskComplete():
@@ -127,7 +126,7 @@ def main():
     if path_segment:
         path = navigator.getPathThroughPoses(initial_pose, path_segment, use_start=False)
         if path:
-            smoothed_path = navigator.smoothPath(path, check_for_collision=True)
+            smoothed_path = navigator.smoothPath(path, check_for_collision=False)
             if smoothed_path:
                 print(f"Following final smoothed path segment with {len(smoothed_path.poses)} poses.")
                 navigator.followPath(smoothed_path)

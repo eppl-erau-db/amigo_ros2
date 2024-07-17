@@ -40,14 +40,14 @@ def generate_launch_description():
         package='robot_state_publisher',
         executable='robot_state_publisher',
         parameters=[{'robot_description': robot_description}],
-        output='screen'
+        output='log'
     )
 
     rviz2_node = Node(
         package='rviz2',
         executable='rviz2',
         arguments=['-d', rviz_config_path],
-        output='screen',
+        output='log',
         condition=IfCondition(rviz)
     )
 
@@ -55,14 +55,14 @@ def generate_launch_description():
         package='go2_control',
         executable='go2_state',
         name='go2_state',
-        output='screen'
+        output='log'
     )
 
     go2_driver_node = Node(
         package='go2_driver',
         executable='go2_driver_node',
         name='go2_driver_node',
-        output='screen'
+        output='log'
     )
 
     cam_imu_tf = Node(
@@ -76,14 +76,14 @@ def generate_launch_description():
         package='go2_control',
         executable='base_to_base_tf',
         name='base_to_base_tf',
-        output='screen'
+        output='log'
     )
 
     lidar_node = Node(
         name='rplidar_composition',
         package='rplidar_ros',
         executable='rplidar_composition',
-        output='screen',
+        output='log',
         parameters=[{
             'serial_port': '/dev/ttyUSB0',
             'serial_baudrate': 115200,
@@ -103,7 +103,7 @@ def generate_launch_description():
         package='robot_localization',
         executable='ekf_node',
         name='ekf_filter_node',
-        output='screen',
+        output='log',
         parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
         remappings=[('/odometry/filtered', '/odom')]
     )
@@ -112,7 +112,7 @@ def generate_launch_description():
         package='go2_control',
         executable='initial_pose_set',
         name='initial_pose_set',
-        output='screen'
+        output='log'
     )
 
     return LaunchDescription([
@@ -142,5 +142,5 @@ def generate_launch_description():
             }.items(),
         ),
         rviz2_node,
-        set_initial_pose,
+        # set_initial_pose,
     ])
