@@ -37,7 +37,7 @@ private:
         float vyaw = msg->angular.z;
 
         // Log received command
-        RCLCPP_INFO(this->get_logger(), "Received velocity command: vx = %.2f, vy = %.2f, vyaw = %.2f", vx, vy, vyaw);
+        //RCLCPP_INFO(this->get_logger(), "Received velocity command: vx = %.2f, vy = %.2f, vyaw = %.2f", vx, vy, vyaw);
 
         // Prepare the request message
         unitree_api::msg::Request request_msg;
@@ -45,7 +45,7 @@ private:
 
         // Publish the request
         command_publisher_->publish(request_msg);
-        RCLCPP_INFO(this->get_logger(), "Published movement command to Go2");
+        //RCLCPP_INFO(this->get_logger(), "Published movement command to Go2");
     }
 
     rclcpp::Publisher<unitree_api::msg::Request>::SharedPtr command_publisher_;

@@ -20,17 +20,31 @@ def perform_task_at_pose(task_pose):
 def handle_task_failure(navigator, goal_pose, is_last_pose=False):
     while True:
         print("Task failed. Initiating assisted teleop.")
-        navigator.assistedTeleop(time_allowance=5)
+        navigator.assistedTeleop(time_allowance=10)
+        while not navigator.isTaskComplete():
+        # Publish twist commands to be filtered by the assisted teleop action
+            time.sleep(0.2)
+            pass
         print("Assisted teleop complete. Retrying task.")
-
+        start = PoseStamped()
         if is_last_pose:
             # Create a path from current pose to goal, smooth it, and navigate
-            start_pose = navigator.getCurrentPose()
-            path = navigator.getPath(start_pose, goal_pose, use_start=False)
+            path = navigator.getPath(start, goal_pose, use_start=False)
             if path:
-                smoothed_path = navigator.smoothPath(path, check_for_collision=False)
+                smoothed_path = navigator.smoothPath(path, check_for_collision=True)
                 if smoothed_path:
                     navigator.followPath(smoothed_path)
+                    while not navigator.isTaskComplete():
+                        #     i += 1
+                            feedback = navigator.getFeedback()
+                        #     if feedback and i % 5 == 0:
+                        #         print(
+                        #             'Estimated distance remaining to goal position: '
+                        #             + '{0:.3f}'.format(feedback.distance_to_goal)
+                        #             + '\nCurrent speed of the robot: '
+                        #             + '{0:.3f}'.format(feedback.speed)
+                        #         )
+                            time.sleep(0.5)
                 else:
                     print("Failed to smooth path")
             else:
@@ -38,11 +52,18 @@ def handle_task_failure(navigator, goal_pose, is_last_pose=False):
         else:
             # Go to pose directly
             navigator.goToPose(goal_pose)
-
+        # i = 0
         while not navigator.isTaskComplete():
+        #     i += 1
             feedback = navigator.getFeedback()
-            if feedback:
-                print('Retrying task at pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
+        #     if feedback and i % 5 == 0:
+        #         print(
+        #             'Estimated distance remaining to goal position: '
+        #             + '{0:.3f}'.format(feedback.distance_to_goal)
+        #             + '\nCurrent speed of the robot: '
+        #             + '{0:.3f}'.format(feedback.speed)
+        #         )
+            time.sleep(0.2)
         result = navigator.getResult()
         if result == TaskResult.SUCCEEDED:
             return TaskResult.SUCCEEDED
@@ -72,6 +93,7 @@ def main():
     initial_pose.pose.orientation.z = 0.0
     initial_pose.pose.orientation.w = 1.0
     navigator.setInitialPose(initial_pose)
+    start = initial_pose
 
     # Wait for navigation to fully activate
     navigator.waitUntilNav2Active()
@@ -95,24 +117,25 @@ def main():
         else:
             if path_segment:
                 # Use getPathThroughPoses to get the path
-                path = navigator.getPathThroughPoses(navigator.getCurrentPose(), path_segment, use_start=False)
+                path = navigator.getPathThroughPoses(start, path_segment, use_start=False)
                 if path:
                     # Use smoothPath to smooth the path
-                    smoothed_path = navigator.smoothPath(path, check_for_collision=False)
+                    smoothed_path = navigator.smoothPath(path, check_for_collision=True)
                     if smoothed_path:
-                        print(f"Following smoothed path segment with {len(smoothed_path.poses)} poses.")
+                        # print(f"Following smoothed path segment with {len(smoothed_path.poses)} poses.")
                         navigator.followPath(smoothed_path)
-                        i = 0
+                        # i = 0
                         while not navigator.isTaskComplete():
-                            i += 1
+                        #     i += 1
                             feedback = navigator.getFeedback()
-                            if feedback and i % 5 == 0:
-                                print(
-                                    'Estimated distance remaining to goal position: '
-                                    + '{0:.3f}'.format(feedback.distance_to_goal)
-                                    + '\nCurrent speed of the robot: '
-                                    + '{0:.3f}'.format(feedback.speed)
-                                )
+                        #     if feedback and i % 5 == 0:
+                        #         print(
+                        #             'Estimated distance remaining to goal position: '
+                        #             + '{0:.3f}'.format(feedback.distance_to_goal)
+                        #             + '\nCurrent speed of the robot: '
+                        #             + '{0:.3f}'.format(feedback.speed)
+                        #         )
+                            time.sleep(0.5)
                         result = navigator.getResult()
                         if result == TaskResult.SUCCEEDED:
                             print('Goal succeeded!')
@@ -134,8 +157,9 @@ def main():
                 navigator.goToPose(task_pose)
                 while not navigator.isTaskComplete():
                     feedback = navigator.getFeedback()
-                    if feedback:
-                        print('Executing task at pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
+                #     if feedback:
+                #         print('Executing task at pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
+                    time.sleep(0.2)
                 result = navigator.getResult()
                 if result == TaskResult.SUCCEEDED:
                     print('Navigation to task pose succeeded')
@@ -157,8 +181,9 @@ def main():
                 navigator.goToPose(exit_pose)
                 while not navigator.isTaskComplete():
                     feedback = navigator.getFeedback()
-                    if feedback:
-                        print('Executing task at exit pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
+                #     if feedback:
+                #         print('Executing task at exit pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
+                    time.sleep(0.2)
                 result = navigator.getResult()
                 if result == TaskResult.SUCCEEDED:
                     print('Navigation to exit pose succeeded')
@@ -178,23 +203,24 @@ def main():
 
     # Follow any remaining path segment
     if path_segment:
-        path = navigator.getPathThroughPoses(navigator.getCurrentPose(), path_segment, use_start=False)
+        path = navigator.getPathThroughPoses(start, path_segment, use_start=False)
         if path:
-            smoothed_path = navigator.smoothPath(path, check_for_collision=False)
+            smoothed_path = navigator.smoothPath(path, check_for_collision=True)
             if smoothed_path:
-                print(f"Following final smoothed path segment with {len(smoothed_path.poses)} poses.")
+                # print(f"Following final smoothed path segment with {len(smoothed_path.poses)} poses.")
                 navigator.followPath(smoothed_path)
-                i = 0
+                # i = 0
                 while not navigator.isTaskComplete():
-                    i += 1
+                    # i += 1
                     feedback = navigator.getFeedback()
-                    if feedback and i % 5 == 0:
-                        print(
-                            'Estimated distance remaining to goal position: '
-                            + '{0:.3f}'.format(feedback.distance_to_goal)
-                            + '\nCurrent speed of the robot: '
-                            + '{0:.3f}'.format(feedback.speed)
-                        )
+                #     if feedback and i % 5 == 0:
+                #         print(
+                #             'Estimated distance remaining to goal position: '
+                #             + '{0:.3f}'.format(feedback.distance_to_goal)
+                #             + '\nCurrent speed of the robot: '
+                #             + '{0:.3f}'.format(feedback.speed)
+                #         )
+                    time.sleep(0.5)
                 result = navigator.getResult()
                 if result == TaskResult.SUCCEEDED:
                     print('Goal succeeded!')
@@ -213,6 +239,7 @@ def main():
     initial_pose.header.stamp = navigator.get_clock().now().to_msg()
     navigator.goToPose(initial_pose)
     while not navigator.isTaskComplete():
+        time.sleep(0.2)
         pass
 
     rclpy.shutdown()

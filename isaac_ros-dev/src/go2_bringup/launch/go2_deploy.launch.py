@@ -15,6 +15,7 @@ def generate_launch_description():
     map_file = LaunchConfiguration('map_file', default=os.path.join(get_package_share_path('go2_description'), 'maps', 'first_floor_coas.yaml'))
     rviz = LaunchConfiguration('rviz', default='false')
     visualization = LaunchConfiguration('visualization', default='true')
+    initial_pose = LaunchConfiguration('initial_pose', default='false')
     
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
 
@@ -34,6 +35,12 @@ def generate_launch_description():
         'visualization',
         default_value='true',
         description='Enable or disable visualization.'
+    )
+
+    declare_initial_pose_cmd = DeclareLaunchArgument(
+        'initial_pose',
+        default_value='false',
+        description='Enable or disable initial pose.'
     )
 
     robot_state_publisher_node = Node(
@@ -112,13 +119,15 @@ def generate_launch_description():
         package='go2_control',
         executable='initial_pose_set',
         name='initial_pose_set',
-        output='log'
+        output='log',
+        condition=IfCondition(initial_pose)
     )
 
     return LaunchDescription([
         declare_map_file_cmd,
         declare_rviz_cmd,
         declare_visualization_cmd,
+        declare_initial_pose_cmd,
         base_footprint_to_base_link_tf,
         cam_imu_tf,
         robot_state_publisher_node,
@@ -142,5 +151,5 @@ def generate_launch_description():
             }.items(),
         ),
         rviz2_node,
-        # set_initial_pose,
+        set_initial_pose,
     ])
