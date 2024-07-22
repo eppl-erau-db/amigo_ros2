@@ -79,19 +79,19 @@ def generate_launch_description():
         arguments=["0", "0", "0", "0", "0", "0", "camera_gyro_optical_frame", "camera_imu_optical_frame"]
     )
 
-    # base_footprint_to_base_link_tf = Node(
-    #     package='go2_control',
-    #     executable='base_to_base_tf',
-    #     name='base_to_base_tf',
-    #     output='log'
-    # )
-
     base_footprint_to_base_link_tf = Node(
-        package="tf2_ros",
-        executable="static_transform_publisher",
-        name="base_footprint",
-        arguments=["0", "0", "0.32", "0", "0", "0", "base_footprint", "base_link"]
+        package='go2_control',
+        executable='base_to_base_tf',
+        name='base_to_base_tf',
+        output='log'
     )
+
+    # base_footprint_to_base_link_tf = Node(
+    #     package="tf2_ros",
+    #     executable="static_transform_publisher",
+    #     name="base_footprint",
+    #     arguments=["0", "0", "0.32", "0", "0", "0", "base_footprint", "base_link"]
+    # )
 
     lidar_node = Node(
         name='rplidar_composition',
@@ -119,17 +119,17 @@ def generate_launch_description():
         name='ekf_filter_node',
         output='log',
         parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
-        remappings=[('/odometry/filtered', '/first_odom')]
-    )
-
-    robot_localization_node_map = Node(
-        package='robot_localization',
-        executable='ekf_node',
-        name='ekf_filter_node_map',
-        output='screen',
-        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf_global.yaml')],
         remappings=[('/odometry/filtered', '/odom')]
     )
+
+    # robot_localization_node_map = Node(
+    #     package='robot_localization',
+    #     executable='ekf_node',
+    #     name='ekf_filter_node_map',
+    #     output='screen',
+    #     parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf_global.yaml')],
+    #     remappings=[('/odometry/filtered', '/odom')]
+    # )
 
     set_initial_pose = Node(
         package='go2_control',
@@ -155,7 +155,7 @@ def generate_launch_description():
         cam_imu_tf,
         robot_state_publisher_node,
         robot_localization_node,
-        robot_localization_node_map,
+        # robot_localization_node_map,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
             launch_arguments={
