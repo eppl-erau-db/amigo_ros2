@@ -29,7 +29,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: ""
   - Class: nav2_rviz_plugins/Navigation 2
     Name: Navigation 2
 Visualization Manager:
@@ -307,11 +307,35 @@ Visualization Manager:
           Value: true
         base_link:
           Value: true
+        camera_accel_frame:
+          Value: true
+        camera_accel_optical_frame:
+          Value: true
+        camera_aligned_depth_to_infra1_frame:
+          Value: true
         camera_bottom_screw_frame:
           Value: false
+        camera_color_frame:
+          Value: true
+        camera_color_optical_frame:
+          Value: true
+        camera_depth_frame:
+          Value: true
+        camera_depth_optical_frame:
+          Value: true
+        camera_gyro_frame:
+          Value: true
         camera_gyro_optical_frame:
           Value: true
         camera_imu_optical_frame:
+          Value: true
+        camera_infra1_frame:
+          Value: true
+        camera_infra1_optical_frame:
+          Value: true
+        camera_infra2_frame:
+          Value: true
+        camera_infra2_optical_frame:
           Value: true
         camera_link:
           Value: true
@@ -319,8 +343,6 @@ Visualization Manager:
           Value: false
         laser:
           Value: false
-        map:
-          Value: true
         odom:
           Value: true
         radar:
@@ -333,56 +355,7 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        map:
-          odom:
-            base_footprint:
-              base_link:
-                FL_hip:
-                  FL_thigh:
-                    FL_calf:
-                      FL_calflower:
-                        FL_calflower1:
-                          {}
-                      FL_foot:
-                        {}
-                FR_hip:
-                  FR_thigh:
-                    FR_calf:
-                      FR_calflower:
-                        FR_calflower1:
-                          {}
-                      FR_foot:
-                        {}
-                Head_upper:
-                  Head_lower:
-                    {}
-                  front_camera:
-                    {}
-                RL_hip:
-                  RL_thigh:
-                    RL_calf:
-                      RL_calflower:
-                        RL_calflower1:
-                          {}
-                      RL_foot:
-                        {}
-                RR_hip:
-                  RR_thigh:
-                    RR_calf:
-                      RR_calflower:
-                        RR_calflower1:
-                          {}
-                      RR_foot:
-                        {}
-                camera_bottom_screw_frame:
-                  camera_link:
-                    {}
-                laser:
-                  {}
-                radar:
-                  {}
-                utlidar_imu:
-                  {}
+        {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -500,7 +473,7 @@ Visualization Manager:
       Enabled: true
       Name: Marker
       Namespaces:
-        layer: true
+        {}
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -555,7 +528,7 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: Intensity
       Decay Time: 0
-      Enabled: true
+      Enabled: false
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Max Intensity: 250
@@ -576,6 +549,62 @@ Visualization Manager:
         Value: /point_cloud2
       Use Fixed Frame: true
       Use rainbow: true
+      Value: false
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 255; 0; 0
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: local_Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /local_plan
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 25; 255; 0
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: global_Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /received_global_plan
       Value: true
   Enabled: true
   Global Options:
