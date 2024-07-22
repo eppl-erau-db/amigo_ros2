@@ -111,10 +111,10 @@ bt_navigator_navigate_to_pose_rclcpp_node:
 controller_server:
   ros__parameters:
     use_sim_time: False
-    controller_frequency: 30.0 # changed 20
-    min_x_velocity_threshold: 0.001
-    min_y_velocity_threshold: 0.001
-    min_theta_velocity_threshold: 0.1 #changed 0.001
+    controller_frequency: 40.0 # changed 20
+    min_x_velocity_threshold: 0.01
+    min_y_velocity_threshold: 0.01
+    min_theta_velocity_threshold: 0.01 #changed 0.001
     failure_tolerance: 0.3
     progress_checker_plugin: "progress_checker"
     goal_checker_plugins: ["general_goal_checker"] # "precise_goal_checker"
@@ -156,8 +156,8 @@ controller_server:
       decel_lim_x: -3.0 # changed -2.5
       decel_lim_y: -2.5
       decel_lim_theta: -3.2
-      vx_samples: 20
-      vy_samples: 20
+      vx_samples: 30
+      vy_samples: 30
       vtheta_samples: 20
       sim_time: 2.0 # changed 1.7
       linear_granularity: 0.05
@@ -169,15 +169,15 @@ controller_server:
       stateful: True
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
       BaseObstacle.scale: 1.0 # changed 0.02
-      PathAlign.scale: 20.0 # changed 32.0
-      PathAlign.forward_point_distance: 0.5
+      PathAlign.scale: 15.0 # changed 32.0
+      PathAlign.forward_point_distance: 0.3
       GoalAlign.scale: 30.0 #changed 24.0
       GoalAlign.forward_point_distance: 0.5
       PathDist.scale: 25.0 #changed 32.0
       GoalDist.scale: 24.0 
       RotateToGoal.scale: 60.0 #changed 32.0
       RotateToGoal.slowing_factor: 2.0 #changed 5.0
-      RotateToGoal.lookahead_time: 1.0 #changed -1.0 
+      RotateToGoal.lookahead_time: 2.0 #changed -1.0 
 
 local_costmap:
   local_costmap:
@@ -185,7 +185,7 @@ local_costmap:
       update_frequency: 8.0 # changed 5.0
       publish_frequency: 5.0 #changed 2.0
       global_frame: odom
-      robot_base_frame: base_link
+      robot_base_frame: base_footprint
       use_sim_time: False
       rolling_window: true
       width: 3
@@ -196,7 +196,7 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 5.0
-        inflation_radius: 0.5
+        inflation_radius: 0.3
       nvblox_layer:
         plugin: "nvblox::nav2::NvbloxCostmapLayer"
         enabled: True
@@ -209,10 +209,15 @@ local_costmap:
         observation_sources: scan
         scan:
           topic: /scan
-          max_obstacle_height: 1.0
+          max_obstacle_height: 2.0
           clearing: True
           marking: True
           data_type: "LaserScan"
+          raytrace_max_range: 3.0
+          raytrace_min_range: 0.0
+          obstacle_max_range: 2.5
+          obstacle_min_range: 0.0
+          queue_size: 100
       # voxel_layer:
       #   plugin: "nav2_costmap_2d::VoxelLayer"
       #   enabled: True
@@ -256,7 +261,7 @@ global_costmap:
       update_frequency: 1.0
       publish_frequency: 1.0
       global_frame: map
-      robot_base_frame: base_link
+      robot_base_frame: base_footprint
       use_sim_time: False
       footprint: "[ [0.360, 0.200], [0.360, -0.200], [-0.360, -0.200], [-0.360, 0.200] ]"
       resolution: 0.05
@@ -286,7 +291,7 @@ global_costmap:
         scan3d:
           topic: /point_cloud2
           max_obstacle_height: 5.0
-          min_obstacle_height: 0.1
+          min_obstacle_height: 0.15
           clearing: True
           marking: True
           data_type: "PointCloud2"
@@ -299,7 +304,7 @@ global_costmap:
         map_subscribe_transient_local: True
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
+        cost_scaling_factor: 5.0
         inflation_radius: 0.30
       always_send_full_costmap: True
 
@@ -357,7 +362,7 @@ behavior_server:
       plugin: "nav2_behaviors/AssistedTeleop"
     global_frame: odom
     robot_base_frame: base_link
-    transform_tolerance: 0.5 #changed 0.1
+    transform_tolerance: 0.2 #changed 0.1
     use_sim_time: true
     simulate_ahead_time: 2.0
     max_rotational_vel: 1.0
