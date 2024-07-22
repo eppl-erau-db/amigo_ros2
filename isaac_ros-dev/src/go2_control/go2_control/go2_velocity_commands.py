@@ -8,7 +8,7 @@ from rclpy.duration import Duration
 class WirelessControl(Node):
     def __init__(self):
         super().__init__('wireless_control')
-        self.publisher = self.create_publisher(Twist, 'cmd_vel', 10)
+        self.publisher = self.create_publisher(Twist, 'cmd_vel_teleop', 10)
         self.subscription = self.create_subscription(
             WirelessController,
             '/wirelesscontroller',
