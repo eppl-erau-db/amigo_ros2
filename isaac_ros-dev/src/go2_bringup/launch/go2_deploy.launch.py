@@ -139,6 +139,13 @@ def generate_launch_description():
         condition=IfCondition(initial_pose)
     )
 
+    start_go2_lidar = Node(
+        package='go2_control',
+        executable='go2_lidar',
+        name='go2_lidar',
+        output='log',
+    )
+
     start_teleop_node = Node(
         package='go2_control',
         executable='go2_velocity_commands',
@@ -165,6 +172,7 @@ def generate_launch_description():
         ),
         state_publisher_node,
         go2_driver_node,
+        start_go2_lidar,
         lidar_node,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_path('nav2_bringup'), 'launch', 'bringup_launch.py')]),
