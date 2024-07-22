@@ -18,15 +18,14 @@ def perform_task_at_pose(task_pose):
 
 
 def handle_task_failure(navigator, goal_pose, is_last_pose=False):
-    while True:
-        print("Task failed. Initiating assisted teleop.")
-        navigator.assistedTeleop(time_allowance=10)
-        while not navigator.isTaskComplete():
-        # Publish twist commands to be filtered by the assisted teleop action
-            time.sleep(0.2)
-            pass
-        print("Assisted teleop complete. Retrying task.")
+    retry_count = 0
+    max_retries = 6
+
+    while retry_count < max_retries:
+        print(f"Task failed. Retrying task ({retry_count + 1}/{max_retries}).")
+        retry_count += 1
         start = PoseStamped()
+
         if is_last_pose:
             # Create a path from current pose to goal, smooth it, and navigate
             path = navigator.getPath(start, goal_pose, use_start=False)
@@ -35,16 +34,8 @@ def handle_task_failure(navigator, goal_pose, is_last_pose=False):
                 if smoothed_path:
                     navigator.followPath(smoothed_path)
                     while not navigator.isTaskComplete():
-                        #     i += 1
-                            feedback = navigator.getFeedback()
-                        #     if feedback and i % 5 == 0:
-                        #         print(
-                        #             'Estimated distance remaining to goal position: '
-                        #             + '{0:.3f}'.format(feedback.distance_to_goal)
-                        #             + '\nCurrent speed of the robot: '
-                        #             + '{0:.3f}'.format(feedback.speed)
-                        #         )
-                            time.sleep(0.5)
+                        feedback = navigator.getFeedback()
+                        time.sleep(0.5)
                 else:
                     print("Failed to smooth path")
             else:
@@ -52,27 +43,58 @@ def handle_task_failure(navigator, goal_pose, is_last_pose=False):
         else:
             # Go to pose directly
             navigator.goToPose(goal_pose)
-        # i = 0
+
         while not navigator.isTaskComplete():
-        #     i += 1
             feedback = navigator.getFeedback()
-        #     if feedback and i % 5 == 0:
-        #         print(
-        #             'Estimated distance remaining to goal position: '
-        #             + '{0:.3f}'.format(feedback.distance_to_goal)
-        #             + '\nCurrent speed of the robot: '
-        #             + '{0:.3f}'.format(feedback.speed)
-        #         )
             time.sleep(0.2)
+
         result = navigator.getResult()
         if result == TaskResult.SUCCEEDED:
             return TaskResult.SUCCEEDED
         elif result == TaskResult.CANCELED:
             print('Retry was canceled!')
+            break
         elif result == TaskResult.FAILED:
             print('Retry failed!')
+
+    print("Maximum retries reached. Initiating assisted teleop.")
+    while True:
+        navigator.assistedTeleop(time_allowance=5)
+        while not navigator.isTaskComplete():
+            time.sleep(0.2)
+        print("Assisted teleop complete. Retrying task.")
+        retry_count = 0  # Reset retry counter after assisted teleop
+        start = PoseStamped()
+
+        if is_last_pose:
+            path = navigator.getPath(start, goal_pose, use_start=False)
+            if path:
+                smoothed_path = navigator.smoothPath(path, check_for_collision=True)
+                if smoothed_path:
+                    navigator.followPath(smoothed_path)
+                    while not navigator.isTaskComplete():
+                        feedback = navigator.getFeedback()
+                        time.sleep(0.5)
+                else:
+                    print("Failed to smooth path")
+            else:
+                print("Failed to get path")
         else:
-            print('Retry has an invalid return status!')
+            navigator.goToPose(goal_pose)
+
+        while not navigator.isTaskComplete():
+            feedback = navigator.getFeedback()
+            time.sleep(0.2)
+
+        result = navigator.getResult()
+        if result == TaskResult.SUCCEEDED:
+            return TaskResult.SUCCEEDED
+        elif result == TaskResult.CANCELED:
+            print('Retry was canceled!')
+            break
+        elif result == TaskResult.FAILED:
+            print('Retry failed!')
+
 
 
 def main():
@@ -176,28 +198,6 @@ def main():
                         print('Retry failed!')
                 else:
                     print('Navigation to task pose has an invalid return status')
-            elif entry["task_type"] == "exit_pose":
-                exit_pose = deepcopy(pose)
-                navigator.goToPose(exit_pose)
-                while not navigator.isTaskComplete():
-                    feedback = navigator.getFeedback()
-                #     if feedback:
-                #         print('Executing task at exit pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
-                    time.sleep(0.2)
-                result = navigator.getResult()
-                if result == TaskResult.SUCCEEDED:
-                    print('Navigation to exit pose succeeded')
-                elif result == TaskResult.CANCELED:
-                    print('Navigation to exit pose was canceled')
-                elif result == TaskResult.FAILED:
-                    print('Navigation to exit pose failed')
-                    result = handle_task_failure(navigator, exit_pose)
-                    if result == TaskResult.SUCCEEDED:
-                        print('Retry succeeded!')
-                    else:
-                        print('Retry has failed')
-                else:
-                    print('Navigation to exit pose has an invalid return status')
             else:
                 print('Task type invalid')
 

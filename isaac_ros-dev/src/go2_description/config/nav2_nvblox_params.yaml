@@ -138,42 +138,42 @@ controller_server:
       xy_goal_tolerance: 0.25
       yaw_goal_tolerance: 0.25 # chaged 0.25
     FollowPath:
-      plugin: "nav2_rotation_shim_controller::RotationShimController"
-      primary_controller: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
-      angular_dist_threshold: 0.785
-      forward_sampling_distance: 0.5
-      rotate_to_heading_angular_vel: 1.8
-      max_angular_accel: 3.2
-      simulate_ahead_time: 1.0
-      rotate_to_goal_heading: true
+      plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController" #"nav2_rotation_shim_controller::RotationShimController"
+      # primary_controller: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
+      # angular_dist_threshold: 0.523
+      # forward_sampling_distance: 0.5
+      # rotate_to_heading_angular_vel: 2.5
+      # max_angular_accel: 4.2
+      # simulate_ahead_time: 1.5
+      # rotate_to_goal_heading: true
 
       # RPP params
-      desired_linear_vel: 0.5
-      lookahead_dist: 0.6
-      min_lookahead_dist: 0.3
-      max_lookahead_dist: 0.9
+      desired_linear_vel: 0.8
+      lookahead_dist: 1.0
+      min_lookahead_dist: 0.5
+      max_lookahead_dist: 1.2
       lookahead_time: 1.5
-      rotate_to_heading_angular_vel: 1.8
+      rotate_to_heading_angular_vel: 2.5
       transform_tolerance: 0.1
       use_velocity_scaled_lookahead_dist: true
       min_approach_linear_velocity: 0.05
-      approach_velocity_scaling_dist: 1.0
+      approach_velocity_scaling_dist: 1.5
       use_collision_detection: true
-      max_allowed_time_to_collision_up_to_carrot: 1.0
+      max_allowed_time_to_collision_up_to_carrot: 2.0
       use_regulated_linear_velocity_scaling: true
       use_cost_regulated_linear_velocity_scaling: true
-      regulated_linear_scaling_min_radius: 0.5
-      regulated_linear_scaling_min_speed: 0.25
+      regulated_linear_scaling_min_radius: 0.4
+      regulated_linear_scaling_min_speed: 0.20
       use_fixed_curvature_lookahead: false
       curvature_lookahead_dist: 1.0
       use_rotate_to_heading: true
-      rotate_to_heading_min_angle: 0.785
-      max_angular_accel: 3.2
+      rotate_to_heading_min_angle: 0.523
+      max_angular_accel: 4.2
       max_robot_pose_search_dist: 10.0
       interpolate_curvature_after_goal: false
-      cost_scaling_dist: 0.5
+      cost_scaling_dist: 0.8
       cost_scaling_gain: 1.0
-      inflation_cost_scaling_factor: 3.0
+      inflation_cost_scaling_factor: 4.0
       
 
 local_costmap:
@@ -192,8 +192,8 @@ local_costmap:
       plugins: ['nvblox_layer', "inflation_layer", "obstacle_layer"] #changed 'voxel_layer' to 'nvblox_layer' add or remove 'front_2d_lidar_layer'
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.60
+        cost_scaling_factor: 4.0
+        inflation_radius: 0.80
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
@@ -271,8 +271,8 @@ global_costmap:
         map_subscribe_transient_local: True
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.60
+        cost_scaling_factor: 4.0
+        inflation_radius: 0.80
       always_send_full_costmap: True
 
 map_server:
@@ -329,7 +329,7 @@ behavior_server:
       plugin: "nav2_behaviors/AssistedTeleop"
     global_frame: odom
     robot_base_frame: base_link
-    transform_tolerance: 0.2 #changed 0.1
+    transform_tolerance: 0.1 #changed 0.1
     use_sim_time: true
     simulate_ahead_time: 2.0
     max_rotational_vel: 1.0
@@ -357,8 +357,8 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
-    max_velocity: [0.25, 0.0, 0.5]
-    min_velocity: [0.0, 0.0, -0.5]
+    max_velocity: [0.8, 0.0, 1.5]
+    min_velocity: [0.0, 0.0, -1.5]
     max_accel: [2.5, 2.5, 3.2]
     max_decel: [-2.5, -2.5, -3.2]
     odom_topic: "odom"
