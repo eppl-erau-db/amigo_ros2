@@ -66,6 +66,7 @@ setup(
             'task_nav_path_test = go2_control.task_nav_path_test:main',
             'task_nav_to_pose_test = go2_control.task_nav_to_pose_test:main',
             'go2_velocity_commands = go2_control.go2_velocity_commands:main',
+            'go2_lidar = go2_control.go2_lidar:main',
         ],
     },
 )
