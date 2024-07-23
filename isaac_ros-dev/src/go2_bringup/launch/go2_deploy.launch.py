@@ -85,19 +85,19 @@ def generate_launch_description():
         name='base_to_base_tf',
         output='log'
     )
-
-    # base_footprint_to_base_link_tf = Node(
+    # #Static transform example
+    # map_to_odom_tf = Node(
     #     package="tf2_ros",
     #     executable="static_transform_publisher",
-    #     name="base_footprint",
-    #     arguments=["0", "0", "0.32", "0", "0", "0", "base_footprint", "base_link"]
+    #     name="map_to_odom_tf",
+    #     arguments=["0", "0", "0", "0", "0", "0", "map", "odom"]
     # )
 
     lidar_node = Node(
         name='rplidar_composition',
         package='rplidar_ros',
         executable='rplidar_composition',
-        output='log',
+        output='screen',
         parameters=[{
             'serial_port': '/dev/ttyUSB0',
             'serial_baudrate': 115200,
@@ -110,7 +110,8 @@ def generate_launch_description():
     nav2_config = os.path.join(
         get_package_share_path('go2_description'),
         'config',
-        'nav2_nvblox_params.yaml'
+        # 'nav2_nvblox_params.yaml',
+        'nav2_mppi_controller.yaml'
     )
 
     robot_localization_node = Node(
@@ -122,14 +123,14 @@ def generate_launch_description():
         remappings=[('/odometry/filtered', '/odom')]
     )
 
-    # robot_localization_node_map = Node(
-    #     package='robot_localization',
-    #     executable='ekf_node',
-    #     name='ekf_filter_node_map',
-    #     output='screen',
-    #     parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf_global.yaml')],
-    #     remappings=[('/odometry/filtered', '/odom')]
-    # )
+    robot_localization_node_map = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node_map',
+        output='screen',
+        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf_global.yaml')],
+        remappings=[('/odometry/filtered', '/odom/global')]
+    )
 
     set_initial_pose = Node(
         package='go2_control',
@@ -158,8 +159,8 @@ def generate_launch_description():
         declare_rviz_cmd,
         declare_visualization_cmd,
         declare_initial_pose_cmd,
-        base_footprint_to_base_link_tf,
         cam_imu_tf,
+        base_footprint_to_base_link_tf,
         robot_state_publisher_node,
         robot_localization_node,
         # robot_localization_node_map,

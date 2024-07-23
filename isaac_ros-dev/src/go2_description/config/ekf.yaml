@@ -32,7 +32,7 @@ ekf_filter_node:
 
 # If you're having trouble, try setting this to true, and then echo the /diagnostics_agg topic to see if the node is
 # unhappy with any settings or data.
-        print_diagnostics: true
+        print_diagnostics: false
 
 # Debug settings. Not for the faint of heart. Outputs a ludicrous amount of information to the file specified by
 # debug_out_file. I hope you like matrices! Please note that setting this to true will have strongly deleterious
@@ -49,7 +49,7 @@ ekf_filter_node:
         publish_acceleration: false
 
 # If the filter sees a jump back in time, the filter is reset (convenient for testing with rosbags!)
-        reset_on_time_jump: true
+        reset_on_time_jump: false
 
 # REP-105 (http://www.ros.org/reps/rep-0105.html) specifies four principal coordinate frames: base_link, odom, map, and
 # earth. base_link is the coordinate frame that is affixed to the robot. Both odom and map are world-fixed frames.
