@@ -130,8 +130,8 @@ def generate_launch_description():
         executable='ekf_node',
         name='ekf_filter_node_map',
         output='screen',
-        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf_global.yaml')],
-        remappings=[('/odometry/filtered', '/odom/global')]
+        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
+        #remappings=[('/odometry/filtered', '/odom/global')]
     )
 
     set_initial_pose = Node(
@@ -201,7 +201,7 @@ def generate_launch_description():
         base_footprint_to_base_link_tf,
         robot_state_publisher_node,
         robot_localization_node,
-        # robot_localization_node_map,
+        robot_localization_node_map,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
             launch_arguments={
