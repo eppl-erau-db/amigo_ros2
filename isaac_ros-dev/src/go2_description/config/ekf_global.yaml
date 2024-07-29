@@ -111,7 +111,7 @@ ekf_filter_node_map:
         # data is converted to velocity data by differentiating the absolute pose measurements. These velocities are then
         # integrated as usual. NOTE: this only applies to sensors that provide pose measurements; setting differential to true
         # for twist measurements has no effect.
-        odom0_differential: true
+        odom0_differential: false
 
         # [ADVANCED] When the node starts, if this parameter is true, then the first measurement is treated as a "zero point"
         # for all future measurements. While you can achieve the same effect with the differential paremeter, the key
@@ -139,28 +139,28 @@ ekf_filter_node_map:
 
 
 
-        # odom1: visual_slam/vis/slam_odometry
-        # odom1_config: [true, true, true,
-        #                false, false, true,
-        #                false,  false,  false,
-        #                false, false, false,
-        #                false, false, false]
+        odom1: visual_slam/vis/slam_odometry
+        odom1_config: [true, true, true,
+                       false, false, true,
+                       false,  false,  false,
+                       false, false, false,
+                       false, false, false]
 
 
-        # odom1_queue_size: 2
+        odom1_queue_size: 2
 
 
-        # odom1_differential: false
+        odom1_differential: true
 
 
-        # odom1_relative: false
+        odom1_relative: false
 
 
-        # odom1_pose_use_child_frame: false
+        odom1_pose_use_child_frame: false
 
 
-        # odom1_pose_rejection_threshold: 5.0
-        # odom1_twist_rejection_threshold: 1.0
+        odom1_pose_rejection_threshold: 5.0
+        odom1_twist_rejection_threshold: 1.0
 
 
 
@@ -177,7 +177,6 @@ ekf_filter_node_map:
         pose0_queue_size: 5
         pose0_rejection_threshold: 2.0  # Note the difference in parameter name
 
-        smooth_lagged_data: true
 
         # [ADVANCED]  The EKF and UKF models follow a standard predict/correct cycle. During prediction, if there is no
         # acceleration reference, the velocity at time t+1 is simply predicted to be the same as the velocity at time t. During

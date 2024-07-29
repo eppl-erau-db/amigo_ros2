@@ -225,5 +225,5 @@ def generate_launch_description():
         occupancy_grid_localizer_container,
         set_initial_pose,
         start_teleop_node,
-        map_localizer_client,
+        # map_localizer_client,
     ])

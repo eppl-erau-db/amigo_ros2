@@ -18,7 +18,7 @@ amcl:
     laser_min_range: 0.15
     laser_model_type: "likelihood_field"
     max_beams: 60
-    max_particles: 2000
+    max_particles: 3000 # 2000
     min_particles: 500
     odom_frame_id: "odom"
     pf_err: 0.05
@@ -114,7 +114,7 @@ controller_server:
     controller_frequency: 30.0 # changed 20
     min_x_velocity_threshold: 0.001
     min_y_velocity_threshold: 0.001
-    min_theta_velocity_threshold: 0.01 #changed 0.001
+    min_theta_velocity_threshold: 0.001 #changed 0.001
     failure_tolerance: 0.3
     progress_checker_plugin: "progress_checker"
     goal_checker_plugins: ["general_goal_checker"] # "precise_goal_checker"
@@ -261,13 +261,28 @@ local_costmap:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.5
         inflation_radius: 0.70
+      # voxel_layer:
+      #   plugin: "nav2_costmap_2d::VoxelLayer"
+      #   enabled: True
+      #   publish_voxel_map: True
+      #   observation_sources: scan
+      #   scan:
+      #     topic: /scan
+      #     max_obstacle_height: 2.0
+      #     clearing: True
+      #     marking: True
+      #     data_type: "LaserScan"
+      #     raytrace_max_range: 3.0
+      #     raytrace_min_range: 0.0
+      #     obstacle_max_range: 2.5
+      #     obstacle_min_range: 0.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        observation_sources: scan3d
+        observation_sources: scan
         footprint_clearing_enabled: true
-        max_obstacle_height: 5.0
-        min_obstacle_height: 0.15
+        max_obstacle_height: 2.0
+        min_obstacle_height: 0.10
         combination_method: 1
         scan:
           topic: /scan
@@ -282,7 +297,7 @@ local_costmap:
         scan3d:
           topic: /pointcloud
           max_obstacle_height: 5.0
-          min_obstacle_height: 0.15
+          min_obstacle_height: 0.0
           clearing: True
           marking: True
           data_type: "PointCloud2"
@@ -292,7 +307,7 @@ local_costmap:
           obstacle_min_range: 0.0
       nvblox_layer:
         plugin: "nvblox::nav2::NvbloxCostmapLayer"
-        enabled: True
+        enabled: True22w
         nav2_costmap_global_frame: odom # must match with global_frame of local_costmap
         nvblox_map_slice_topic: "/nvblox_node/combined_map_slice"
         convert_to_binary_costmap: True
@@ -313,7 +328,7 @@ global_costmap:
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        observation_sources: scan
+        observation_sources: scan3d
         footprint_clearing_enabled: true
         max_obstacle_height: 5.0
         scan:
