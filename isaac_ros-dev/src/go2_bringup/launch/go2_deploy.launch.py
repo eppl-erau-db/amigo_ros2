@@ -185,6 +185,12 @@ def generate_launch_description():
         output='screen'
     )
 
+    map_localizer_client = Node(
+        package='go2_control',
+        executable='map_localizer_client',
+        name='map_localizer_client',
+        output='log'
+    )
 
     return LaunchDescription([
         declare_map_file_cmd,
@@ -219,4 +225,5 @@ def generate_launch_description():
         occupancy_grid_localizer_container,
         set_initial_pose,
         start_teleop_node,
+        map_localizer_client,
     ])
