@@ -10,7 +10,7 @@ class Go2LidarNode(Node):
         super().__init__("go2_lidar")
 
         self.go2_lidar_subscriber = self.create_subscription(PointCloud2, "/utlidar/cloud", self.go2_lidar_callback, 10)
-        self.go2_lidar_publisher = self.create_publisher(PointCloud2, 'point_cloud2', 10)
+        self.go2_lidar_publisher = self.create_publisher(PointCloud2, 'pointcloud', 10)
         self.get_logger().info("go2 lidar node has started")
 
     def go2_lidar_callback(self, msg):

@@ -2,17 +2,19 @@ import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, LogInfo
 from launch.conditions import IfCondition
-from launch_ros.actions import Node
+from launch_ros.actions import Node, ComposableNodeContainer
 from launch.substitutions import Command, LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from ament_index_python.packages import get_package_share_path, get_package_share_directory
 from launch_ros.parameter_descriptions import ParameterValue
+from launch_ros.descriptions import ComposableNode
+
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     urdf_path = os.path.join(get_package_share_path('go2_description'), 'urdf', 'go2_nav2_nvblox.urdf')
     rviz_config_path = os.path.join(get_package_share_path('go2_description'), 'config', 'nav_nvblox_config.rviz')
-    map_file = LaunchConfiguration('map_file', default=os.path.join(get_package_share_path('go2_description'), 'maps', 'first_floor_coas.yaml'))
+    map_file = LaunchConfiguration('map_file', default=os.path.join(get_package_share_path('go2_description'), 'maps', 'first_floor.yaml'))
     rviz = LaunchConfiguration('rviz', default='false')
     visualization = LaunchConfiguration('visualization', default='true')
     initial_pose = LaunchConfiguration('initial_pose', default='false')
@@ -154,6 +156,36 @@ def generate_launch_description():
         output='log'
     )
 
+    occupancy_grid_localizer_node = ComposableNode(
+        package='isaac_ros_occupancy_grid_localizer',
+        plugin='nvidia::isaac_ros::occupancy_grid_localizer::OccupancyGridLocalizerNode',
+        name='occupancy_grid_localizer',
+        parameters=[LaunchConfiguration('map_file'), {
+            'loc_result_frame': 'map',
+            'map_yaml_path': map_file,
+        }],
+        remappings=[('localization_result', '/initialpose')])
+
+    laserscan_to_flatscan_node = ComposableNode(
+        package='isaac_ros_pointcloud_utils',
+        plugin='nvidia::isaac_ros::pointcloud_utils::LaserScantoFlatScanNode',
+        name='laserscan_to_flatscan',
+        # remappings=[('flatscan', 'flatscan_localization')]
+        )
+        
+    occupancy_grid_localizer_container = ComposableNodeContainer(
+        package='rclcpp_components',
+        name='occupancy_grid_localizer_container',
+        namespace='',
+        executable='component_container_mt',
+        composable_node_descriptions=[
+            occupancy_grid_localizer_node,
+            laserscan_to_flatscan_node
+        ],
+        output='screen'
+    )
+
+
     return LaunchDescription([
         declare_map_file_cmd,
         declare_rviz_cmd,
@@ -184,6 +216,7 @@ def generate_launch_description():
             }.items(),
         ),
         rviz2_node,
+        occupancy_grid_localizer_container,
         set_initial_pose,
         start_teleop_node,
     ])

@@ -14,8 +14,8 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     urdf_path = os.path.join(get_package_share_path('go2_description'), 
                              'urdf', 'go2_nav2_nvblox.urdf')
-    # rviz_config_path = os.path.join(get_package_share_path('go2_description'), 
-    #                          'config', 'go2_urdf_config.rviz')
+    rviz_config_path = os.path.join(get_package_share_path('go2_description'), 
+                             'config', 'go2_urdf_config.rviz')
     
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
 
@@ -25,11 +25,11 @@ def generate_launch_description():
         parameters=[{'robot_description': robot_description}]     
     )
 
-    # rviz2_node = Node(
-    #     package="rviz2", 
-    #     executable="rviz2", 
-    #     arguments=['-d', rviz_config_path]
-    # )
+    rviz2_node = Node(
+        package="rviz2", 
+        executable="rviz2", 
+        arguments=['-d', rviz_config_path]
+    )
 
     state_publisher_node = Node(
         package="go2_control",  
@@ -122,7 +122,7 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
             launch_arguments={
                 'mode': 'dynamic',
-                'visualization': 'true'
+                'visualization': 'false'
                 # 'people_segmentation': 'peoplesemsegnet_shuffleseg',
             }.items(),
         ),
@@ -140,5 +140,5 @@ def generate_launch_description():
         slam_toolbox,
         log_pose_action_server_node,
 
-        # rviz2_node
+        rviz2_node
     ])

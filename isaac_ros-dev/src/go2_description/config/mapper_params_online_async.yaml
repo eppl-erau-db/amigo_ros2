@@ -20,7 +20,7 @@ slam_toolbox:
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
     # will use pose
-    map_file_name: src/go2_description/maps/first_floor_coas_serialized
+    map_file_name: first_floor_serialized
     map_start_pose: [0.0, 0.0, 0.0]
     #map_start_at_dock: true
 

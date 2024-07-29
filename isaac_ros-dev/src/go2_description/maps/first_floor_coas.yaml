@@ -1,4 +1,4 @@
-image: first_floor_coas.pgm
+image: first_floor_coas.png #pgm
 mode: trinary
 resolution: 0.05
 origin: [-12.3, -75.4, 0]

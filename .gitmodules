@@ -1,3 +1,6 @@
 [submodule "isaac_ros-dev/src/isaac_ros_nvblox"]
 	path = isaac_ros-dev/src/isaac_ros_nvblox
 	url = https://github.com/JCastel358/isaac_ros_nvblox.git
+[submodule "isaac_ros-dev/src/isaac_ros_map_localization"]
+	path = isaac_ros-dev/src/isaac_ros_map_localization
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_map_localization.git
