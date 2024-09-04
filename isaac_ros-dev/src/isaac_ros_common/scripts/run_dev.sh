@@ -281,7 +281,7 @@ print_info "Running $CONTAINER_NAME"
 if [[ $VERBOSE -eq 1 ]]; then
     set -x
 fi
-docker run -it \
+docker run -it --restart always \
     --privileged \
     --network host \
     ${DOCKER_ARGS[@]} \

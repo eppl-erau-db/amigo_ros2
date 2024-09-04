@@ -17,7 +17,6 @@ sudo chmod 666 /dev/video2 && \
 ## NOTE: This is for the lidar
 sudo chmod 777 /dev/ttyUSB0 && \
 
-
 ## NOTE: These are permissions for other devices
 sudo chmod 666 /dev/ttyTHS1 && \
 sudo chmod 666 /dev/i2c-7 && \

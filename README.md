@@ -11,10 +11,18 @@ This repo works completely off of a container (isaac_ros_dev-aarch64-container),
 
 Make sure that your jetson is flashed with JetPack 6.0 on SSD. Then follow setup instructions for jetson [here](https://nvidia-isaac-ros.github.io/getting_started/hardware_setup/compute/index.html#jetson-platforms), and the isaac-ros setup page instructions, stopping AFTER step 3 [here](https://nvidia-isaac-ros.github.io/getting_started/dev_env_setup.html).
 
-Then, clone the repo.
+Then, clone the repo into your workspaces directory. If you don't have one already.
 
 ```bash
-git clone --recurse-submodules https://github.com/gabearod2/workspaces.git
+cd ~ &&
+mkdir workspaces
+```
+
+If you do, make sure it is in the correct location. If it is not, this repo will not work.
+
+```bash
+cd ~/workspaces
+git clone --recurse-submodules https://github.com/eppl-erau-db/amigo_ros2.git
 ```
 
 Next, you need to add the shortcut of your workspace to the .bashrc. Assuming you clone this repo into your workspaces directory.
