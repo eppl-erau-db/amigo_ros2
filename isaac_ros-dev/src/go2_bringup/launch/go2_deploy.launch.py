@@ -14,7 +14,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     urdf_path = os.path.join(get_package_share_path('go2_description'), 'urdf', 'go2_nav2_nvblox.urdf')
     rviz_config_path = os.path.join(get_package_share_path('go2_description'), 'config', 'nav_nvblox_config.rviz')
-    map_file = LaunchConfiguration('map_file', default=os.path.join(get_package_share_path('go2_description'), 'maps', 'first_floor.yaml'))
+    map_file = LaunchConfiguration('map_file', default=os.path.join(get_package_share_path('go2_description'), 'maps', 'lse_first_floor.yaml'))
     rviz = LaunchConfiguration('rviz', default='false')
     visualization = LaunchConfiguration('visualization', default='true')
     initial_pose = LaunchConfiguration('initial_pose', default='false')
@@ -23,7 +23,7 @@ def generate_launch_description():
 
     declare_map_file_cmd = DeclareLaunchArgument(
         'map_file',
-        default_value=os.path.join(get_package_share_path('go2_description'), 'maps', 'first_floor_coas.yaml'),
+        default_value=os.path.join(get_package_share_path('go2_description'), 'maps', 'lse_first_floor.yaml'),
         description='Full path to the map file to load'
     )
 
@@ -96,23 +96,27 @@ def generate_launch_description():
     # )
 
     lidar_node = Node(
-        name='rplidar_composition',
-        package='rplidar_ros',
-        executable='rplidar_composition',
+        name='sllidar_node',
+        package='sllidar_ros2',
+        executable='sllidar_node',
         output='screen',
         parameters=[{
+            'channel_type': 'serial',
             'serial_port': '/dev/ttyUSB0',
-            'serial_baudrate': 115200,
+            'serial_baudrate': 256000,
             'frame_id': 'laser',
             'inverted': False,
             'angle_compensate': True,
+            'scan_mode': 'Sensitivity',
         }],
+        remappings=[
+                ('/laserscan', '/scan')
+        ],
     )
 
     nav2_config = os.path.join(
         get_package_share_path('go2_description'),
         'config',
-        # 'nav2_nvblox_params.yaml',
         'nav2_mppi_controller.yaml'
     )
 
@@ -122,7 +126,9 @@ def generate_launch_description():
         name='ekf_filter_node',
         output='log',
         parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
-        remappings=[('/odometry/filtered', '/odom')]
+        remappings=[('/odometry/filtered', '/odom'),
+                    ('/set_pose', '/initialpose')
+        ],
     )
 
     robot_localization_node_map = Node(
@@ -130,8 +136,17 @@ def generate_launch_description():
         executable='ekf_node',
         name='ekf_filter_node_map',
         output='screen',
-        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
-        #remappings=[('/odometry/filtered', '/odom/global')]
+        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf_global.yaml')],
+        remappings=[('/odometry/filtered', '/odom_global'),
+                    ('/set_pose', '/initialpose')
+        ],
+    )
+
+    odom_node = Node(
+        package="go2_control",  
+        executable="odom_node", 
+        name='odom_node',
+        output='screen'
     )
 
     set_initial_pose = Node(
@@ -200,12 +215,14 @@ def generate_launch_description():
         cam_imu_tf,
         base_footprint_to_base_link_tf,
         robot_state_publisher_node,
-        robot_localization_node,
-        robot_localization_node_map,
+        odom_node,
+        #robot_localization_node,
+        # robot_localization_node_map,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
             launch_arguments={
                 'mode': 'dynamic',
+                #'people_segmentation': 'peoplesemsegnet_shuffleseg',
                 'visualization': visualization,
             }.items(),
         ),

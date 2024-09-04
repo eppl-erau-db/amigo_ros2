@@ -138,8 +138,8 @@ ekf_filter_node:
         odom1: /visual_slam/tracking/odometry
         odom1_config: [true, true, true,
                        true, true, true,
-                       true,  true,  true,
-                       true, true, true,
+                       false,  false,  false,
+                       false, false, false,
                        false, false, false] 
         odom1_queue_size: 2
         odom1_nodelay: false

@@ -6,6 +6,7 @@ from launch_ros.actions import Node
 from launch.substitutions import Command
 from launch.substitutions import LaunchConfiguration
 import os
+from launch.actions import TimerAction
 from ament_index_python.packages import get_package_share_directory
 from ament_index_python.packages import get_package_share_path
 
@@ -38,10 +39,18 @@ def generate_launch_description():
         output='screen'
     )
 
+    odom_node = Node(
+        package="go2_control",  
+        executable="odom_node", 
+        name='odom_node',
+        output='screen'
+    )
+
+
     go2_driver_node = Node(
-        package="go2_control",
-        executable="go2_driver",
-        name="go2_driver",
+        package="go2_driver",
+        executable="go2_driver_node",
+        name="go2_driver_node",
         output="screen"
     )
 
@@ -60,17 +69,22 @@ def generate_launch_description():
     )
 
     lidar_node = Node(
-        name='rplidar_composition',
-        package='rplidar_ros',
-        executable='rplidar_composition',
+        name='sllidar_node',
+        package='sllidar_ros2',
+        executable='sllidar_node',
         output='screen',
         parameters=[{
+            'channel_type': 'serial',
             'serial_port': '/dev/ttyUSB0',
-            'serial_baudrate': 115200,
+            'serial_baudrate': 256000,
             'frame_id': 'laser',
             'inverted': False,
             'angle_compensate': True,
+            'scan_mode': 'Sensitivity',
         }],
+        remappings=[
+                ('/laserscan', '/scan')
+        ],
     )
 
     slam_toolbox_config = os.path.join(
@@ -117,6 +131,7 @@ def generate_launch_description():
         base_footprint_to_base_link_tf,
         cam_imu_tf,
         robot_state_publisher_node,
+        # odom_node,
         robot_localization_node,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),

@@ -307,7 +307,7 @@ local_costmap:
           obstacle_min_range: 0.0
       nvblox_layer:
         plugin: "nvblox::nav2::NvbloxCostmapLayer"
-        enabled: True22w
+        enabled: True
         nav2_costmap_global_frame: odom # must match with global_frame of local_costmap
         nvblox_map_slice_topic: "/nvblox_node/combined_map_slice"
         convert_to_binary_costmap: True
