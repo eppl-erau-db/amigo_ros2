@@ -7,3 +7,6 @@
 [submodule "go2_rl_ws"]
 	path = go2_rl_ws
 	url = https://github.com/gabearod2/go2_rl_ws.git
+[submodule "isaac_ros-dev/src/sllidar_ros2"]
+	path = isaac_ros-dev/src/sllidar_ros2
+	url = https://github.com/Slamtec/sllidar_ros2.git
