@@ -131,8 +131,9 @@ ros2 launch go2_bringup go2_deploy.launch.py map_file:=src/go2_description/maps/
 ```
 
 ##### Important NOTES: 
-- if you did not use "initial_pose:=true" you will not see the robot and there will be error messages in the Terminal window becuase Nav2 requires an initial position to work.
-- you CANNOT set "initial_pose:=true" if you are planning to use the [navigation script](#start-navigation-script) becuase this will interfere with the nav2 system. 
+- if you did not use "initial_pose:=true" you will not see the robot and there will be error messages in the Terminal window, this is normal becuase Nav2 requires an initial position to work.
+- you CANNOT set "initial_pose:=true" if you are planning to use the [navigation script](#start-navigation-script) becuase this will interfere with the nav2 system.
+- If you want to use Foxglove Studio additional information can be found [here](https://nvidia-isaac-ros.github.io/concepts/visualization/index.html).
 
 #### Start Navigation Script
 The following script, located in ${ISAAC_ROS_WS}/src/go2_control/go2_control/, sets the initial pose to the starting point of the map where you began mapping when you launched the [mapper](#mapping), and begins to navigate to the previously logged set of poses located in the pose_log.json file.
@@ -143,16 +144,20 @@ Open a [container terminal](#launch-a-terminal) in a new terminal window and lau
 ros2 run go2_control task_nav_to_pose_test | tee task_output.log
 ```
 
-#### Map Localization
+### Map Localization
+This service is optional but useful in certain situations. I typically use it when the robot is not correctly positioned on the map or when the robot starts from a different location than the initial pose, requiring a recalculation of its position.
 
+#### How to Use the Service:
+
+##### Convert the Map Format:
+ Before starting the navigation stack, convert the map from .pgm to .png format. Then, update the <MAP_NAME>.yaml file to match the new image format
 
 ```bash
-sudo apt update
-sudo apt install imagemagick
-convert <MAP_NAME>.pgm <MAP_NAME>.png
+convert ${ISAAC_ROS_WS}/src/go2_description/maps/<MAP_NAME>.pgm ${ISAAC_ROS_WS}/src/go2_description/maps/<MAP_NAME>.png && \
+sed -i 's/image: <MAP_NAME>.pgm/image: <MAP_NAME>.png/' ${ISAAC_ROS_WS}/src/go2_description/maps/<MAP_NAME>.yaml
 ```
-
-To run, use this command ...
+##### Use the Service to Re-Localize:
+Once the map is in the correct format, you can use the service to re-localize the robot on the map. Run the following command in a container terminal while the Nav2 stack is active as many times as needed until you reach actual robot position.
 
 ```bash
 ros2 service call trigger_grid_search_localization std_srvs/srv/Empty {}
