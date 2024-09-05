@@ -121,7 +121,7 @@ launch arguments:
 -intial_pose (boolean, default = false)
 ```
 
-starting nav stack
+starting nav stack:
 
 ```bash
 source src/unitree_ros2/setup.sh && \
