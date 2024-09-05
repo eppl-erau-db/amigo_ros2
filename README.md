@@ -80,7 +80,7 @@ ros2 launch go2_bringup mapping.launch.py | tee output.log
 ```
 * While mapping use the log pose action call to define specific poses on this map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
 
-Launch a [terminal](#post-reboot-andor-post-startup-procedure):
+Pose Logging: Launch a [terminal](#post-reboot-andor-post-startup-procedure):
 
 task_type 'normal': A pose defined as 'normal' is treated as a standard navigation task. This is useful if you want to constrain the global path planning algorithm to follow a specific path, avoiding high-traffic or hard-to-navigate areas.
 
