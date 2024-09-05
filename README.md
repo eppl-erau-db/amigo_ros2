@@ -102,7 +102,7 @@ Once done with mapping the area and creating poses for navigation, save the map 
 ```bash
 ros2 run nav2_map_server map_saver_cli -f src/go2_description/maps/<MAP_NAME>
 ```
-you now have a map saved in the '${ISAAC_ROS_WS}/src/go2_description/maps/' directory and a json file saved in the current directory with a set of poses to perform navigation.
+You now have a map saved in the ${ISAAC_ROS_WS}/src/go2_description/maps/ directory, along with a JSON file in the current directory containing a set of poses for navigation.
 
 ### Navigation Launch
 
