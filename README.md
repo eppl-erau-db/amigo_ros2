@@ -72,7 +72,9 @@ If you need more terminals attached to the container, run the same command in ea
 
 ## Navigation Deployment: Pose-Oriented Navigation
 
-### Constructing a 2D Map and Logging Poses
+This navigation process involves two main phases: Mapping and Pose Logging and Autonomous Navigation. You start by creating a 2D map and logging poses, then use these for the robot's autonomous navigation.
+
+### Phase 1: Constructing a 2D Map and Logging Poses
 
 #### Mapping: 
 Launch a [container terminal](#launch-a-terminal) in a new terminal window and source ROS. Begin by manually driving the robot to create a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
@@ -107,7 +109,7 @@ ros2 run nav2_map_server map_saver_cli -f src/go2_description/maps/<MAP_NAME>
 ```
 You now have a map saved in the ${ISAAC_ROS_WS}/src/go2_description/maps/ directory, along with a JSON file in the current directory containing a set of poses for navigation.
 
-### Autonomous Navigation
+### Phase 2: Autonomous Navigation
 
 To navigate you need to launch 2 separate files:
 
