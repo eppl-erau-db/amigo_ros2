@@ -80,29 +80,26 @@ ros2 launch go2_bringup mapping.launch.py | tee output.log
 ```
 * While mapping use the log pose action call to define specific poses on this map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
 
-Pose Logging: Launch a [terminal](#post-reboot-andor-post-startup-procedure):
+Pose Logging: Launch a [terminal](#post-reboot-andor-post-startup-procedure)
 
-task_type 'normal': A pose defined as 'normal' is treated as a standard navigation task. This is useful if you want to constrain the global path planning algorithm to follow a specific path, avoiding high-traffic or hard-to-navigate areas.
+- task_type 'normal': A pose defined as 'normal' is treated as a standard navigation task. This is useful if you want to constrain the global path planning algorithm to follow a specific path, avoiding high-traffic or hard-to-navigate areas.
 
 ```bash
 ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'normal'}"
 ```
-task_type 'task': A pose defined as 'task' makes the robot stop at that pose for 5 seconds, simulating a task being performed, before continuing to the next pose.
+- task_type 'task': A pose defined as 'task' makes the robot stop at that pose for 5 seconds, simulating a task being performed, before continuing to the next pose.
 You can customize this behavior by editing the task_nav_to_pose_test.py script to add functionalities like object detection or other task-specific actions.
 
 ```bash
 ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'task'}"
 ```
 
-Saving the map:
-
-TODO: How to save this map in the same location (src/go2_description/maps) every time?
+Saving the map: Once done with mapping the area and creating poses for navigation, save the map make sure to replace <MAP_NAME> with the name of your map.
 
 ```bash
-ros2 run nav2_map_server map_saver_cli -f <MAP_NAME>
+ros2 run nav2_map_server map_saver_cli -f src/go2_description/maps/<MAP_NAME>
 ```
-
-close out...
+you now have a map saved in the ${ISAAC_ROS_WS}/src/go2_description/maps/ directory and a json file saved in the current directory with a set of poses to perform navigation.
 
 ### Navigation Launch
 
