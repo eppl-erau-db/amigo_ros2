@@ -59,7 +59,10 @@ realsense-viewer
 
 ## Post-Reboot and/or Post-Startup Procedure 
 
-We have made it such that the container continues to run and automatically starts up on boot, so that the dependencies do not need to be re-installed every time you run the container. However, Keep in mind that you still need an internet connection. To open the container again:
+We have made it such that the container continues to run and automatically starts up on boot, so that the dependencies do not need to be re-installed every time you run the container. However, Keep in mind that you still need an internet connection. 
+
+### Launch a Terminal
+To open a terminal in the container:
 
 ```bash
 docker exec -it isaac_ros_dev-aarch64-container /bin/bash
@@ -72,7 +75,7 @@ If you need more terminals attached to the container, run the same command in ea
 ### Constructing a 2D Map and Logging Poses
 
 #### Mapping: 
-Launch a [terminal](#post-reboot-andor-post-startup-procedure) in the container and source ROS. Begin by manually driving the robot to create a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
+Launch a [terminal](#launch-a-terminal) in the container and source ROS. Begin by manually driving the robot to create a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
 
 ```bash
 source src/unitree_ros2/setup.sh && \
@@ -82,7 +85,7 @@ ros2 launch go2_bringup mapping.launch.py | tee output.log
 NOTE: While you are actively mapping, use the [log action pose call](#pose-logging) to create a file with defined poses on the current map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
 
 #### Pose Logging: 
-Launch a [terminal](#post-reboot-andor-post-startup-procedure) and call the following actions as needed:
+Launch a [[terminal](#launch-a-terminal) in the container and call the following actions as needed:
 
 - task_type 'normal': A pose defined as 'normal' is treated as a standard navigation task. This is useful if you want to constrain the global path planning algorithm to follow a specific path, avoiding high-traffic or hard-to-navigate areas.
 
