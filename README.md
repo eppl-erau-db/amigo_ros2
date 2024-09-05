@@ -90,7 +90,7 @@ Launch a [terminal](#post-reboot-andor-post-startup-procedure) and call the foll
 ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'normal'}"
 ```
 - task_type 'task': A pose defined as 'task' makes the robot stop at that pose for 5 seconds, simulating a task being performed, before continuing to the next pose.
-You can customize this behavior by editing the task_nav_to_pose_test.py script located in '${ISAAC_ROS_WS}/src/go2_control/go2_control/' to add functionalities like object detection or other task-specific actions.
+You can customize this behavior by editing the task_nav_to_pose_test.py script located in ${ISAAC_ROS_WS}/src/go2_control/go2_control/ to add functionalities like object detection or other task-specific actions.
 
 ```bash
 ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'task'}"
@@ -104,22 +104,19 @@ ros2 run nav2_map_server map_saver_cli -f src/go2_description/maps/<MAP_NAME>
 ```
 You now have a map saved in the ${ISAAC_ROS_WS}/src/go2_description/maps/ directory, along with a JSON file in the current directory containing a set of poses for navigation.
 
-### Navigation Launch
+### Navigation Launch TODO********** from here down
 
-After mapping is completed ...
+To navigate you need to launch 2 separate files:
 
-run navigation like this ...
-
-parameters that you can use
-
-TODO: explain each of launch parameters
-
+#### Launch file for Nav2 Stack
+You can use various launch parameters for regular deployment, testing and debugging in both simulation and real-world scenarios, as well as for deployment with Foxglove Studio.
+this is the list of parameters:
 ```bash
 launch arguments: 
--use_sim_time (boolean, default = false)
--map_file (full path to map file*, default first_floor_coas.yaml)
--rviz (boolean, default = false)
--visualization (boolean, default = true)
+-use_sim_time (boolean, default = false) *Used for simulation in Gazebo etc.
+-map_file (full path to map file*, default first_floor_coas.yaml) *useful for quick change of map file without having to edit launch file
+-rviz (boolean, default = false) *useful to turn on or off rviz, rviz is used to ...
+-visualization (boolean, default = true) *useful to send navigation info over wifi to laptop 
 -intial_pose (boolean, default = false)
 ```
 
