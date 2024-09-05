@@ -59,13 +59,13 @@ realsense-viewer
 
 ## Post-Reboot and/or Post-Startup Procedure 
 
-We have made it such that the container continues to run, so that the dependencies do not need to be re-installed every time you run the container. Keep in mind that you still need an internet connection however. To open the container again:
+We have made it such that the container continues to run and automatically starts up on boot, so that the dependencies do not need to be re-installed every time you run the container. However, Keep in mind that you still need an internet connection. To open the container again:
 
 ```bash
 docker exec -it isaac_ros_dev-aarch64-container /bin/bash
 ```
 
-If you need more terminals in the container, run the same command in each terminal. 
+If you need more terminals attached to the container, run the same command in each new terminal as needed. 
 
 ## Navigation Deployment: Pose-oriented Navigation
 
