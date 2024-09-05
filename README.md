@@ -85,7 +85,7 @@ ros2 launch go2_bringup mapping.launch.py | tee output.log
 NOTE: While you are actively mapping, use the [log action pose call](#pose-logging) to create a file with defined poses on the current map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
 
 #### Pose Logging: 
-Launch a [[terminal](#launch-a-terminal) in the container and call the following actions as needed:
+Launch a [terminal](#launch-a-terminal) in the container and call the following actions as needed:
 
 - task_type 'normal': A pose defined as 'normal' is treated as a standard navigation task. This is useful if you want to constrain the global path planning algorithm to follow a specific path, avoiding high-traffic or hard-to-navigate areas.
 
@@ -100,28 +100,26 @@ ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'task
 ```
 
 #### Saving the map: 
-Once done with mapping the area and creating poses for navigation, save the map make sure to replace <MAP_NAME> with the name of your map.
+Once done with mapping the area and creating poses for navigation, save the map. Make sure to replace <MAP_NAME> with the name of your map.
 
 ```bash
 ros2 run nav2_map_server map_saver_cli -f src/go2_description/maps/<MAP_NAME>
 ```
 You now have a map saved in the ${ISAAC_ROS_WS}/src/go2_description/maps/ directory, along with a JSON file in the current directory containing a set of poses for navigation.
 
-### Navigation Launch TODO********** from here down
+### Autonomous Navigation
 
 To navigate you need to launch 2 separate files:
 
 #### Launch file for Nav2 Stack
 You can use various launch parameters for regular deployment, testing and debugging in both simulation and real-world scenarios, as well as for deployment with Foxglove Studio.
-this is the list of parameters:
-```bash
-launch arguments: 
--use_sim_time (boolean, default = false) *Used for simulation in Gazebo etc.
--map_file (full path to map file*, default first_floor_coas.yaml) *useful for quick change of map file without having to edit launch file
--rviz (boolean, default = false) *useful to turn on or off rviz, rviz is used to ...
--visualization (boolean, default = true) *useful to send navigation info over wifi to laptop 
--intial_pose (boolean, default = false)
-```
+
+##### launch arguments: 
+- use_sim_time (boolean, default = false) *Used for simulation in Gazebo etc.
+- map_file (full path to map file, default = first_floor_coas.yaml) *useful for quick change of map without having to edit launch file
+- rviz (boolean, default = false) *useful to turn off rviz as needed
+- visualization (boolean, default = true) *useful to send navigation info over wifi to laptop using Foxglove Studio
+- intial_pose (boolean, default = false) *useful to start the robot at the same spot where you started mapping without sending it on a navigation run. you can the use rviz to make sure all sensors are working properly
 
 starting nav stack:
 
