@@ -79,7 +79,7 @@ source src/unitree_ros2/setup.sh && \
 source install/setup.bash && \
 ros2 launch go2_bringup mapping.launch.py | tee output.log
 ```
-NOTE: While you are actively mapping, use the log action pose call to create a file with defined poses on the current map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
+NOTE: While you are actively mapping, use the [log action pose call](#pose-logging) to create a file with defined poses on the current map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
 
 #### Pose Logging: 
 Launch a [terminal](#post-reboot-andor-post-startup-procedure) and call the following actions as needed:
