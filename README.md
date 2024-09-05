@@ -4,7 +4,7 @@
 
 This repository contains all of the necessary software for running the AMIGO (Autonomous Machine for Inspecting Gas and Operations), developed by EPPL. It is build off of ROS2 Humble, and uses various packages, cited at the end of this ReadMe.
 
-To use this repository as is, you will need a Jetson device (preferably the AGX Orin), a RealSense D435i, an RPLiDAR A3, and accompanying mounting assembly. The CAD for the assembly will soon be published. This repo works completely off of a container (isaac_ros_dev-aarch64-container), and anything under the isaac ros workspace will be volumized, such that any data saved in the workspace will not be lost when the container is shut down. 
+To use this repository as is, you will need a Jetson device (preferably the AGX Orin), a RealSense D435i, an RPLiDAR A3, Internet connection, and accompanying mounting assembly. The CAD for the assembly will soon be published. This repo works completely off of a container (isaac_ros_dev-aarch64-container), and anything under the isaac ros workspace will be volumized, such that any data saved in the workspace will not be lost when the container is shut down. 
 
 For future work, we are looking to integrate Unitree's LiDAR for localization, and deployment in 3D navigation. 
 
@@ -43,7 +43,7 @@ cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
 ./scripts/run_dev.sh -d ${ISAAC_ROS_WS}
 ```
 
-Once in the container, source the setup script.
+Once in the container, source the setup script to install all required dependencies and packages.
 
 ```bash
 cd ${ISAAC_ROS_WS} && \
@@ -57,9 +57,9 @@ Now, all ROS packages have been built and the container should be running correc
 realsense-viewer
 ```
 
-## Post-Reboot Startup Procedure 
+## Post_Reboot and/or Post_Startup Procedure 
 
-For the run.sh of the container, we have removed the "-rm" such that the container continues to run, so that the dependencies do not need to be re-installed every time you run the container. Keep in mind that you still need an internet connection however. To open the container again:
+We have made it such that the container continues to run, so that the dependencies do not need to be re-installed every time you run the container. Keep in mind that you still need an internet connection however. To open the container again:
 
 ```bash
 docker exec -it isaac_ros_dev-aarch64-container /bin/bash
@@ -67,29 +67,31 @@ docker exec -it isaac_ros_dev-aarch64-container /bin/bash
 
 If you need more terminals in the container, run the same command in each terminal. 
 
-## Navigation Deployment
+## Navigation Deployment: Pose-oriented Navigation
 
-First, you need to maop the area, walk slow...
+### Mapping Launch: Construct a 2D Map and Log Poses
 
-### Mapping Launch 
-
-In the container, source ros and using a mapping launch file:
+Launch a [terminal](#Post_Reboot-and/or-Post_Startup-Procedure) in the container and source ROS: First you must begin by creating a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
 
 ```bash
 source src/unitree_ros2/setup.sh && \
 source install/setup.bash && \
 ros2 launch go2_bringup mapping.launch.py | tee output.log
 ```
+* While mapping use the log pose action call to define specific poses on this map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
 
-Log poses in another terminal
+Launch a [terminal](#Post_Reboot-and/or-Post_Startup-Procedure):
 
-TODO: Explain what these do within the navigation script
+task_type 'normal': A pose defined as 'normal' is treated as a standard navigation task. This is useful if you want to constrain the global path planning algorithm to follow a specific path, avoiding high-traffic or hard-to-navigate areas.
+
+```bash
+ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'normal'}"
+```
+task_type 'task': A pose defined as 'task' makes the robot stop at that pose for 5 seconds, simulating a task being performed, before continuing to the next pose.
+You can customize this behavior by editing the task_nav_to_pose_test.py script to add functionalities like object detection or other task-specific actions.
 
 ```bash
 ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'task'}"
-ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'normal'}"
-ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'exit_pose'}"
-ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'stair_pose'}"
 ```
 
 Saving the map:
