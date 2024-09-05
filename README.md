@@ -75,7 +75,7 @@ If you need more terminals attached to the container, run the same command in ea
 ### Constructing a 2D Map and Logging Poses
 
 #### Mapping: 
-Launch a [terminal](#launch-a-terminal) in the container and source ROS. Begin by manually driving the robot to create a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
+Launch a [container terminal](#launch-a-terminal) in a new terminal window and source ROS. Begin by manually driving the robot to create a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
 
 ```bash
 source src/unitree_ros2/setup.sh && \
@@ -85,7 +85,7 @@ ros2 launch go2_bringup mapping.launch.py | tee output.log
 NOTE: While you are actively mapping, use the [log action pose call](#pose-logging) to create a file with defined poses on the current map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
 
 #### Pose Logging: 
-Launch a [terminal](#launch-a-terminal) in the container and call the following actions as needed:
+Launch a [container terminal](#launch-a-terminal) in a new terminal window and call the following actions as needed:
 
 - task_type 'normal': A pose defined as 'normal' is treated as a standard navigation task. This is useful if you want to constrain the global path planning algorithm to follow a specific path, avoiding high-traffic or hard-to-navigate areas.
 
@@ -93,7 +93,7 @@ Launch a [terminal](#launch-a-terminal) in the container and call the following 
 ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'normal'}"
 ```
 - task_type 'task': A pose defined as 'task' makes the robot stop at that pose for 5 seconds, simulating a task being performed, before continuing to the next pose.
-You can customize this behavior by editing the task_nav_to_pose_test.py script located in ${ISAAC_ROS_WS}/src/go2_control/go2_control/ to add functionalities like object detection or other task-specific actions.
+You can customize this behavior by editing the task_nav_to_pose_test.py script located in ${ISAAC_ROS_WS}/src/go2_control/go2_control/task_nav_to_pose_test.py to add functionalities like object detection or other task-specific actions.
 
 ```bash
 ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'task'}"
@@ -111,17 +111,18 @@ You now have a map saved in the ${ISAAC_ROS_WS}/src/go2_description/maps/ direct
 
 To navigate you need to launch 2 separate files:
 
-#### Launch file for Nav2 Stack
+#### launch arguments:
+
 You can use various launch parameters for regular deployment, testing and debugging in both simulation and real-world scenarios, as well as for deployment with Foxglove Studio.
 
-##### launch arguments: 
 - use_sim_time (boolean, default = false) *Used for simulation in Gazebo etc.
 - map_file (full path to map file, default = first_floor_coas.yaml) *useful for quick change of map without having to edit launch file
 - rviz (boolean, default = false) *useful to turn off rviz as needed
 - visualization (boolean, default = true) *useful to send navigation info over wifi to laptop using Foxglove Studio
 - intial_pose (boolean, default = false) *useful to start the robot at the same spot where you started mapping without sending it on a navigation run. you can the use rviz to make sure all sensors are working properly
 
-starting nav stack:
+#### Launch the nav stack:
+Open a [container terminal](#launch-a-terminal) in a new terminal window and launch the nav2 stack launch file. In this example, I am starting the navigation stack with RViz and using RealVNC to stream the desktop to my laptop via an HDMI dummy plug to follow robot around and use RViz for debugging. Set-up steps for RealVNC for jetson seen [here](https://developer.nvidia.com/embedded/learn/tutorials/vnc-setup).
 
 ```bash
 source src/unitree_ros2/setup.sh && \
@@ -129,13 +130,19 @@ source install/setup.bash && \
 ros2 launch go2_bringup go2_deploy.launch.py map_file:=src/go2_description/maps/<MAP_NAME>.yaml rviz:=true visualization:=false initial_pose:=false | tee nav_output.log
 ```
 
-starting navigation
+##### Important NOTES: 
+- if you did not use "initial_pose:=true" you will not see the robot and there will be error messages in the Terminal window becuase Nav2 requires an initial position to work.
+- you CANNOT set "initial_pose:=true" if you are planning to use the [navigation script](#start-navigation-script) becuase this will interfere with the nav2 system. 
+
+#### Start Navigation Script
+The following script, located in ${ISAAC_ROS_WS}/src/go2_control/go2_control/, sets the initial pose to the starting point of the map where you began mapping when you launched the [mapper](#mapping).
+
+Open a [container terminal](#launch-a-terminal) in a new terminal window and launch the script:
 
 ```bash
 ros2 run go2_control task_nav_to_pose_test | tee task_output.log
 ```
-
-If you're having trouble localizing (if your LiDAR...), go here (link to the Map Localization section)
+This will set the initial pose, and start navigating to the set Poses in the pose_log.json file.
 
 ### Map Localization
 
