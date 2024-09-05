@@ -57,7 +57,7 @@ Now, all ROS packages have been built and the container should be running correc
 realsense-viewer
 ```
 
-## Post_Reboot and/or Post_Startup Procedure 
+## Post Reboot and/or Post Startup Procedure 
 
 We have made it such that the container continues to run, so that the dependencies do not need to be re-installed every time you run the container. Keep in mind that you still need an internet connection however. To open the container again:
 
@@ -71,7 +71,7 @@ If you need more terminals in the container, run the same command in each termin
 
 ### Mapping Launch: Construct a 2D Map and Log Poses
 
-Launch a [terminal](#Post_Reboot-and/or-Post_Startup-Procedure) in the container and source ROS: First you must begin by creating a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
+Mapping: Launch a [terminal](#Post-Reboot-and/or-Post-Startup-Procedure) in the container and source ROS. Begin by creating a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
 
 ```bash
 source src/unitree_ros2/setup.sh && \
