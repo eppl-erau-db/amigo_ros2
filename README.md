@@ -72,7 +72,7 @@ If you need more terminals in the container, run the same command in each termin
 ### Mapping Launch: Construct a 2D Map and Log Poses
 
 #### Mapping: 
-Launch a [terminal](#post-reboot-andor-post-startup-procedure) in the container and source ROS. Begin by creating a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
+Launch a [terminal](#post-reboot-andor-post-startup-procedure) in the container and source ROS. Begin by manually driving the robot to create a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
 
 ```bash
 source src/unitree_ros2/setup.sh && \
