@@ -135,18 +135,16 @@ ros2 launch go2_bringup go2_deploy.launch.py map_file:=src/go2_description/maps/
 - you CANNOT set "initial_pose:=true" if you are planning to use the [navigation script](#start-navigation-script) becuase this will interfere with the nav2 system. 
 
 #### Start Navigation Script
-The following script, located in ${ISAAC_ROS_WS}/src/go2_control/go2_control/, sets the initial pose to the starting point of the map where you began mapping when you launched the [mapper](#mapping).
+The following script, located in ${ISAAC_ROS_WS}/src/go2_control/go2_control/, sets the initial pose to the starting point of the map where you began mapping when you launched the [mapper](#mapping), and begins to navigate to the previously logged set of poses located in the pose_log.json file.
 
 Open a [container terminal](#launch-a-terminal) in a new terminal window and launch the script:
 
 ```bash
 ros2 run go2_control task_nav_to_pose_test | tee task_output.log
 ```
-This will set the initial pose, and start navigating to the set Poses in the pose_log.json file.
 
-### Map Localization
+#### Map Localization
 
-To use map localization service, yuo need to do this...
 
 ```bash
 sudo apt update
