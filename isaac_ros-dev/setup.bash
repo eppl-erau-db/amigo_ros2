@@ -1,6 +1,7 @@
 sudo apt update && \
 sudo apt install -y ros-humble-rmw-cyclonedds-cpp ros-humble-rosidl-generator-dds-idl ros-humble-isaac-ros-nvblox ros-humble-nmea-navsat-driver libgeographic-dev ros-humble-geographic-msgs libyaml-cpp-dev python3-smbus i2c-tools ros-humble-isaac-ros-occupancy-grid-localizer python3-tk && \
-sudo apt install ros-humble-robot-localization &&
+sudo apt install ros-humble-robot-localization && \
+sudo apt install imagemagick && \
 sudo apt-get install -y ros-humble-isaac-ros-peoplesemseg-models-install && \
 pip install transforms3d pyserial smbus && \
 rosdep update && \
