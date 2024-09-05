@@ -1,31 +1,26 @@
 # AMIGO ROS2
-This repository contains all of the necessary software for running the AMIGO (Autonomous Machine for Inspecting Gas and Operations), developed by EPPL. 
 
 ## Requirements and Background
 
-To use this repository as is, you will need a Jetson device (preferably the AGX Orin), a RealSense D435i, an RPLiDAR A3, and accompanying mounting assembly. The CAD for the assembly will soon be published. 
+This repository contains all of the necessary software for running the AMIGO (Autonomous Machine for Inspecting Gas and Operations), developed by EPPL. It is build off of ROS2 Humble, and uses various packages, cited at the end of this ReadMe.
 
-This repo works completely off of a container (isaac_ros_dev-aarch64-container), and anything under the isaac ros workspace will be volumized, such that you any data saved in the workspace will not be lost when the container is shut down. 
+To use this repository as is, you will need a Jetson device (preferably the AGX Orin), a RealSense D435i, an RPLiDAR A3, and accompanying mounting assembly. The CAD for the assembly will soon be published. This repo works completely off of a container (isaac_ros_dev-aarch64-container), and anything under the isaac ros workspace will be volumized, such that any data saved in the workspace will not be lost when the container is shut down. 
 
-## Startup Procedure
+For future work, we are looking to integrate Unitree's LiDAR for localization, and deployment in 3D navigation. 
+
+## Initial Startup Procedure
 
 Make sure that your jetson is flashed with JetPack 6.0 on SSD. Then follow setup instructions for jetson [here](https://nvidia-isaac-ros.github.io/getting_started/hardware_setup/compute/index.html#jetson-platforms), and the isaac-ros setup page instructions, stopping AFTER step 3 [here](https://nvidia-isaac-ros.github.io/getting_started/dev_env_setup.html).
 
-Then, clone the repo into your workspaces directory. If you don't have one already.
+Then, ensure that you have workspaces directory at the correct location and clone this repo: 
 
 ```bash
-cd ~ &&
-mkdir workspaces
-```
-
-If you do, make sure it is in the correct location. If it is not, this repo will not work.
-
-```bash
-cd ~/workspaces
+mkdir -p ~/workspaces &&
+cd ~/workspaces &&
 git clone --recurse-submodules https://github.com/eppl-erau-db/amigo_ros2.git
 ```
 
-Next, you need to add the shortcut of your workspace to the .bashrc. Assuming you clone this repo into your workspaces directory.
+Next, you need to add the shortcut of your workspace to the .bashrc for later usage:
 
 ```bash
 mkdir -p  ~/workspaces/isaac_ros-dev/src
@@ -33,7 +28,7 @@ echo "export ISAAC_ROS_WS=~/workspaces/isaac_ros-dev/" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-Configuring to build the container to use realsense-ros.
+Now, configuring the container to use realsense-ros:
 
 ```bash
 cd ${ISAAC_ROS_WS}/src/isaac_ros_common/scripts && \
@@ -41,7 +36,7 @@ touch .isaac_ros_common-config && \
 echo CONFIG_IMAGE_KEY=ros2_humble.realsense > .isaac_ros_common-config
 ```
 
-First ensuring your realsense if plugged in, build the conatiner. This will take a long time.
+After ensuring your realsense if plugged in to your Jetson device, you can build the image and start the container. This will take a long time.
 
 ```bash
 cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
@@ -52,38 +47,116 @@ Once in the container, source the setup script.
 
 ```bash
 cd ${ISAAC_ROS_WS} && \
-chmod +x setup.bash &&
+chmod +x setup.bash && \
 source ./setup.bash
 ```
 
-To test the realsense, use the following command.
+Now, all ROS packages have been built and the container should be running correctly. You can move on to the next steps. If you would like to ensure the realsense is working (as it can sometimes be an issue), you can use the following command:
 
 ```bash
 realsense-viewer
 ```
 
-Source r
+## Post-Reboot Startup Procedure 
 
-## Post-Reboot Setup Procedure 
-
-For the run.sh of the container, we have removed the "-rm" such that the conatiner continues to run, so that the dependencies do not need to be re-installed every time you run the container. Keep in mind that you still need an internet connection however. To open the container again:
+For the run.sh of the container, we have removed the "-rm" such that the container continues to run, so that the dependencies do not need to be re-installed every time you run the container. Keep in mind that you still need an internet connection however. To open the container again:
 
 ```bash
 docker exec -it isaac_ros_dev-aarch64-container /bin/bash
 ```
 
-If you need more terminals in the container, run the same line on each terminal. 
+If you need more terminals in the container, run the same command in each terminal. 
 
-## Running XXX
+## Navigation Deployment
 
-Open a new 
+First, you need to maop the area, walk slow...
+
+### Mapping Launch 
+
+In the container, source ros and using a mapping launch file:
 
 ```bash
 source src/unitree_ros2/setup.sh && \
-source install/setup.bash 
+source install/setup.bash && \
+ros2 launch go2_bringup mapping.launch.py | tee output.log
 ```
 
+Log poses in another terminal
 
+TODO: Explain what these do within the navigation script
 
+```bash
+ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'task'}"
+ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'normal'}"
+ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'exit_pose'}"
+ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'stair_pose'}"
+```
 
+Saving the map:
 
+TODO: How to save this map in the same location (src/go2_description/maps) every time?
+
+```bash
+ros2 run nav2_map_server map_saver_cli -f <MAP_NAME>
+```
+
+close out...
+
+### Navigation Launch
+
+After mapping is completed ...
+
+run navigation like this ...
+
+parameters that you can use
+
+TODO: explain each of launch parameters
+
+```bash
+launch arguments: 
+-use_sim_time (boolean, default = false)
+-map_file (full path to map file*, default first_floor_coas.yaml)
+-rviz (boolean, default = false)
+-visualization (boolean, default = true)
+-intial_pose (boolean, default = false)
+```
+
+starting nav stack
+
+```bash
+source src/unitree_ros2/setup.sh && \
+source install/setup.bash && \
+ros2 launch go2_bringup go2_deploy.launch.py map_file:=src/go2_description/maps/<MAP_NAME>.yaml rviz:=true visualization:=false initial_pose:=false | tee nav_output.log
+```
+
+starting navigation
+
+```bash
+ros2 run go2_control task_nav_to_pose_test | tee task_output.log
+```
+
+If you're having trouble localizing (if your LiDAR...), go here (link to the Map Localization section)
+
+### Map Localization
+
+To use map localization service, yuo need to do this...
+
+```bash
+sudo apt update
+sudo apt install imagemagick
+convert <MAP_NAME>.pgm <MAP_NAME>.png
+```
+
+To run, use this command ...
+
+```bash
+ros2 service call trigger_grid_search_localization std_srvs/srv/Empty {}
+```
+
+## References and Citations
+
+TODO: Link repos that we copied and stuff
+
+## Contributors
+
+TODO: Link your LinkedIn and GitHub
