@@ -67,9 +67,9 @@ docker exec -it isaac_ros_dev-aarch64-container /bin/bash
 
 If you need more terminals attached to the container, run the same command in each new terminal as needed. 
 
-## Navigation Deployment: Pose-oriented Navigation
+## Navigation Deployment: Pose-Oriented Navigation
 
-### Mapping Launch: Construct a 2D Map and Log Poses
+### Constructing a 2D Map and Logging Poses
 
 #### Mapping: 
 Launch a [terminal](#post-reboot-andor-post-startup-procedure) in the container and source ROS. Begin by manually driving the robot to create a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
@@ -79,7 +79,7 @@ source src/unitree_ros2/setup.sh && \
 source install/setup.bash && \
 ros2 launch go2_bringup mapping.launch.py | tee output.log
 ```
-NOTE: While you are actively mapping, use the log pose action call to create a file with defined poses on the current map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
+NOTE: While you are actively mapping, use the log action pose call to create a file with defined poses on the current map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
 
 #### Pose Logging: 
 Launch a [terminal](#post-reboot-andor-post-startup-procedure) and call the following actions as needed:
