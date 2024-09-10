@@ -44,6 +44,7 @@ cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
 ```
 
 Once in the container, source the setup script to install all required dependencies and packages.
+
 TODO: SETUP THE SETUP.BASH
 
 ```bash
