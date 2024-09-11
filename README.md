@@ -176,7 +176,7 @@ ros2 service call trigger_grid_search_localization std_srvs/srv/Empty {}
 
 ## References and Citations
 
-### Nav2
+### Nav2:
 
 **S. Macenski, F. Martín, R. White, J. Clavero. The Marathon 2: A Navigation System. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2020.**
 
