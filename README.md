@@ -176,36 +176,38 @@ ros2 service call trigger_grid_search_localization std_srvs/srv/Empty {}
 
 ## References and Citations
 
-- S. Macenski, F. Martín, R. White, J. Clavero. The Marathon 2: A Navigation System. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2020.
+### Nav2
 
-@InProceedings{macenski2020marathon2,
+**S. Macenski, F. Martín, R. White, J. Clavero. The Marathon 2: A Navigation System. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2020.**
+
+- @InProceedings{macenski2020marathon2,
   title = {The Marathon 2: A Navigation System},
   author = {Macenski, Steve and Martín, Francisco and White, Ruffin and Ginés Clavero, Jonatan},
   year = {2020},
   booktitle = {2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
   url = {https://github.com/ros-planning/navigation2},
   pdf = {https://arxiv.org/abs/2003.00368}
-}
-
-- S. Macenski, T. Moore, DV Lu, A. Merzlyakov, M. Ferguson, From the desks of ROS maintainers: A survey of modern & capable mobile robotics algorithms in the robot operating system 2, Robotics and Autonomous Systems, 2023.
-
-  @article{macenski2023survey,
-        title={From the desks of ROS maintainers: A survey of modern & capable mobile robotics algorithms in the robot operating system 2}, 
-        author={S. Macenski, T. Moore, DV Lu, A. Merzlyakov, M. Ferguson},
-        year={2023},
-        journal = {Robotics and Autonomous Systems}
   }
 
-- S. Macenski, M. Booker, J. Wallace, Open-Source, Cost-Aware Kinematically Feasible Planning for Mobile and Surface Robotics. 2024.
+**S. Macenski, T. Moore, DV Lu, A. Merzlyakov, M. Ferguson, From the desks of ROS maintainers: A survey of modern & capable mobile robotics algorithms in the robot operating system 2, Robotics and Autonomous Systems, 2023.**
 
-@article{macenski2024smac,
-      title={Open-Source, Cost-Aware Kinematically Feasible Planning for Mobile and Surface Robotics}, 
-      author={Steve Macenski and Matthew Booker and Josh Wallace},
-      year={2024},
-      journal = {Arxiv}
-}
+  - @article{macenski2023survey,
+    title={From the desks of ROS maintainers: A survey of modern & capable mobile robotics algorithms in the robot operating system 2}, 
+    author={S. Macenski, T. Moore, DV Lu, A. Merzlyakov, M. Ferguson},
+    year={2023},
+    journal = {Robotics and Autonomous Systems}
+    }
 
-NVIDIA Corporation. (2024). ISAAC ROS Packages. Retrieved from:
+**S. Macenski, M. Booker, J. Wallace, Open-Source, Cost-Aware Kinematically Feasible Planning for Mobile and Surface Robotics. 2024.**
+
+- @article{macenski2024smac,
+  title={Open-Source, Cost-Aware Kinematically Feasible Planning for Mobile and Surface Robotics}, 
+  author={Steve Macenski and Matthew Booker and Josh Wallace},
+  year={2024},
+  journal = {Arxiv}
+  }
+
+### NVIDIA Corporation. (2024). ISAAC ROS Packages. Retrieved from:
 
 - isaac_ros_nvblox: https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_nvblox/index.html
 - isaac_ros_visual_slam: https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_visual_slam/index.html
