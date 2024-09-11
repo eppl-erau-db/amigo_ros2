@@ -45,8 +45,6 @@ cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
 
 Once in the container, source the setup script to install all required dependencies and packages.
 
-TODO: SETUP THE SETUP.BASH
-
 ```bash
 cd ${ISAAC_ROS_WS} && \
 chmod +x setup.bash && \
@@ -59,7 +57,7 @@ Now, all ROS packages have been built and the container should be running correc
 realsense-viewer
 ```
 
-## Post-Reboot and/or Post-Startup Procedure 
+## Post-Startup/Post-Reboot Procedure 
 
 We have made it such that the container continues to run and automatically starts up on boot, so that the dependencies do not need to be re-installed every time you run the container. However, Keep in mind that you still need an internet connection. 
 
@@ -69,8 +67,17 @@ To open a terminal in the container:
 ```bash
 docker exec -it isaac_ros_dev-aarch64-container /bin/bash
 ```
-
 If you need more terminals attached to the container, run the same command in each new terminal as needed. 
+
+### Post-Reboot
+
+**If you have rebooted your device** you will have to run the setup.bash again to give permissions for the devices and the navstack to work porperly, this wont take as long as the first time you ran the setup.bash script as all the dependencies are already installed and the packages are already built.
+
+```bash
+cd ${ISAAC_ROS_WS} && \
+chmod +x setup.bash && \
+source ./setup.bash
+```
 
 ## Navigation Deployment: Pose-Oriented Navigation
 
@@ -136,7 +143,7 @@ ros2 launch go2_bringup go2_deploy.launch.py map_file:=src/go2_description/maps/
 
 ##### Important NOTES: 
 - if you did not use "initial_pose:=true" you will not see the robot and there will be error messages in the Terminal window, this is normal becuase Nav2 requires an initial position to work.
-- you CANNOT set "initial_pose:=true" if you are planning to use the [navigation script](#start-navigation-script) becuase this will interfere with the nav2 system.
+- **you CANNOT** set "initial_pose:=true" if you are planning to use the [navigation script](#start-navigation-script) becuase this will interfere with the nav2 system.
 - If you want to use Foxglove Studio additional information can be found [here](https://nvidia-isaac-ros.github.io/concepts/visualization/index.html).
 
 #### Start Navigation Script
@@ -169,8 +176,43 @@ ros2 service call trigger_grid_search_localization std_srvs/srv/Empty {}
 
 ## References and Citations
 
-TODO: Link repos that we copied and stuff
+- S. Macenski, F. Martín, R. White, J. Clavero. The Marathon 2: A Navigation System. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2020.
+
+@InProceedings{macenski2020marathon2,
+  title = {The Marathon 2: A Navigation System},
+  author = {Macenski, Steve and Martín, Francisco and White, Ruffin and Ginés Clavero, Jonatan},
+  year = {2020},
+  booktitle = {2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  url = {https://github.com/ros-planning/navigation2},
+  pdf = {https://arxiv.org/abs/2003.00368}
+}
+
+- S. Macenski, T. Moore, DV Lu, A. Merzlyakov, M. Ferguson, From the desks of ROS maintainers: A survey of modern & capable mobile robotics algorithms in the robot operating system 2, Robotics and Autonomous Systems, 2023.
+
+  @article{macenski2023survey,
+        title={From the desks of ROS maintainers: A survey of modern & capable mobile robotics algorithms in the robot operating system 2}, 
+        author={S. Macenski, T. Moore, DV Lu, A. Merzlyakov, M. Ferguson},
+        year={2023},
+        journal = {Robotics and Autonomous Systems}
+  }
+
+- S. Macenski, M. Booker, J. Wallace, Open-Source, Cost-Aware Kinematically Feasible Planning for Mobile and Surface Robotics. 2024.
+
+@article{macenski2024smac,
+      title={Open-Source, Cost-Aware Kinematically Feasible Planning for Mobile and Surface Robotics}, 
+      author={Steve Macenski and Matthew Booker and Josh Wallace},
+      year={2024},
+      journal = {Arxiv}
+}
+
+NVIDIA Corporation. (2024). ISAAC ROS Packages. Retrieved from:
+
+- isaac_ros_nvblox: https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_nvblox/index.html
+- isaac_ros_visual_slam: https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_visual_slam/index.html
+- isaac_ros_map_localization: https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_map_localization/index.html
+  
+© 2024 NVIDIA Corporation. All rights reserved. NVIDIA and the NVIDIA logo are trademarks and/or registered trademarks of NVIDIA Corporation in the U.S. and other countries.
 
 ## Contributors
 
-TODO: Link your LinkedIn and GitHub
+We are a team of researchers from the [Engineering Physics Propulsion Lab (EPPL)](https://daytonabeach.erau.edu/about/labs/engineering-physics-propulsion-lab) at Embry-Riddle Aeronautical University. You can find more about our work and connect with us on [LinkedIn](https://www.linkedin.com/company/eppl-erau-db/posts/?feedView=all).
