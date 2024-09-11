@@ -36,7 +36,7 @@ touch .isaac_ros_common-config && \
 echo CONFIG_IMAGE_KEY=ros2_humble.realsense > .isaac_ros_common-config
 ```
 
-After ensuring your realsense if plugged in to your Jetson device, you can build the image and start the container. This will take a long time.
+After **ensuring your realsense is plugged in** to your Jetson device, you can build the image and start the container. **This will take a long time.**
 
 ```bash
 cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
