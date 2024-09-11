@@ -87,13 +87,6 @@ def generate_launch_description():
         name='base_to_base_tf',
         output='log'
     )
-    # #Static transform example
-    # map_to_odom_tf = Node(
-    #     package="tf2_ros",
-    #     executable="static_transform_publisher",
-    #     name="map_to_odom_tf",
-    #     arguments=["0", "0", "0", "0", "0", "0", "map", "odom"]
-    # )
 
     lidar_node = Node(
         name='sllidar_node',
@@ -216,8 +209,6 @@ def generate_launch_description():
         base_footprint_to_base_link_tf,
         robot_state_publisher_node,
         odom_node,
-        #robot_localization_node,
-        # robot_localization_node_map,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
             launch_arguments={
@@ -228,7 +219,6 @@ def generate_launch_description():
         ),
         state_publisher_node,
         go2_driver_node,
-        start_go2_lidar,
         lidar_node,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_path('nav2_bringup'), 'launch', 'bringup_launch.py')]),
@@ -242,5 +232,5 @@ def generate_launch_description():
         occupancy_grid_localizer_container,
         set_initial_pose,
         start_teleop_node,
-        # map_localizer_client,
+        map_localizer_client,
     ])

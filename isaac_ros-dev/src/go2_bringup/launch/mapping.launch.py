@@ -131,20 +131,17 @@ def generate_launch_description():
         base_footprint_to_base_link_tf,
         cam_imu_tf,
         robot_state_publisher_node,
-        # odom_node,
-        robot_localization_node,
+        odom_node,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
             launch_arguments={
                 'mode': 'dynamic',
-                'visualization': 'false'
-                # 'people_segmentation': 'peoplesemsegnet_shuffleseg',
+                'visualization': 'false',
             }.items(),
         ),
         state_publisher_node,
         go2_driver_node,
         lidar_node,
-
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nav2_bringup'), 'launch', 'navigation_launch.py')]),
             launch_arguments={

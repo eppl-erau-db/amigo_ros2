@@ -9,7 +9,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 
 install(
-  DIRECTORY urdf launch dae config meshes maps
+  DIRECTORY urdf launch dae config maps
   DESTINATION share/${PROJECT_NAME}/
 )
 
