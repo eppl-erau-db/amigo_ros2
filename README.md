@@ -133,7 +133,7 @@ You can use various launch parameters for regular deployment, testing and debugg
 - intial_pose (boolean, default = false) *useful to start the robot at the same spot where you started mapping without sending it on a navigation run. you can the use rviz to make sure all sensors are working properly
 
 #### Launch the nav stack:
-Open a [container terminal](#launch-a-terminal) in a new terminal window and launch the nav2 stack launch file. In this example, I am starting the navigation stack with RViz and using RealVNC to stream the desktop to my laptop via an HDMI dummy plug to follow robot around and use RViz for debugging. Set-up steps for RealVNC for jetson seen [here](https://developer.nvidia.com/embedded/learn/tutorials/vnc-setup).
+Open a [container terminal](#launch-a-terminal) in a new terminal window and launch the nav2 stack launch file. In this example, I am starting the navigation stack with RViz and using RealVNC to stream the desktop to my laptop via an HDMI dummy plug to follow robot around and use RViz for debugging. Set-up steps for RealVNC for jetson seen [here](https://developer.nvidia.com/embedded/learn/tutorials/vnc-setup). Or you can set visualization:=true and use Foxglove Studio additional information can be found [here](https://nvidia-isaac-ros.github.io/concepts/visualization/index.html).
 
 ```bash
 source src/unitree_ros2/setup.sh && \
@@ -144,7 +144,6 @@ ros2 launch go2_bringup go2_deploy.launch.py map_file:=src/go2_description/maps/
 ##### Important NOTES: 
 - if you did not use "initial_pose:=true" you will not see the robot and there will be error messages in the Terminal window, this is normal becuase Nav2 requires an initial position to work.
 - **you CANNOT** set "initial_pose:=true" if you are planning to use the [navigation script](#start-navigation-script) becuase this will interfere with the nav2 system.
-- If you want to use Foxglove Studio additional information can be found [here](https://nvidia-isaac-ros.github.io/concepts/visualization/index.html).
 
 #### Start Navigation Script
 The following script, located in ${ISAAC_ROS_WS}/src/go2_control/go2_control/, sets the initial pose to the starting point of the map where you began mapping when you launched the [mapper](#mapping), and begins to navigate to the previously logged set of poses located in the pose_log.json file.
