@@ -155,6 +155,8 @@ Open a [container terminal](#launch-a-terminal) in a new terminal window and lau
 ros2 run go2_control task_nav_to_pose_test | tee task_output.log
 ```
 
+**Note** you can edit this script to add functionality while its navigating or at the task pose itself. for more info on how to do this check out [Nav2_Simple_commander](https://github.com/ros-navigation/navigation2/tree/main/nav2_simple_commander/nav2_simple_commander) for example code.
+
 ### Map Localization
 This service is optional but useful in certain situations. I typically use it when the robot is not correctly positioned on the map or when the robot starts from a different location than the initial pose, requiring a recalculation of its position.
 
