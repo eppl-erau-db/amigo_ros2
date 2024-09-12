@@ -142,8 +142,8 @@ ros2 launch go2_bringup go2_deploy.launch.py map_file:=src/go2_description/maps/
 ```
 
 ##### Important NOTES: 
-- if you did not use "initial_pose:=true" you will not see the robot and there will be error messages in the Terminal window, this is normal becuase Nav2 requires an initial position to work.
-- **you CANNOT** set "initial_pose:=true" if you are planning to use the [navigation script](#start-navigation-script) becuase this will interfere with the nav2 system.
+- if you did not use "initial_pose:=true" you will not see the robot and there will be error messages in the Terminal window, this is normal becuase Nav2 requires an initial position to work, which will be done in the next step.
+- **you CANNOT** set "initial_pose:=true" if you are planning to use the [navigation script](#start-navigation-script) becuase this will interfere with the nav2 system and it will not work properly.
 
 #### Start Navigation Script
 The following script, located in ${ISAAC_ROS_WS}/src/go2_control/go2_control/, sets the initial pose to the starting point of the map where you began mapping when you launched the [mapper](#mapping), and begins to navigate to the previously logged set of poses located in the pose_log.json file.
