@@ -1,7 +1,10 @@
 **Setup Grapaha**
 
+
+```
 sudo apt-get update
 sudo apt-get upgrade
+```
 
 sudo apt-get install -y software-properties-common
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
