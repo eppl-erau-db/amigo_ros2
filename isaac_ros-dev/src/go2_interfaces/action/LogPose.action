@@ -1,9 +1,12 @@
-# Goal definition
+# Goal
+string current_map
 string task_type
+string switch_to_map
+string map_file_path
 
 ---
-# Result definition
+# Result
 bool success
 
 ---
-
+# Feedback
