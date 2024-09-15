@@ -56,6 +56,22 @@ Now, all ROS packages have been built and the container should be running correc
 ```bash
 realsense-viewer
 ```
+Outside of the container:
+
+'''bash
+docker cp /home/castej/unitree_sdk2/thirdparty/lib/aarch64 isaac_ros_dev-aarch64-container:/opt/libs
+'''
+
+Inside of the container:
+
+'''bash
+export LD_LIBRARY_PATH=/opt/libs:$LD_LIBRARY_PATH
+echo 'export LD_LIBRARY_PATH=/opt/libs:$LD_LIBRARY_PATH' >> ~/.bashrc
+source ~/.bashrc
+
+ros2 run go2_sdk_integration go2_motion_switcher_service
+ros2 service call /switch_modes std_srvs/srv/SetBool "{data: false}"
+'''
 
 ## Post-Startup/Post-Reboot Procedure 
 
