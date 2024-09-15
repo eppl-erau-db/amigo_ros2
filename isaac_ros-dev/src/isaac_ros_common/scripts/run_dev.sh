@@ -232,7 +232,7 @@ DOCKER_ARGS+=("-e NVIDIA_DRIVER_CAPABILITIES=all")
 DOCKER_ARGS+=("-e FASTRTPS_DEFAULT_PROFILES_FILE=/usr/local/share/middleware_profiles/rtps_udp_profile.xml")
 DOCKER_ARGS+=("-e ROS_DOMAIN_ID")
 DOCKER_ARGS+=("-e USER")
-DOCKER_ARGS+=("-e ISAAC_ROS_WS=/workspaces/isaac_ros-dev")
+DOCKER_ARGS+=("-e ISAAC_ROS_WS=/workspaces/amigo_ros2/isaac_ros-dev")
 
 # Add permission for ttyUSB0
 DOCKER_ARGS+=("--device=/dev/ttyUSB0")
