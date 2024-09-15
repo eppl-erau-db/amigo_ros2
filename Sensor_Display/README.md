@@ -77,7 +77,9 @@ CREATE TABLE sensor_data (
     Methane FLOAT,
     O2 FLOAT,
     CO2 FLOAT,
-    SO2 FLOAT
+    SO2 FLOAT,
+    Humidity Float,
+    Temp Float
 );
 ```
 
