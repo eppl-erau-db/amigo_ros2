@@ -31,7 +31,7 @@ public:
         req_puber_ = this->create_publisher<unitree_api::msg::Request>("/api/sport/request", 10);
 
         // Network name parameter
-        this->declare_parameter<std::string>("network_interface", "enp114s0");
+        this->declare_parameter<std::string>("network_interface", "eth0");
         network_interface_ = this->get_parameter("network_interface").as_string();
     }
 
@@ -109,7 +109,7 @@ private:
     void check_mode() 
     {
         // Creating, logging, executing, and returning string output of command
-        std::string command = "~/unitree_sdk2/build/bin/check_mode " + network_interface_;
+        std::string command = "/unitree_sdk2/build/bin/check_mode " + network_interface_;
         RCLCPP_INFO(this->get_logger(), "Executing: %s", command.c_str());
         int mode = std::system(command.c_str());
         if (mode == 0)
@@ -129,7 +129,7 @@ private:
     void switch_to_ai()
     {
         // Creating, logging and executing command
-        std::string command = "~/unitree_sdk2/build/bin/ai_switcher " + network_interface_;
+        std::string command = "/unitree_sdk2/build/bin/ai_switcher " + network_interface_;
         RCLCPP_INFO(this->get_logger(), "Executing: %s", command.c_str());
         ai_req_result_ = std::system(command.c_str()) == 0;
         RCLCPP_INFO(this->get_logger(), "The dog is in ai mode.");
@@ -138,7 +138,7 @@ private:
     void switch_to_sport()
     {
         // creating, logging and executing command
-        std::string command = "~/unitree_sdk2/build/bin/sport_switcher " + network_interface_;
+        std::string command = "/unitree_sdk2/build/bin/sport_switcher " + network_interface_;
         RCLCPP_INFO(this->get_logger(), "Executing: %s", command.c_str());
         sport_req_result_ = std::system(command.c_str()) == 0;
         RCLCPP_INFO(this->get_logger(), "The dog is in sport mode.");
