@@ -61,8 +61,8 @@ sudo mariadb
 On first start-up only
 Once in the database 
 ```
-CREATE USER 'AMIGO'@'localhost' IDENTIFIED BY 'mypassword';
-GRANT ALL PRIVILEGES ON mydatabase.* TO 'AMIGO'@'localhost';
+CREATE USER 'AMIGO'@'localhost' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON Gas_Sensors.* TO 'AMIGO'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
