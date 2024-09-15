@@ -184,7 +184,7 @@ BASE_NAME="isaac_ros_dev-$PLATFORM"
 if [[ ! -z "$CONFIG_CONTAINER_NAME_SUFFIX" ]] ; then
     BASE_NAME="$BASE_NAME-$CONFIG_CONTAINER_NAME_SUFFIX"
 fi
-CONTAINER_NAME="$BASE_NAME-container5"
+CONTAINER_NAME="$BASE_NAME-container-ros-service"
 
 # Remove any exited containers.
 if [ "$(docker ps -a --quiet --filter status=exited --filter name=$CONTAINER_NAME)" ]; then
@@ -247,7 +247,7 @@ if [[ $PLATFORM == "aarch64" ]]; then
     DOCKER_ARGS+=("--pid=host")
     DOCKER_ARGS+=("-v /usr/share/vpi3:/usr/share/vpi3")
     DOCKER_ARGS+=("-v /dev/input:/dev/input")
-    
+
     # Add library for sdk:
     DOCKER_ARGS+=("-e LD_LIBRARY_PATH=/unitree_sdk2/thirdparty/lib/aarch64:$LD_LIBRARY_PATH")
 
