@@ -77,6 +77,8 @@ colcon build && \
 # Building the ISAAC ROS workspace
 cd ${ISAAC_ROS_WS} && \
 colcon build --symlink-install && \
+colcon build --packages-select go2_sdk_integration && \
+colcon build && \
 
 # Source ROS setup files
 echo "Sourcing ROS setup files..."
