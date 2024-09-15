@@ -184,7 +184,7 @@ BASE_NAME="isaac_ros_dev-$PLATFORM"
 if [[ ! -z "$CONFIG_CONTAINER_NAME_SUFFIX" ]] ; then
     BASE_NAME="$BASE_NAME-$CONFIG_CONTAINER_NAME_SUFFIX"
 fi
-CONTAINER_NAME="$BASE_NAME-container"
+CONTAINER_NAME="$BASE_NAME-container-grafana"
 
 # Remove any exited containers.
 if [ "$(docker ps -a --quiet --filter status=exited --filter name=$CONTAINER_NAME)" ]; then
@@ -201,17 +201,7 @@ fi
 # Summarize launch
 print_info "Launching Isaac ROS Dev container with image key ${BASE_IMAGE_KEY}: ${ISAAC_ROS_DEV_DIR}"
 
-# Build imag to launch
-if [[ $SKIP_IMAGE_BUILD -ne 1 ]]; then
-    print_info "Building $BASE_IMAGE_KEY base as image: $BASE_NAME"
-   $ROOT/build_image_layers.sh --image_key "$BASE_IMAGE_KEY" --image_name "$BASE_NAME"
-
-    # Check result
-    if [ $? -ne 0 ]; then
-        if [[ -z $(docker image ls --quiet $BASE_NAME) ]]; then
-            print_error "Building image failed and no cached image found for $BASE_NAME, aborting."
-            exit 1
-        else
+# Build imag to launch-v ~/mariadb_port:/mariadb_port
             print_warning "Unable to build image, but cached image found."
         fi
     fi
@@ -227,7 +217,7 @@ fi
 DOCKER_ARGS+=("-v /tmp/.X11-unix:/tmp/.X11-unix")
 DOCKER_ARGS+=("-v $HOME/.Xauthority:/home/admin/.Xauthority:rw")
 DOCKER_ARGS+=("-e DISPLAY")
-DOCKER_ARGS+=("-e NVIDIA_VISIBLE_DEVICES=all")
+DOCKER_ARGS+=("-e NVIDIA_VISIBLE_DEVICES=all")-v ~/mariadb_port:/mariadb_port
 DOCKER_ARGS+=("-e NVIDIA_DRIVER_CAPABILITIES=all")
 DOCKER_ARGS+=("-e FASTRTPS_DEFAULT_PROFILES_FILE=/usr/local/share/middleware_profiles/rtps_udp_profile.xml")
 DOCKER_ARGS+=("-e ROS_DOMAIN_ID")
@@ -285,8 +275,9 @@ docker run -it --restart always \
     --privileged \
     --network host \
     ${DOCKER_ARGS[@]} \
-    -v $ISAAC_ROS_DEV_DIR:/workspaces/amigo_ros2/isaac_ros-dev \
+    -v $ISAAC_ROS_DEV_DIR:/workspaces/isaac_ros-dev \
     -v /etc/localtime:/etc/localtime:ro \
+    --add-host host.docker.internal:host-gateway \
     --device=/dev/ttyUSB0 \
     --device=/dev/bus/usb/002/003 \
     --device=/dev/ttyUSB1 \
