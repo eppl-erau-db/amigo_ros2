@@ -247,6 +247,9 @@ if [[ $PLATFORM == "aarch64" ]]; then
     DOCKER_ARGS+=("--pid=host")
     DOCKER_ARGS+=("-v /usr/share/vpi3:/usr/share/vpi3")
     DOCKER_ARGS+=("-v /dev/input:/dev/input")
+    
+    # Add library for sdk:
+    DOCKER_ARGS+=("-e LD_LIBRARY_PATH=/unitree_sdk2/thirdparty/lib/aarch64:$LD_LIBRARY_PATH")
 
     # If jtop present, give the container access
     if [[ $(getent group jtop) ]]; then
