@@ -67,6 +67,13 @@ To open a terminal in the container:
 ```bash
 docker exec -it isaac_ros_dev-aarch64-container /bin/bash
 ```
+also source ROS2 and your workspace:
+
+```bash
+source src/unitree_ros2/setup.sh && \
+source install/setup.bash
+```
+
 If you need more terminals attached to the container, run the same command in each new terminal as needed. 
 
 ### Post-Reboot
