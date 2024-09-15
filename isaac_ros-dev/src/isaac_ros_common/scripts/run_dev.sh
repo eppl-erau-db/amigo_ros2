@@ -285,9 +285,9 @@ docker run -it --restart always \
     --privileged \
     --network host \
     ${DOCKER_ARGS[@]} \
-    -v $ISAAC_ROS_DEV_DIR:/workspaces/isaac_ros-dev \
+    -v $ISAAC_ROS_DEV_DIR:/workspaces/amigo_ros2/isaac_ros-dev \
     -v /etc/localtime:/etc/localtime:ro \
-    -v ~/unitree_sdk2 \
+    -v ~/unitree_sdk2:/unitree_sdk2 \
     --device=/dev/ttyUSB0 \
     --device=/dev/bus/usb/002/003 \
     --device=/dev/ttyUSB1 \
@@ -296,6 +296,6 @@ docker run -it --restart always \
     --runtime nvidia \
     --user="admin" \
     --entrypoint /usr/local/bin/scripts/workspace-entrypoint.sh \
-    --workdir /workspaces/isaac_ros-dev \
+    --workdir /workspaces/amigo_ros2/isaac_ros-dev \
     $BASE_NAME \
     /bin/bash
