@@ -42,6 +42,32 @@ void printSerialNumber(uint16_t serial0, uint16_t serial1, uint16_t serial2) {
     Serial.println();
 }
 
+// Function to send sensor data over I2C to Jetson
+void sendDataToJetson(uint16_t co2, float temperature, float humidity, float methanePPM, float gas1PPM, float gas2PPM) {
+    Wire.beginTransmission(0x08); // Replace with the Jetson's I2C address (e.g., 0x08)
+    
+    // Send CO2 concentration
+    Wire.write((uint8_t)(co2 >> 8)); // High byte
+    Wire.write((uint8_t)(co2 & 0xFF)); // Low byte
+    
+    // Send Temperature
+    Wire.write((uint8_t*)&temperature, sizeof(temperature)); // Cast to byte array
+    
+    // Send Humidity
+    Wire.write((uint8_t*)&humidity, sizeof(humidity));
+    
+    // Send Methane concentration
+    Wire.write((uint8_t*)&methanePPM, sizeof(methanePPM));
+    
+    // Send Gas Sensor 1 concentration
+    Wire.write((uint8_t*)&gas1PPM, sizeof(gas1PPM));
+    
+    // Send Gas Sensor 2 concentration
+    Wire.write((uint8_t*)&gas2PPM, sizeof(gas2PPM));
+    
+    Wire.endTransmission(); // End the I2C transmission
+}
+
 void setup() {
     Serial.begin(115200);
     while (!Serial) {
@@ -105,29 +131,28 @@ void setup() {
 
 void loop() {
     // Read from Gas Sensor 1
+    float gas1PPM = gas1.readGasConcentrationPPM();
     Serial.print("Gas Sensor 1 (");
     Serial.print(gas1.queryGasType());
     Serial.print(") concentration: ");
-    Serial.print(gas1.readGasConcentrationPPM());
+    Serial.print(gas1PPM);
     Serial.println(" PPM");
 
     // Read from Gas Sensor 2
+    float gas2PPM = gas2.readGasConcentrationPPM();
     Serial.print("Gas Sensor 2 (");
     Serial.print(gas2.queryGasType());
     Serial.print(") concentration: ");
-    Serial.print(gas2.readGasConcentrationPPM());
+    Serial.print(gas2PPM);
     Serial.println(" PPM");
 
     // Read from SCD4X CO2 Sensor
-    uint16_t error;
-    char errorMessage[256];
-    delay(5000); // Wait for 5 seconds between readings
-
     uint16_t co2;
     float temperature;
     float humidity;
-    error = scd4x.readMeasurement(co2, temperature, humidity);
+    uint16_t error = scd4x.readMeasurement(co2, temperature, humidity);
     if (error) {
+        char errorMessage[256];
         Serial.print("Error trying to execute readMeasurement(): ");
         errorToString(error, errorMessage, 256);
         Serial.println(errorMessage);
@@ -136,11 +161,11 @@ void loop() {
     } else {
         Serial.print("CO2 concentration: ");
         Serial.print(co2);
-        Serial.println(" PPM\t");
+        Serial.println(" PPM");
 
         Serial.print("Temperature: ");
         Serial.print(temperature);
-        Serial.println(" °C\t");
+        Serial.println(" °C");
 
         Serial.print("Humidity: ");
         Serial.println(humidity);
@@ -148,18 +173,16 @@ void loop() {
 
     // Read Methane Sensor Value
     methaneSensorValue = analogRead(methaneSensorPin);
-    float voltage = (methaneSensorValue / 1023.0) *5; // Assuming a 5V reference
+    float voltage = (methaneSensorValue / 1023.0) * 5.0; // Assuming a 5V reference
     float methanePPM = voltageToPPM(voltage);
-
-    //Serial.print("Methane Sensor Value (Raw): ");
-    //Serial.print(methaneSensorValue);
-    //Serial.print("\tVoltage: ");
-    //Serial.print(voltage);
-   // Serial.print(" V\t");
     Serial.print("Methane Concentration: ");
     Serial.print(methanePPM);
     Serial.println(" PPM");
 
     Serial.println("-----------------------------");
+
+    // Send data to Jetson over I2C
+    sendDataToJetson(co2, temperature, humidity, methanePPM, gas1PPM, gas2PPM);
+
     delay(2000); // Wait 2 seconds before the next loop
 }
