@@ -45,6 +45,7 @@ http://<your_IP_address>:3000
 Use admin, admin initially when setting up Graphana and change later 
 
 **Setup SQL database**
+
 This is meant to set the storing of gas sensor data to a SQL database to then be visualized by Graphana
 
 ```
