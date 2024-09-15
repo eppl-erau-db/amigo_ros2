@@ -184,7 +184,7 @@ BASE_NAME="isaac_ros_dev-$PLATFORM"
 if [[ ! -z "$CONFIG_CONTAINER_NAME_SUFFIX" ]] ; then
     BASE_NAME="$BASE_NAME-$CONFIG_CONTAINER_NAME_SUFFIX"
 fi
-CONTAINER_NAME="$BASE_NAME-container-ros-service_3"
+CONTAINER_NAME="$BASE_NAME-container-ros-service_4"
 
 # Remove any exited containers.
 if [ "$(docker ps -a --quiet --filter status=exited --filter name=$CONTAINER_NAME)" ]; then
@@ -306,11 +306,12 @@ docker run -it --restart always \
 # Copy the required library files into the container after it's created
 docker cp ~/unitree_sdk2/thirdparty/lib/aarch64 $CONTAINER_NAME:/opt/libs
 
-# Now execute the commands inside the container to set the environment variable
-docker exec -it $CONTAINER_NAME /bin/bash -c \
-    "export LD_LIBRARY_PATH=/opt/libs:$LD_LIBRARY_PATH && \
-    echo 'export LD_LIBRARY_PATH=/opt/libs:$LD_LIBRARY_PATH' >> ~/.bashrc && \
-    source ~/.bashrc"
+# Set LD_LIBRARY_PATH inside the container for admin user
+docker exec -u admin $CONTAINER_NAME /bin/bash -c \
+    "echo 'export LD_LIBRARY_PATH=/opt/libs:\$LD_LIBRARY_PATH' >> ~/.bashrc"
+
+# Optionally source .bashrc (may not be necessary if you attach interactively)
+docker exec -u admin $CONTAINER_NAME /bin/bash -c "source ~/.bashrc"
 
 # Reattach to the running container
 docker exec -i -t -u admin --workdir /workspaces/isaac_ros-dev $CONTAINER_NAME /bin/bash $@
