@@ -184,7 +184,7 @@ BASE_NAME="isaac_ros_dev-$PLATFORM"
 if [[ ! -z "$CONFIG_CONTAINER_NAME_SUFFIX" ]] ; then
     BASE_NAME="$BASE_NAME-$CONFIG_CONTAINER_NAME_SUFFIX"
 fi
-CONTAINER_NAME="$BASE_NAME-container3"
+CONTAINER_NAME="$BASE_NAME-container4"
 
 # Remove any exited containers.
 if [ "$(docker ps -a --quiet --filter status=exited --filter name=$CONTAINER_NAME)" ]; then
@@ -232,7 +232,7 @@ DOCKER_ARGS+=("-e NVIDIA_DRIVER_CAPABILITIES=all")
 DOCKER_ARGS+=("-e FASTRTPS_DEFAULT_PROFILES_FILE=/usr/local/share/middleware_profiles/rtps_udp_profile.xml")
 DOCKER_ARGS+=("-e ROS_DOMAIN_ID")
 DOCKER_ARGS+=("-e USER")
-DOCKER_ARGS+=("-e ISAAC_ROS_WS=/workspaces/amigo_ros2/isaac_ros-dev")
+DOCKER_ARGS+=("-e ISAAC_ROS_WS=/workspaces/isaac_ros-dev")
 
 # Add permission for ttyUSB0
 DOCKER_ARGS+=("--device=/dev/ttyUSB0")
@@ -285,7 +285,7 @@ docker run -it --restart always \
     --privileged \
     --network host \
     ${DOCKER_ARGS[@]} \
-    -v $ISAAC_ROS_DEV_DIR:/workspaces/amigo_ros2/isaac_ros-dev \
+    -v $ISAAC_ROS_DEV_DIR:/workspaces/isaac_ros-dev \
     -v /etc/localtime:/etc/localtime:ro \
     -v ~/unitree_sdk2:/unitree_sdk2 \
     --device=/dev/ttyUSB0 \
@@ -296,6 +296,6 @@ docker run -it --restart always \
     --runtime nvidia \
     --user="admin" \
     --entrypoint /usr/local/bin/scripts/workspace-entrypoint.sh \
-    --workdir /workspaces/amigo_ros2/isaac_ros-dev \
+    --workdir /workspaces/isaac_ros-dev \
     $BASE_NAME \
     /bin/bash
