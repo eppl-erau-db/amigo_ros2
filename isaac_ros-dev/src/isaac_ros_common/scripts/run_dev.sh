@@ -284,7 +284,7 @@ print_info "Running $CONTAINER_NAME"
 if [[ $VERBOSE -eq 1 ]]; then
     set -x
 fi
-docker run -d --restart always \
+docker run -it --restart always \
     --privileged \
     --network host \
     ${DOCKER_ARGS[@]} \
@@ -301,18 +301,8 @@ docker run -d --restart always \
     --entrypoint /usr/local/bin/scripts/workspace-entrypoint.sh \
     --workdir /workspaces/isaac_ros-dev \
     $BASE_NAME \
-    sleep infinity
+    /bin/bash
 
-# Copy the required library files into the container after it's created
-docker cp ~/unitree_sdk2/thirdparty/lib/aarch64 $CONTAINER_NAME:/opt/libs
-
-# Set LD_LIBRARY_PATH inside the container for admin user
-docker exec -u admin $CONTAINER_NAME /bin/bash -c \
-    "grep -qxF 'export LD_LIBRARY_PATH=/opt/libs:\$LD_LIBRARY_PATH' ~/.bashrc || \
-    echo 'export LD_LIBRARY_PATH=/opt/libs:\$LD_LIBRARY_PATH' >> ~/.bashrc"
-
-# Reattach to the running container
-docker exec -it -u admin --workdir /workspaces/isaac_ros-dev $CONTAINER_NAME /bin/bash $@
 
 
 
