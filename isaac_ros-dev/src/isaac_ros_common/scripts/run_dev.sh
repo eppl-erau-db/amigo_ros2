@@ -287,6 +287,7 @@ docker run -it --restart always \
     ${DOCKER_ARGS[@]} \
     -v $ISAAC_ROS_DEV_DIR:/workspaces/isaac_ros-dev \
     -v /etc/localtime:/etc/localtime:ro \
+    -v ~/unitree_sdk2 \
     --device=/dev/ttyUSB0 \
     --device=/dev/bus/usb/002/003 \
     --device=/dev/ttyUSB1 \
