@@ -184,7 +184,7 @@ BASE_NAME="isaac_ros_dev-$PLATFORM"
 if [[ ! -z "$CONFIG_CONTAINER_NAME_SUFFIX" ]] ; then
     BASE_NAME="$BASE_NAME-$CONFIG_CONTAINER_NAME_SUFFIX"
 fi
-CONTAINER_NAME="$BASE_NAME-container-ros-service_4"
+CONTAINER_NAME="$BASE_NAME-container-ros-service_5"
 
 # Remove any exited containers.
 if [ "$(docker ps -a --quiet --filter status=exited --filter name=$CONTAINER_NAME)" ]; then
@@ -284,7 +284,7 @@ print_info "Running $CONTAINER_NAME"
 if [[ $VERBOSE -eq 1 ]]; then
     set -x
 fi
-docker run -it --restart always \
+docker run -d --restart always \
     --privileged \
     --network host \
     ${DOCKER_ARGS[@]} \
@@ -314,4 +314,5 @@ docker exec -u admin $CONTAINER_NAME /bin/bash -c \
 docker exec -u admin $CONTAINER_NAME /bin/bash -c "source ~/.bashrc"
 
 # Reattach to the running container
-docker exec -i -t -u admin --workdir /workspaces/isaac_ros-dev $CONTAINER_NAME /bin/bash $@
+docker exec -it -u admin --workdir /workspaces/isaac_ros-dev $CONTAINER_NAME /bin/bash $@
+
