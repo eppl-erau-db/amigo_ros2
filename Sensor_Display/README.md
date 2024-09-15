@@ -48,15 +48,17 @@ Use admin, admin initially when setting up Graphana and change later
 
 This is meant to set the storing of gas sensor data to a SQL database to then be visualized by Graphana
 
+1. Install MariaDB
 ```
 sudo apt-get install mariadb-server
 sudo mysql_secure_installation
 ```
 
+2. Enter MariaDB 
 ```
 sudo mariadb
 ```
-
+On first start-up only
 Once in the database 
 ```
 CREATE USER 'AMIGO'@'localhost' IDENTIFIED BY 'mypassword';
@@ -64,6 +66,8 @@ GRANT ALL PRIVILEGES ON mydatabase.* TO 'AMIGO'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
+
+3. Setup the place for gas sensor data to be stored
 This creates the Database and table to store the gas sensor data in
 ```
 CREATE DATABASE Gas_Sensors;
