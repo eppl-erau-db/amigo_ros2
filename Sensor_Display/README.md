@@ -1,4 +1,4 @@
-Setup Grapaha
+#Setup Grapaha
 
 sudo apt-get update
 sudo apt-get upgrade
