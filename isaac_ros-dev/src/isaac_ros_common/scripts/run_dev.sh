@@ -306,14 +306,13 @@ docker run -d --restart always \
 # Copy the required library files into the container after it's created
 docker cp ~/unitree_sdk2/thirdparty/lib/aarch64 $CONTAINER_NAME:/opt/libs
 
+# Set LD_LIBRARY_PATH inside the container for admin user
+docker exec -u admin $CONTAINER_NAME /bin/bash -c \
+    "grep -qxF 'export LD_LIBRARY_PATH=/opt/libs:\$LD_LIBRARY_PATH' ~/.bashrc || \
+    echo 'export LD_LIBRARY_PATH=/opt/libs:\$LD_LIBRARY_PATH' >> ~/.bashrc"
+
 # Reattach to the running container
 docker exec -it -u admin --workdir /workspaces/isaac_ros-dev $CONTAINER_NAME /bin/bash $@
-
-# Set LD_LIBRARY_PATH inside the container for admin user
-echo 'export LD_LIBRARY_PATH=/opt/libs:\$LD_LIBRARY_PATH' >> ~/.bashrc
-
-# Optionally source .bashrc (may not be necessary if you attach interactively)
-source ~/.bashrc
 
 
 
