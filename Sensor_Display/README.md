@@ -1,4 +1,4 @@
-**Setup Grapaha**
+**Setup Graphana**
 
 
 1. Get Update
