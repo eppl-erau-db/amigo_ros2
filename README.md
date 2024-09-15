@@ -65,7 +65,9 @@ We have made it such that the container continues to run and automatically start
 To open a terminal in the container:
 
 ```bash
-docker exec -it isaac_ros_dev-aarch64-container /bin/bash
+docker exec -it isaac_ros_dev-aarch64-container /bin/bash && \
+source src/unitree_ros2/setup.sh && \
+source install/setup.bash
 ```
 If you need more terminals attached to the container, run the same command in each new terminal as needed. 
 
