@@ -9,6 +9,20 @@ import rclpy
 from go2_control.go2_velocity_commands import WirelessControl
 
 
+def change_map_pose(navigator, map_pose):
+    if map_pose == 'stair_1':
+        navigator.changeMap(map_pose)
+        while not navigator.isTaskComplete():
+            feedback = navigator.getFeedback()
+            time.sleep(0.5)
+        result = navigator.getResult()
+        if result == TaskResult.SUCCEEDED:
+            return TaskResult.SUCCEEDED
+        elif result == TaskResult.CANCELED:
+            print('Retry was canceled!')
+        elif result == TaskResult.FAILED:
+            print('Retry failed!') 
+
 def perform_task_at_pose(task_pose):
     # Placeholder for performing the task
     # Implement the actual task logic here
@@ -151,6 +165,33 @@ def main():
                         print('Retry failed!')
                 else:
                     print('Navigation to task pose has an invalid return status')
+
+            # Handle the map pose
+            if entry["task_type"] == "map_pose":
+                map_pose = deepcopy(pose)
+                navigator.goToPose(task_pose)
+                while not navigator.isTaskComplete():
+                    feedback = navigator.getFeedback()
+                    # if feedback:
+                    #     print('Executing task at pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
+                    time.sleep(0.2)
+                result = navigator.getResult()
+                if result == TaskResult.SUCCEEDED:
+                    print('Navigation to task pose succeeded')
+                    perform_task_at_pose(task_pose)
+                elif result == TaskResult.CANCELED:
+                    print('Navigation to task pose was canceled')
+                elif result == TaskResult.FAILED:
+                    print('Navigation to task pose failed')
+                    result = handle_task_failure(navigator, task_pose)
+                    if result == TaskResult.SUCCEEDED:
+                        print('Retry succeeded!')
+                        perform_task_at_pose(task_pose)
+                    else:
+                        print('Retry failed!')
+                else:
+                    print('Navigation to task pose has an invalid return status')
+            
             else:
                 print('Task type invalid')
 
