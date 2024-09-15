@@ -301,10 +301,13 @@ docker run -d --restart always \
     --entrypoint /usr/local/bin/scripts/workspace-entrypoint.sh \
     --workdir /workspaces/isaac_ros-dev \
     $BASE_NAME \
-    /bin/bash
+    sleep infinity
 
 # Copy the required library files into the container after it's created
 docker cp ~/unitree_sdk2/thirdparty/lib/aarch64 $CONTAINER_NAME:/opt/libs
+
+# Reattach to the running container
+docker exec -it -u admin --workdir /workspaces/isaac_ros-dev $CONTAINER_NAME /bin/bash $@
 
 # Set LD_LIBRARY_PATH inside the container for admin user
 docker exec -u admin $CONTAINER_NAME /bin/bash -c \
@@ -313,6 +316,5 @@ docker exec -u admin $CONTAINER_NAME /bin/bash -c \
 # Optionally source .bashrc (may not be necessary if you attach interactively)
 docker exec -u admin $CONTAINER_NAME /bin/bash -c "source ~/.bashrc"
 
-# Reattach to the running container
-docker exec -it -u admin --workdir /workspaces/isaac_ros-dev $CONTAINER_NAME /bin/bash $@
+
 
