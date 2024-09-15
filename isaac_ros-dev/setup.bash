@@ -30,18 +30,38 @@ rosdep install --from-paths ${ISAAC_ROS_WS}/src/isaac_ros_map_localization --ign
 
 # Set permissions for devices
 echo "Setting permissions for devices..."
-# [Your existing device permission commands here]
+# Camera devices
+for cam_device in /dev/video{0..2}; do
+  if [ -e "$cam_device" ]; then
+    sudo chmod 666 "$cam_device"
+    echo "Set permissions for $cam_device"
+  else
+    echo "Warning: $cam_device not found"
+  fi
+done
 
-# Copy the required library files into /opt/libs
-echo "Copying required library files to /opt/libs..."
-sudo mkdir -p /opt/libs
-sudo cp -r /unitree_sdk2/thirdparty/lib/aarch64/* /opt/libs/
-sudo chmod -R 755 /opt/libs
+# LiDAR device
+if [ -e "/dev/ttyUSB0" ]; then
+  sudo chmod 777 /dev/ttyUSB0
+  echo "Set permissions for /dev/ttyUSB0"
+else
+  echo "Warning: /dev/ttyUSB0 not found"
+fi
 
-# Set LD_LIBRARY_PATH environment variable
-echo "Setting LD_LIBRARY_PATH..."
-export LD_LIBRARY_PATH=/opt/libs:$LD_LIBRARY_PATH
-echo 'export LD_LIBRARY_PATH=/opt/libs:$LD_LIBRARY_PATH' >> ~/.bashrc
+# Other devices
+if [ -e "/dev/ttyTHS1" ]; then
+  sudo chmod 666 /dev/ttyTHS1
+  echo "Set permissions for /dev/ttyTHS1"
+else
+  echo "Warning: /dev/ttyTHS1 not found"
+fi
+
+if [ -e "/dev/i2c-7" ]; then
+  sudo chmod 666 /dev/i2c-7
+  echo "Set permissions for /dev/i2c-7"
+else
+  echo "Warning: /dev/i2c-7 not found"
+fi
 
 # Build the workspaces
 echo "Building ROS workspaces..."
