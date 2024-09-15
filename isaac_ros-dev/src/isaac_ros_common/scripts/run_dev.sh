@@ -249,7 +249,7 @@ if [[ $PLATFORM == "aarch64" ]]; then
     DOCKER_ARGS+=("-v /dev/input:/dev/input")
 
     # Add library for sdk:
-    DOCKER_ARGS+=("-e LD_LIBRARY_PATH=/unitree_sdk2/thirdparty/lib/aarch64:$LD_LIBRARY_PATH")
+    # DOCKER_ARGS+=("-e LD_LIBRARY_PATH=/unitree_sdk2/thirdparty/lib/aarch64:$LD_LIBRARY_PATH")
 
     # If jtop present, give the container access
     if [[ $(getent group jtop) ]]; then
@@ -302,3 +302,15 @@ docker run -it --restart always \
     --workdir /workspaces/isaac_ros-dev \
     $BASE_NAME \
     /bin/bash
+
+# Copy the required library files into the container after it's created
+docker cp ~/unitree_sdk2/thirdparty/lib/aarch64 $CONTAINER_NAME:/opt/libs
+
+# Now execute the commands inside the container to set the environment variable
+docker exec -it $CONTAINER_NAME /bin/bash -c \
+    "export LD_LIBRARY_PATH=/opt/libs:\$LD_LIBRARY_PATH && \
+    echo 'export LD_LIBRARY_PATH=/opt/libs:\$LD_LIBRARY_PATH' >> ~/.bashrc && \
+    source ~/.bashrc"
+
+# Reattach to the running container
+docker exec -i -t -u admin --workdir /workspaces/isaac_ros-dev $CONTAINER_NAME /bin/bash $@
