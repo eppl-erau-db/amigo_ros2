@@ -95,17 +95,15 @@ This navigation process involves two main phases: Mapping and Pose Logging and A
 ### Phase 1: Constructing a 2D Map and Logging Poses
 
 #### Mapping: 
-Launch a [container terminal](#launch-a-terminal) in a new terminal window and source ROS. Begin by manually driving the robot to create a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
+Launch a [container terminal](#launch-a-terminal) in a new terminal window and [source](#source-ros2-and-your-workspace) ROS. Begin by manually driving the robot to create a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
 
 ```bash
-source src/unitree_ros2/setup.sh && \
-source install/setup.bash && \
 ros2 launch go2_bringup mapping.launch.py | tee output.log
 ```
 NOTE: While you are actively mapping, use the [log action pose call](#pose-logging) to create a file with defined poses on the current map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
 
 #### Pose Logging: 
-Launch a [container terminal](#launch-a-terminal) in a new terminal window and call the following actions as needed:
+Launch a [container terminal](#launch-a-terminal) in a new terminal window [source](#source-ros2-and-your-workspace) your workspace and call the following actions as needed:
 
 - task_type 'normal': A pose defined as 'normal' is treated as a standard navigation task. This is useful if you want to constrain the global path planning algorithm to follow a specific path, avoiding high-traffic or hard-to-navigate areas.
 
@@ -142,22 +140,21 @@ You can use various launch parameters for regular deployment, testing and debugg
 - intial_pose (boolean, default = false) *useful to start the robot at the same spot where you started mapping without sending it on a navigation run. you can the use rviz to make sure all sensors are working properly
 
 #### Launch the nav stack:
-Open a [container terminal](#launch-a-terminal) in a new terminal window and launch the nav2 stack launch file. In this example, I am starting the navigation stack with RViz and using RealVNC to stream the desktop to my laptop via an HDMI dummy plug to follow robot around and use RViz for debugging. Set-up steps for RealVNC for jetson seen [here](https://developer.nvidia.com/embedded/learn/tutorials/vnc-setup). Or you can set visualization:=true and use Foxglove Studio additional information can be found [here](https://nvidia-isaac-ros.github.io/concepts/visualization/index.html).
+Open a [container terminal](#launch-a-terminal) in a new terminal window, [source](#source-ros2-and-your-workspace) your workspace and launch the nav2 stack launch file. In this example, I am starting the navigation stack with RViz and using RealVNC to stream the desktop to my laptop via an HDMI dummy plug to follow robot around and use RViz for debugging. Set-up steps for RealVNC for jetson seen [here](https://developer.nvidia.com/embedded/learn/tutorials/vnc-setup). Or you can set visualization:=true and use Foxglove Studio to send and view all ROS topics (similar to RViz) over wifi to your laptop, additional information can be found [here](https://nvidia-isaac-ros.github.io/concepts/visualization/index.html).
 
 ```bash
-source src/unitree_ros2/setup.sh && \
-source install/setup.bash && \
 ros2 launch go2_bringup go2_deploy.launch.py map_file:=src/go2_description/maps/<MAP_NAME>.yaml rviz:=true visualization:=false initial_pose:=false | tee nav_output.log
 ```
 
-##### Important NOTES: 
-- if you did not use "initial_pose:=true" you will not see the robot and there will be error messages in the Terminal window, this is normal becuase Nav2 requires an initial position to work, which will be done in the next step.
-- **you CANNOT** set "initial_pose:=true" if you are planning to use the [navigation script](#start-navigation-script) becuase this will interfere with the nav2 system and it will not work properly.
+##### Important NOTES:
+- Make sure to change <MAP_NAME> to the actual name of your map.
+- If you did not use "initial_pose:=true" you will not see the robot and there will be error messages in the Terminal window, this is normal becuase Nav2 requires an initial position to work, which will be done in the next step.
+- **You CANNOT** set "initial_pose:=true" if you are planning to use the [navigation script](#start-navigation-script) becuase this will interfere with the nav2 system and it will not work properly.
 
 #### Start Navigation Script
 The following script, located in ${ISAAC_ROS_WS}/src/go2_control/go2_control/, sets the initial pose to the starting point of the map where you began mapping when you launched the [mapper](#mapping), and begins to navigate to the previously logged set of poses located in the pose_log.json file.
 
-Open a [container terminal](#launch-a-terminal) in a new terminal window and launch the script:
+Open a [container terminal](#launch-a-terminal) in a new terminal window and [source](#source-ros2-and-your-workspace) your workspace to launch the script:
 
 ```bash
 ros2 run go2_control task_nav_to_pose_test | tee task_output.log
@@ -178,7 +175,7 @@ convert ${ISAAC_ROS_WS}/src/go2_description/maps/<MAP_NAME>.pgm ${ISAAC_ROS_WS}/
 sed -i 's/image: <MAP_NAME>.pgm/image: <MAP_NAME>.png/' ${ISAAC_ROS_WS}/src/go2_description/maps/<MAP_NAME>.yaml
 ```
 ##### Use the Service to Re-Localize:
-Once the map is in the correct format, you can use the service to re-localize the robot on the map. Run the following command in a container terminal while the Nav2 stack is active as many times as needed until you reach actual robot position.
+Once the map is in the correct format, you can use the service to re-localize the robot on the map. To run the following command, Open a [container terminal](#launch-a-terminal) in a new terminal window, [source](#source-ros2-and-your-workspace) your workspace and call this service as many times as needed until you robot position is fixed.
 
 ```bash
 ros2 service call trigger_grid_search_localization std_srvs/srv/Empty {}
