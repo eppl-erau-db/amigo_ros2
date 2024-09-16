@@ -67,14 +67,15 @@ To open a terminal in the container:
 ```bash
 docker exec -it isaac_ros_dev-aarch64-container /bin/bash
 ```
-also source ROS2 and your workspace:
+### Source ROS2 and your workspace
+You also need to source ROS2 and your workspace for **every terminal**
 
 ```bash
 source src/unitree_ros2/setup.sh && \
 source install/setup.bash
 ```
 
-If you need more terminals attached to the container, run the same command in each new terminal as needed. 
+- NOTE: If you need more terminals attached to the container, run the same commands in each new terminal as needed. 
 
 ### Post-Reboot
 
@@ -85,6 +86,7 @@ cd ${ISAAC_ROS_WS} && \
 chmod +x setup.bash && \
 source ./setup.bash
 ```
+- NOTE: you only have to run this setup.bash on the first terminal you open after rebooting, any other terminals you only need to [source](source-ros2-and-your-workspace) ROS2 and your workspace.
 
 ## Navigation Deployment: Pose-Oriented Navigation
 
