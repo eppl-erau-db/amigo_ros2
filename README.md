@@ -225,3 +225,12 @@ ros2 service call trigger_grid_search_localization std_srvs/srv/Empty {}
 ## Contributors
 
 We are a team of researchers from the [Engineering Physics Propulsion Lab (EPPL)](https://daytonabeach.erau.edu/about/labs/engineering-physics-propulsion-lab) at Embry-Riddle Aeronautical University. You can find more about our work and connect with us on [LinkedIn](https://www.linkedin.com/company/eppl-erau-db/posts/?feedView=all).
+
+## Thanks
+
+Special thanks to:
+
+- @brimokz, his repository helped me understand how to integrate the Go2 software.
+Check out his [repository](https://github.com/abizovnuralem/go2_ros2_sdk)
+
+- Check out [The RoboVerse](https://discord.gg/PAmRHcNP) Discord channel where you will find everything Go2 related.
