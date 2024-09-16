@@ -86,7 +86,7 @@ cd ${ISAAC_ROS_WS} && \
 chmod +x setup.bash && \
 source ./setup.bash
 ```
-- NOTE: you only have to run this setup.bash on the first terminal you open after rebooting, any other terminals you only need to [source](source-ros2-and-your-workspace) ROS2 and your workspace.
+- NOTE: you only have to run this setup.bash on the first terminal you open after rebooting, any other terminals you only need to [source](#source-ros2-and-your-workspace) ROS2 and your workspace.
 
 ## Navigation Deployment: Pose-Oriented Navigation
 
