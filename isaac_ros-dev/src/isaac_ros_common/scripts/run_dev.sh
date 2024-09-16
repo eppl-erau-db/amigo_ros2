@@ -285,7 +285,7 @@ docker run -it --restart always \
     --privileged \
     --network host \
     ${DOCKER_ARGS[@]} \
-    -v $ISAAC_ROS_DEV_DIR:/workspaces/amigo_ros2/isaac_ros-dev \
+    -v $ISAAC_ROS_DEV_DIR:/workspaces/isaac_ros-dev \
     -v /etc/localtime:/etc/localtime:ro \
     --device=/dev/ttyUSB0 \
     --device=/dev/bus/usb/002/003 \
