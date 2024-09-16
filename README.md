@@ -233,4 +233,4 @@ Special thanks to:
 - @brimokz, his repository helped me understand how to integrate the Go2 software.
 Check out his [repository](https://github.com/abizovnuralem/go2_ros2_sdk)
 
-- Check out [The RoboVerse](https://discord.gg/PAmRHcNP) Discord channel where you will find everything Go2 related.
+- Check out **The RoboVerse** Discord channel where you will find everything Go2 related.
