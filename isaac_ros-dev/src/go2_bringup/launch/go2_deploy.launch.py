@@ -231,5 +231,4 @@ def generate_launch_description():
         rviz2_node,
         occupancy_grid_localizer_container,
         set_initial_pose,
-        start_teleop_node,
     ])
