@@ -205,10 +205,11 @@ def generate_launch_description():
         declare_rviz_cmd,
         declare_visualization_cmd,
         declare_initial_pose_cmd,
-        cam_imu_tf,
         base_footprint_to_base_link_tf,
-        robot_state_publisher_node,
         odom_node,
+        robot_localization_node,
+        lidar_node,
+        robot_state_publisher_node,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
             launch_arguments={
@@ -216,10 +217,9 @@ def generate_launch_description():
                 #'people_segmentation': 'peoplesemsegnet_shuffleseg',
                 'visualization': visualization,
             }.items(),
-        ),
-        state_publisher_node,
+        ),  
         go2_driver_node,
-        lidar_node,
+        state_publisher_node,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_path('nav2_bringup'), 'launch', 'bringup_launch.py')]),
             launch_arguments={
@@ -229,8 +229,5 @@ def generate_launch_description():
             }.items(),
         ),
         rviz2_node,
-        occupancy_grid_localizer_container,
         set_initial_pose,
-        start_teleop_node,
-        map_localizer_client,
     ])

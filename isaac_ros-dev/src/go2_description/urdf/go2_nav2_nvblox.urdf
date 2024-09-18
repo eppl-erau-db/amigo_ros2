@@ -51,7 +51,15 @@
         <box size="0.3762 0.0935 0.114" />
       </geometry>
     </collision>
-    </link>
+  </link>
+
+  <!-- <joint name="odom_base_footprint_joint" type="fixed">
+    <parent link="odom"/>
+    <child link="base_footprint"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="odom">
+  </link> -->
 
   <link
     name="Head_upper">

@@ -15,6 +15,8 @@ class LogPoseActionServer(Node):
             LogPose,
             'log_pose',
             self.execute_callback)
+        self.pose_log = []
+        self.task_types = []
         self.current_pose = Pose()  # Initialize with a default Pose object
         self.pose_subscription = self.create_subscription(
             PoseWithCovarianceStamped,
