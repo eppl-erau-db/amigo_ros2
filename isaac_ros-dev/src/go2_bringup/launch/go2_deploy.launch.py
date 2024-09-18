@@ -229,5 +229,6 @@ def generate_launch_description():
             }.items(),
         ),
         rviz2_node,
+        occupancy_grid_localizer_container,
         set_initial_pose,
     ])
