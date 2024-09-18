@@ -107,7 +107,7 @@ def generate_launch_description():
     nav2_config = os.path.join(
         get_package_share_directory('go2_description'),
         'config',
-        'nav2_nvblox_params.yaml'
+        'nav2_mppi_controller.yaml'
     )
 
     robot_localization_node = Node(
@@ -129,9 +129,11 @@ def generate_launch_description():
 
     return LaunchDescription([
         base_footprint_to_base_link_tf,
-        cam_imu_tf,
-        robot_state_publisher_node,
         odom_node,
+        robot_localization_node,
+        lidar_node,
+        robot_state_publisher_node,
+        log_pose_action_server_node,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
             launch_arguments={
@@ -139,9 +141,8 @@ def generate_launch_description():
                 'visualization': 'false',
             }.items(),
         ),
-        state_publisher_node,
         go2_driver_node,
-        lidar_node,
+        state_publisher_node,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nav2_bringup'), 'launch', 'navigation_launch.py')]),
             launch_arguments={
@@ -150,7 +151,5 @@ def generate_launch_description():
             }.items(),
         ),
         slam_toolbox,
-        log_pose_action_server_node,
-
         rviz2_node
     ])
