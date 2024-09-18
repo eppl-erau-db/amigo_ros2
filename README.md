@@ -6,7 +6,12 @@ This repository contains all of the necessary software for running the AMIGO (Au
 
 To use this repository as is, you will need a Jetson device (preferably the AGX Orin) **flashed with JetPack 6.0**, a RealSense D435i or D455, an RPLiDAR A3, Internet connection, and accompanying mounting assembly. The CAD for the assembly can be downloaded [here](https://drive.google.com/file/d/1BN40XFT44lI892btThJ22HuvqJPCsLoT/view?usp=sharing). This repo works completely off of a container (isaac_ros_dev-aarch64-container), and anything under the isaac ros workspace will be volumized, such that any data saved in the workspace will not be lost when the container is shut down. 
 
-For future work, we are looking to integrate Unitree's LiDAR for localization, and deployment in 3D navigation. 
+For future work, we are looking to integrate Unitree's LiDAR for localization, and deployment in 3D navigation.
+
+## Hardware Setup
+
+This is the current setup of our prototype:
+[setup](https://github.com/eppl-erau-db/amigo_ros2/blob/main/images/setup.jpg)
 
 ## Initial Startup Procedure
 
