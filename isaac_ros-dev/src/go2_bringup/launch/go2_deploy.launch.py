@@ -226,6 +226,7 @@ def generate_launch_description():
                 'params_file': nav2_config,
                 'use_sim_time': use_sim_time,
                 'map': map_file,
+                'autostart': 'false',
             }.items(),
         ),
         rviz2_node,
