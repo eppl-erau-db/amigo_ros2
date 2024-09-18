@@ -124,7 +124,7 @@ ros2 action send_goal /log_pose go2_interfaces/action/LogPose "{task_type: 'task
 Once done with mapping the area and creating poses for navigation, save the map. Make sure to replace <MAP_NAME> with the name of your map.
 
 ```bash
-ros2 run nav2_map_server map_saver_cli -f src/go2_description/maps/<MAP_NAME>
+ros2 run nav2_map_server map_saver_cli -f src/go2_description/maps/<MAP_NAME> --free 0.25 --occ 0.65 --fmt png
 ```
 You now have a map saved in the ${ISAAC_ROS_WS}/src/go2_description/maps/ directory, along with a JSON file in the current directory containing a set of poses for navigation.
 
@@ -168,16 +168,7 @@ ros2 run go2_control task_nav_to_pose_test | tee task_output.log
 ### Map Localization
 This service is optional but useful in certain situations. I typically use it when the robot is not correctly positioned on the map or when the robot starts from a different location than the initial pose, requiring a recalculation of its position.
 
-#### How to Use the Service:
-
-##### Convert the Map Format:
- Before starting the navigation stack, convert the map from .pgm to .png format. Then, update the <MAP_NAME>.yaml file to match the new image format
-
-```bash
-convert ${ISAAC_ROS_WS}/src/go2_description/maps/<MAP_NAME>.pgm ${ISAAC_ROS_WS}/src/go2_description/maps/<MAP_NAME>.png && \
-sed -i 's/image: <MAP_NAME>.pgm/image: <MAP_NAME>.png/' ${ISAAC_ROS_WS}/src/go2_description/maps/<MAP_NAME>.yaml
-```
-##### Use the Service to Re-Localize:
+#### How to Use the Service to Re-Localize:
 Once the map is in the correct format, you can use the service to re-localize the robot on the map. To run the following command, Open a [container terminal](#launch-a-terminal) in a new terminal window, [source](#source-ros2-and-your-workspace) your workspace and call this service as many times as needed until you robot position is fixed.
 
 ```bash
