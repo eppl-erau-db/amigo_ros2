@@ -11,6 +11,7 @@ For future work, we are looking to integrate Unitree's LiDAR for localization, a
 ## Hardware Setup
 
 - This is the current setup of our prototype:
+- 
   **NOTE:** If you want to change the position of any of the sensors, the robot URDF file (found here: ${ISAAC_ROS_WS}/src/go2_description/urdf/go2_nav2_nvblox.urdf) must be updated to match the position of the sensor in reference to base_link
 
 ![setup](https://github.com/eppl-erau-db/amigo_ros2/blob/main/images/setup.jpg)
