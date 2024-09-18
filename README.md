@@ -11,6 +11,7 @@ For future work, we are looking to integrate Unitree's LiDAR for localization, a
 ## Hardware Setup
 
 This is the current setup of our prototype:
+
 ![setup](https://github.com/eppl-erau-db/amigo_ros2/blob/main/images/setup.jpg)
 
 ## Initial Startup Procedure
