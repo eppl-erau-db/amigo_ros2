@@ -66,7 +66,7 @@ To open a terminal in the container:
 
 ```bash
 docker exec -it isaac_ros_dev-aarch64-container /bin/bash
-
+```
 ### Post-Reboot
 
 **If you have rebooted your device** you will have to run the setup.bash again to give permissions for the devices and the navstack to work porperly, this wont take as long as the first time you ran the setup.bash script as all the dependencies are already installed and the packages are already built.
@@ -78,7 +78,7 @@ source ./setup.bash
 ```
 - NOTE: you only have to run this setup.bash on the first terminal you open after rebooting, any other terminals you only need to [source](#source-ros2-and-your-workspace) ROS2 and your workspace.
 
-```
+
 ### Source ROS2 and your workspace
 You also need to source ROS2 and your workspace for **every terminal**
 
