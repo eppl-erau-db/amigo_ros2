@@ -201,7 +201,17 @@ fi
 # Summarize launch
 print_info "Launching Isaac ROS Dev container with image key ${BASE_IMAGE_KEY}: ${ISAAC_ROS_DEV_DIR}"
 
-# Build imag to launch-v ~/mariadb_port:/mariadb_port
+# Build imag to launch
+if [[ $SKIP_IMAGE_BUILD -ne 1 ]]; then
+    print_info "Building $BASE_IMAGE_KEY base as image: $BASE_NAME"
+   $ROOT/build_image_layers.sh --image_key "$BASE_IMAGE_KEY" --image_name "$BASE_NAME"
+
+    # Check result
+    if [ $? -ne 0 ]; then
+        if [[ -z $(docker image ls --quiet $BASE_NAME) ]]; then
+            print_error "Building image failed and no cached image found for $BASE_NAME, aborting."
+            exit 1
+        else
             print_warning "Unable to build image, but cached image found."
         fi
     fi
