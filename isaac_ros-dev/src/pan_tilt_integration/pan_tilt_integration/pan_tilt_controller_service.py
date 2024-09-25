@@ -6,7 +6,7 @@ from example_interfaces.srv import SetBool
 from DRV8825 import DRV8825
 
 
-class PanTiltServivce(Node):
+class PanTiltService(Node):
     def __init__(self):
         super.__init__('controller_service')
         self.srv = self.create_service()
@@ -50,7 +50,7 @@ class PanTiltServivce(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = StepperMotorNode()
+    node = PanTiltService()
 
     try:
         rclpy.spin(node)

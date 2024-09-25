@@ -227,23 +227,28 @@ fi
 DOCKER_ARGS+=("-v /tmp/.X11-unix:/tmp/.X11-unix")
 DOCKER_ARGS+=("-v $HOME/.Xauthority:/home/admin/.Xauthority:rw")
 DOCKER_ARGS+=("-e DISPLAY")
-DOCKER_ARGS+=("-e NVIDIA_VISIBLE_DEVICES=all")-v ~/mariadb_port:/mariadb_port
+DOCKER_ARGS+=("-e NVIDIA_VISIBLE_DEVICES=all") #-v ~/mariadb_port:/mariadb_port
 DOCKER_ARGS+=("-e NVIDIA_DRIVER_CAPABILITIES=all")
 DOCKER_ARGS+=("-e FASTRTPS_DEFAULT_PROFILES_FILE=/usr/local/share/middleware_profiles/rtps_udp_profile.xml")
 DOCKER_ARGS+=("-e ROS_DOMAIN_ID")
 DOCKER_ARGS+=("-e USER")
 DOCKER_ARGS+=("-e ISAAC_ROS_WS=/workspaces/isaac_ros-dev")
 
+# Add permission for GPIO access
+# DOCKER_ARGS+=("-v /sys/class/gpio:/sys/class/gpio")
+
 # Add permission for ttyUSB0
 DOCKER_ARGS+=("--device=/dev/ttyUSB0")
 DOCKER_ARGS+=("--device=/dev/ttyUSB1")
 DOCKER_ARGS+=("--device=/dev/ttyTHS1")
+DOCKER_ARGS+=("--device /dev/gpiochip0")
+DOCKER_ARGS+=("--device /dev/gpiochip1")
 
 # Add access for GPIO
-DOCKER_ARGS+=("--device /dev/gpiomem")
-DOCKER_ARGS+=("--device /dev/mem")
-DOCKER_ARGS+=("-v /sys/class/gpio:/sys/class/gpio")
-DOCKER_ARGS+=("-v /sys/class/pwm:/sys/class/pwm")
+# DOCKER_ARGS+=("--device /dev/gpiomem")
+# DOCKER_ARGS+=("--device /dev/mem")
+# DOCKER_ARGS+=("-v /sys/class/gpio:/sys/class/gpio")
+# DOCKER_ARGS+=("-v /sys/class/pwm:/sys/class/pwm")
 
 
 if [[ $PLATFORM == "aarch64" ]]; then

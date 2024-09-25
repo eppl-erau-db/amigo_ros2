@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-import RPi.GPIO as GPIO
-from DRV8825 import DRV8825
-import keyboard  # For keyboard input
+import Jetson.GPIO as GPIO
+from .DRV8825 import DRV8825
+#import keyboard  # For keyboard input
 
 class StepperMotorNode(Node):
     def __init__(self):
@@ -21,17 +22,10 @@ class StepperMotorNode(Node):
     
     def check_keyboard_input(self):
         # Check if arrow keys are pressed to increment steps
-        if keyboard.is_pressed('up'):
-            self.move_motor_up(self.motor1)
-        elif keyboard.is_pressed('down'):
-            self.move_motor_down(self.motor1)
-        elif keyboard.is_pressed('left'):
-            self.move_motor_down(self.motor2)
-        elif keyboard.is_pressed('right'):
-            self.move_motor_up(self.motor2)
+        self.move_motor_up(self.motor1)
     
     def move_motor_up(self, motor):
-        motor.TurnStep(Dir='forward', steps=2048, stepdelay=0.005)
+        motor.TurnStep(Dir='forward', steps=2048, stepdelay=2.0)
         print("Motor moved positive")
     
     def move_motor_down(self, motor):

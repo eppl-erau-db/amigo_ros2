@@ -1,4 +1,5 @@
-import RPi.GPIO as GPIO
+#!/usr/bin/env python3
+import Jetson.GPIO as GPIO
 import time
 
 MotorDir = [
