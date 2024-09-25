@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'pan_tilt_controller = pan_tilt_integration.pan_tilt_controller:main'
+            'pan_tilt_controller = pan_tilt_integration.pan_tilt_controller:main',
+            'pan_tilt_controller_service = pan_tilt_integration.pan_tilt_controller_service:main'
         ],
     },
 )
