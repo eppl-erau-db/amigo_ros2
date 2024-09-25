@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Based on https://github.com/stereolabs/zed-docker
 
 # Download dependencies for zed SDK installation RUN file

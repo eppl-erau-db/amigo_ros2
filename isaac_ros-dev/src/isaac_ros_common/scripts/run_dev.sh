@@ -184,7 +184,7 @@ BASE_NAME="isaac_ros_dev-$PLATFORM"
 if [[ ! -z "$CONFIG_CONTAINER_NAME_SUFFIX" ]] ; then
     BASE_NAME="$BASE_NAME-$CONFIG_CONTAINER_NAME_SUFFIX"
 fi
-CONTAINER_NAME="$BASE_NAME-container"
+CONTAINER_NAME="$BASE_NAME-container-ZED"
 
 # Remove any exited containers.
 if [ "$(docker ps -a --quiet --filter status=exited --filter name=$CONTAINER_NAME)" ]; then
@@ -287,6 +287,10 @@ docker run -it --restart always \
     ${DOCKER_ARGS[@]} \
     -v $ISAAC_ROS_DEV_DIR:/workspaces/isaac_ros-dev \
     -v /etc/localtime:/etc/localtime:ro \
+    -v /var/nvidia/nvcam/settings/:/var/nvidia/nvcam/settings/ \
+    -v /etc/systemd/system/zed_x_daemon.service:/etc/systemd/system/zed_x_daemon.service \
+    -v /usr/local/zed/resources:/usr/local/zed/resources \
+    -v /usr/local/zed:/usr/local/zed \
     --device=/dev/ttyUSB0 \
     --device=/dev/bus/usb/002/003 \
     --device=/dev/ttyUSB1 \

@@ -8,6 +8,7 @@ sudo apt install -y \
   ros-humble-rosidl-generator-dds-idl \
   ros-humble-isaac-ros-nvblox \
   ros-humble-nmea-navsat-driver \
+  ros-humble-point-cloud-transport \
   libgeographic-dev \
   ros-humble-geographic-msgs \
   libyaml-cpp-dev \
@@ -64,23 +65,23 @@ else
 fi
 
 # Build the workspaces
-echo "Building ROS workspaces..."
-cd ${ISAAC_ROS_WS} && \
-colcon build --symlink-install --packages-up-to-regex realsense* && \
+#echo "Building ROS workspaces..."
+#cd ${ISAAC_ROS_WS} && \
+#colcon build --symlink-install --packages-up-to-regex realsense* && \
 
 # Build Unitree ROS2 workspace
-cd ${ISAAC_ROS_WS}/src/unitree_ros2/cyclonedds_ws && \
-colcon build --packages-select cyclonedds && \
-source /opt/ros/humble/setup.bash && \
-colcon build && \
+#cd ${ISAAC_ROS_WS}/src/unitree_ros2/cyclonedds_ws && \
+#colcon build --packages-select cyclonedds && \
+#source /opt/ros/humble/setup.bash && \
+#colcon build && \
 
 # Building the ISAAC ROS workspace
-cd ${ISAAC_ROS_WS} && \
-colcon build --symlink-install && \
+#cd ${ISAAC_ROS_WS} && \
+#colcon build --symlink-install && \
 
 # Source ROS setup files
-echo "Sourcing ROS setup files..."
-source ${ISAAC_ROS_WS}/src/unitree_ros2/setup.sh && \
-source ${ISAAC_ROS_WS}/install/setup.bash
+#echo "Sourcing ROS setup files..."
+#source ${ISAAC_ROS_WS}/src/unitree_ros2/setup.sh && \
+#source ${ISAAC_ROS_WS}/install/setup.bash
 
 echo "Setup completed successfully!"
