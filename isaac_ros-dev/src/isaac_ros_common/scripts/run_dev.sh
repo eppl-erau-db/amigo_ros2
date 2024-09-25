@@ -229,6 +229,13 @@ DOCKER_ARGS+=("--device=/dev/ttyUSB0")
 DOCKER_ARGS+=("--device=/dev/ttyUSB1")
 DOCKER_ARGS+=("--device=/dev/ttyTHS1")
 
+# Add access for GPIO
+DOCKER_ARGS+=("--device /dev/gpiomem")
+DOCKER_ARGS+=("--device /dev/mem")
+DOCKER_ARGS+=("-v /sys/class/gpio:/sys/class/gpio")
+DOCKER_ARGS+=("-v /sys/class/pwm:/sys/class/pwm")
+
+
 if [[ $PLATFORM == "aarch64" ]]; then
     DOCKER_ARGS+=("-v /usr/bin/tegrastats:/usr/bin/tegrastats")
     DOCKER_ARGS+=("-v /tmp/:/tmp/")
