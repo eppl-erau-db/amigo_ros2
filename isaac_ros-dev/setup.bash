@@ -8,6 +8,7 @@ sudo apt install -y \
   ros-humble-rosidl-generator-dds-idl \
   ros-humble-isaac-ros-nvblox \
   ros-humble-nmea-navsat-driver \
+  ros-humble-point-cloud-transport \
   libgeographic-dev \
   ros-humble-geographic-msgs \
   libyaml-cpp-dev \
