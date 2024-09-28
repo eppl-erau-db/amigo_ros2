@@ -7,6 +7,8 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1/Description Topic1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 725
   - Class: rviz_common/Selection
@@ -233,6 +235,11 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        zed_camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Mass Properties:
         Inertia: false
         Mass: false
@@ -302,10 +309,6 @@ Visualization Manager:
           Value: true
         base_link:
           Value: true
-        camera_accel_frame:
-          Value: false
-        camera_accel_optical_frame:
-          Value: false
         camera_aligned_depth_to_infra1_frame:
           Value: false
         camera_bottom_screw_frame:
@@ -317,12 +320,6 @@ Visualization Manager:
         camera_depth_frame:
           Value: false
         camera_depth_optical_frame:
-          Value: false
-        camera_gyro_frame:
-          Value: false
-        camera_gyro_optical_frame:
-          Value: false
-        camera_imu_optical_frame:
           Value: false
         camera_infra1_frame:
           Value: false
@@ -345,6 +342,20 @@ Visualization Manager:
         radar:
           Value: false
         utlidar_imu:
+          Value: false
+        zed_camera_center:
+          Value: false
+        zed_camera_link:
+          Value: false
+        zed_imu_link:
+          Value: false
+        zed_left_camera_frame:
+          Value: false
+        zed_left_camera_optical_frame:
+          Value: false
+        zed_right_camera_frame:
+          Value: false
+        zed_right_camera_optical_frame:
           Value: false
       Marker Scale: 1
       Name: TF
@@ -395,9 +406,6 @@ Visualization Manager:
                         {}
                 camera_bottom_screw_frame:
                   camera_link:
-                    camera_accel_frame:
-                      camera_accel_optical_frame:
-                        {}
                     camera_aligned_depth_to_infra1_frame:
                       camera_infra1_optical_frame:
                         {}
@@ -407,10 +415,6 @@ Visualization Manager:
                     camera_depth_frame:
                       camera_depth_optical_frame:
                         {}
-                    camera_gyro_frame:
-                      camera_gyro_optical_frame:
-                        camera_imu_optical_frame:
-                          {}
                     camera_infra1_frame:
                       {}
                     camera_infra2_frame:
@@ -422,6 +426,16 @@ Visualization Manager:
                   {}
                 utlidar_imu:
                   {}
+                zed_camera_link:
+                  zed_camera_center:
+                    zed_left_camera_frame:
+                      zed_imu_link:
+                        {}
+                      zed_left_camera_optical_frame:
+                        {}
+                    zed_right_camera_frame:
+                      zed_right_camera_optical_frame:
+                        {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -525,7 +539,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 7.4466047286987305
+      Distance: 3.2285304069519043
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -540,10 +554,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5153985619544983
+      Pitch: 0.08039771020412445
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.325395107269287
+      Yaw: 1.1203997135162354
     Saved: ~
 Window Geometry:
   Displays:

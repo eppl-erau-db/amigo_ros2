@@ -27,12 +27,12 @@ pip install transforms3d pyserial smbus
 echo "Updating rosdep and installing package dependencies..."
 rosdep update
 rosdep install isaac_ros_nvblox
-rosdep install --from-paths ${ISAAC_ROS_WS}/src/isaac_ros_map_localization --ignore-src -y
+# rosdep install --from-paths ${ISAAC_ROS_WS}/src/isaac_ros_map_localization --ignore-src -y
 
 # Set permissions for devices
 echo "Setting permissions for devices..."
 # Camera devices
-for cam_device in /dev/video{0..2}; do
+for cam_device in /dev/video{0..5}; do
   if [ -e "$cam_device" ]; then
     sudo chmod 666 "$cam_device"
     echo "Set permissions for $cam_device"
