@@ -181,15 +181,7 @@ ros2 run go2_control task_nav_to_pose_test | tee task_output.log
 
 **Note** you can edit this script to add functionality while its navigating or at the task pose itself. for more info on how to do this check out [Nav2_Simple_commander](https://github.com/ros-navigation/navigation2/tree/main/nav2_simple_commander/nav2_simple_commander) for example code.
 
-### Map Localization
-This service is optional but useful in certain situations. I typically use it when the robot is not correctly positioned on the map or when the robot starts from a different location than the initial pose, requiring a recalculation of its position.
 
-#### How to Use the Service to Re-Localize:
-Once the map is in the correct format, you can use the service to re-localize the robot on the map. To run the following command, Open a [container terminal](#launch-a-terminal) in a new terminal window, [source](#source-ros2-and-your-workspace) your workspace and call this service as many times as needed until you robot position is fixed.
-
-```bash
-ros2 service call trigger_grid_search_localization std_srvs/srv/Empty {}
-```
 
 ## References and Citations
 
