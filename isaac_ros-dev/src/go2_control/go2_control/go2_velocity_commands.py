@@ -2,49 +2,65 @@
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
-from unitree_go.msg import WirelessController  # Adjust the import as per your package structure
-from rclpy.duration import Duration
-
-class WirelessControl(Node):
+import sys, tty, termios, select
+class KeyboardTeleop(Node):
     def __init__(self):
-        super().__init__('wireless_control')
-        self.publisher = self.create_publisher(Twist, 'cmd_vel_teleop', 10)
-        self.subscription = self.create_subscription(
-            WirelessController,
-            '/wirelesscontroller',
-            self.wireless_controller_callback,
-            10)
+        super().__init__('keyboard_teleop')
+        self.publisher = self.create_publisher(Twist, 'cmd_vel', 10)
         self.twist = Twist()
-        self.speed = 1.0  # Adjust speed as needed (up to 1 m/s)
-        self.turn = -1.0  # Adjust turn rate as needed (up to 1 rad/s)
-        self.last_msg_time = self.get_clock().now()
-        self.timeout_duration = Duration(seconds=0.5)  # Set timeout duration (e.g., 0.5 seconds)
-        self.get_logger().info("Wireless controller teleop started. Use joystick for motion.")
-        self.timer = self.create_timer(0.1, self.check_timeout)  # Check timeout every 0.1 seconds
-
-    def wireless_controller_callback(self, msg):
+        self.speed = 0.6  # linear speed (m/s)
+        self.turn = 1.0  # angular speed (rad/s)
+        self.get_logger().info("Keyboard teleop started. Use WASD for linear motion, and O/P for spinning.")
+        self.settings = termios.tcgetattr(sys.stdin)
+        self.active_keys = set()
+        self.run()
+    def getKey(self):
+        tty.setraw(sys.stdin.fileno())
+        rlist, _, _ = select.select([sys.stdin], [], [], 0.1)
+        if rlist:
+            key = sys.stdin.read(1)
+        else:
+            key = ''
+        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, self.settings)
+        return key
+    def update_twist(self):
         self.twist = Twist()
-        self.twist.linear.x = msg.ly * self.speed
-        self.twist.linear.y = msg.lx * self.speed
-        self.twist.angular.z = msg.rx * self.turn
-        # Publish the Twist message
+        if 'w' in self.active_keys:
+            self.twist.linear.x = self.speed
+        if 's' in self.active_keys:
+            self.twist.linear.x = -self.speed
+        if 'a' in self.active_keys:
+            self.twist.linear.y = self.speed
+        if 'd' in self.active_keys:
+            self.twist.linear.y = -self.speed
+        if 'o' in self.active_keys:
+            self.twist.angular.z = self.turn
+        if 'p' in self.active_keys:
+            self.twist.angular.z = -self.turn
         self.publisher.publish(self.twist)
-        # Update the last message time
-        self.last_msg_time = self.get_clock().now()
-
-    def check_timeout(self):
-        if self.get_clock().now() - self.last_msg_time > self.timeout_duration:
-            # Publish zero velocities if timeout occurs
-            zero_twist = Twist()
-            self.publisher.publish(zero_twist)
-
+    def run(self):
+        try:
+            while True:
+                key = self.getKey()
+                if key == '\x03':  # Ctrl+C
+                    self.twist = Twist()
+                    self.publisher.publish(self.twist)
+                    break
+                if key:
+                    self.active_keys.add(key)
+                else:
+                    self.active_keys.clear()
+                self.update_twist()
+        except Exception as e:
+            self.get_logger().error(str(e))
+    def destroy_node(self):
+        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, self.settings)
+        super().destroy_node()
 def main(args=None):
     rclpy.init(args=args)
-    node = WirelessControl()
+    node = KeyboardTeleop()
     rclpy.spin(node)
-    # Clean up when done
     node.destroy_node()
     rclpy.shutdown()
-
 if __name__ == '__main__':
     main()
