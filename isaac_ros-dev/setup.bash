@@ -27,6 +27,7 @@ pip install transforms3d pyserial smbus
 echo "Updating rosdep and installing package dependencies..."
 rosdep update
 rosdep install isaac_ros_nvblox
+rosdep install --from-paths ${ISAAC_ROS_WS}/src/isaac_ros_image_pipeline/isaac_ros_image_proc --ignore-src -y
 # rosdep install --from-paths ${ISAAC_ROS_WS}/src/isaac_ros_map_localization --ignore-src -y
 
 # Set permissions for devices
@@ -74,6 +75,9 @@ cd ${ISAAC_ROS_WS}/src/unitree_ros2/cyclonedds_ws && \
 colcon build --packages-select cyclonedds && \
 source /opt/ros/humble/setup.bash && \
 colcon build && \
+
+cd ${ISAAC_ROS_WS} && \
+colcon build --symlink-install --packages-up-to isaac_ros_image_proc --symlink-install
 
 # Building the ISAAC ROS workspace
 cd ${ISAAC_ROS_WS} && \

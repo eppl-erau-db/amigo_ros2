@@ -1292,7 +1292,7 @@
   </xacro:sensor_d435i>
 
 
-  <xacro:arg name="camera_name"   default="zed" />
+  <!-- <xacro:arg name="camera_name"   default="zed" />
   <xacro:arg name="camera_model"  default="zedxm" />
   <xacro:arg name="custom_baseline"  default="0.0" />
 
@@ -1313,6 +1313,6 @@
       xyz="0.19 0.0 0.20"
       rpy="0 0 0"
     />
-  </joint>
+  </joint> -->
 
 </robot>
