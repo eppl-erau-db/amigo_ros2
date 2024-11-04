@@ -1,4 +1,4 @@
-# AMIGO ROS2 Humble
+# AMIGO ROS2 Humble (***CODE NOT WORKING AT THE MOMENT DUE TO AN UPDATE***) I will work on it and update it ASAP written on 11/04/2024
 
 ## Requirements and Background
 
