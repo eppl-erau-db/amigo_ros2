@@ -1,4 +1,4 @@
-# AMIGO ROS2 Humble (***CODE NOT WORKING AT THE MOMENT DUE TO AN UPDATE***) I will work on it and update it ASAP written on 11/04/2024
+# AMIGO ROS2 Humble 
 
 ## Requirements and Background
 
@@ -117,7 +117,7 @@ This navigation process involves two main phases: Mapping and Pose Logging and A
 Launch a [container terminal](#launch-a-terminal) in a new terminal window and [source](#source-ros2-and-your-workspace) ROS. Begin by manually driving the robot to create a 2D map of the area using a tool like Slam Toolbox(used here). This map serves as the foundation for the robot's navigation.
 
 ```bash
-ros2 launch go2_bringup mapping.launch.py | tee output.log
+ros2 launch go2_bringup mapping.launch.py | tee mappingOutput.log
 ```
 NOTE: While you are actively mapping, use the [log action pose call](#pose-logging) to create a file with defined poses on the current map at locations where you want the robot to navigate or perform certain tasks. These poses act as waypoints or goals for the robot.
 
@@ -162,7 +162,7 @@ You can use various launch parameters for regular deployment, testing and debugg
 Open a [container terminal](#launch-a-terminal) in a new terminal window, [source](#source-ros2-and-your-workspace) your workspace and launch the nav2 stack launch file. In this example, I am starting the navigation stack with RViz and using RealVNC to stream the desktop to my laptop via an HDMI dummy plug to follow robot around and use RViz for debugging. Set-up steps for RealVNC for jetson seen [here](https://developer.nvidia.com/embedded/learn/tutorials/vnc-setup). Or you can set visualization:=true and use Foxglove Studio to send and view all ROS topics (similar to RViz) over wifi to your laptop, additional information can be found [here](https://nvidia-isaac-ros.github.io/concepts/visualization/index.html).
 
 ```bash
-ros2 launch go2_bringup go2_deploy.launch.py map_file:=src/go2_description/maps/<MAP_NAME>.yaml rviz:=true visualization:=false initial_pose:=false | tee nav_output.log
+ros2 launch go2_bringup go2_deploy.launch.py map_file:=src/go2_description/maps/<MAP_NAME>.yaml rviz:=true visualization:=false initial_pose:=false | tee navOutput.log
 ```
 
 ##### Important NOTES:
@@ -176,7 +176,7 @@ The following script, located in ${ISAAC_ROS_WS}/src/go2_control/go2_control/, s
 Open a [container terminal](#launch-a-terminal) in a new terminal window and [source](#source-ros2-and-your-workspace) your workspace to launch the script:
 
 ```bash
-ros2 run go2_control task_nav_to_pose_test | tee task_output.log
+ros2 run go2_control task_nav_to_pose_test | tee taskOutput.log
 ```
 
 **Note** you can edit this script to add functionality while its navigating or at the task pose itself. for more info on how to do this check out [Nav2_Simple_commander](https://github.com/ros-navigation/navigation2/tree/main/nav2_simple_commander/nav2_simple_commander) for example code.
