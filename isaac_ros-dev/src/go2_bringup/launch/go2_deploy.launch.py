@@ -18,32 +18,12 @@ def generate_launch_description():
     rviz = LaunchConfiguration('rviz', default='false')
     visualization = LaunchConfiguration('visualization', default='true')
     initial_pose = LaunchConfiguration('initial_pose', default='false')
-    use_zed_camera = LaunchConfiguration('use_zed_camera', default='false') 
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
 
     declare_map_file_cmd = DeclareLaunchArgument(
         'map_file',
         default_value=os.path.join(get_package_share_path('go2_description'), 'maps', 'lse_first_floor.yaml'),
         description='Full path to the map file to load'
-    )
-
-    declare_zed_camera_cmd = DeclareLaunchArgument(  
-        'use_zed_camera',
-        default_value='false',
-        description='Enable or disable ZED camera.'
-    )
-
-    zed_camera_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory('zed_wrapper'), 'launch', 'zed_camera.launch.py')),
-        launch_arguments={
-            'camera_name': 'zed',
-            'camera_model': 'zedxm',
-            'publish_urdf': 'false',
-            'publish_tf': 'false',
-            'publish_map_tf': 'false',
-        }.items(),
-        condition=IfCondition(use_zed_camera)  # ZED camera is launched only if the argument is true
     )
 
     declare_rviz_cmd = DeclareLaunchArgument(
@@ -93,13 +73,6 @@ def generate_launch_description():
         output='log'
     )
 
-    cam_imu_tf = Node(
-        package="tf2_ros",
-        executable="static_transform_publisher",
-        name="cam_imu",
-        arguments=["0", "0", "0", "0", "0", "0", "camera_gyro_optical_frame", "camera_imu_optical_frame"]
-    )
-
     base_footprint_to_base_link_tf = Node(
         package='go2_control',
         executable='base_to_base_tf',
@@ -143,17 +116,6 @@ def generate_launch_description():
         ],
     )
 
-    robot_localization_node_map = Node(
-        package='robot_localization',
-        executable='ekf_node',
-        name='ekf_filter_node_map',
-        output='screen',
-        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf_global.yaml')],
-        remappings=[('/odometry/filtered', '/odom_global'),
-                    ('/set_pose', '/initialpose')
-        ],
-    )
-
     odom_node = Node(
         package="go2_control",  
         executable="odom_node", 
@@ -183,53 +145,15 @@ def generate_launch_description():
         output='log'
     )
 
-    # occupancy_grid_localizer_node = ComposableNode(
-    #     package='isaac_ros_occupancy_grid_localizer',
-    #     plugin='nvidia::isaac_ros::occupancy_grid_localizer::OccupancyGridLocalizerNode',
-    #     name='occupancy_grid_localizer',
-    #     parameters=[LaunchConfiguration('map_file'), {
-    #         'loc_result_frame': 'map',
-    #         'map_yaml_path': map_file,
-    #     }],
-    #     remappings=[('localization_result', '/initialpose')])
-
-    # laserscan_to_flatscan_node = ComposableNode(
-    #     package='isaac_ros_pointcloud_utils',
-    #     plugin='nvidia::isaac_ros::pointcloud_utils::LaserScantoFlatScanNode',
-    #     name='laserscan_to_flatscan',
-    #     # remappings=[('flatscan', 'flatscan_localization')]
-    #     )
-        
-    # occupancy_grid_localizer_container = ComposableNodeContainer(
-    #     package='rclcpp_components',
-    #     name='occupancy_grid_localizer_container',
-    #     namespace='',
-    #     executable='component_container_mt',
-    #     composable_node_descriptions=[
-    #         occupancy_grid_localizer_node,
-    #         laserscan_to_flatscan_node
-    #     ],
-    #     output='screen'
-    # )
-
-    # map_localizer_client = Node(
-    #     package='go2_control',
-    #     executable='map_localizer_client',
-    #     name='map_localizer_client',
-    #     output='log'
-    # )
-
     return LaunchDescription([
         declare_map_file_cmd,
         declare_rviz_cmd,
         declare_visualization_cmd,
         declare_initial_pose_cmd,
-        declare_zed_camera_cmd,
         base_footprint_to_base_link_tf,
         odom_node,
         robot_localization_node,
         lidar_node,
-        zed_camera_launch,
         robot_state_publisher_node,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
@@ -250,6 +174,5 @@ def generate_launch_description():
             }.items(),
         ),
         rviz2_node,
-        # occupancy_grid_localizer_container,
         set_initial_pose,
     ])

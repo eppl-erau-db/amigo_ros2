@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="go2" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:arg name="camera_name"   default="zed" />
-  <xacro:arg name="camera_model"  default="zedxm" />
-  <xacro:arg name="use_zed_localization" default="false" />
-  <!-- <xacro:arg name="baseline" default="0.0" /> -->
-  
   <link
     name="base_link">
     <inertial>
@@ -1290,29 +1285,5 @@
   <xacro:sensor_d435i parent="base_link" name="camera">
     <origin xyz="0.32 0 0.0725" rpy="0 0 0" />
   </xacro:sensor_d435i>
-
-
-  <!-- <xacro:arg name="camera_name"   default="zed" />
-  <xacro:arg name="camera_model"  default="zedxm" />
-  <xacro:arg name="custom_baseline"  default="0.0" />
-
-  <xacro:arg name="enable_gnss"   default="false" />
-  <xacro:arg name="gnss_x" default="0.0" />
-  <xacro:arg name="gnss_y" default="0.0" />
-  <xacro:arg name="gnss_z" default="0.0" />
-
-  <xacro:include filename="$(find zed_wrapper)/urdf/zed_macro.urdf.xacro" />
-  <xacro:zed_camera name="$(arg camera_name)" model="$(arg camera_model)" custom_baseline="$(arg custom_baseline)" enable_gnss="$(arg enable_gnss)">
-	    <origin xyz="$(arg gnss_x) $(arg gnss_y) $(arg gnss_z)" rpy="0 0 0"/>
-  </xacro:zed_camera>
-
-  <joint name="zed_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="zed_camera_link"/>
-    <origin
-      xyz="0.19 0.0 0.20"
-      rpy="0 0 0"
-    />
-  </joint> -->
 
 </robot>

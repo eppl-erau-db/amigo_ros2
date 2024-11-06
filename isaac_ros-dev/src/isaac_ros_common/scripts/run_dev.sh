@@ -281,16 +281,12 @@ print_info "Running $CONTAINER_NAME"
 if [[ $VERBOSE -eq 1 ]]; then
     set -x
 fi
-docker run -it --restart always \
+docker run -it --rm \
     --privileged \
     --network host \
     ${DOCKER_ARGS[@]} \
     -v $ISAAC_ROS_DEV_DIR:/workspaces/isaac_ros-dev \
     -v /etc/localtime:/etc/localtime:ro \
-    -v /var/nvidia/nvcam/settings/:/var/nvidia/nvcam/settings/ \
-    -v /etc/systemd/system/zed_x_daemon.service:/etc/systemd/system/zed_x_daemon.service \
-    -v /usr/local/zed/resources:/usr/local/zed/resources \
-    -v /usr/local/zed:/usr/local/zed \
     --device=/dev/ttyUSB0 \
     --device=/dev/bus/usb/002/003 \
     --device=/dev/ttyUSB1 \

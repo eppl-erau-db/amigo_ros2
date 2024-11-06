@@ -63,7 +63,6 @@ RUN python3 -m pip install -U \
         flake8-docstrings \
         flake8-import-order \
         flake8-quotes \
-        numpy>=1.24.4 \
         matplotlib \
         pandas \
         rosbags \
@@ -84,6 +83,7 @@ apt-get update && apt-get install -y \
     ros-humble-cv-bridge \
     ros-humble-demo-nodes-cpp \
     ros-humble-demo-nodes-py \
+    ros-humble-diagnostics \
     ros-humble-diagnostic-aggregator \
     ros-humble-diagnostic-updater \
     ros-humble-example-interfaces \
@@ -111,6 +111,7 @@ apt-get update && apt-get install -y \
     ros-humble-rosbag2-py \
     ros-humble-rosbag2-storage-mcap \
     ros-humble-rosbridge-suite \
+    ros-humble-rosx-introspection \
     ros-humble-rqt-graph \
     ros-humble-rqt-image-view \
     ros-humble-rqt-reconfigure \
@@ -130,6 +131,7 @@ COPY rosdep/extra_rosdeps.yaml /etc/ros/rosdep/sources.list.d/nvidia-isaac.yaml
 RUN --mount=type=cache,target=/var/cache/apt \
     rosdep init \
     && echo "yaml file:///etc/ros/rosdep/sources.list.d/nvidia-isaac.yaml" | tee /etc/ros/rosdep/sources.list.d/00-nvidia-isaac.list \
+    && sed -i 's|gbpdistro https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml fuerte||g' /etc/ros/rosdep/sources.list.d/20-default.list \
     && rosdep update
 
 ####### -- Install updated packages over installed debians
@@ -204,6 +206,7 @@ apt-get update && apt-get install -y \
     ros-humble-moveit-servo \
     ros-humble-moveit-visual-tools \
     ros-humble-pluginlib \
+    ros-humble-py-binding-tools \
     ros-humble-robot-state-publisher \
     ros-humble-ros2-control \
     ros-humble-rviz-visual-tools \
@@ -235,14 +238,6 @@ RUN --mount=type=cache,target=/var/cache/apt \
     && cd .. && apt-get install -y ./*.deb && rm *.deb \
     && cd moveit_resources && bloom-generate rosdebian && fakeroot debian/rules binary \
     && cd .. && apt-get install -y ./*.deb && rm *.deb
-
-# Install py_bindings_tools from source.
-RUN --mount=type=cache,target=/var/cache/apt \
-    mkdir -p ${ROS_ROOT}/src && cd ${ROS_ROOT}/src \
-    && git clone https://github.com/moveit/py_binding_tools.git -b ros2 \
-    && cd py_binding_tools && source ${ROS_ROOT}/setup.bash \
-    && bloom-generate rosdebian && fakeroot debian/rules binary \
-    && cd ../ && apt-get install -y ./*.deb && rm ./*.deb
 
 # Install MoveIt task constructor from source.  The "demo" package depends on moveit_resources_panda_moveit_config,
 # installed from source above.

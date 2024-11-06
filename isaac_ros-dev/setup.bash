@@ -6,7 +6,6 @@ sudo apt update && \
 sudo apt install -y \
   ros-humble-rmw-cyclonedds-cpp \
   ros-humble-rosidl-generator-dds-idl \
-  ros-humble-isaac-ros-nvblox \
   ros-humble-nmea-navsat-driver \
   ros-humble-point-cloud-transport \
   libgeographic-dev \
@@ -14,21 +13,17 @@ sudo apt install -y \
   libyaml-cpp-dev \
   python3-smbus \
   i2c-tools \
-  ros-humble-isaac-ros-occupancy-grid-localizer \
   python3-tk \
   ros-humble-robot-localization \
-  imagemagick \
-  ros-humble-isaac-ros-peoplesemseg-models-install && \
-
+  imagemagick && \
 echo "Installing Python packages..."
 pip install transforms3d pyserial smbus
 
 # Update rosdep and install dependencies
 echo "Updating rosdep and installing package dependencies..."
 rosdep update
-rosdep install isaac_ros_nvblox
-rosdep install --from-paths ${ISAAC_ROS_WS}/src/isaac_ros_image_pipeline/isaac_ros_image_proc --ignore-src -y
-# rosdep install --from-paths ${ISAAC_ROS_WS}/src/isaac_ros_map_localization --ignore-src -y
+rosdep install -i -r --from-paths /workspaces/isaac_ros-dev/src/isaac_ros_nvblox/ --rosdistro humble -y
+
 
 # Set permissions for devices
 echo "Setting permissions for devices..."
@@ -75,9 +70,6 @@ cd ${ISAAC_ROS_WS}/src/unitree_ros2/cyclonedds_ws && \
 colcon build --packages-select cyclonedds && \
 source /opt/ros/humble/setup.bash && \
 colcon build && \
-
-cd ${ISAAC_ROS_WS} && \
-colcon build --symlink-install --packages-up-to isaac_ros_image_proc --symlink-install
 
 # Building the ISAAC ROS workspace
 cd ${ISAAC_ROS_WS} && \

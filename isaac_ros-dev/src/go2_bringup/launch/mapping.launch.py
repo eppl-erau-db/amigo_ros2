@@ -54,13 +54,6 @@ def generate_launch_description():
         output="screen"
     )
 
-    cam_imu_tf = Node(
-        package="tf2_ros",
-        executable="static_transform_publisher",
-        name="cam_imu",
-        arguments=["0", "0", "0", "0", "0", "0", "camera_gyro_optical_frame", "camera_imu_optical_frame"]
-    )
-
     base_footprint_to_base_link_tf = Node(
         package='go2_control',
         executable='base_to_base_tf',
