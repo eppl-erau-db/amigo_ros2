@@ -16,7 +16,7 @@ For future work, we are looking to integrate Unitree's LiDAR for localization, a
 
 ![setup](https://github.com/eppl-erau-db/amigo_ros2/blob/main/images/setup.jpg)
 
-- If you are using a **Jetson AGX Orin** you will need to step down the voltage to ~20V with a DC-to-DC Buck Converter as pictured below:
+- If you are using a **Jetson AGX Orin** you will need to step down the voltage to ~20V with a DC-to-DC Buck Converter that can provide atleast 5 amps as pictured below:
 
 ![power](https://github.com/eppl-erau-db/amigo_ros2/blob/main/images/powerSystem.jpg)
 
