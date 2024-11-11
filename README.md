@@ -86,7 +86,7 @@ cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
 ```
 ### Post-Reboot
 
-**If you have rebooted your device** you will have to run the setup.bash again to give permissions for the devices and the navstack to work porperly, this wont take as long as the first time you ran the setup.bash script as all the dependencies are already installed and the packages are already built.
+**If you have rebooted your device or closed down all container instances** you will have to run the setup.bash again to install dependencies and give permissions for the devices and the navstack to work porperly.
 
 ```bash
 cd ${ISAAC_ROS_WS} && \
