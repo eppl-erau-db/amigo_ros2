@@ -1,6 +1,6 @@
 # AMIGO ROS2 Humble 
 
-AMIGO (Autonomous Machine for Inspecting Gas and Operations) is a ROS2 Humble-based robotic system developed by the Engineering Physics Propulsion Lab (EPPL) at Embry-Riddle Aeronautical University. Leavereging Unitree's Go2 quadruped robot, AMIGO facilitates autonomous navigation and inspection tasks in complex environments.
+AMIGO (Autonomous Machine for Inspecting Gas and Operations) is a ROS2 Humble-based robotic system developed by the Engineering Physics Propulsion Lab (EPPL) at Embry-Riddle Aeronautical University. Leavereging Unitree's Go2 quadruped robot, AMIGO facilitates autonomous navigation and inspection tasks in complex industrial environments.
 
 ## Requirements and Background
 
