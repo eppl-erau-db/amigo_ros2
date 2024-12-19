@@ -20,11 +20,11 @@ For future work, we are looking to integrate Unitree's LiDAR for localization, a
 
 - If you are using a **Jetson AGX Orin** you will need to step down the voltage to ~20V with a DC-to-DC Buck Converter that can provide atleast 5 amps as pictured below:
 
-![power](https://github.com/eppl-erau-db/amigo_ros2/blob/main/images/powerSystem.jpg)
+![power](https://raw.githubusercontent.com/eppl-erau-db/amigo_ros2/images/images/powerSystem.jpg)
 
 - Our current CAD also includes some room for a capture card to use the ZED X series camera **this camera will soon be be integrated to add capabilities.**
 
-![camera](https://github.com/eppl-erau-db/amigo_ros2/blob/main/images/sideView.jpg) 
+![camera](https://raw.githubusercontent.com/eppl-erau-db/amigo_ros2/images/images/sideView.jpg) 
 
 ## Initial Startup Procedure
 
