@@ -16,7 +16,7 @@ For future work, we are looking to integrate Unitree's LiDAR for localization, a
 - 
   **NOTE:** If you want to change the position of any of the sensors, the robot URDF file (found here: ${ISAAC_ROS_WS}/src/go2_description/urdf/go2_nav2_nvblox.urdf) must be updated to match the position of the sensor in reference to base_link
 
-![setup](https://github.com/eppl-erau-db/amigo_ros2/blob/main/images/setup.jpg)
+![setup](https://raw.githubusercontent.com/eppl-erau-db/amigo_ros2/images/images/setup.jpg)
 
 - If you are using a **Jetson AGX Orin** you will need to step down the voltage to ~20V with a DC-to-DC Buck Converter that can provide atleast 5 amps as pictured below:
 
