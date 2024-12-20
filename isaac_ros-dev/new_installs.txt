@@ -1,0 +1,8 @@
+
+Inside the ISAAC ROS container
+
+--tensorrt:
+
+sudo apt-get install python3-libnvinfer-dev
+
+--
