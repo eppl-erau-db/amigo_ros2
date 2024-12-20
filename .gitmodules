@@ -4,6 +4,3 @@
 [submodule "isaac_ros-dev/src/sllidar_ros2"]
 	path = isaac_ros-dev/src/sllidar_ros2
 	url = https://github.com/Slamtec/sllidar_ros2.git
-[submodule "isaac_ros-dev/src/zed-ros2-examples"]
-	path = isaac_ros-dev/src/zed-ros2-examples
-	url = https://github.com/stereolabs/zed-ros2-examples.git
