@@ -1,0 +1,29 @@
+rosbag2_bagfile_information:
+  compression_format: ''
+  compression_mode: ''
+  custom_data: {}
+  duration:
+    nanoseconds: 999000000000
+  files:
+  - duration:
+      nanoseconds: 999000000000
+    message_count: 1000
+    path: dummy_bag.db3
+    starting_time:
+      nanoseconds_since_epoch: 0
+  message_count: 1000
+  relative_file_paths:
+  - dummy_bag.db3
+  ros_distro: rosbags
+  starting_time:
+    nanoseconds_since_epoch: 0
+  storage_identifier: sqlite3
+  topics_with_message_count:
+  - message_count: 1000
+    topic_metadata:
+      name: /dummy_topic
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: std_msgs/msg/Int8
+      type_description_hash: RIHS01_26525065a403d972cb672f0777e333f0c799ad444ae5fcd79e43d1e73bd0f440
+  version: 8
