@@ -41,7 +41,6 @@ git clone --recurse-submodules https://github.com/eppl-erau-db/amigo_ros2.git
 Next, you need to add the shortcut of your workspace to the .bashrc for later usage:
 
 ```bash
-mkdir -p  ~/workspaces/amigo_ros2/isaac_ros-dev/src
 echo "export ISAAC_ROS_WS=~/workspaces/amigo_ros2/isaac_ros-dev/" >> ~/.bashrc
 source ~/.bashrc
 ```
