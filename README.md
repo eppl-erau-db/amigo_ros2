@@ -28,7 +28,7 @@ For future work, we are looking to integrate Unitree's LiDAR for localization, a
 
 ## Initial Startup Procedure
 
-Make sure that your jetson is flashed with JetPack 6.0 on SSD. Then follow setup instructions for jetson [here](https://nvidia-isaac-ros.github.io/getting_started/hardware_setup/compute/index.html#jetson-platforms), and the isaac-ros setup page instructions, stopping AFTER step 3 [here](https://nvidia-isaac-ros.github.io/getting_started/dev_env_setup.html).
+Make sure that your jetson is flashed with JetPack 6.1 on SSD. Then follow setup instructions for jetson [here](https://nvidia-isaac-ros.github.io/getting_started/hardware_setup/compute/index.html#jetson-platforms), and the isaac-ros setup page instructions, stopping AFTER step 3 [here](https://nvidia-isaac-ros.github.io/getting_started/dev_env_setup.html).
 
 Then, ensure that you have workspaces directory at the correct location and clone this repo: 
 
