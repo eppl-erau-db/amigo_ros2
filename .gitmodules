@@ -4,3 +4,7 @@
 [submodule "isaac_ros-dev/src/sllidar_ros2"]
 	path = isaac_ros-dev/src/sllidar_ros2
 	url = https://github.com/Slamtec/sllidar_ros2.git
+[submodule "isaac_ros-dev/src/isaac_ros_common"]
+	path = isaac_ros-dev/src/isaac_ros_common
+	url = https://github.com/JCastel358/isaac_ros_common.git
+	branch = release-3.2
