@@ -33,9 +33,10 @@ Make sure that your jetson is flashed with JetPack 6.1 on SSD. Then follow setup
 Then, ensure that you have workspaces directory at the correct location and clone this repo: 
 
 ```bash
-mkdir -p ~/workspaces &&
-cd ~/workspaces &&
-git clone --recurse-submodules https://github.com/eppl-erau-db/amigo_ros2.git
+mkdir -p ~/workspaces && \
+cd ~/workspaces && \
+git clone --recurse-submodules https://github.com/eppl-erau-db/amigo_ros2.git && \
+git submodule update --init --recursive
 ```
 
 Next, you need to add the shortcut of your workspace to the .bashrc for later usage:
