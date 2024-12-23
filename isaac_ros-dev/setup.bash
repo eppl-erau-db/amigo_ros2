@@ -62,8 +62,6 @@ fi
 
 # Build the workspaces
 echo "Building ROS workspaces..."
-cd ${ISAAC_ROS_WS} && \
-colcon build --symlink-install --packages-up-to-regex realsense* && \
 
 # Build Unitree ROS2 workspace
 cd ${ISAAC_ROS_WS}/src/unitree_ros2/cyclonedds_ws && \
