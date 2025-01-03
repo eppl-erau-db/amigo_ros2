@@ -12,6 +12,10 @@
   <depend>rplidar_ros2</depend>
   <depend>example_interfaces</depend>
   <depend>tf2_ros</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf2_geometry_msgs</depend>
   
 
   <exec_depend>twist_mux</exec_depend>
