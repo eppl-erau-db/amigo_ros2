@@ -69,6 +69,9 @@ colcon build --packages-select cyclonedds && \
 source /opt/ros/humble/setup.bash && \
 colcon build && \
 
+cd /workspaces/isaac_ros-dev && \
+colcon build --symlink-install --packages-up-to realsense_splitter && \
+
 # Building the ISAAC ROS workspace
 cd ${ISAAC_ROS_WS} && \
 colcon build --symlink-install && \

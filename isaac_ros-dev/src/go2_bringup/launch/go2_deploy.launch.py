@@ -160,7 +160,7 @@ def generate_launch_description():
             launch_arguments={
                 'mode': 'dynamic',
                 #'people_segmentation': 'peoplesemsegnet_shuffleseg',
-                'visualization': visualization,
+                # 'visualization': visualization,
             }.items(),
         ),  
         go2_driver_node,

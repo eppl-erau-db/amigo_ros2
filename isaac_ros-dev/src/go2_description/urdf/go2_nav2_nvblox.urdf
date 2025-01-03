@@ -1282,7 +1282,7 @@
   </joint>
 
   <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
-  <xacro:sensor_d435i parent="base_link" name="camera">
+  <xacro:sensor_d435i parent="base_link" name="camera0">
     <origin xyz="0.32 0 0.0725" rpy="0 0 0" />
   </xacro:sensor_d435i>
 
