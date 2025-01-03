@@ -303,6 +303,7 @@ local_costmap:
 global_costmap:
   global_costmap:
     ros__parameters:
+      footprint_pdding: 0.0
       update_frequency: 1.0
       publish_frequency: 1.0
       global_frame: map
@@ -314,7 +315,8 @@ global_costmap:
       width: 80
       height: 80
       track_unknown_space: False
-      plugins: ["static_layer", "inflation_layer", "obstacle_layer"] #'nvblox_layer',  "obstacle_layer",
+      always_send_full_costmap: False
+      plugins: ['nvblox_layer',"inflation_layer"] #'nvblox_layer', "obstacle_layer", "static_layer", "inflation_layer"
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
@@ -340,7 +342,12 @@ global_costmap:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.5
         inflation_radius: 0.70
-      always_send_full_costmap: False
+      nvblox_layer:
+        plugin: "nvblox::nav2::NvbloxCostmapLayer"
+        enabled: True
+        nav2_costmap_global_frame: map # must match with global_frame of global_costmap
+        nvblox_map_slice_topic: "/nvblox_node/combined_map_slice"
+        convert_to_binary_costmap: True
 map_server:
   ros__parameters:
     use_sim_time: False
