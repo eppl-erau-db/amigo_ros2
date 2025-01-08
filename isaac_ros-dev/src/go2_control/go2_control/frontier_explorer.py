@@ -183,7 +183,16 @@ class FrontierExplorer(Node):
 
         # Nav2 Simple Commander
         self.navigator = BasicNavigator()
-        self.navigator.waitUntilNav2Active()
+        # (Optional) set an initial pose to 0,0,0 in map:
+        # initial_pose = PoseStamped()
+        # initial_pose.header.frame_id = 'map'
+        # initial_pose.header.stamp = self.navigator.get_clock().now().to_msg()
+        # initial_pose.pose.position.x = 0.0
+        # initial_pose.pose.position.y = 0.0
+        # initial_pose.pose.orientation.w = 1.0
+
+        # self.navigator.setInitialPose(initial_pose)
+        self.navigator.waitUntilNav2Active(localizer='robot_localization')
 
         self.get_logger().info("FrontierExplorer node initialized. Waiting for map & odom data...")
 

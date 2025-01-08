@@ -1,7 +1,7 @@
 from launch import LaunchDescription
 from launch_ros.parameter_descriptions import ParameterValue
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch_ros.actions import Node
 from launch.substitutions import Command
 from launch.substitutions import LaunchConfiguration
@@ -17,6 +17,7 @@ def generate_launch_description():
                              'urdf', 'go2_nav2_nvblox.urdf')
     rviz_config_path = os.path.join(get_package_share_path('go2_description'), 
                              'config', 'go2_urdf_config.rviz')
+    map_file = LaunchConfiguration('map_file', default=os.path.join(get_package_share_path('go2_description'), 'maps', 'lab.yaml'))
     
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
 
@@ -24,6 +25,12 @@ def generate_launch_description():
         package="robot_state_publisher", 
         executable="robot_state_publisher", 
         parameters=[{'robot_description': robot_description}]     
+    )
+
+    declare_map_file_cmd = DeclareLaunchArgument(
+        'map_file',
+        default_value=os.path.join(get_package_share_path('go2_description'), 'maps', 'lse_first_floor.yaml'),
+        description='Full path to the map file to load'
     )
 
     rviz2_node = Node(
@@ -100,7 +107,7 @@ def generate_launch_description():
     nav2_config = os.path.join(
         get_package_share_directory('go2_description'),
         'config',
-        'nav2_mppi_controller.yaml'
+        'nav2_frontier_explorer.yaml'
     )
 
     robot_localization_node = Node(
@@ -121,6 +128,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        declare_map_file_cmd,
         base_footprint_to_base_link_tf,
         odom_node,
         robot_localization_node,
@@ -141,6 +149,8 @@ def generate_launch_description():
             launch_arguments={
                 'params_file': nav2_config,
                 'use_sim_time': use_sim_time,
+                # 'slam': 'True',
+                # 'map': map_file,
             }.items(),
         ),
         slam_toolbox,
