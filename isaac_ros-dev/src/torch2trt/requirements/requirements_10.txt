@@ -1,5 +1,0 @@
-tensorrt==10.0.1
-torch
-torchvision
-timm
-onnx_graphsurgeon
