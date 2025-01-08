@@ -8,3 +8,6 @@
 	path = isaac_ros-dev/src/isaac_ros_common
 	url = https://github.com/JCastel358/isaac_ros_common.git
 	branch = release-3.2
+[submodule "isaac_ros-dev/src/zed-ros2-wrapper"]
+	path = isaac_ros-dev/src/zed-ros2-wrapper
+	url = https://github.com/JCastel358/zed-ros2-wrapper.git
