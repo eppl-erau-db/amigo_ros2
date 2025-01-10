@@ -60,6 +60,14 @@ else
   echo "Warning: /dev/i2c-7 not found"
 fi
 
+sudo chmod +x ${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh && \
+${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh
+
+cd ${ISAAC_ROS_WS} && \
+sudo apt update && \
+rosdep update && rosdep install --from-paths src/zed-ros2-wrapper --ignore-src -r -y && \
+colcon build --symlink-install --packages-up-to zed_wrapper
+
 # Build the workspaces
 echo "Building ROS workspaces..."
 

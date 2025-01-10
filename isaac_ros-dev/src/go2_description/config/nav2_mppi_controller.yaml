@@ -316,7 +316,7 @@ global_costmap:
       height: 80
       track_unknown_space: False
       always_send_full_costmap: False
-      plugins: ['nvblox_layer',"inflation_layer"] #'nvblox_layer', "obstacle_layer", "static_layer", "inflation_layer"
+      plugins: ["static_layer","inflation_layer"] #'nvblox_layer', "obstacle_layer", "static_layer", "inflation_layer"
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
