@@ -5,19 +5,23 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
+# Required packages for building interfaces
 find_package(ament_cmake REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
 
-
+# Generate interfaces from .action and .srv files
+# (Make sure you actually have 'srv/RegionMap.srv' in the 'go2_interfaces/srv/' directory)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "action/LogPose.action"
-
-  DEPENDENCIES geometry_msgs # Add packages that above messages depend on, in this case geometry_msgs for Sphere.msg
+  "srv/RegionMap.srv"
+  DEPENDENCIES geometry_msgs nav_msgs # or any other interface package needed
 )
 
+# Export dependencies so other packages that depend on go2_interfaces
+# know about the generated code
+ament_export_dependencies(rosidl_default_runtime)
+ament_export_dependencies(nav_msgs)
 
 ament_package()

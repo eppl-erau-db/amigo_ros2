@@ -68,6 +68,9 @@ setup(
             'go2_velocity_commands = go2_control.go2_velocity_commands:main',
             'go2_lidar = go2_control.go2_lidar:main',
             'map_localizer_client = go2_control.map_localizer_client:main',
+            'region_map_service_node = go2_control.region_map_service_node:main',
+            'region_map_client_node = go2_control.region_map_client_node:main',
+            'occupancy_grid_to_image = go2_control.occupancy_grid_to_image:main',
         ],
     },
 )

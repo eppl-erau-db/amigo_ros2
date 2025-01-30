@@ -1,0 +1,9 @@
+# Request
+# For example, you can set a command string or region_id if needed. 
+string command
+
+---
+bool success
+string message
+int32 current_region_id
+nav_msgs/OccupancyGrid region_map

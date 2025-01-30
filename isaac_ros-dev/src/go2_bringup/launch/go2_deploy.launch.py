@@ -145,6 +145,26 @@ def generate_launch_description():
         output='log'
     )
 
+    region_map_service_node = Node(
+    package='go2_control',                # Because that's where region_map_service_node.py lives
+    executable='region_map_service_node', # The entry point in setup.py
+    name='region_map_service_node',
+    output='log',
+    parameters=[
+            {
+            'map_yaml_file': os.path.join(
+                get_package_share_path('go2_description'),
+                'maps',
+                'lab_partitioned.yaml'  # or your actual partitioned map file
+                )
+            },
+            {'publish_on_service_call': True},    # or False
+            {'continuous_publish': True},         # or False
+            {'publish_rate': 1.0},  
+        ]
+    )
+
+
     return LaunchDescription([
         declare_map_file_cmd,
         declare_rviz_cmd,
@@ -175,4 +195,5 @@ def generate_launch_description():
         ),
         rviz2_node,
         set_initial_pose,
+        region_map_service_node,
     ])
