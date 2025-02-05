@@ -30,7 +30,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: PointCloud2
+    SyncSource: LaserScan
   - Class: nav2_rviz_plugins/Navigation 2
     Name: Navigation 2
 Visualization Manager:
@@ -67,7 +67,7 @@ Visualization Manager:
         Value: /robot_description
       Enabled: true
       Links:
-        All Links Enabled: false
+        All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
@@ -230,7 +230,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: false
+          Value: true
         radar:
           Alpha: 1
           Show Axes: false
@@ -308,33 +308,7 @@ Visualization Manager:
           Value: true
         base_link:
           Value: false
-        camera0_accel_frame:
-          Value: false
-        camera0_accel_optical_frame:
-          Value: false
-        camera0_aligned_depth_to_infra1_frame:
-          Value: false
         camera0_bottom_screw_frame:
-          Value: false
-        camera0_color_frame:
-          Value: false
-        camera0_color_optical_frame:
-          Value: false
-        camera0_depth_frame:
-          Value: false
-        camera0_depth_optical_frame:
-          Value: false
-        camera0_gyro_frame:
-          Value: false
-        camera0_gyro_optical_frame:
-          Value: false
-        camera0_infra1_frame:
-          Value: false
-        camera0_infra1_optical_frame:
-          Value: false
-        camera0_infra2_frame:
-          Value: false
-        camera0_infra2_optical_frame:
           Value: false
         camera0_link:
           Value: true
@@ -399,26 +373,7 @@ Visualization Manager:
                         {}
                 camera0_bottom_screw_frame:
                   camera0_link:
-                    camera0_accel_frame:
-                      camera0_accel_optical_frame:
-                        {}
-                    camera0_aligned_depth_to_infra1_frame:
-                      camera0_infra1_optical_frame:
-                        {}
-                    camera0_color_frame:
-                      camera0_color_optical_frame:
-                        {}
-                    camera0_depth_frame:
-                      camera0_depth_optical_frame:
-                        {}
-                    camera0_gyro_frame:
-                      camera0_gyro_optical_frame:
-                        {}
-                    camera0_infra1_frame:
-                      {}
-                    camera0_infra2_frame:
-                      camera0_infra2_optical_frame:
-                        {}
+                    {}
                 laser:
                   {}
                 radar:
@@ -524,9 +479,7 @@ Visualization Manager:
         Value: /local_costmap/costmap_updates
       Use Timestamp: false
       Value: true
-    - Ceiling Height: 1.5
-      Class: nvblox_rviz_plugin/NvbloxMesh
-      Cut Ceiling: false
+    - Class: nvblox_rviz_plugin/NvbloxMesh
       Enabled: true
       Name: NvbloxMesh
       Topic:
@@ -640,6 +593,27 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /received_global_plan
       Value: false
+    - Alpha: 0.699999988079071
+      Class: rviz_default_plugins/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /current_region_map
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /current_region_map_updates
+      Use Timestamp: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -686,7 +660,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2.7552599906921387
+      Distance: 12.02255916595459
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -701,10 +675,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.1703980267047882
+      Pitch: 0.6403979063034058
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz_default_plugins)
-      Yaw: 1.055393934249878
+      Yaw: 2.815394878387451
     Saved: ~
 Window Geometry:
   Displays:

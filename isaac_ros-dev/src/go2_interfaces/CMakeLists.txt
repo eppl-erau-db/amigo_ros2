@@ -16,6 +16,7 @@ find_package(rosidl_default_generators REQUIRED)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "action/LogPose.action"
   "srv/RegionMap.srv"
+  "action/Search.action"
   DEPENDENCIES geometry_msgs nav_msgs # or any other interface package needed
 )
 

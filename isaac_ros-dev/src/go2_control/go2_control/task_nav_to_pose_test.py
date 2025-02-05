@@ -6,15 +6,31 @@ from copy import deepcopy
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 import rclpy
+from rclpy.action import ActionClient
+from go2_interfaces.action import Search
 
 
 
 def perform_task_at_pose(task_pose):
-    # Placeholder for performing the task
-    # Implement the actual task logic here
-    print(f"Performing task at pose: ({task_pose.pose.position.x}, {task_pose.pose.position.y})")
-    time.sleep(10)  # Simulate task execution with a 5-second delay
-    print("Task completed")
+    # This triggers the "search" action if that’s your desired behavior
+    action_client = ActionClient(node, Search, 'search')
+    if not action_client.wait_for_server(timeout_sec=5.0):
+        print("Search action server not available!")
+        return
+
+    goal_msg = Search.Goal()
+    # fill in goal fields if you have any (like region IDs, etc.)
+    send_goal_future = action_client.send_goal_async(goal_msg)
+    rclpy.spin_until_future_complete(node, send_goal_future)
+    goal_handle = send_goal_future.result()
+    if not goal_handle.accepted:
+        print("Search goal rejected!")
+        return
+
+    get_result_future = goal_handle.get_result_async()
+    rclpy.spin_until_future_complete(node, get_result_future)
+    result = get_result_future.result().result
+    print("Search action complete!")
 
 
 def handle_task_failure(navigator, task_pose):

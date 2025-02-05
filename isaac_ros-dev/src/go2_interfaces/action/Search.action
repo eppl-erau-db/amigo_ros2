@@ -1,0 +1,29 @@
+# Search.action
+
+# Goal definition
+# initial_pose: The starting pose of the robot when the search action is triggered.
+# behavior_tree: A string identifier for the specific behavior or search mode to execute.
+geometry_msgs/PoseStamped initial_pose
+string behavior_tree
+
+---
+# Result definition
+# NONE=0 indicates no error.
+uint16 NONE=0
+uint16 error_code
+string error_msg
+# final_message can be used to report the outcome of the neural search
+string final_message
+
+---
+# Feedback definition
+# current_pose: The robot's current pose during the search.
+# navigation_time: Time spent navigating so far.
+# estimated_time_remaining: Estimated time to complete the current navigation leg.
+# number_of_recoveries: The number of times a recovery behavior was triggered.
+# distance_remaining: Distance left to reach the current neuron target.
+geometry_msgs/PoseStamped current_pose
+builtin_interfaces/Duration navigation_time
+builtin_interfaces/Duration estimated_time_remaining
+int16 number_of_recoveries
+float32 distance_remaining
