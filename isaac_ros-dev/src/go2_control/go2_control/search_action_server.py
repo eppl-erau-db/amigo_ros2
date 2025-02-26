@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
+import math
+import time
+
 import rclpy
 from rclpy.node import Node
-from rclpy.action import ActionServer, ActionClient
-from geometry_msgs.msg import PoseStamped
+from rclpy.action import ActionServer
+from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped, Quaternion
 from nav_msgs.msg import OccupancyGrid
-from go2_interfaces.action import Search  
+from go2_interfaces.action import Search
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
-import time
-# from go2_interfaces.action import Scan
 
-import time
 
-# Neuron states
-UNCOVERED = 0
-COVERED = 1
-OBSTACLE = -1
+def quaternion_to_yaw(q: Quaternion) -> float:
+    """Convert a quaternion into a yaw angle (in radians)."""
+    siny_cosp = 2.0 * (q.w * q.z + q.x * q.y)
+    cosy_cosp = 1.0 - 2.0 * (q.y * q.y + q.z * q.z)
+    return math.atan2(siny_cosp, cosy_cosp)
+
 
 class SearchActionServer(Node):
     def __init__(self):
@@ -25,185 +27,155 @@ class SearchActionServer(Node):
             'search',
             self.execute_callback
         )
-        # Subscribe to the continuously published current region map
-        self.region_map_sub = self.create_subscription(
+        # Subscribe to the region map published by your region map service node.
+        self.create_subscription(
             OccupancyGrid,
             'current_region_map',
             self.region_map_callback,
             10
         )
+        # Subscribe to the robot's current pose.
+        self.create_subscription(
+            PoseWithCovarianceStamped,
+            '/amcl_pose',
+            self.pose_callback,
+            10
+        )
         self.current_region_map = None
-        # Dictionary to store neurons
-        # Each neuron is a dict with keys: 'row', 'col', 'x', 'y', 'state'
-        self.neurons = []
+        self.current_pose = None
 
+        # Create BasicNavigator instance for navigation.
         self.navigator = BasicNavigator()
+        self.log_info("Waiting for Nav2 to become active...")
+        # self.navigator.waitUntilNav2Active()  # Uncomment if you need to wait.
+        self.log_info("Nav2 is active.")
+
+    def log_info(self, message: str):
+        """Helper to log info messages and write them to a file."""
+        self.get_logger().info(message)
+        with open("search_action.log", "a") as f:
+            f.write(f"[INFO] {message}\n")
+
+    def log_error(self, message: str):
+        """Helper to log error messages and write them to a file."""
+        self.get_logger().error(message)
+        with open("search_action.log", "a") as f:
+            f.write(f"[ERROR] {message}\n")
 
     def region_map_callback(self, msg: OccupancyGrid):
         self.current_region_map = msg
-        self.get_logger().info("Updated current region map received")
-        # Each time a new map arrives, (re)generate neurons.
-        self.neurons = self.generate_neurons_from_map(msg)
+        # self.log_info("Region map updated.")
 
-    def generate_neurons_from_map(self, grid: OccupancyGrid):
+    def pose_callback(self, msg: PoseWithCovarianceStamped):
+        pose_stamped = PoseStamped()
+        pose_stamped.header = msg.header
+        pose_stamped.pose = msg.pose.pose
+        self.current_pose = pose_stamped
+
+    def compute_waypoint(self) -> PoseStamped:
         """
-        Process the occupancy grid to create a list of neuron cells.
-        For simplicity, we assume each grid cell corresponds to a neuron.
-        States:
-          - If cell value == 0, mark as UNCOVERED (free space)
-          - If cell value > 0 (occupied), mark as OBSTACLE.
-        The Pose (x, y) is computed from grid indices.
+        Compute a waypoint 2 meters ahead of the current robot position.
+        The waypoint is stamped using the navigator's clock and set in the 'map' frame.
         """
-        neurons = []
-        width = grid.info.width
-        height = grid.info.height
-        resolution = grid.info.resolution
-        origin_x = grid.info.origin.position.x
-        origin_y = grid.info.origin.position.y
+        waypoint = PoseStamped()
+        waypoint.header.stamp = self.navigator.get_clock().now().to_msg()
+        waypoint.header.frame_id = 'map'
 
-        # OccupancyGrid.data is a flat list in row-major order.
-        for row in range(height):
-            for col in range(width):
-                index = row * width + col
-                cell_val = grid.data[index]
-                # In ROS occupancy grid, 0 is free, 100 is occupied, -1 unknown.
-                if cell_val == 0:
-                    state = UNCOVERED
-                else:
-                    state = OBSTACLE
-                # Calculate the cell's center position.
-                x = origin_x + (col + 0.5) * resolution
-                y = origin_y + (row + 0.5) * resolution
-                neuron = {
-                    'row': row,
-                    'col': col,
-                    'x': x,
-                    'y': y,
-                    'state': state
-                }
-                neurons.append(neuron)
-        self.get_logger().info(f"Generated {len(neurons)} neurons from costmap")
-        return neurons
+        # Get current pose and compute yaw.
+        x = self.current_pose.pose.position.x
+        y = self.current_pose.pose.position.y
+        z = self.current_pose.pose.position.z  # likely 0
+        yaw = quaternion_to_yaw(self.current_pose.pose.orientation)
 
-    def has_uncovered_neuron(self):
-        """Check if there is any neuron in the list with state UNCOVERED."""
-        for neuron in self.neurons:
-            if neuron['state'] == UNCOVERED:
-                return True
-        return False
+        # For demonstration, here we are not moving ahead (multiply by 0.0).
+        # You can change the multiplier (e.g., 2.0 for 2 meters ahead).
+        waypoint.pose.position.x = x + 0.1 * math.cos(yaw)
+        waypoint.pose.position.y = y + 0.1 * math.sin(yaw)
+        waypoint.pose.position.z = z  # assume same z
+        waypoint.pose.orientation = self.current_pose.pose.orientation
 
-    def select_next_neuron(self):
-        """Select the next uncovered neuron. (Here, simply the first one.)"""
-        for neuron in self.neurons:
-            if neuron['state'] == UNCOVERED:
-                return neuron
-        return None
+        self.log_info(f"Computed waypoint at ({waypoint.pose.position.x:.2f}, "
+                      f"{waypoint.pose.position.y:.2f}, {waypoint.pose.position.z:.2f})")
+        return waypoint
 
-    def neuron_to_pose(self, neuron):
-        """Convert a neuron dictionary to a PoseStamped message."""
-        pose = PoseStamped()
-        pose.header.frame_id = "map"
-        # Use the neuron's center as the target position.
-        pose.pose.position.x = neuron['x']
-        pose.pose.position.y = neuron['y']
-        pose.pose.orientation.w = 1.0  # No rotation for simplicity
-        return pose
-
-    def send_nav_goal(self, target_pose: PoseStamped):
+    def send_nav_goal(self, target_pose: PoseStamped) -> bool:
         """
-        Send a navigation goal using BasicNavigator.
-        This function uses BasicNavigator's goToPose() and waits until the task is complete.
-        Returns True if navigation succeeded, False otherwise.
+        Sends a navigation goal using BasicNavigator.
+        Calls goToPose() and waits until the task is complete.
         """
-        self.get_logger().info(
-            f"Sending navigation goal to ({target_pose.pose.position.x:.2f}, {target_pose.pose.position.y:.2f}) using BasicNavigator"
-        )
-        self.navigator.goToPose(target_pose)
-        # Wait until the navigator reports that the task is complete.
+        self.log_info(f"Navigating to waypoint at ({target_pose.pose.position.x:.2f}, "
+                      f"{target_pose.pose.position.y:.2f}, {target_pose.pose.position.z:.2f})")
+        task_pose = target_pose  # Already properly set up.
+        self.navigator.goToPose(task_pose)
         while not self.navigator.isTaskComplete():
-            # Optionally, process feedback here (for example, update action feedback).
             _ = self.navigator.getFeedback()
-            time.sleep(0.5)
+            time.sleep(0.2)
         result = self.navigator.getResult()
         if result == TaskResult.SUCCEEDED:
-            self.get_logger().info("Navigation goal reached!")
+            self.log_info("Navigation to task pose succeeded")
             return True
-        else:
-            self.get_logger().error("Navigation goal failed!")
+        elif result == TaskResult.CANCELED:
+            self.log_error("Navigation to task pose was canceled")
             return False
+        elif result == TaskResult.FAILED:
+            self.log_error("Navigation to task pose failed")
+            return False
+        return False
 
-    def perform_scanning_action(self):
+    def simulate_search(self):
         """
-        Stub for scanning action.
-        In a full implementation, this would call an action server
-        that drives the stepper motors and processes the camera feed.
-        Here we simulate a delay and return dummy scan data.
+        Simulate a search (scanning) action.
+        This function waits for a few seconds to mimic scanning.
         """
-        self.get_logger().info("Starting scanning action...")
-        # Simulate scanning delay (replace with actual action call)
+        self.log_info("Simulating search (scanning)...")
         time.sleep(3.0)
-        self.get_logger().info("Scanning complete; objects detected: []")
-        # Return dummy data (for example, an empty list)
-        return []
-
-    def update_neuron_state(self, neuron):
-        """Mark the given neuron as COVERED (visited)."""
-        neuron['state'] = COVERED
-        self.get_logger().info(f"Neuron at ({neuron['x']:.2f}, {neuron['y']:.2f}) marked as COVERED")
+        self.log_info("Search simulation complete.")
 
     def execute_callback(self, goal_handle):
-        self.get_logger().info("Starting neural search action...")
+        self.log_info("Starting search action...")
 
-        # Wait until a current region map is available.
-        timeout = 10.0  # seconds
+        # Wait until both the region map and robot pose are available.
+        timeout = 10.0
         start_time = self.get_clock().now().nanoseconds / 1e9
-        while self.current_region_map is None:
+        while self.current_region_map is None or self.current_pose is None:
             rclpy.spin_once(self, timeout_sec=0.5)
-            current_time = self.get_clock().now().nanoseconds / 1e9
-            if (current_time - start_time) > timeout:
-                self.get_logger().error("Timeout waiting for region map!")
+            if (self.get_clock().now().nanoseconds / 1e9 - start_time) > timeout:
+                self.log_error("Timeout waiting for region map and robot pose!")
                 goal_handle.abort()
                 return Search.Result()
 
-        # Main iterative search loop: continue while there is an uncovered neuron.
-        while self.has_uncovered_neuron():
-            next_neuron = self.select_next_neuron()
-            if next_neuron is None:
-                self.get_logger().info("No uncovered neuron found; ending search.")
-                break
+        # Compute a waypoint.
+        waypoint = self.compute_waypoint()
 
-            target_pose = self.neuron_to_pose(next_neuron)
-            # Navigate to the selected neuron
-            nav_success = self.send_nav_goal(target_pose)
-            if not nav_success:
-                self.get_logger().error("Navigation to neuron failed; aborting search loop.")
-                break
+        # Send the navigation goal.
+        if not self.send_nav_goal(waypoint):
+            self.log_error("Navigation failed. Aborting search action.")
+            goal_handle.abort()
+            return Search.Result()
 
-            # Once arrived, perform the scanning action.
-            scan_result = self.perform_scanning_action()
-            # (scan_result could be processed further to update a map or report object positions)
+        # Simulate the search (scanning) action.
+        self.simulate_search()
 
-            # Mark the neuron as covered.
-            self.update_neuron_state(next_neuron)
-            # Optionally, update neurons based on new scan data (e.g., mark adjacent cells as covered).
-
-            # Check if the action has been cancelled.
-            if goal_handle.is_cancel_requested:
-                self.get_logger().info("Search action cancelled by client.")
-                goal_handle.canceL()
-                break
+        # Publish feedback (dummy object info).
+        feedback_msg = Search.Feedback()
+        feedback_msg.object_class = "dummy_object"
+        feedback_msg.object_location = waypoint  # For simulation, use the waypoint.
+        feedback_msg.search_complete = True
+        goal_handle.publish_feedback(feedback_msg)
 
         goal_handle.succeed()
         result = Search.Result()
-        # You could attach summary data in the result if desired.
-        result.final_message = "Neural search completed."
+        result.final_message = "Search complete."
+        self.log_info("Search action completed successfully.")
         return result
+
 
 def main(args=None):
     rclpy.init(args=args)
     node = SearchActionServer()
     rclpy.spin(node)
     rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

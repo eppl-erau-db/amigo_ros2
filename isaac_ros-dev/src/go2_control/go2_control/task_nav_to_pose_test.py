@@ -10,25 +10,26 @@ from rclpy.action import ActionClient
 from go2_interfaces.action import Search
 
 
-
-def perform_task_at_pose(task_pose):
-    # This triggers the "search" action if that’s your desired behavior
-    action_client = ActionClient(node, Search, 'search')
+def perform_task_at_pose(task_pose, search_client_node):
+    # Trigger the "search" action.
+    action_client = ActionClient(search_client_node, Search, 'search')
     if not action_client.wait_for_server(timeout_sec=5.0):
         print("Search action server not available!")
         return
 
     goal_msg = Search.Goal()
-    # fill in goal fields if you have any (like region IDs, etc.)
+    goal_msg.initial_pose = task_pose 
+    goal_msg.behavior_tree = ""  # no behavior tree is used
+
     send_goal_future = action_client.send_goal_async(goal_msg)
-    rclpy.spin_until_future_complete(node, send_goal_future)
+    rclpy.spin_until_future_complete(search_client_node, send_goal_future)
     goal_handle = send_goal_future.result()
     if not goal_handle.accepted:
         print("Search goal rejected!")
         return
 
     get_result_future = goal_handle.get_result_async()
-    rclpy.spin_until_future_complete(node, get_result_future)
+    rclpy.spin_until_future_complete(search_client_node, get_result_future)
     result = get_result_future.result().result
     print("Search action complete!")
 
@@ -42,7 +43,7 @@ def handle_task_failure(navigator, task_pose):
         retry_count += 1
         navigator.goToPose(task_pose)
         while not navigator.isTaskComplete():
-            feedback = navigator.getFeedback()
+            _ = navigator.getFeedback()
             time.sleep(0.5)
         result = navigator.getResult()
         if result == TaskResult.SUCCEEDED:
@@ -62,7 +63,7 @@ def handle_task_failure(navigator, task_pose):
         retry_count = 0  # Reset retry counter after assisted teleop
         navigator.goToPose(task_pose)
         while not navigator.isTaskComplete():
-            feedback = navigator.getFeedback()
+            _ = navigator.getFeedback()
             time.sleep(0.5)
         result = navigator.getResult()
         if result == TaskResult.SUCCEEDED:
@@ -77,13 +78,15 @@ def handle_task_failure(navigator, task_pose):
 def main():
     rclpy.init()
 
+    # Create the navigator and a separate node for the search action client.
     navigator = BasicNavigator()
+    search_client_node = rclpy.create_node('search_client_node')
 
-    # Load the pose log from JSON file
+    # Load the pose log from JSON file.
     with open('pose_log.json', 'r') as f:
         pose_log = json.load(f)
 
-    # Set our demo's initial pose
+    # Set our demo's initial pose.
     initial_pose = PoseStamped()
     initial_pose.header.stamp = navigator.get_clock().now().to_msg()
     initial_pose.header.frame_id = 'map'
@@ -93,10 +96,10 @@ def main():
     initial_pose.pose.orientation.w = 1.0
     navigator.setInitialPose(initial_pose)
 
-    # Wait for navigation to fully activate
+    # Wait for navigation to fully activate.
     navigator.waitUntilNav2Active()
 
-    # Initialize a variable to hold the path segment
+    # Initialize a variable to hold the path segment.
     path_segment = []
     pose = PoseStamped()
     for entry in pose_log:
@@ -114,17 +117,10 @@ def main():
             path_segment.append(deepcopy(pose))
         else:
             if path_segment:
-                # Use goThroughPoses to navigate through the poses
+                # Navigate through the poses.
                 navigator.goThroughPoses(path_segment)
-                # i = 0
                 while not navigator.isTaskComplete():
-                    # i += 1
-                    feedback = navigator.getFeedback()
-                    # if feedback and i % 5 == 0:
-                    #     print(
-                    #         'Estimated distance remaining to goal position: '
-                    #         + '{0:.3f}'.format(feedback.distance_remaining)
-                    #     )
+                    _ = navigator.getFeedback()
                     time.sleep(0.5)
                 result = navigator.getResult()
                 if result == TaskResult.SUCCEEDED:
@@ -142,19 +138,17 @@ def main():
                     print('Goal has an invalid return status!')
                 path_segment = []
 
-            # Handle the task pose
+            # Handle the task pose.
             if entry["task_type"] == "task":
                 task_pose = deepcopy(pose)
                 navigator.goToPose(task_pose)
                 while not navigator.isTaskComplete():
-                    feedback = navigator.getFeedback()
-                    # if feedback:
-                    #     print('Executing task at pose, distance remaining: {:.3f}'.format(feedback.distance_remaining))
+                    _ = navigator.getFeedback()
                     time.sleep(0.2)
                 result = navigator.getResult()
                 if result == TaskResult.SUCCEEDED:
                     print('Navigation to task pose succeeded')
-                    perform_task_at_pose(task_pose)
+                    perform_task_at_pose(task_pose, search_client_node)
                 elif result == TaskResult.CANCELED:
                     print('Navigation to task pose was canceled')
                 elif result == TaskResult.FAILED:
@@ -162,7 +156,7 @@ def main():
                     result = handle_task_failure(navigator, task_pose)
                     if result == TaskResult.SUCCEEDED:
                         print('Retry succeeded!')
-                        perform_task_at_pose(task_pose)
+                        perform_task_at_pose(task_pose, search_client_node)
                     else:
                         print('Retry failed!')
                 else:
@@ -170,18 +164,11 @@ def main():
             else:
                 print('Task type invalid')
 
-    # Follow any remaining path segment
+    # Follow any remaining path segment.
     if path_segment:
         navigator.goThroughPoses(path_segment)
-        # i = 0
         while not navigator.isTaskComplete():
-            # i += 1
-            feedback = navigator.getFeedback()
-        #     if feedback and i % 5 == 0:
-        #         print(
-        #             'Estimated distance remaining to goal position: '
-        #             + '{0:.3f}'.format(feedback.distance_remaining)
-        #         )
+            _ = navigator.getFeedback()
             time.sleep(0.5)
         result = navigator.getResult()
         if result == TaskResult.SUCCEEDED:
@@ -196,16 +183,13 @@ def main():
             else:
                 print('Retry has failed')
 
-    # Go back to start
+    # Go back to start.
     initial_pose.header.stamp = navigator.get_clock().now().to_msg()
     navigator.goToPose(initial_pose)
     while not navigator.isTaskComplete():
         time.sleep(0.2)
-        pass
 
     rclpy.shutdown()
-
-    exit(0)
 
 
 if __name__ == '__main__':

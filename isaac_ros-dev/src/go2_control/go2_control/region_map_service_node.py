@@ -24,7 +24,7 @@ class RegionMapServiceNode(Node):
         super().__init__('region_map_service_node')
 
         # PARAMETERS
-        self.declare_parameter('map_yaml_file', 'isaac_ros-dev/src/go2_description/maps/lab_partitioned.yaml')
+        self.declare_parameter('map_yaml_file', 'isaac_ros-dev/src/go2_description/maps/test_room.yaml')
         self.declare_parameter('publish_on_service_call', False)
         self.declare_parameter('continuous_publish', False)
         self.declare_parameter('publish_rate', 1.0)
