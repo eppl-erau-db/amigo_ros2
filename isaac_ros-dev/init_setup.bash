@@ -16,12 +16,14 @@ sudo apt install -y \
   python3-tk \
   ros-humble-robot-localization \
   imagemagick && \
-echo "Installing Python packages..." && \
+echo "Installing Python packages..."
 pip install transforms3d pyserial smbus
 
+# Update rosdep and install dependencies
 echo "Updating rosdep and installing package dependencies..."
 rosdep update
 rosdep install -i -r --from-paths /workspaces/isaac_ros-dev/src/isaac_ros_nvblox/ --rosdistro humble -y
+
 
 # Set permissions for devices
 echo "Setting permissions for devices..."
@@ -58,14 +60,33 @@ else
   echo "Warning: /dev/i2c-7 not found"
 fi
 
-# Run ZED installation script
 sudo chmod +x ${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh && \
 ${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh
 
+cd ${ISAAC_ROS_WS} && \
+sudo apt update && \
+rosdep update && rosdep install --from-paths src/zed-ros2-wrapper --ignore-src -r -y && \
+colcon build --symlink-install --packages-up-to zed_wrapper
+
+# Build the workspaces
+echo "Building ROS workspaces..."
+
+# Build Unitree ROS2 workspace
+cd ${ISAAC_ROS_WS}/src/unitree_ros2/cyclonedds_ws && \
+colcon build --packages-select cyclonedds && \
+source /opt/ros/humble/setup.bash && \
+colcon build && \
+
+cd /workspaces/isaac_ros-dev && \
+colcon build --symlink-install --packages-up-to realsense_splitter && \
+
+# Building the ISAAC ROS workspace
+cd ${ISAAC_ROS_WS} && \
+colcon build --symlink-install && \
+
 # Source ROS setup files
 echo "Sourcing ROS setup files..."
-source ${ISAAC_ROS_WS}/src/unitree_ros2/setup.sh
+source ${ISAAC_ROS_WS}/src/unitree_ros2/setup.sh && \
 source ${ISAAC_ROS_WS}/install/setup.bash
 
 echo "Setup completed successfully!"
-
