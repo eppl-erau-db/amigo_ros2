@@ -6,7 +6,7 @@ AMIGO (Autonomous Machine for Inspecting Gas and Operations) is a ROS2 Humble-ba
 
 This repository contains all of the necessary software for running AMIGO, developed by EPPL. It is build off of ROS2 Humble, and uses various packages, cited at the end of this ReadMe.
 
-To use this repository as is, you will need a Jetson device (preferably the AGX Orin) **flashed with JetPack 6.1**, a RealSense D435i or D455, an RPLiDAR A3, Internet connection, and accompanying mounting assembly. The CAD for the assembly can be downloaded [here]([https://grabcad.com/library/pant_tilt_v2-1]). This repo works completely off of a container (isaac_ros_dev-aarch64-container), and anything under the isaac ros workspace will be volumized, such that any data saved in the workspace will not be lost when the container is shut down. 
+To use this repository as is, you will need a Jetson device (preferably the AGX Orin) **flashed with JetPack 6.1**, a RealSense D435i or D455, an RPLiDAR A3, Internet connection, and accompanying mounting assembly. The CAD for the assembly can be downloaded here https://grabcad.com/library/pant_tilt_v2-1 . This repo works completely off of a container (isaac_ros_dev-aarch64-container), and anything under the isaac ros workspace will be volumized, such that any data saved in the workspace will not be lost when the container is shut down. 
 
 For future work, we are looking to integrate Unitree's LiDAR for localization, and deployment in 3D navigation.
 
