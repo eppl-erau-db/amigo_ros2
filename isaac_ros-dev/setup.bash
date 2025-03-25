@@ -8,6 +8,8 @@ sudo apt install -y \
   ros-humble-rosidl-generator-dds-idl \
   ros-humble-nmea-navsat-driver \
   ros-humble-point-cloud-transport \
+  ros-humble-rmw-fastrtps-cpp \
+  ros-humble-fastrtps \
   libgeographic-dev \
   ros-humble-geographic-msgs \
   libyaml-cpp-dev \
@@ -61,6 +63,10 @@ fi
 # Run ZED installation script
 sudo chmod +x ${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh && \
 ${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh
+
+rosdep install --from-paths src/zed-ros2-wrapper --ignore-src -r -y
+colcon build --symlink-install --packages-up-to zed_wrapper
+
 
 # Source ROS setup files
 echo "Sourcing ROS setup files..."

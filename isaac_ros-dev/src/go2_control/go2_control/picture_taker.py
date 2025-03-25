@@ -10,7 +10,8 @@ import smtplib
 from email.message import EmailMessage
 
 SENDER_EMAIL = "amigo_bot@gmx.com"
-RECEIVER_EMAIL = "gabearod2@gmail.com"
+RECEIVER_EMAIL_1 = "gabearod2@gmail.com"
+RECEIVER_EMAIL_2 = "rodrig43@my.erau.edu"
 PASSWORD = "quaternion_kinematics" 
 
 class PictureTaker(Node):
@@ -73,6 +74,8 @@ class PictureTaker(Node):
                         continue
                 # Display the image once
                 cv2.imshow("Captured Image", cv_image)
+                self.send_email(cv_image, RECEIVER_EMAIL_1)
+                self.send_email(cv_image, RECEIVER_EMAIL_2)
                 # Wait a short moment to ensure the window updates
                 cv2.waitKey(1)
                 self.get_logger().info("Picture displayed.")
@@ -80,17 +83,25 @@ class PictureTaker(Node):
                 self.take_picture_event.clear()
         cv2.destroyAllWindows()
 
-    def send_email(self, cv_image):
+    def send_email(self, cv_image, receiver_email):
         """ Sends an email with an attached image. """
+
+        # Initializing the email message
         msg = EmailMessage()
-        msg["Subject"] = "AMIGO Bot - Captured Image"
+        msg["Subject"] = "AMIGO Diagnostic Report"
         msg["From"] = SENDER_EMAIL 
-        msg["To"] = RECEIVER_EMAIL
-        msg.set_content("Here is an image captured by AMIGO Bot.")
+        msg["To"] = receiver_email
+        msg.set_content("Hello! Here is an image captured by AMIGO Bot during autonomous operation.")
 
-        # Attach the image
-        msg.add_attachment(cv_image.read(), maintype="image", subtype="jpeg", filename="captured_image.jpg")
+        # Encoding the image to a jpeg
+        ret, buffer = cv2.imencode('.jpg', cv_image)
+        if not ret:
+            self.get_logger().error("Failed to encode image")
+            return
+        image_bytes = buffer.tobytes()
+        msg.add_attachment(image_bytes, maintype="image", subtype="jpeg", filename="captured_image.jpg")
 
+        # Try sendin the email
         try:
             with smtplib.SMTP_SSL("mail.gmx.com", 465) as server:
                 server.login(SENDER_EMAIL, PASSWORD)
@@ -98,7 +109,6 @@ class PictureTaker(Node):
             self.get_logger().info("Email sent successfully!")
         except Exception as e:
             self.get_logger().error(f"Failed to send email: {e}")
-
 
 def main(args=None):
     rclpy.init(args=args)
