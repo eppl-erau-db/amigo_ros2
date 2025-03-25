@@ -15,6 +15,9 @@
   <depend>go2_interfaces</depend>
   <depend>example_interfaces</depend>
   <depend>tf2_ros</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>cv_bridge</depend>
 
   <!-- You had these as exec depends for runtime usage: -->
   <exec_depend>twist_mux</exec_depend>

@@ -168,6 +168,12 @@ def generate_launch_description():
         executable='search_action_server',  
         output='log'
     )
+    take_picture_node = Node(
+        package='go2_control',
+        executable='picture_taker',
+        name='picture_taker',
+        output='log'
+    )
 
     return LaunchDescription([
         declare_map_file_cmd,
@@ -201,4 +207,6 @@ def generate_launch_description():
         set_initial_pose,
         region_map_service_node,
         search_action_server_node,
+        start_teleop_node,
+        take_picture_node,
     ])

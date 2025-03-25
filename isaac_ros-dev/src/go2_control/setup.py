@@ -72,6 +72,8 @@ setup(
             'region_map_client_node = go2_control.region_map_client_node:main',
             'occupancy_grid_to_image = go2_control.occupancy_grid_to_image:main',
             'search_action_server = go2_control.search_action_server:main',
+            'picture_taker = go2_control.picture_taker:main',
+
         ],
     },
 )
