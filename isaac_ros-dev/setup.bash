@@ -17,7 +17,7 @@ sudo apt install -y \
   ros-humble-robot-localization \
   imagemagick && \
 echo "Installing Python packages..." && \
-pip install transforms3d pyserial smbus
+pip install transforms3d pyserial smbus secure-smtplib
 
 echo "Updating rosdep and installing package dependencies..."
 rosdep update

@@ -6,6 +6,12 @@ from sensor_msgs.msg import Image
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
 import threading
+import smtplib
+from email.message import EmailMessage
+
+SENDER_EMAIL = "amigo_bot@gmx.com"
+RECEIVER_EMAIL = "gabearod2@gmail.com"
+PASSWORD = "quaternion_kinematics" 
 
 class PictureTaker(Node):
     def __init__(self):
@@ -23,6 +29,7 @@ class PictureTaker(Node):
             self.image_callback,
             10
         )
+
         # Subscribe to the take_picture topic
         self.create_subscription(
             Bool,
@@ -72,6 +79,26 @@ class PictureTaker(Node):
                 # Clear the event so that we don't keep displaying continuously
                 self.take_picture_event.clear()
         cv2.destroyAllWindows()
+
+    def send_email(self, cv_image):
+        """ Sends an email with an attached image. """
+        msg = EmailMessage()
+        msg["Subject"] = "AMIGO Bot - Captured Image"
+        msg["From"] = SENDER_EMAIL 
+        msg["To"] = RECEIVER_EMAIL
+        msg.set_content("Here is an image captured by AMIGO Bot.")
+
+        # Attach the image
+        msg.add_attachment(cv_image.read(), maintype="image", subtype="jpeg", filename="captured_image.jpg")
+
+        try:
+            with smtplib.SMTP_SSL("mail.gmx.com", 465) as server:
+                server.login(SENDER_EMAIL, PASSWORD)
+                server.send_message(msg)
+            self.get_logger().info("Email sent successfully!")
+        except Exception as e:
+            self.get_logger().error(f"Failed to send email: {e}")
+
 
 def main(args=None):
     rclpy.init(args=args)
