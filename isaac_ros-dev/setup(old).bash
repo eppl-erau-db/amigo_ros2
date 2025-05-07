@@ -1,19 +1,9 @@
 #!/bin/bash
 
-set -e
-
 # Update package list and install dependencies
 echo "Updating package list and installing required packages..."
-sudo apt update && sudo apt install -y \
-  ros-humble-topic-tools -y \
-  ros-humble-rtabmap-ros          \
-  ros-humble-rtabmap-msgs         \
-  ros-humble-rtabmap-slam         \
-  ros-humble-rtabmap-util         \
-  ros-humble-rtabmap-viz          \
-  ros-humble-spatio-temporal-voxel-layer -y  \
-  ros-humble-pointcloud-to-laserscan \
-  ros-humble-pcl-conversions          \
+sudo apt update && \
+sudo apt install -y \
   ros-humble-rmw-cyclonedds-cpp \
   ros-humble-rosidl-generator-dds-idl \
   ros-humble-nmea-navsat-driver \
@@ -66,17 +56,16 @@ else
   echo "Warning: /dev/i2c-7 not found"
 fi
 
-source /opt/ros/humble/setup.bash
 # Run ZED installation script
-# sudo chmod +x ${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh && \
-# ${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh
+sudo chmod +x ${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh && \
+${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh
 
 cd ${ISAAC_ROS_WS} && \
 sudo apt update && \
 rosdep update && \
-rosdep install -i -r --from-paths /workspaces/isaac_ros-dev/src/isaac_ros_nvblox/ --rosdistro humble -y #&& \
-# rosdep install --from-paths src/zed-ros2-wrapper --ignore-src -r -y && \
-# colcon build --symlink-install --packages-up-to zed_wrapper
+rosdep install -i -r --from-paths /workspaces/isaac_ros-dev/src/isaac_ros_nvblox/ --rosdistro humble -y && \
+rosdep install --from-paths src/zed-ros2-wrapper --ignore-src -r -y && \
+colcon build --symlink-install --packages-up-to zed_wrapper
 
 # Source ROS setup files
 echo "Sourcing ROS setup files..."
