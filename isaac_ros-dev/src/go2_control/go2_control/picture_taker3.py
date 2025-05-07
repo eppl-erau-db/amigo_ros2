@@ -11,11 +11,10 @@ import threading
 import smtplib
 from email.message import EmailMessage
 
-# Update these credentials with your Gmail address and app-specific password
-SENDER_EMAIL = "erau.eppl@gmail.com"
-RECEIVER_EMAIL_1 = "jdamico@steamsolutions.com"
-RECEIVER_EMAIL_2 = "drakunov@erau.edu"
-PASSWORD = "pavenydjpfdeqaev"
+SENDER_EMAIL = "amigo_eppl@gmx.com"
+RECEIVER_EMAIL_1 = "gabearod2@gmail.com"
+RECEIVER_EMAIL_2 = "jcass358@gmail.com"
+PASSWORD = "quaternion_kinematics" 
 
 class PictureTaker(Node):
     def __init__(self):
@@ -29,7 +28,7 @@ class PictureTaker(Node):
         # Subscribe to the ZED camera's image topic.
         self.create_subscription(
             Image,
-            "/zed/zed_node/rgb_raw/image_raw_color",
+            "/zed/zed_node/rgb/image_rect_color",
             self.image_callback,
             10
         )
@@ -125,7 +124,7 @@ class PictureTaker(Node):
         cv2.destroyAllWindows()
 
     def send_email(self, cv_image, receiver_email):
-        """Sends an email with an attached image using Gmail's SMTP server."""
+        """Sends an email with an attached image."""
         msg = EmailMessage()
         msg["Subject"] = "AMIGO Diagnostic Report"
         msg["From"] = SENDER_EMAIL 
@@ -140,7 +139,7 @@ class PictureTaker(Node):
         msg.add_attachment(image_bytes, maintype="image", subtype="jpeg", filename="captured_image.jpg")
 
         try:
-            with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            with smtplib.SMTP_SSL("mail.gmx.com", 465) as server:
                 server.login(SENDER_EMAIL, PASSWORD)
                 server.send_message(msg)
             self.get_logger().info("Email sent successfully!")

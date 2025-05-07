@@ -6,31 +6,33 @@ from copy import deepcopy
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 import rclpy
+from rclpy.action import ActionClient
+from go2_interfaces.action import Search
 from std_srvs.srv import Trigger
 
 
 def perform_task_at_pose(task_pose, search_client_node):
-    # Create a service client for the Trigger service.
-    client = search_client_node.create_client(Trigger, 'run_scan_controller')
-    if not client.wait_for_service(timeout_sec=5.0):
-        print("Service 'run_scan_controller' not available!")
+    # Trigger the "search" action.
+    action_client = ActionClient(search_client_node, Search, 'search')
+    if not action_client.wait_for_server(timeout_sec=5.0):
+        print("Search action server not available!")
         return
 
-    # Create and send the request.
-    request = Trigger.Request()
-    future = client.call_async(request)
-    rclpy.spin_until_future_complete(search_client_node, future)
-    try:
-        response = future.result()
-        if response.success:
-            print("Service call executed successfully: " + response.message)
-        else:
-            print("Service call failed: " + response.message)
-    except Exception as e:
-        print("Service call failed: " + str(e))
-    
-    # Wait for 20 seconds so that the service completes its action while remaining in place.
-    time.sleep(20)
+    goal_msg = Search.Goal()
+    goal_msg.initial_pose = task_pose 
+    goal_msg.behavior_tree = ""  # no behavior tree is used
+
+    send_goal_future = action_client.send_goal_async(goal_msg)
+    rclpy.spin_until_future_complete(search_client_node, send_goal_future)
+    goal_handle = send_goal_future.result()
+    if not goal_handle.accepted:
+        print("Search goal rejected!")
+        return
+
+    get_result_future = goal_handle.get_result_async()
+    rclpy.spin_until_future_complete(search_client_node, get_result_future)
+    result = get_result_future.result().result
+    print("Search action complete!")
 
 
 def handle_task_failure(navigator, task_pose):
@@ -77,9 +79,9 @@ def handle_task_failure(navigator, task_pose):
 def main():
     rclpy.init()
 
-    # Create the navigator and a separate node for the scan controller service client.
+    # Create the navigator and a separate node for the search action client.
     navigator = BasicNavigator()
-    search_client_node = rclpy.create_node('scan_controller_client_node')
+    search_client_node = rclpy.create_node('search_client_node')
 
     # Load the pose log from JSON file.
     with open('pose_log.json', 'r') as f:

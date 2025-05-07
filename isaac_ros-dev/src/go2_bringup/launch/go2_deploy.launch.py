@@ -174,6 +174,12 @@ def generate_launch_description():
         name='picture_taker',
         output='log'
     )
+    start_nav_node = Node(
+        package='go2_control',
+        executable='task_nav_to_pose_test',
+        name='task_nav_to_pose_test',
+        output='log'
+    )
 
     return LaunchDescription([
         declare_map_file_cmd,
@@ -185,6 +191,12 @@ def generate_launch_description():
         robot_localization_node,
         lidar_node,
         robot_state_publisher_node,
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                os.path.join(get_package_share_directory('zed_wrapper'), 'launch', 'zed_camera.launch.py')
+            ]),
+            launch_arguments={'camera_model': 'zedxm'}.items()
+        ),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
             launch_arguments={
@@ -205,8 +217,8 @@ def generate_launch_description():
         ),
         rviz2_node,
         set_initial_pose,
-        region_map_service_node,
-        search_action_server_node,
         start_teleop_node,
         take_picture_node,
+        start_go2_lidar,
+        start_nav_node,
     ])

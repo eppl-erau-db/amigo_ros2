@@ -21,10 +21,6 @@ sudo apt install -y \
 echo "Installing Python packages..." && \
 pip install transforms3d pyserial smbus secure-smtplib
 
-echo "Updating rosdep and installing package dependencies..."
-rosdep update
-rosdep install -i -r --from-paths /workspaces/isaac_ros-dev/src/isaac_ros_nvblox/ --rosdistro humble -y
-
 # Set permissions for devices
 echo "Setting permissions for devices..."
 # Camera devices
@@ -64,9 +60,12 @@ fi
 sudo chmod +x ${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh && \
 ${ISAAC_ROS_WS}/src/isaac_ros_common/docker/scripts/install-zed-aarch64.sh
 
-rosdep install --from-paths src/zed-ros2-wrapper --ignore-src -r -y
+cd ${ISAAC_ROS_WS} && \
+sudo apt update && \
+rosdep update && \
+rosdep install -i -r --from-paths /workspaces/isaac_ros-dev/src/isaac_ros_nvblox/ --rosdistro humble -y && \
+rosdep install --from-paths src/zed-ros2-wrapper --ignore-src -r -y && \
 colcon build --symlink-install --packages-up-to zed_wrapper
-
 
 # Source ROS setup files
 echo "Sourcing ROS setup files..."
