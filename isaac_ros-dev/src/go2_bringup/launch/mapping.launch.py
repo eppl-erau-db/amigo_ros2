@@ -86,6 +86,7 @@ def generate_launch_description():
                     'publish_tf': True,
                     'map_frame_id': 'map',
                     'odom_frame_id': 'odom',
+                    "delete_db_on_start": True,
                     'use_sim_time': LaunchConfiguration('use_sim_time')}],
         remappings=[('scan_cloud', '/pointcloud'),
                     ('odom', '/odom')],
