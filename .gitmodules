@@ -1,15 +1,5 @@
-[submodule "isaac_ros-dev/src/isaac_ros_nvblox"]
-	path = isaac_ros-dev/src/isaac_ros_nvblox
-	url = https://github.com/JCastel358/isaac_ros_nvblox.git
-[submodule "isaac_ros-dev/src/sllidar_ros2"]
-	path = isaac_ros-dev/src/sllidar_ros2
-	url = https://github.com/Slamtec/sllidar_ros2.git
-[submodule "isaac_ros-dev/src/isaac_ros_common"]
-	path = isaac_ros-dev/src/isaac_ros_common
-	url = https://github.com/JCastel358/isaac_ros_common.git
-	branch = release-3.2
-[submodule "isaac_ros-dev/src/zed-ros2-wrapper"]
-	path = isaac_ros-dev/src/zed-ros2-wrapper
+[submodule "src/zed-ros2-wrapper"]
+	path = src/zed-ros2-wrapper
 	url = https://github.com/JCastel358/zed-ros2-wrapper.git
 [submodule "src/robot_localization"]
 	path = src/robot_localization
