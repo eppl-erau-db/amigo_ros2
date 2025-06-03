@@ -146,7 +146,7 @@ def generate_launch_description():
     #
     dual_ekf_navsat_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(gps_launch_dir, "dual_ekf_navsat.launch.py")
+            os.path.join(gps_launch_dir, "dual_ekf_navsat_example.launch.py")
         ),
         launch_arguments={"use_sim_time": use_sim_time}.items(),
     )
@@ -202,7 +202,7 @@ def generate_launch_description():
     ld.add_action(go2_state_publisher)
     ld.add_action(odom_node)
     ld.add_action(start_go2_lidar)
-    ld.add_action(start_teleop_node)
+    # ld.add_action(start_teleop_node)
 
     # Optional helpers
     ld.add_action(rviz_local_node)
