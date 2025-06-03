@@ -1,222 +1,217 @@
+#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+"""Launch Go2 base nodes + GPS-enabled Nav2 + Mapviz/RViz."""
+
 import os
+
+from ament_index_python.packages import get_package_share_directory, get_package_share_path
+
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, LogInfo
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.conditions import IfCondition
-from launch_ros.actions import Node, ComposableNodeContainer
-from launch.substitutions import Command, LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from ament_index_python.packages import get_package_share_path, get_package_share_directory
+from launch.substitutions import LaunchConfiguration, Command
+from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
-from launch_ros.descriptions import ComposableNode
+from nav2_common.launch import RewrittenYaml
 
 
 def generate_launch_description():
-    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-    urdf_path = os.path.join(get_package_share_path('go2_description'), 'urdf', 'go2_nav2_nvblox.urdf')
-    rviz_config_path = os.path.join(get_package_share_path('go2_description'), 'config', 'nav_nvblox_config.rviz')
-    map_file = LaunchConfiguration('map_file', default=os.path.join(get_package_share_path('go2_description'), 'maps', 'lse_first_floor.yaml'))
-    rviz = LaunchConfiguration('rviz', default='false')
-    visualization = LaunchConfiguration('visualization', default='true')
-    initial_pose = LaunchConfiguration('initial_pose', default='false')
-    robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
+    #
+    # ──────────────── Launch-time arguments ────────────────
+    #
+    use_sim_time   = LaunchConfiguration("use_sim_time",   default="false")
 
-    declare_rviz_cmd = DeclareLaunchArgument(
-        'rviz',
-        default_value='false',
-        description='Whether to start RViz'
+    # Keep original toggles (RViz for local debugging, visual markers, initial pose)
+    rviz_local     = LaunchConfiguration("rviz",           default="false")
+    visualization  = LaunchConfiguration("visualization",  default="true")
+    initial_pose   = LaunchConfiguration("initial_pose",   default="false")
+
+    # GPS demo toggles
+    use_rviz       = LaunchConfiguration("use_rviz",   default="false")   # demo RViz
+    use_mapviz     = LaunchConfiguration("use_mapviz", default="false")
+
+    declare_rviz_local_cmd  = DeclareLaunchArgument("rviz",  default_value="false",
+                                                    description="Start old RViz config?")
+    declare_vis_cmd         = DeclareLaunchArgument("visualization", default_value="true",
+                                                    description="Enable markers in rviz_local config")
+    declare_initial_pose_cmd = DeclareLaunchArgument("initial_pose", default_value="false",
+                                                     description="Send an /initialpose message at start")
+
+    declare_use_rviz_cmd   = DeclareLaunchArgument("use_rviz",   default_value="false",
+                                                   description="Start GPS-demo RViz config")
+    declare_use_mapviz_cmd = DeclareLaunchArgument("use_mapviz", default_value="false",
+                                                   description="Start Mapviz")
+
+    #
+    # ──────────────── Paths & common files ────────────────
+    #
+    go2_desc_share   = get_package_share_path("go2_description")
+    urdf_path        = os.path.join(go2_desc_share, "urdf", "go2.urdf.xacro")
+    rviz_local_cfg   = os.path.join(go2_desc_share, "config", "nav_nvblox_config.rviz")
+
+    # Nav2 GPS demo package provides params/launch files we’ll re-use
+    gps_demo_share   = get_package_share_path("robot_localization")
+    gps_launch_dir   = os.path.join(gps_demo_share, "launch")
+    gps_params_dir   = os.path.join(go2_desc_share, "config")
+    nav2_params_yaml = os.path.join(gps_params_dir, "nav2_no_map.yaml")
+
+    # Re-write that YAML on the fly if the user passes extra overrides
+    nav2_configured_params = RewrittenYaml(
+        source_file=nav2_params_yaml,
+        root_key="",
+        param_rewrites={},
+        convert_types=True,
     )
 
-    declare_visualization_cmd = DeclareLaunchArgument(
-        'visualization',
-        default_value='true',
-        description='Enable or disable visualization.'
-    )
+    #
+    # ──────────────── Core robot description / tf ────────────────
+    #
+    robot_description = ParameterValue(Command(["xacro", " ", urdf_path]), value_type=str)
 
-    declare_initial_pose_cmd = DeclareLaunchArgument(
-        'initial_pose',
-        default_value='false',
-        description='Enable or disable initial pose.'
-    )
-
-    robot_state_publisher_node = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        parameters=[{'robot_description': robot_description}],
-        output='log'
-    )
-
-    rviz2_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        arguments=['-d', rviz_config_path],
-        output='log',
-        condition=IfCondition(rviz)
-    )
-
-    state_publisher_node = Node(
-        package='go2_control',
-        executable='go2_state',
-        name='go2_state',
-        output='log'
-    )
-
-    go2_driver_node = Node(
-        package='go2_driver',
-        executable='go2_driver_node',
-        name='go2_driver_node',
-        output='log'
+    robot_state_publisher = Node(
+        package="robot_state_publisher",
+        executable="robot_state_publisher",
+        parameters=[{"robot_description": robot_description}],
+        output="log",
     )
 
     base_footprint_to_base_link_tf = Node(
-        package='go2_control',
-        executable='base_to_base_tf',
-        name='base_to_base_tf',
-        output='log'
+        package="go2_control",
+        executable="base_to_base_tf",
+        name="base_to_base_tf",
+        output="log",
     )
 
-
-    nav2_config = os.path.join(
-        get_package_share_path('go2_description'),
-        'config',
-        'nav2_mppi_controller.yaml'
+    #
+    # ──────────────── Go2 drivers & odometry ────────────────
+    #
+    go2_driver_node = Node(
+        package="go2_driver",
+        executable="go2_driver_node",
+        name="go2_driver_node",
+        output="log",
     )
 
-    robot_localization_node = Node(
-        package='robot_localization',
-        executable='ekf_node',
-        name='ekf_filter_node',
-        output='log',
-        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
-        remappings=[('/odometry/filtered', '/odom'),
-                    ('/set_pose', '/initialpose')
-        ],
-    )
-
-    robot_localization_node2 = Node(
-        package='robot_localization',
-        executable='ekf_node',
-        name='ekf_filter_node_map',
-        output='log',
-        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
-        remappings=[('/odometry/filtered', '/odom'),
-                    ('/set_pose', '/initialpose')
-        ],
-    )
-
-    navsat_node= Node(
-        package='robot_localization',
-        executable='navsat_transform_node',
-        name='navsat_transform',
-        output='log',
-        parameters=[os.path.join(get_package_share_path('go2_description'), 'config', 'ekf.yaml')],
-        remappings=[('/odometry/filtered', '/odom'),
-                    ('/set_pose', '/initialpose')
-        ],
+    go2_state_publisher = Node(
+        package="go2_control",
+        executable="go2_state",
+        name="go2_state",
+        output="log",
     )
 
     odom_node = Node(
-        package="go2_control",  
-        executable="odom_node", 
-        name='odom_node',
-        output='screen'
-    )
-
-    set_initial_pose = Node(
-        package='go2_control',
-        executable='initial_pose_set',
-        name='initial_pose_set',
-        output='log',
-        condition=IfCondition(initial_pose)
+        package="go2_control",
+        executable="odom_node",
+        name="odom_node",
+        output="screen",
     )
 
     start_go2_lidar = Node(
-        package='go2_control',
-        executable='go2_lidar',
-        name='go2_lidar',
-        output='log',
+        package="go2_control",
+        executable="go2_lidar",
+        name="go2_lidar",
+        output="log",
     )
 
     start_teleop_node = Node(
-        package='go2_control',
-        executable='go2_velocity_commands',
-        name='go2_velocity_commands',
-        output='log'
+        package="go2_control",
+        executable="go2_velocity_commands",
+        name="go2_velocity_commands",
+        output="log",
     )
 
-    region_map_service_node = Node(
-    package='go2_control',                
-    executable='region_map_service_node', 
-    name='region_map_service_node',
-    output='log',
-    parameters=[
-            {
-            'map_yaml_file': os.path.join(
-                get_package_share_path('go2_description'),
-                'maps',
-                'test_room.yaml'  
-                )
-            },
-            {'publish_on_service_call': True},    # 
-            {'continuous_publish': True},         # or False
-            {'publish_rate': 1.0},  
-        ]
-    )
-    search_action_server_node = Node(
-        package='go2_control',
-        executable='search_action_server',  
-        output='log'
-    )
-    take_picture_node = Node(
-        package='go2_control',
-        executable='picture_taker',
-        name='picture_taker',
-        output='log'
-    )
-    start_nav_node = Node(
-        package='go2_control',
-        executable='task_nav_to_pose_test',
-        name='task_nav_to_pose_test',
-        output='log'
+    #
+    # ──────────────── Optional helpers ────────────────
+    #
+    rviz_local_node = Node(
+        package="rviz2",
+        executable="rviz2",
+        arguments=["-d", rviz_local_cfg],
+        condition=IfCondition(rviz_local),
+        output="log",
     )
 
-    return LaunchDescription([
-        declare_map_file_cmd,
-        declare_rviz_cmd,
-        declare_visualization_cmd,
-        declare_initial_pose_cmd,
-        base_footprint_to_base_link_tf,
-        odom_node,
-        robot_localization_node,
-        lidar_node,
-        robot_state_publisher_node,
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                os.path.join(get_package_share_directory('zed_wrapper'), 'launch', 'zed_camera.launch.py')
-            ]),
-            launch_arguments={'camera_model': 'zedxm'}.items()
+    set_initial_pose = Node(
+        package="go2_control",
+        executable="initial_pose_set",
+        name="initial_pose_set",
+        output="log",
+        condition=IfCondition(initial_pose),
+    )
+
+    #
+    # ──────────────── Robot_localization (dual EKF + NavSat) ────────────────
+    # Re-use the demo’s fully-wired launch file so frames & topic names match
+    #
+    dual_ekf_navsat_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(gps_launch_dir, "dual_ekf_navsat.launch.py")
         ),
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
-            launch_arguments={
-                'mode': 'dynamic',
-                #'people_segmentation': 'peoplesemsegnet_shuffleseg',
-                # 'visualization': visualization,
-            }.items(),
-        ),  
-        go2_driver_node,
-        state_publisher_node,
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([os.path.join(get_package_share_path('nav2_bringup'), 'launch', 'bringup_launch.py')]),
-            launch_arguments={
-                'params_file': nav2_config,
-                'use_sim_time': use_sim_time,
-                'map': map_file,
-            }.items(),
+        launch_arguments={"use_sim_time": use_sim_time}.items(),
+    )
+
+    #
+    # ──────────────── Nav2 stack (GPS/no-map mode) ────────────────
+    #
+    nav2_bringup_share = get_package_share_directory("nav2_bringup")
+    nav2_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(nav2_bringup_share, "launch", "navigation_launch.py")
         ),
-        rviz2_node,
-        set_initial_pose,
-        start_teleop_node,
-        take_picture_node,
-        start_go2_lidar,
-        start_nav_node,
-    ])
+        launch_arguments={
+            "use_sim_time": use_sim_time,
+            "params_file": nav2_configured_params,
+            "autostart": "true",
+        }.items(),
+    )
+
+    #
+    # ──────────────── Visualization: RViz (demo) + Mapviz ────────────────
+    #
+    rviz_demo_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(nav2_bringup_share, "launch", "rviz_launch.py")
+        ),
+        condition=IfCondition(use_rviz),
+    )
+
+    mapviz_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(gps_launch_dir, "mapviz.launch.py")
+        ),
+        condition=IfCondition(use_mapviz),
+    )
+
+    #
+    # ──────────────── Assemble & return LaunchDescription ────────────────
+    #
+    ld = LaunchDescription()
+
+    # Declare all CLI arguments first (so `ros2 launch --show-arguments` works)
+    ld.add_action(declare_rviz_local_cmd)
+    ld.add_action(declare_vis_cmd)
+    ld.add_action(declare_initial_pose_cmd)
+    ld.add_action(declare_use_rviz_cmd)
+    ld.add_action(declare_use_mapviz_cmd)
+
+    # Core robot stack
+    ld.add_action(robot_state_publisher)
+    ld.add_action(base_footprint_to_base_link_tf)
+    ld.add_action(go2_driver_node)
+    ld.add_action(go2_state_publisher)
+    ld.add_action(odom_node)
+    ld.add_action(start_go2_lidar)
+    ld.add_action(start_teleop_node)
+
+    # Optional helpers
+    ld.add_action(rviz_local_node)
+    ld.add_action(set_initial_pose)
+
+    # Localization + Nav2 + Visualization
+    ld.add_action(dual_ekf_navsat_launch)
+    ld.add_action(nav2_launch)
+    ld.add_action(rviz_demo_launch)
+    ld.add_action(mapviz_launch)
+
+    return ld
