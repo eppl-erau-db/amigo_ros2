@@ -2,6 +2,3 @@
 	path = src/robot_localization
 	url = https://github.com/JCastel358/robot_localization.git
 	branch = humble-devel
-[submodule "zed-ros2-wrapper"]
-	path = zed-ros2-wrapper
-	url = https://github.com/JCastel358/zed-ros2-wrapper.git
