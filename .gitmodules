@@ -12,3 +12,7 @@
 	path = src/marti_common
 	url = https://github.com/swri-robotics/marti_common.git
 	branch = ros2-devel
+[submodule "src/marti_messages"]
+	path = src/marti_messages
+	url = https://github.com/swri-robotics/marti_messages.git
+	branch = ros2-devel
