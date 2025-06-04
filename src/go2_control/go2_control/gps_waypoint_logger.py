@@ -32,7 +32,7 @@ class GpsGuiLogger(tk.Tk, Node):
 
         self.gps_subscription = self.create_subscription(
             NavSatFix,
-            '/fix',
+            'gps/fix',
             self.gps_callback,
             1
         )
@@ -40,7 +40,7 @@ class GpsGuiLogger(tk.Tk, Node):
 
         self.imu_subscription = self.create_subscription(
             Imu,
-            '/bno055/imu',
+            'imu/data',
             self.imu_callback,
             1
         )
@@ -108,7 +108,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     # allow to pass the logging path as an argument
-    default_yaml_file_path = os.path.expanduser("~/gps_waypoints.yaml")
+    default_yaml_file_path = os.path.expanduser("~/workspaces/amigo_ros2/gps_waypoints.yaml")
     if len(sys.argv) > 1:
         yaml_file_path = sys.argv[1]
     else:
