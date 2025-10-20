@@ -5,14 +5,7 @@
 [submodule "src/zed-ros2-wrapper"]
 	path = src/zed-ros2-wrapper
 	url = https://github.com/JCastel358/zed-ros2-wrapper.git
-[submodule "src/mapviz"]
-	path = src/mapviz
-	url = https://github.com/swri-robotics/mapviz.git
-[submodule "src/marti_common"]
-	path = src/marti_common
-	url = https://github.com/swri-robotics/marti_common.git
-	branch = ros2-devel
-[submodule "src/marti_messages"]
-	path = src/marti_messages
-	url = https://github.com/swri-robotics/marti_messages.git
-	branch = ros2-devel
+
+[submodule "src/sllidar_ros2"]
+	path = src/sllidar_ros2
+	url = https://github.com/JCastel358/sllidar_ros2.git
