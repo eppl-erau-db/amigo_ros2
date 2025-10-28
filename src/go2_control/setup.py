@@ -75,6 +75,7 @@ setup(
             'mod_waypoint_follower = go2_control.mod_waypoint_follower:main',
             'gps_waypoint_logger = go2_control.gps_waypoint_logger:main',
             'picture_taker = go2_control.picture_taker:main',
+            'logged_waypoint_follower = go2_control.logged_waypoint_follower:main',
 
         ],
     },

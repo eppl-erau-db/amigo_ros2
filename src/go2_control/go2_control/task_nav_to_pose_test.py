@@ -85,7 +85,7 @@ def main():
     with open('pose_log.json', 'r') as f:
         pose_log = json.load(f)
 
-    # Set our demo's initial pose.
+    # # Set our demo's initial pose.
     initial_pose = PoseStamped()
     initial_pose.header.stamp = navigator.get_clock().now().to_msg()
     initial_pose.header.frame_id = 'map'
@@ -93,10 +93,10 @@ def main():
     initial_pose.pose.position.y = 0.0
     initial_pose.pose.orientation.z = 0.0
     initial_pose.pose.orientation.w = 1.0
-    navigator.setInitialPose(initial_pose)
+    # navigator.setInitialPose(initial_pose)
 
-    # Wait for navigation to fully activate.
-    navigator.waitUntilNav2Active()
+    # # Wait for navigation to fully activate.
+    # navigator.waitUntilNav2Active()
 
     # Initialize a variable to hold the path segment.
     path_segment = []
@@ -184,9 +184,9 @@ def main():
 
     # Go back to start.
     initial_pose.header.stamp = navigator.get_clock().now().to_msg()
-    navigator.goToPose(initial_pose)
-    while not navigator.isTaskComplete():
-        time.sleep(0.2)
+    # navigator.goToPose(initial_pose)
+    # while not navigator.isTaskComplete():
+    #     time.sleep(0.2)
 
     rclpy.shutdown()
 

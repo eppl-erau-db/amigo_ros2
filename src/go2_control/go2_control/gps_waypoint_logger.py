@@ -32,7 +32,7 @@ class GpsGuiLogger(tk.Tk, Node):
 
         self.gps_subscription = self.create_subscription(
             NavSatFix,
-            'gps/fix',
+            '/gps/filtered',
             self.gps_callback,
             1
         )

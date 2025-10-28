@@ -5,7 +5,6 @@
 [submodule "src/zed-ros2-wrapper"]
 	path = src/zed-ros2-wrapper
 	url = https://github.com/JCastel358/zed-ros2-wrapper.git
-
 [submodule "src/sllidar_ros2"]
 	path = src/sllidar_ros2
 	url = https://github.com/JCastel358/sllidar_ros2.git

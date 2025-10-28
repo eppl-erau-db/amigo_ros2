@@ -1,84 +1,78 @@
-# GPS WPF CHANGES:
-# - amcl params where removed. They are not needed because global localization is provided
-#   by an ekf node on robot_localization fusing gps data with local odometry sources
-# - static layer is removed from both costmaps, in this tutorial we assume there is no map
-#   of the environment
-# - global costmap is set to be rolling to allow the robot to traverse big environment by
-#   following successive relatively close waypoints that fit in a smaller rolling costmap
-
+amcl:
+  ros__parameters:
+    tf_broadcast: false
 bt_navigator:
   ros__parameters:
     use_sim_time: False
     global_frame: map
-    robot_base_frame: base_footprint
-    odom_topic: odometry/local
+    robot_base_frame: base_link
+    odom_topic: /odom
     bt_loop_duration: 10
     default_server_timeout: 20
-    navigators: ["navigate_to_pose", "navigate_through_poses"]
-    navigate_to_pose:
-      plugin: "nav2_bt_navigator/NavigateToPoseNavigator"
-    navigate_through_poses:
-      plugin: "nav2_bt_navigator/NavigateThroughPosesNavigator"
     # 'default_nav_through_poses_bt_xml' and 'default_nav_to_pose_bt_xml' are use defaults:
     # nav2_bt_navigator/navigate_to_pose_w_replanning_and_recovery.xml
     # nav2_bt_navigator/navigate_through_poses_w_replanning_and_recovery.xml
     # They can be set here or via a RewrittenYaml remap from a parent launch file to Nav2.
     plugin_lib_names:
-    - nav2_compute_path_to_pose_action_bt_node
-    - nav2_compute_path_through_poses_action_bt_node
-    - nav2_smooth_path_action_bt_node
-    - nav2_follow_path_action_bt_node
-    - nav2_spin_action_bt_node
-    - nav2_wait_action_bt_node
-    - nav2_assisted_teleop_action_bt_node
-    - nav2_back_up_action_bt_node
-    - nav2_drive_on_heading_bt_node
-    - nav2_clear_costmap_service_bt_node
-    - nav2_is_stuck_condition_bt_node
-    - nav2_goal_reached_condition_bt_node
-    - nav2_goal_updated_condition_bt_node
-    - nav2_globally_updated_goal_condition_bt_node
-    - nav2_is_path_valid_condition_bt_node
-    - nav2_initial_pose_received_condition_bt_node
-    - nav2_reinitialize_global_localization_service_bt_node
-    - nav2_rate_controller_bt_node
-    - nav2_distance_controller_bt_node
-    - nav2_speed_controller_bt_node
-    - nav2_truncate_path_action_bt_node
-    - nav2_truncate_path_local_action_bt_node
-    - nav2_goal_updater_node_bt_node
-    - nav2_recovery_node_bt_node
-    - nav2_pipeline_sequence_bt_node
-    - nav2_round_robin_node_bt_node
-    - nav2_transform_available_condition_bt_node
-    - nav2_time_expired_condition_bt_node
-    - nav2_path_expiring_timer_condition
-    - nav2_distance_traveled_condition_bt_node
-    - nav2_single_trigger_bt_node
-    - nav2_goal_updated_controller_bt_node
-    - nav2_is_battery_low_condition_bt_node
-    - nav2_navigate_through_poses_action_bt_node
-    - nav2_navigate_to_pose_action_bt_node
-    - nav2_remove_passed_goals_action_bt_node
-    - nav2_planner_selector_bt_node
-    - nav2_controller_selector_bt_node
-    - nav2_goal_checker_selector_bt_node
-    - nav2_controller_cancel_bt_node
-    - nav2_path_longer_on_approach_bt_node
-    - nav2_wait_cancel_bt_node
-    - nav2_spin_cancel_bt_node
-    - nav2_back_up_cancel_bt_node
-    - nav2_assisted_teleop_cancel_bt_node
-    - nav2_drive_on_heading_cancel_bt_node
-    - nav2_is_battery_charging_condition_bt_node    
-    error_code_names:
-      - compute_path_error_code
-      - follow_path_error_code
-      
+      - nav2_compute_path_to_pose_action_bt_node
+      - nav2_compute_path_through_poses_action_bt_node
+      - nav2_smooth_path_action_bt_node
+      - nav2_follow_path_action_bt_node
+      - nav2_spin_action_bt_node
+      - nav2_wait_action_bt_node
+      - nav2_assisted_teleop_action_bt_node
+      - nav2_back_up_action_bt_node
+      - nav2_drive_on_heading_bt_node
+      - nav2_clear_costmap_service_bt_node
+      - nav2_is_stuck_condition_bt_node
+      - nav2_goal_reached_condition_bt_node
+      - nav2_goal_updated_condition_bt_node
+      - nav2_globally_updated_goal_condition_bt_node
+      - nav2_is_path_valid_condition_bt_node
+      - nav2_initial_pose_received_condition_bt_node
+      - nav2_reinitialize_global_localization_service_bt_node
+      - nav2_rate_controller_bt_node
+      - nav2_distance_controller_bt_node
+      - nav2_speed_controller_bt_node
+      - nav2_truncate_path_action_bt_node
+      - nav2_truncate_path_local_action_bt_node
+      - nav2_goal_updater_node_bt_node
+      - nav2_recovery_node_bt_node
+      - nav2_pipeline_sequence_bt_node
+      - nav2_round_robin_node_bt_node
+      - nav2_transform_available_condition_bt_node
+      - nav2_time_expired_condition_bt_node
+      - nav2_path_expiring_timer_condition
+      - nav2_distance_traveled_condition_bt_node
+      - nav2_single_trigger_bt_node
+      - nav2_goal_updated_controller_bt_node
+      - nav2_is_battery_low_condition_bt_node
+      - nav2_navigate_through_poses_action_bt_node
+      - nav2_navigate_to_pose_action_bt_node
+      - nav2_remove_passed_goals_action_bt_node
+      - nav2_planner_selector_bt_node
+      - nav2_controller_selector_bt_node
+      - nav2_goal_checker_selector_bt_node
+      - nav2_controller_cancel_bt_node
+      - nav2_path_longer_on_approach_bt_node
+      - nav2_wait_cancel_bt_node
+      - nav2_spin_cancel_bt_node
+      - nav2_back_up_cancel_bt_node
+      - nav2_assisted_teleop_cancel_bt_node
+      - nav2_drive_on_heading_cancel_bt_node
+      - nav2_is_battery_charging_condition_bt_node
+
+bt_navigator_navigate_through_poses_rclcpp_node:
+  ros__parameters:
+    use_sim_time: False
+
+bt_navigator_navigate_to_pose_rclcpp_node:
+  ros__parameters:
+    use_sim_time: False
+
 controller_server:
   ros__parameters:
     use_sim_time: False
-    odom_topic: "odometry/local"
     controller_frequency: 20.0
     progress_checker_plugin: "progress_checker"
     goal_checker_plugins: ["stopped_goal_checker"]
@@ -96,20 +90,26 @@ controller_server:
       yaw_goal_tolerance: 0.25
     FollowPath:
       plugin: "nav2_mppi_controller::MPPIController"
-      time_steps: 56
+      time_steps: 32
       model_dt: 0.05
-      batch_size: 2000
+      batch_size: 800
+      # Noises
       vx_std: 0.2
+      vy_std: 0.2                   # <= add for Omni
       wz_std: 0.4
-      vx_max: 0.5
+
+      # Limits (tune to your comfort / Go2 limits)
+      vx_max: 1.0
       vx_min: -0.35
-      wz_max: 1.9
+      vy_max: 0.1                   # <= allow some lateral
+      wz_max: 1.8
+
       iteration_count: 1
       prune_distance: 1.7
-      transform_tolerance: 0.1
+      transform_tolerance: 0.2
       temperature: 0.3
       gamma: 0.015
-      motion_model: "DiffDrive"
+      motion_model: "Omni" # try "Omni"
       visualize: false
       reset_period: 1.0 # (only in Humble)
       regenerate_noises: false
@@ -140,8 +140,8 @@ controller_server:
         enabled: true
         cost_power: 1
         repulsion_weight: 4.0
-        critical_weight: 20.0
-        consider_footprint: True
+        critical_weight: 5.0
+        consider_footprint: true
         collision_cost: 10000.0
         collision_margin_distance: 0.1
         near_goal_distance: 0.5
@@ -174,127 +174,118 @@ controller_server:
         #   enabled: true
         #   twirling_cost_power: 1
         #   twirling_cost_weight: 10.0
-
-# GPS WPF CHANGE: Remove static layer
 local_costmap:
   local_costmap:
     ros__parameters:
       footprint_padding: 0.03
-      update_frequency: 5.0
-      publish_frequency: 2.0
+      update_frequency: 10.0
+      publish_frequency: 10.0
       global_frame: odom
-      robot_base_frame: base_footprint
+      robot_base_frame: base_link
       rolling_window: true
-      width: 3
-      height: 3
+      width: 6
+      height: 6
       resolution: 0.05
       transform_tolerance: 0.3
       #robot_radius: 0.35
       footprint: "[ [0.360, 0.200], [0.360, -0.200], [-0.800, -0.200], [-0.800, 0.200] ]"
       mark_threshold: 2
       always_send_full_costmap: True
-      plugins: ['3d_lidar_layer', 'inflation_layer'] # 'nvblox_layer_static', 
+      plugins: ['3d_lidar_layer', 'inflation_layer']  
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: True
         cost_scaling_factor: 5.0
         inflation_radius: 0.70
-      front_2d_lidar_layer:
-        plugin: "nav2_costmap_2d::ObstacleLayer"
-        enabled: True
-        observation_sources: scan
-        scan:
-          topic: /scan
-          max_obstacle_height: 2.0
-          clearing: True
-          marking: True
-          data_type: "LaserScan"
-      back_2d_lidar_layer:
-        plugin: "nav2_costmap_2d::ObstacleLayer"
-        enabled: True
-        observation_sources: scan
-        scan:
-          topic: /back_2d_lidar/scan
-          max_obstacle_height: 2.0
-          clearing: True
-          marking: True
-          data_type: "LaserScan"
-      nvblox_layer_static:
-        plugin: "nvblox::nav2::NvbloxCostmapLayer"
-        enabled: True
-        nav2_costmap_global_frame: odom # must match with global_frame of local_costmap
-        nvblox_map_slice_topic: "/nvblox_node/static_map_slice"
-        convert_to_binary_costmap: True
-      nvblox_layer_dynamic:
-        plugin: "nvblox::nav2::NvbloxCostmapLayer"
-        enabled: True
-        nav2_costmap_global_frame: odom # must match with global_frame of local_costmap
-        nvblox_map_slice_topic: "/nvblox_node/dynamic_map_slice"
-        convert_to_binary_costmap: True
+
       3d_lidar_layer:
         plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"
         enabled: true
-        voxel_decay: 15.0 # seconds if linear, e^n if exponential
-        decay_model: 0 # 0=linear, 1=exponential, -1=persistent
-        voxel_size: 0.05 # meters
-        track_unknown_space: False # default space is known
-        mark_threshold: 2 # voxel height
+        voxel_decay: 3.0 # seconds if linear, e^n if exponential
+        observation_persistence: 0.3
+        expected_update_rate: 8.0      # Hz: drop stale data if sensor slows
+        decay_model: 1 # 0=linear, 1=exponential, -1=persistent
+        voxel_size: 0.07 # meters
+        z_voxels: 12
+        max_obstacle_height: 1.2
+        origin_z: 0.0
+        # track_unknown_space: False # default space is known
+        mark_threshold: 3 # voxel height
         update_footprint_enabled: true
-        combination_method: 1 # 1=max, 0=override
+        combination_method: 0 # 1=max, 0=override
         origin_z: 0.0 # meters
-        publish_voxel_map: true # default off
+        publish_voxel_map: false # default off
         transform_tolerance: 0.2 # seconds
-        observation_sources: hesai_mark hesai_clear
-        hesai_mark:
-          data_type: "PointCloud2"
+
+        observation_sources: velodyne #front3d
+
+        velodyne:
+          data_type: PointCloud2
+          topic: /velodyne_points
+          marking: true
+          clearing: true
+          obstacle_range: 12.0 # meters
+          raytrace_range: 14.0
+          min_obstacle_height: 0.10 # default 0, meters
+          max_obstacle_height: 1.0 # default 3, meters
+          model_type: 1 # 3D LiDAR
+          vertical_fov_angle: 0.5236  # 30° total
+          horizontal_fov_angle: 6.283 # 360°
+          vertical_fov_padding: 0.05
+
+          min_z: 1.0                  # VLP-16 near blind zone ≈1 m
+          max_z: 30.0                 # align with chosen costmap range
+
+          expected_update_rate: 8.0 # default 0, if not updating at this rate at least, remove from buffer
+          #observation_persistence: 0.3 # default 0, use all measurements taken during now-value, 0=latest
+          #inf_is_valid: false # default false, for laser scans
+          #filter: "voxel" # default passthrough, apply "voxel", "passthrough", or no filter to sensor data, recommend on     voxel_min_points: 0          # default 0, minimum points per voxel for voxel filter
+          clear_after_reading: true # default false, clear the buffer after the layer gets readings from it
+        front3d:
+          #enabled: true #default true, can be toggled on/off with associated service call
+          data_type: PointCloud2
           topic: /pointcloud
           marking: true
-          clearing: false
-          obstacle_range: 3.0 # meters
-          min_obstacle_height: 0.1 # default 0, meters
-          max_obstacle_height: 1.5 # default 3, meters
-          expected_update_rate: 0.0 # default 0, if not updating at this rate at least, remove from buffer
-          observation_persistence: 0.0 # default 0, use all measurements taken during now-value, 0=latest
-          inf_is_valid: false # default false, for laser scans
-          filter: "voxel" # default passthrough, apply "voxel", "passthrough", or no filter to sensor data, recommend on     voxel_min_points: 0          # default 0, minimum points per voxel for voxel filter
-          clear_after_reading: true # default false, clear the buffer after the layer gets readings from it
-        hesai_clear:
-          enabled: true #default true, can be toggled on/off with associated service call
-          data_type: "PointCloud2"
-          topic: /pointcloud
-          marking: false
           clearing: true
-          max_z: 20.0 # default 0, meters
-          min_z: 0.05 # default 10, meters
-          vertical_fov_angle: 1.15 # Note: This the full fov.
-          vertical_fov_padding: 0.05 # 3D Lidar only. Default 0, in meters
-          horizontal_fov_angle: 6.29 # 3D lidar scanners like the VLP16 have 360 deg horizontal FOV.
-          decay_acceleration: 5.0 # default 0, 1/s^2.
-          model_type: 1 # default 0, model type for frustum. 0=depth camera, 1=3d lidar like VLP16 or similar
 
-# GPS WPF CHANGE: Remove static layer
-# GPS WPF CHANGE: Set rolling global costmap with 50x50 size. See note below
+          obstacle_range: 10.0           # very responsive near-field
+          raytrace_range: 12.0           # slightly larger for clearing
+
+          min_obstacle_height: 0.10
+          max_obstacle_height: 0.8       # Go2 body clearance; bump if you want taller obstacles
+
+          model_type: 1                  # 3D LiDAR
+          horizontal_fov_angle: 6.283    # 360°
+          vertical_fov_angle: 1.571      # 90° total
+          vertical_fov_padding: 0.05
+          clear_after_reading: true
+          expected_update_rate: 8.0 # default 0, if not updating at this rate at least, remove from buffer
+          #observation_persistence: 0.3
+
+          min_z: 0.05                    # L1 near blind spot
+          max_z: 20.0   
+          
 global_costmap:
   global_costmap:
     ros__parameters:
-      footprint_pdding: 0.0
+      footprint_padding: 0.0
       update_frequency: 1.0
       publish_frequency: 1.0
       global_frame: map
-      robot_base_frame: base_footprint
+      robot_base_frame: base_link
       use_sim_time: False
       robot_radius: 0.35
-      resolution: 0.1
+      resolution: 0.05
       rolling_window: True
-      width: 300
-      height: 300
+      width: 80
+      height: 80
       track_unknown_space: False
       always_send_full_costmap: False
-      plugins: ["obstacle_layer","inflation_layer"] #'nvblox_layer', "obstacle_layer", "static_layer", "inflation_layer"
+      plugins: ["static_layer","inflation_layer"] #'nvblox_layer', "obstacle_layer", "static_layer", "inflation_layer"
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        observation_sources: pointcloud
+        observation_sources: scan
         footprint_clearing_enabled: true
         max_obstacle_height: 5.0
         scan:
@@ -308,13 +299,12 @@ global_costmap:
           obstacle_max_range: 2.5
           obstacle_min_range: 0.0
           queue_size: 10
-        pointcloud:
-          topic: /pointcloud
-          data_type: "PointCloud2"
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
-        map_subscribe_transient_local: True
+        map_subscribe_transient_local: false
         footprint_clearing_enabled: true
+        track_unknown_space: true
+        lethal_cost_threshold: 100
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.5
@@ -325,21 +315,19 @@ global_costmap:
         nav2_costmap_global_frame: map # must match with global_frame of global_costmap
         nvblox_map_slice_topic: "/nvblox_node/combined_map_slice"
         convert_to_binary_costmap: True
-
-# The yaml_filename does not need to be specified since it going to be set by defaults in launch.
-# If you'd rather set it in the yaml, remove the default "map" value in the tb3_simulation_launch.py
-# file & provide full path to map below. If CLI map configuration or launch default is provided, that will be used.
-# map_server:
-#   ros__parameters:
-#     yaml_filename: ""
-
+map_server:
+  ros__parameters:
+    use_sim_time: False
+    # Overridden in launch by the "map" launch configuration or provided default value.
+    # To use in yaml, remove the default "map" value in the tb3_simulation_launch.py file & provide full path to map below.
+    yaml_filename: ""
 map_saver:
   ros__parameters:
+    use_sim_time: False
     save_map_timeout: 5.0
     free_thresh_default: 0.25
     occupied_thresh_default: 0.65
     map_subscribe_transient_local: True
-
 planner_server:
   ros__parameters:
     expected_planner_frequency: 1.0
@@ -378,22 +366,19 @@ planner_server:
         tolerance: 1.0e-10
         do_refinement: true
         refinement_num: 2
-
 smoother_server:
   ros__parameters:
+    use_sim_time: False
     smoother_plugins: ["simple_smoother"]
     simple_smoother:
       plugin: "nav2_smoother::SimpleSmoother"
       tolerance: 1.0e-10
       max_its: 1000
       do_refinement: True
-
 behavior_server:
   ros__parameters:
-    local_costmap_topic: local_costmap/costmap_raw
-    global_costmap_topic: global_costmap/costmap_raw
-    local_footprint_topic: local_costmap/published_footprint
-    global_footprint_topic: global_costmap/published_footprint
+    costmap_topic: local_costmap/costmap_raw
+    footprint_topic: local_costmap/published_footprint
     cycle_frequency: 10.0
     behavior_plugins: ["spin", "backup", "drive_on_heading", "assisted_teleop", "wait"]
     spin:
@@ -406,17 +391,20 @@ behavior_server:
       plugin: "nav2_behaviors/Wait"
     assisted_teleop:
       plugin: "nav2_behaviors/AssistedTeleop"
-    local_frame: odom
-    global_frame: map
-    robot_base_frame: base_footprint
+    global_frame: odom
+    robot_base_frame: base_link
     transform_tolerance: 0.1
+    use_sim_time: false
     simulate_ahead_time: 2.0
-    max_rotational_vel: 1.0
-    min_rotational_vel: 0.4
-    rotational_acc_lim: 3.2
-
+    max_rotational_vel: 1.8
+    min_rotational_vel: 0.2
+    rotational_acc_lim: 6.0
+robot_state_publisher:
+  ros__parameters:
+    use_sim_time: False
 waypoint_follower:
   ros__parameters:
+    use_sim_time: False
     loop_rate: 20
     stop_on_failure: false
     waypoint_task_executor_plugin: "wait_at_waypoint"
@@ -424,17 +412,17 @@ waypoint_follower:
       plugin: "nav2_waypoint_follower::WaitAtWaypoint"
       enabled: True
       waypoint_pause_duration: 200
-
 velocity_smoother:
   ros__parameters:
+    use_sim_time: False
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
-    max_velocity: [0.26, 0.0, 1.0]
-    min_velocity: [-0.26, 0.0, -1.0]
-    max_accel: [2.5, 0.0, 3.2]
-    max_decel: [-2.5, 0.0, -3.2]
-    odom_topic: "odometry/local"
+    max_velocity: [0.7, 0.7, 1.8]
+    min_velocity: [-0.7, -0.7, -1.8]
+    max_accel: [2.5, 2.5, 6.0]
+    max_decel: [-2.5, -2.5, -6.0]
+    odom_topic: "odom"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]
     velocity_timeout: 1.0

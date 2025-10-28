@@ -51,9 +51,9 @@ def generate_launch_description():
     rviz_local_cfg   = os.path.join(go2_desc_share, "config", "nav_nvblox_config.rviz")
 
     # Nav2 GPS demo package provides params/launch files we’ll re-use
-    gps_launch_dir   = os.path.join(get_package_share_path("robot_localization"), "launch")
-
-    nav2_params_yaml = os.path.join(go2_desc_share, "config", "nav2_no_map.yaml")
+    gps_launch_dir   = os.path.join(get_package_share_path("go2_bringup"), "launch")
+    gps_params_dir   = os.path.join(go2_desc_share, "config")
+    nav2_params_yaml = os.path.join(gps_params_dir, "nav2_no_map.yaml")
 
     # Re-write that YAML on the fly if the user passes extra overrides
     nav2_configured_params = RewrittenYaml(
@@ -145,29 +145,23 @@ def generate_launch_description():
                          "launch", "zed_camera.launch.py")
         ),
         launch_arguments={
-            "camera_name":          "zed",
-            "camera_model":         "zedxm",
-            "base_frame":      "base_link",
-            "odometry_frame":  "odom",
-            # ---------- IMU / mag ----------
-            "publish_tf":       "false", 
-            "publish_map_tf":       "false", 
-            "publish_imu_tf":       "false",   # EKF will handle TFs
-            "pub_sensors_tf":       "false",
-            "imu_fusion":           "true",    # <─ gyroscope+accel+mag
-            "sensors_fusion":       "true",
-            # Optional: raise sensor rate
-            "sensors_pub_rate":     "200",     # Hz
+            # namespace stays default “/zed”
+            "camera_name":      "zed",
+            "camera_model":     "zedxm",
+            "grab_resolution":  "SVGA",
+            "publish_tf":       "false",              # EKF publishes all TFs
+            "publish_imu_tf":   "false",
+            "enable_gnss":      "false",              # we fuse in robot_localization
         }.items()
     )
 
     # Relay IMU so *anything* still listening on /imu/data keeps working
-    # imu_relay = Node(
-    #     package="topic_tools", executable="relay",
-    #     name="zed_imu_to_imu_data",
-    #     arguments=["/zed/zed_node/imu/data", "/imu/data"],
-    #     output="screen"
-    # )
+    imu_relay = Node(
+        package="topic_tools", executable="relay",
+        name="zed_imu_to_imu_data",
+        arguments=["/zed/zed_node/imu/data", "/imu/data"],
+        output="screen"
+    )
     #
     # ──────────────── Robot_localization (dual EKF + NavSat) ────────────────
     #
@@ -205,7 +199,7 @@ def generate_launch_description():
 
     mapviz_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_path("mapviz"), "launch", "mapviz.launch.py")
+            os.path.join(get_package_share_path("mapviz"), "mapviz.launch.py")
         ),
         condition=IfCondition(use_mapviz),
     )
@@ -232,7 +226,7 @@ def generate_launch_description():
     ld.add_action(start_teleop_node)
     # ld.add_action(start_teleop_node)
     ld.add_action(zed_launch)
-    # ld.add_action(imu_relay)
+    ld.add_action(imu_relay)
     # Optional helpers
     ld.add_action(rviz_local_node)
     # ld.add_action(set_initial_pose)

@@ -220,7 +220,7 @@ def main():
     default_yaml = os.path.join(
         get_package_share_directory("go2_control"),
         "config",
-        "gps_waypoints.yaml",
+        "demo_waypoints.yaml",
     )
     yaml_path = sys.argv[1] if len(sys.argv) > 1 else default_yaml
 

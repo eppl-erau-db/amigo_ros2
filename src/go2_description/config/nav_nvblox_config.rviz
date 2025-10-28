@@ -8,7 +8,6 @@ Panels:
         - /Status1
         - /RobotModel1/Description Topic1
         - /TF1/Frames1
-        - /Map1/Status1
         - /Map1/Topic1
       Splitter Ratio: 0.4958677589893341
     Tree Height: 263
@@ -216,11 +215,19 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        gps:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         radar:
           Alpha: 1
           Show Axes: false
           Show Trail: false
         utlidar_imu:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        velodyne:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -421,18 +428,18 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.24350616335868835
-        Y: -0.4507593810558319
-        Z: -0.6718047857284546
+        X: 0.14036786556243896
+        Y: -0.20524154603481293
+        Z: 1.3928006887435913
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.1853986233472824
+      Pitch: 0.9203982949256897
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz_default_plugins)
-      Yaw: 3.1553773880004883
+      Yaw: 3.080376386642456
     Saved: ~
 Window Geometry:
   Displays:

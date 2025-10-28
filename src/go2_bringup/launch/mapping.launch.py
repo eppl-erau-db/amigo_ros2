@@ -1,35 +1,31 @@
 #!/usr/bin/env python3
 """
 Go2 • UTLiDAR 3-D • ZED-X Mini • RTAB-Map SLAM  (ROS 2 Humble)
-----------------------------------------------------------------
- * LiDAR odometry  -> icp_odometry       (radar → icp_odom TF)
- * Global graph    -> rtabmap_slam/rtabmap
- * 2-D grid for Nav2 comes from RTAB-Map’s /proj_map  (relayed to /map)
+Nav2 (MPPI) — cleaned wiring and rates
 """
 
-import os, math
+import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 from launch.substitutions import Command, LaunchConfiguration
-from ament_index_python.packages import get_package_share_directory, get_package_share_path
+from ament_index_python.packages import get_package_share_path, get_package_share_directory
 
-# ───────────────────────────── generate ────────────────────────────────
+
 def generate_launch_description():
-
     # ─── 1.  Common launch args ────────────────────────────────────────
     declare_sim_time = DeclareLaunchArgument(
         name="use_sim_time", default_value="false",
-        description="Use simulated clock if true")
-
+        description="Use simulated clock if true"
+    )
     use_sim_time = LaunchConfiguration("use_sim_time")
 
     # ─── 2.  Package paths / configs ───────────────────────────────────
     pkg_go2_desc = get_package_share_path("go2_description")
     urdf_path    = os.path.join(pkg_go2_desc, "urdf", "go2.urdf.xacro")
-    rviz_cfg     = os.path.join(pkg_go2_desc, "config", "go2_urdf_config.rviz")
+    rviz_cfg     = os.path.join(pkg_go2_desc, "config", "nav_nvblox_config.rviz")
     nav2_cfg     = os.path.join(pkg_go2_desc, "config", "nav2_mppi_controller.yaml")
     ekf_cfg      = os.path.join(pkg_go2_desc, "config", "ekf.yaml")
 
@@ -40,20 +36,23 @@ def generate_launch_description():
             " camera_name:=zed",
             " camera_model:=zedxm",
             " use_zed_localization:=false"
-        ]), value_type=str)
+        ]),
+        value_type=str
+    )
 
     robot_state_pub = Node(
         package="robot_state_publisher", executable="robot_state_publisher",
         parameters=[{"robot_description": robot_description,
-                     "use_sim_time": use_sim_time}])
+                     "use_sim_time": use_sim_time}]
+    )
 
     # ─── 4.  Go2 low-level stack ───────────────────────────────────────
-    state_pub  = Node(package="go2_control", executable="go2_state",
-                      name="go2_state",  output="screen")
-    odom_node  = Node(package="go2_control", executable="odom_node",
-                      name="odom_node",  output="screen")
-    base_tf    = Node(package="go2_control", executable="base_to_base_tf",
-                      name="base_to_base_tf", output="screen")
+    state_pub = Node(package="go2_control", executable="go2_state",
+                     name="go2_state", output="screen")
+    odom_node = Node(package="go2_control", executable="odom_node",
+                     name="odom_node", output="screen")
+    base_tf = Node(package="go2_control", executable="base_to_base_tf",
+                   name="base_to_base_tf", output="screen")
     go2_driver = Node(package="go2_driver", executable="go2_driver_node",
                       name="go2_driver_node", output="screen")
 
@@ -61,106 +60,65 @@ def generate_launch_description():
         package="robot_localization", executable="ekf_node",
         name="ekf_filter_node", output="screen",
         parameters=[ekf_cfg, {"use_sim_time": use_sim_time}],
-        remappings=[("/odometry/filtered", "/odom")])
+        remappings=[("/odometry/filtered", "/odom")]  # EKF publishes /odom
+    )
 
-    # ─── 5.  UTLiDAR publisher (already deskewed & RELIABLE) ───────────
+    # ─── 5.  UTLiDAR publisher ────────────────────────────────────────
     lidar_pub = Node(package="go2_control", executable="go2_lidar",
                      name="go2_lidar", output="screen")
 
-    # ─── 6.  ZED-X Mini camera ─────────────────────────────────────────
+    # ─── 6-A.  ZED-X Mini camera (let YAMLs own FPS/resolution) ───────
     zed_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(
             get_package_share_directory("zed_wrapper"), "launch",
             "zed_camera.launch.py")),
         launch_arguments={
-            "camera_name":  "zed",
+            "camera_name": "zed",
             "camera_model": "zedxm",
-            "grab_resolution": "SVGA",
-            "publish_tf": "false"          # EKF handles all TFs
-        }.items())
+            "publish_tf": "false",
+            "publish_map_tf": "false",
+            "publish_imu_tf": "false"
+        }.items()
+    )
 
-    # ─── 7-A.  RGB-D sync (ZED) ────────────────────────────────────────
-    rgbd_sync = Node(
-        package="rtabmap_sync", executable="rgbd_sync", output="screen",
-        name="rgbd_sync",
-        parameters=[{"approx_sync": True, "qos": 1}],
-        remappings=[
-            ("rgb/image",       "/zed/zed_node/rgb/image_rect_color"),
-            ("rgb/camera_info", "/zed/zed_node/rgb/camera_info"),
-            ("depth/image",     "/zed/zed_node/depth/depth_registered")
-        ])
 
-    # ─── 7-B.  ICP LiDAR odometry  ─────────────────────────────────────
-    voxel = "0.10"                       # 10 cm voxels (indoor)
-    icp_odometry = Node(
-        package="rtabmap_odom", executable="icp_odometry", output="screen",
+    lidar_node = Node(
+        name='sllidar_node',
+        package='sllidar_ros2',
+        executable='sllidar_node',
+        output='screen',
         parameters=[{
-            "use_sim_time":         use_sim_time,
-            "frame_id":             "radar",
-            "odom_frame_id":        "icp_odom",
-            "guess_frame_id":       "odom",          # optional EKF hint
-            "expected_update_rate": 15.0           # Hz
+            'channel_type': 'serial',
+            'serial_port': '/dev/ttyUSB0',
+            'serial_baudrate': 256000,
+            'frame_id': 'laser',
+            'inverted': False,
+            'angle_compensate': True,
+            'scan_mode': 'Sensitivity',
         }],
-        arguments=[
-            # ---- internal ICP params ----
-            "Icp/VoxelSize",                 voxel,
-            "Icp/PointToPlane","true",
-            "Icp/Iterations","10",
-            "Icp/MaxCorrespondenceDistance", str(float(voxel)*10.0),
-            "Odom/ScanKeyFrameThr","0.4",
-            "OdomF2M/ScanSubtractRadius",    voxel,
-            "--ros-args"
-        ],
         remappings=[
-            ("scan_cloud", "/pointcloud"),
-            ("imu",        "imu_not_used")   # replace with real IMU if desired
-        ])
-
-    # ─── 7-C.  RTAB-Map core ───────────────────────────────────────────
-    rtabmap_node = Node(
-        package="rtabmap_slam", executable="rtabmap", name="rtabmap",
-        output="screen",
-        parameters=[{
-            "frame_id":          "radar",
-            "map_frame_id":      "map",
-            "odom_frame_id":     "icp_odom",
-            "subscribe_rgbd":    True,
-            "subscribe_scan_cloud": True,
-            "approx_sync":       True,
-            "sync_queue_size":   30,
-            "topic_queue_size":  30,
-            "qos_scan_cloud":    1,
-            "delete_db_on_start": True,
-            "publish_tf":        True,
-            "use_sim_time":      use_sim_time
-        }],
-        arguments=[
-            # ---- grid map for Nav2 (2-D) ----
-            "RGBD/CreateOccupancyGrid","true",
-            "Grid/3D","false",
-            "Grid/Sensor","0",
-            "Grid/RangeMin","0.05",
-            "Grid/RangeMax","30.0",
-            "Grid/Resolution","0.05",
-            "Grid/MaxObstacleHeight","0.55",
-            "--ros-args"
+                ('/laserscan', '/scan')
         ],
+    )
+
+    slam_toolbox_config = os.path.join(
+        get_package_share_directory('go2_description'),
+        'config',
+        'mapper_params_online_async.yaml'
+    )
+
+    slam_toolbox = Node(
+        package='slam_toolbox',
+        executable='async_slam_toolbox_node',
+        name='slam_toolbox',
+        output='screen',
+        parameters=[slam_toolbox_config],
         remappings=[
-            ("scan_cloud", "/pointcloud"),
-            ("odom",       "icp_odom")
-        ])
+            ('pose', '/slam_toolbox_pose')
+        ]
+    )
 
-    rtabmap_viz = Node(
-        package="rtabmap_viz", executable="rtabmap_viz", output="screen",
-        parameters=[{'frame_id':'radar', 'use_sim_time': use_sim_time}],
-        remappings=[('odom','icp_odom')])
-
-    # ─── 8.  Relay /proj_map → /map for Nav2 static layer ──────────────
-    map_relay = Node(package="topic_tools", executable="relay",
-                     name="proj_map_relay", output="screen",
-                     arguments=["/rtabmap/proj_map", "/map"])
-
-    # ─── 9.  Nav2 bring-up (MPPI controller) ───────────────────────────
+    # ─── 9.  Nav2 bring-up (MPPI controller) ──────────────────────────
     nav2_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(
             get_package_share_directory("nav2_bringup"), "launch",
@@ -168,179 +126,46 @@ def generate_launch_description():
         launch_arguments={
             "params_file": nav2_cfg,
             "use_sim_time": use_sim_time,
-            "localization": "false"     # RTAB-Map supplies the map
-        }.items())
+            "localization": "false"
+        }.items()
+    )
 
-    # ─── 10.  Extras (pose logger, RViz) ───────────────────────────────
+    # ─── 10. Extras (pose logger, RViz) ───────────────────────────────
     log_pose_server = Node(
         package="go2_control", executable="log_pose_action_server",
         name="log_pose_action_server", output="screen",
-        parameters=[{"save_path":"pose_log.json"}])
+        parameters=[{"save_path": "pose_log.json"}]
+    )
 
     rviz2 = Node(package="rviz2", executable="rviz2",
                  arguments=["-d", rviz_cfg])
 
-    # ─── 11.  Assemble launch description ─────────────────────────────
+    # ─── 11. Assemble ─────────────────────────────────────────────────
     return LaunchDescription([
         declare_sim_time,
 
-        #  ─ Sensors
+        # Sensors
         zed_launch,
+        lidar_node,
         lidar_pub,
+        # z_band_filter,
 
-        #  ─ Core state estimation
+        # State estimation
         state_pub, go2_driver, base_tf,
         odom_node, ekf_node,
 
-        #  ─ SLAM
-        rgbd_sync,
-        icp_odometry,
-        rtabmap_node,
-        map_relay,
+        # SLAM + grid
+        slam_toolbox,
+  
 
-        #  ─ Robot description
+        # Robot description
         robot_state_pub,
 
-        #  ─ Navigation
+        # Nav2
         nav2_launch,
 
-        #  ─ Tools / visualisation
+        # Tools / viz
         log_pose_server,
-        rtabmap_viz,
+
         rviz2,
     ])
-
-
-    # rtabmap_node = Node(
-    #     package="rtabmap_slam",
-    #     executable="rtabmap",
-    #     name="rtabmap",
-    #     output="screen",
-
-    #     # 1) “normal” ROS-2 parameters (no ‘/’ in their names) -------------
-    #     parameters=[{
-    #         "frame_id": "radar",
-    #         "map_frame_id": "map",
-    #         "odom_frame_id": "odom",
-    #         "subscribe_rgbd": True,
-    #         "subscribe_scan_cloud": True,
-    #         "approx_sync": True,
-    #         "sync_queue_size": 30,
-    #         "topic_queue_size": 30,
-    #         "qos_scan_cloud": 1,          # 0=sys, 1=RELIABLE, 2=BEST_EFFORT
-    #         "delete_db_on_start": True,
-    #         "publish_tf": True,
-    #         "use_sim_time": use_sim_time,
-    #     }],
-
-    #     # 2) RTAB-Map-internal parameters (they *do* contain ‘/’) ----------
-    #     arguments=[
-    #         # ───── Occupancy-grid tuning ────────────────────────────────
-    #         "Grid/RangeMin",        "0.05",     # keep UTLiDAR min range
-    #         "Grid/RangeMax",        "30.0",     # UTLiDAR full range
-    #         "Grid/Resolution",      "0.07",     # map cell size [m]
-    #         "Grid/Sensor",          "0",        # 0 = laser only (don’t clear freespace)
-    #         "Grid/NormalsSegmentation", "false",
-
-    #         # ───── Cloud density / ICP accuracy ─────────────────────────
-    #         "Icp/VoxelSize",        "0.03",     # denser cloud fed to ICP
-    #         "Icp/MaxCorrespondenceDistance", "0.5",
-    #         "Icp/Iterations",       "30",
-    #         "Reg/Strategy",         "1",        # ICP-only registration
-
-    #         # --- keep this at the very end! ---
-    #         "--ros-args"
-    #     ],
-
-    #     remappings=[
-    #         ("scan_cloud", "/pointcloud"),
-    #         ("odom",       "/odom")
-    #     ],
-    # )
-
-    # rtabmap_node = Node(
-    #     package="rtabmap_slam",
-    #     executable="rtabmap",
-    #     name="rtabmap",
-    #     output="screen",
-    #     parameters=[{
-    #         # Frames ----------------------------------------------------
-    #         "frame_id": "radar",          # base (as in URDF)
-    #         "map_frame_id": "map",
-    #         "odom_frame_id": "odom",
-
-    #         # Subscriptions --------------------------------------------
-    #         "subscribe_rgbd": True,
-    #         "subscribe_scan_cloud": True,
-    #         "approx_sync": True,
-    #         "sync_queue_size": 30,
-    #         "topic_queue_size": 30,
-
-    #         # *** QoS fix: make the scan‑cloud subscriber RELIABLE ***
-    #         "qos_scan_cloud": 1,            # 0=system, 1=RELIABLE, 2=BEST_EFFORT
-
-    #         # Misc ------------------------------------------------------
-    #         "delete_db_on_start": True,
-    #         "publish_tf": True,
-    #         "use_sim_time": use_sim_time,
-    #     }],
-    #     remappings=[
-    #         ("scan_cloud", "/pointcloud"),          # UTLiDAR 3‑D cloud
-    #         ("odom", "/odom")
-    #     ],
-    #     arguments=[
-    #         # Registration / ICP tuning -------------------------------
-    #         "Reg/Strategy", "1",
-    #         "Icp/PointToPlane", "true",
-    #         "Icp/VoxelSize", "0.05",
-    #         "Icp/Iterations", "30",
-    #         "Icp/MaxCorrespondenceDistance", "0.5",
-    #         # Occupancy Grid (2‑D) -------------------------------------
-    #         "RGBD/CreateOccupancyGrid", "true",
-    #         "Grid/3D", "false",
-    #         "Grid/RangeMax", "12",
-    #         "Grid/Resolution", "0.07",
-    #         "--ros-args"  # keep this at the end so extra ros‑args can follow
-    #     ]
-    # )
-
-    # rtabmap_node = Node(
-    #     package='rtabmap_slam',
-    #     executable='rtabmap',
-    #     name='rtabmap',
-    #     output='screen',
-    #     parameters=[{'frame_id': 'radar',
-    #                 'subscribe_scan_cloud': True,
-    #                 'subscribe_depth': False,
-    #                 'subscribe_rgb': False,
-    #                 'approx_sync': True,
-    #                 'sync_queue_size': 30,
-    #                 'topic_queue_size': 30,
-    #                 'wait_for_transform': 0.3,
-    #                 'publish_tf': True,
-    #                 'map_frame_id': 'map',
-    #                 'odom_frame_id': 'odom',
-    #                 "delete_db_on_start": True,
-    #                 'use_sim_time': LaunchConfiguration('use_sim_time')}],
-    #     remappings=[('scan_cloud', '/pointcloud'),
-    #                 ('odom', '/odom')],
-    #     # ---- every parameter that contains “/” goes here ↓ ----
-    #     arguments=[
-    #         # ICP / registration
-    #         'Reg/Strategy', '1',
-    #         'Icp/PointToPlane', 'true',
-    #         'Icp/VoxelSize', '0.05',
-    #         'Icp/Iterations', '30',
-    #         'Icp/MaxCorrespondenceDistance', '0.5',
-    #         # Occupancy-grid
-    #         'RGBD/CreateOccupancyGrid', 'true',
-    #         'Grid/3D', 'false',
-    #         'Grid/RangeMax', '12',
-    #         'Grid/Resolution', '0.07',
-    #         # Memory / performance
-    #         # 'Mem/STMSize', '30',
-    #         # 'Mem/NotLinkedNodesKept', 'false',
-    #         '--ros-args'        # keep this at the end
-    #     ])
-    
- 

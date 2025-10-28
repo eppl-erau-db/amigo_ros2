@@ -1263,6 +1263,126 @@
       xyz="0 0 0" />
   </joint>
 
+  <link
+    name="gps">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+  </link>
+
+  <joint
+    name="gps_joint"
+    type="fixed">
+    <origin
+      xyz="0.290 0 0.155"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="gps" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link name="laser">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.035" length="0.055" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.035" length="0.05" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser"/>
+    <origin xyz="0 0 0.27" rpy="0 0 3.14"/>
+  </joint>
+
+    <!-- <link
+    name="bno055">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+  </link>
+
+  <joint
+    name="bno055_imu_joint"
+    type="fixed">
+    <origin
+      xyz="0.200 0.00 0.060"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="bno055" />
+    <axis
+      xyz="0 0 0" />
+  </joint> -->
+
+  <!-- <link
+    name="velodyne">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+  </link>
+
+  <joint
+    name="velodyne_joint"
+    type="fixed">
+    <origin
+      xyz="-0.02 0.0 0.26"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="velodyne" />
+    <axis
+      xyz="0 0 0" />
+  </joint> -->
 
   <xacro:include
           filename="$(find zed_wrapper)/urdf/zed_macro.urdf.xacro"/>

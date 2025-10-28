@@ -15,6 +15,13 @@ find_package(geometry_msgs REQUIRED)
 find_package(unitree_go REQUIRED)
 find_package(unitree_api REQUIRED)
 
+# NEW deps for z-band filter
+find_package(sensor_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(tf2_eigen REQUIRED)
+
+# go2 driver
 add_executable(go2_driver_node src/go2_driver_node.cpp src/common/ros2_sport_client.cpp)
 target_include_directories(go2_driver_node PRIVATE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -26,10 +33,20 @@ ament_target_dependencies(go2_driver_node
   unitree_api
 )
 
+# z-band filter
+add_executable(z_band_filter_node src/z_band_filter_node.cpp)
+ament_target_dependencies(z_band_filter_node
+  rclcpp
+  sensor_msgs
+  tf2
+  tf2_ros
+  tf2_eigen
+)
+
 install(TARGETS
   go2_driver_node
+  z_band_filter_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()
-
