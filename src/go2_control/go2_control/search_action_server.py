@@ -1,180 +1,478 @@
 #!/usr/bin/env python3
+# Leak-search Action Server
+# Two-point triangulation using global costmap (Nav2) + DoA angle
+#
+# Robot Operating System (ROS 2) Humble
+
 import math
 import time
+from dataclasses import dataclass
+from typing import Optional, Tuple, List
+
+import numpy as np
 
 import rclpy
 from rclpy.node import Node
-from rclpy.action import ActionServer
-from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped, Quaternion
-from nav_msgs.msg import OccupancyGrid
-from go2_interfaces.action import Search
+from rclpy.action import ActionServer, CancelResponse, GoalResponse
+from rclpy.duration import Duration
+
+from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped
+from std_msgs.msg import Bool, Int32
+from visualization_msgs.msg import Marker
+from nav2_msgs.msg import Costmap
+
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
+import tf2_ros
+
+from go2_interfaces.action import Search
+
+# ---------------- Parameters (tune here) ----------------
+
+# Microphone "reach" (for single-bearing fallback)
+MIC_RADIUS_M = 10.0
+
+# Lateral step distance candidates from current pose
+STEP_RADII_M = [3.0, 2.0, 1.0]
+
+# Perpendicular search sweep (deg) around exact perpendicular
+SWEEP_OFFSETS_DEG = [0.0, 15.0, -15.0, 30.0, -30.0, 45.0, -45.0]
+
+# Max Nav2 attempts to reach a lateral waypoint
+MAX_NAV_ATTEMPTS = 4
+
+# Time to listen for DoA angles at each vantage (seconds)
+BEARING_TIMEOUT_S = 15.0
+
+# Free-space cost threshold for global costmap
+#  - 0 = free, >=254 = lethal/obstacle, 255 = unknown in costmap_2d
+FREE_COST_THRESHOLD = 10
+
+# Input topics
+DETECT_TOPIC  = '/leak_detected'
+BEARING_TOPIC = '/doa_angle'  # Int32 degrees [0,360), CCW in base_link
+
+# Output topics
+EST_TOPIC     = '/leak_estimate'
+MARKER_TOPIC  = 'visualization_marker'
+
+# Marker radius (for visualization)
+ROI_RADIUS_M  = 1.0
+# --------------------------------------------------------
 
 
-def quaternion_to_yaw(q: Quaternion) -> float:
-    """Convert a quaternion into a yaw angle (in radians)."""
-    siny_cosp = 2.0 * (q.w * q.z + q.x * q.y)
-    cosy_cosp = 1.0 - 2.0 * (q.y * q.y + q.z * q.z)
-    return math.atan2(siny_cosp, cosy_cosp)
+@dataclass
+class BearingMeasurement:
+    x: float
+    y: float
+    phi: float   # global bearing angle in map frame
 
 
-class SearchActionServer(Node):
+class LeakSearchServer(Node):
     def __init__(self):
-        super().__init__('search_action_server')
-        self._action_server = ActionServer(
+        super().__init__('leak_search_server')
+
+        # Action server
+        self._as = ActionServer(
             self,
             Search,
             'search',
-            self.execute_callback
+            execute_callback=self.execute_cb,
+            goal_callback=self.goal_cb,
+            cancel_callback=self.cancel_cb,
         )
-        # Subscribe to the region map published by your region map service node.
-        self.create_subscription(
-            OccupancyGrid,
-            'current_region_map',
-            self.region_map_callback,
-            10
-        )
-        # Subscribe to the robot's current pose.
-        self.create_subscription(
-            PoseWithCovarianceStamped,
-            '/amcl_pose',
-            self.pose_callback,
-            10
-        )
-        self.current_region_map = None
-        self.current_pose = None
 
-        # Create BasicNavigator instance for navigation.
+        # Nav2 helper + TF
         self.navigator = BasicNavigator()
-        self.log_info("Waiting for Nav2 to become active...")
-        # self.navigator.waitUntilNav2Active()  # Uncomment if you need to wait.
-        self.log_info("Nav2 is active.")
+        self.tfbuf = tf2_ros.Buffer(cache_time=Duration(seconds=10.0))
+        self.tflistener = tf2_ros.TransformListener(self.tfbuf, self)
 
-    def log_info(self, message: str):
-        """Helper to log info messages and write them to a file."""
-        self.get_logger().info(message)
-        with open("search_action.log", "a") as f:
-            f.write(f"[INFO] {message}\n")
+        # Subscribed state
+        self._det: bool = False
+        self._last_bearing: Optional[float] = None  # radians in base_link
 
-    def log_error(self, message: str):
-        """Helper to log error messages and write them to a file."""
-        self.get_logger().error(message)
-        with open("search_action.log", "a") as f:
-            f.write(f"[ERROR] {message}\n")
+        self.create_subscription(Bool,  DETECT_TOPIC,  self._det_cb, 10)
+        self.create_subscription(Int32, BEARING_TOPIC, self._bearing_cb, 10)
 
-    def region_map_callback(self, msg: OccupancyGrid):
-        self.current_region_map = msg
-        # self.log_info("Region map updated.")
+        # Publishers
+        self.est_pub    = self.create_publisher(PoseWithCovarianceStamped, EST_TOPIC, 10)
+        self.marker_pub = self.create_publisher(Marker, MARKER_TOPIC, 10)
 
-    def pose_callback(self, msg: PoseWithCovarianceStamped):
-        pose_stamped = PoseStamped()
-        pose_stamped.header = msg.header
-        pose_stamped.pose = msg.pose.pose
-        self.current_pose = pose_stamped
+    # --------- ROS 2 action plumbing ----------
+    def goal_cb(self, goal_req: Search.Goal):
+        self.get_logger().info('Search goal received.')
+        return GoalResponse.ACCEPT
 
-    def compute_waypoint(self) -> PoseStamped:
-        """
-        Compute a waypoint 2 meters ahead of the current robot position.
-        The waypoint is stamped using the navigator's clock and set in the 'map' frame.
-        """
-        waypoint = PoseStamped()
-        waypoint.header.stamp = self.navigator.get_clock().now().to_msg()
-        waypoint.header.frame_id = 'map'
+    def cancel_cb(self, goal_handle):
+        self.get_logger().info('Search cancel requested.')
+        return CancelResponse.ACCEPT
 
-        # Get current pose and compute yaw.
-        x = self.current_pose.pose.position.x
-        y = self.current_pose.pose.position.y
-        z = self.current_pose.pose.position.z  # likely 0
-        yaw = quaternion_to_yaw(self.current_pose.pose.orientation)
+    # ---------- Subscribers ----------
+    def _det_cb(self, msg: Bool):
+        self._det = bool(msg.data)
 
-        # For demonstration, here we are not moving ahead (multiply by 0.0).
-        # You can change the multiplier (e.g., 2.0 for 2 meters ahead).
-        waypoint.pose.position.x = x + 0.1 * math.cos(yaw)
-        waypoint.pose.position.y = y + 0.1 * math.sin(yaw)
-        waypoint.pose.position.z = z  # assume same z
-        waypoint.pose.orientation = self.current_pose.pose.orientation
+    def _bearing_cb(self, msg: Int32):
+        """Device gives angle in degrees [0, 360), CCW, in base_link frame."""
+        deg = float(msg.data)
+        rad = math.radians(deg)
+        # Wrap into [-pi, pi]
+        rad_wrapped = math.atan2(math.sin(rad), math.cos(rad))
+        self._last_bearing = rad_wrapped
+        # Debug if needed:
+        # self.get_logger().info(f"DoA callback: {deg:.1f} deg -> {rad_wrapped:.3f} rad")
 
-        self.log_info(f"Computed waypoint at ({waypoint.pose.position.x:.2f}, "
-                      f"{waypoint.pose.position.y:.2f}, {waypoint.pose.position.z:.2f})")
-        return waypoint
+    # ---------- Small helpers ----------
+    @staticmethod
+    def _wrap_pi(angle: float) -> float:
+        """Wrap angle to [-pi, pi]."""
+        return math.atan2(math.sin(angle), math.cos(angle))
 
-    def send_nav_goal(self, target_pose: PoseStamped) -> bool:
-        """
-        Sends a navigation goal using BasicNavigator.
-        Calls goToPose() and waits until the task is complete.
-        """
-        self.log_info(f"Navigating to waypoint at ({target_pose.pose.position.x:.2f}, "
-                      f"{target_pose.pose.position.y:.2f}, {target_pose.pose.position.z:.2f})")
-        task_pose = target_pose  # Already properly set up.
-        self.navigator.goToPose(task_pose)
-        while not self.navigator.isTaskComplete():
-            _ = self.navigator.getFeedback()
-            time.sleep(0.2)
-        result = self.navigator.getResult()
-        if result == TaskResult.SUCCEEDED:
-            self.log_info("Navigation to task pose succeeded")
-            return True
-        elif result == TaskResult.CANCELED:
-            self.log_error("Navigation to task pose was canceled")
+    # ---------- TF helpers ----------
+    def _get_robot_pose_map(self) -> Optional[Tuple[float, float, float]]:
+        """Return (x,y,yaw) of base_link in map frame."""
+        try:
+            tf = self.tfbuf.lookup_transform('map', 'base_link', rclpy.time.Time())
+            tx = tf.transform.translation
+            q  = tf.transform.rotation
+            siny_cosp = 2.0 * (q.w * q.z + q.x * q.y)
+            cosy_cosp = 1.0 - 2.0 * (q.y * q.y + q.z * q.z)
+            yaw = math.atan2(siny_cosp, cosy_cosp)
+            return (tx.x, tx.y, yaw)
+        except Exception as e:
+            self.get_logger().warn(f'TF lookup map->base_link failed: {e}')
+            return None
+
+    # ---------- Costmap helpers ----------
+    def _world_to_costmap_index(self, costmap: Costmap,
+                                x_map: float, y_map: float) -> Optional[int]:
+        """Project a map-frame (x,y) into global costmap index, if in bounds."""
+        res    = costmap.metadata.resolution
+        size_x = int(costmap.metadata.size_x)
+        size_y = int(costmap.metadata.size_y)
+        origin = costmap.metadata.origin.position
+
+        ix = int((x_map - origin.x) / res)
+        iy = int((y_map - origin.y) / res)
+        if ix < 0 or iy < 0 or ix >= size_x or iy >= size_y:
+            return None
+
+        return iy * size_x + ix
+
+    def _is_free_in_costmap(self, costmap: Costmap,
+                            x_map: float, y_map: float) -> bool:
+        """Return True if costmap cell is considered free."""
+        idx = self._world_to_costmap_index(costmap, x_map, y_map)
+        if idx is None:
             return False
-        elif result == TaskResult.FAILED:
-            self.log_error("Navigation to task pose failed")
+        cost = costmap.data[idx]
+        # 255 = unknown, >=254 = lethal in costmap_2d; treat anything low as free
+        if cost == 255 or cost >= 254:
             return False
-        return False
+        return cost <= FREE_COST_THRESHOLD
 
-    def simulate_search(self):
+    def _generate_lateral_candidates(self,
+                                     x0: float, y0: float,
+                                     phi0_global: float,
+                                     costmap: Costmap) -> List[PoseStamped]:
+        """Generate candidate lateral waypoints in free space around current pose.
+
+        - Perpendicular to sound direction, +/-45° sweep.
+        - Radii: 3m, then 2m, then 1m.
         """
-        Simulate a search (scanning) action.
-        This function waits for a few seconds to mimic scanning.
+        candidates: List[PoseStamped] = []
+
+        # Left (+90°) and right (-90°) perpendicular bases
+        sides = [+1.0, -1.0]  # +1 => left, -1 => right
+
+        for radius in STEP_RADII_M:
+            for side in sides:
+                base_perp = phi0_global + side * (math.pi / 2.0)
+                for off_deg in SWEEP_OFFSETS_DEG:
+                    theta = base_perp + math.radians(off_deg)
+                    cx = x0 + radius * math.cos(theta)
+                    cy = y0 + radius * math.sin(theta)
+
+                    if not self._is_free_in_costmap(costmap, cx, cy):
+                        continue
+
+                    ps = PoseStamped()
+                    ps.header.frame_id = 'map'
+                    ps.header.stamp    = self.get_clock().now().to_msg()
+                    ps.pose.position.x = cx
+                    ps.pose.position.y = cy
+                    ps.pose.position.z = 0.0
+                    # Orient the robot along the travel direction for this waypoint
+                    ps.pose.orientation.z = math.sin(theta / 2.0)
+                    ps.pose.orientation.w = math.cos(theta / 2.0)
+
+                    candidates.append(ps)
+
+            # If we found any free positions at this radius, stop; we prefer larger baselines
+            if candidates:
+                break
+
+        return candidates
+
+    # ---------- Path feasibility helper ----------
+    def _has_valid_global_path(self,
+                               start: PoseStamped,
+                               goal: PoseStamped) -> bool:
+        """Use Nav2 global planner (via BasicNavigator.getPath) to pre-check reachability."""
+        try:
+            path = self.navigator.getPath(start, goal)
+        except Exception as e:
+            self.get_logger().warn(f"getPath failed for candidate lateral waypoint: {e}")
+            return False
+
+        if path is None or len(path.poses) == 0:
+            return False
+
+        return True
+
+    # ---------- DoA helpers ----------
+    def _wait_for_fresh_bearing(self, timeout_s: float) -> Optional[float]:
         """
-        self.log_info("Simulating search (scanning)...")
-        time.sleep(3.0)
-        self.log_info("Search simulation complete.")
+        Listen for DoA angles up to timeout_s, while /leak_detected is True,
+        and return the circular mean of all angles observed in that window.
 
-    def execute_callback(self, goal_handle):
-        self.log_info("Starting search action...")
+        If no angles were seen, return None.
+        """
+        start = time.time()
+        angles: List[float] = []
 
-        # Wait until both the region map and robot pose are available.
-        timeout = 10.0
-        start_time = self.get_clock().now().nanoseconds / 1e9
-        while self.current_region_map is None or self.current_pose is None:
-            rclpy.spin_once(self, timeout_sec=0.5)
-            if (self.get_clock().now().nanoseconds / 1e9 - start_time) > timeout:
-                self.log_error("Timeout waiting for region map and robot pose!")
-                goal_handle.abort()
-                return Search.Result()
+        while (time.time() - start) < timeout_s and rclpy.ok():
+            if self._det and self._last_bearing is not None:
+                # Sample current angle; if topic is at 5–10 Hz this will build a nice average
+                angles.append(self._last_bearing)
+            time.sleep(0.05)
 
-        # Compute a waypoint.
-        waypoint = self.compute_waypoint()
+        if not angles:
+            return None
 
-        # Send the navigation goal.
-        if not self.send_nav_goal(waypoint):
-            self.log_error("Navigation failed. Aborting search action.")
+        # Circular mean of angles
+        s = sum(math.sin(a) for a in angles)
+        c = sum(math.cos(a) for a in angles)
+        avg = math.atan2(s, c)
+        self.get_logger().info(
+            f"Averaged {len(angles)} DoA samples -> {avg:.3f} rad"
+        )
+        return avg
+
+    # ---------- Marker & estimate publishing ----------
+    def _publish_marker(self, x: float, y: float, radius: float):
+        marker = Marker()
+        marker.header.frame_id = 'map'
+        marker.header.stamp    = self.get_clock().now().to_msg()
+        marker.ns   = 'leak_roi'
+        marker.id   = 1
+        marker.type = Marker.CYLINDER
+        marker.action = Marker.ADD
+        marker.pose.position.x = x
+        marker.pose.position.y = y
+        marker.pose.position.z = 0.0
+        marker.pose.orientation.w = 1.0
+        marker.scale.x = radius * 2.0
+        marker.scale.y = radius * 2.0
+        marker.scale.z = 0.05
+        marker.color.r = 1.0
+        marker.color.g = 0.2
+        marker.color.b = 0.2
+        marker.color.a = 0.7
+        self.marker_pub.publish(marker)
+
+    def _publish_estimate_marker_from_xy(self, mx: float, my: float, std: float):
+        self._publish_marker(mx, my, ROI_RADIUS_M)
+        msg = PoseWithCovarianceStamped()
+        msg.header.frame_id = 'map'
+        msg.header.stamp    = self.get_clock().now().to_msg()
+        msg.pose.pose.position.x = mx
+        msg.pose.pose.position.y = my
+        msg.pose.pose.position.z = 0.0
+        msg.pose.pose.orientation.w = 1.0
+        cov = [0.0] * 36
+        cov[0]  = std * std
+        cov[7]  = std * std
+        cov[35] = 1e-3
+        msg.pose.covariance = cov
+        self.est_pub.publish(msg)
+
+    # ---------- Geometry: intersection of two bearing lines ----------
+    @staticmethod
+    def _intersect_two_bearings(m0: BearingMeasurement,
+                                m1: BearingMeasurement) -> Tuple[Tuple[float, float], float]:
+        """Return LS intersection of two bearing lines (m0, m1)."""
+        meas = [m0, m1]
+        # LS formulation for N lines (here N=2)
+        A = np.zeros((2, 2), dtype=np.float64)
+        b = np.zeros((2,), dtype=np.float64)
+        for m in meas:
+            n = np.array([-math.sin(m.phi), math.cos(m.phi)])
+            r = np.array([m.x, m.y])
+            Ni = np.outer(n, n)
+            A += Ni
+            b += Ni @ r
+
+        try:
+            p = np.linalg.solve(A, b)
+        except np.linalg.LinAlgError:
+            # Degenerate / parallel; fall back to first bearing at MIC_RADIUS_M
+            mx = m0.x + MIC_RADIUS_M * math.cos(m0.phi)
+            my = m0.y + MIC_RADIUS_M * math.sin(m0.phi)
+            return (mx, my), float('inf')
+
+        mx, my = float(p[0]), float(p[1])
+
+        # residual
+        res2 = 0.0
+        for m in meas:
+            n = np.array([-math.sin(m.phi), math.cos(m.phi)])
+            r = np.array([m.x, m.y])
+            dist = float(n @ (p - r))
+            res2 += dist**2
+        std = math.sqrt(res2 / max(len(meas), 1))
+        return (mx, my), std
+
+    # --------- Execute the Action ----------
+    async def execute_cb(self, goal_handle):
+        self.get_logger().info('Search started.')
+
+        # 1. Current position in map (first vantage)
+        pose0 = self._get_robot_pose_map()
+        while pose0 is None and rclpy.ok():
+            time.sleep(0.1)
+            pose0 = self._get_robot_pose_map()
+
+        if pose0 is None:
+            self.get_logger().warn("Cannot get initial map pose; aborting search.")
             goal_handle.abort()
             return Search.Result()
 
-        # Simulate the search (scanning) action.
-        self.simulate_search()
+        x0, y0, yaw0 = pose0
+        self.get_logger().info(f"Initial pose: ({x0:.2f}, {y0:.2f}), yaw={yaw0:.2f} rad.")
 
-        # Publish feedback (dummy object info).
-        feedback_msg = Search.Feedback()
-        feedback_msg.object_class = "dummy_object"
-        feedback_msg.object_location = waypoint  # For simulation, use the waypoint.
-        feedback_msg.search_complete = True
-        goal_handle.publish_feedback(feedback_msg)
+        # 2. Get first DoA (averaged) and build first bearing
+        doa0 = self._wait_for_fresh_bearing(BEARING_TIMEOUT_S)
+        if doa0 is None:
+            self.get_logger().warn("No DoA angle at first vantage; using current spot as leak.")
+            self._publish_estimate_marker_from_xy(x0, y0, std=999.0)
+            goal_handle.succeed()
+            return Search.Result()
+
+        phi0_global = self._wrap_pi(yaw0 + doa0)
+        self.get_logger().info(f"First DoA (global): phi0={phi0_global:.2f} rad.")
+
+        # 3. Read global costmap and pick lateral waypoint
+        try:
+            global_cm: Costmap = self.navigator.getGlobalCostmap()
+        except Exception as e:
+            self.get_logger().warn(f"Failed to get global costmap: {e}")
+            self._publish_estimate_marker_from_xy(x0, y0, std=999.0)
+            goal_handle.succeed()
+            return Search.Result()
+
+        candidates = self._generate_lateral_candidates(x0, y0, phi0_global, global_cm)
+        if not candidates:
+            self.get_logger().warn("No lateral free-space waypoint found; using current spot as leak.")
+            self._publish_estimate_marker_from_xy(x0, y0, std=999.0)
+            goal_handle.succeed()
+            return Search.Result()
+
+        # 4. Navigate to a lateral waypoint using Nav2 (BT, recoveries, etc.)
+        nav_success = False
+        max_tries = min(MAX_NAV_ATTEMPTS, len(candidates))
+
+        for i in range(max_tries):
+            cand = candidates[i]
+
+            # Build a start pose for getPath; prefer navigator.getCurrentPose, fallback to TF
+            try:
+                start_pose = self.navigator.getCurrentPose()
+            except Exception:
+                start_pose = PoseStamped()
+                start_pose.header.frame_id = 'map'
+                start_pose.header.stamp    = self.get_clock().now().to_msg()
+                start_pose.pose.position.x = x0
+                start_pose.pose.position.y = y0
+                start_pose.pose.orientation.w = 1.0
+
+            if not self._has_valid_global_path(start_pose, cand):
+                self.get_logger().warn(
+                    f"Candidate {i+1}/{max_tries} at "
+                    f"({cand.pose.position.x:.2f}, {cand.pose.position.y:.2f}) "
+                    "has no valid global path; skipping."
+                )
+                continue
+
+            self.get_logger().info(
+                f"Nav attempt {i+1}/{max_tries} "
+                f"to lateral waypoint ({cand.pose.position.x:.2f}, {cand.pose.position.y:.2f})."
+            )
+            self.navigator.goToPose(cand)
+            # Let Nav2 do its BT dance
+            while not self.navigator.isTaskComplete():
+                time.sleep(0.1)
+            res = self.navigator.getResult()
+            if res == TaskResult.SUCCEEDED:
+                self.get_logger().info("Lateral waypoint reached.")
+                nav_success = True
+                break
+            else:
+                self.get_logger().warn(f"Lateral nav failed with result={res}; trying another candidate.")
+
+        if not nav_success:
+            self.get_logger().warn("All lateral nav attempts failed; using initial spot as leak.")
+            self._publish_estimate_marker_from_xy(x0, y0, std=999.0)
+            goal_handle.succeed()
+            return Search.Result()
+
+        # 5. Second vantage: get updated pose and second DoA
+        pose1 = self._get_robot_pose_map()
+        if pose1 is None:
+            self.get_logger().warn("Cannot get pose at lateral waypoint; using initial spot as leak.")
+            self._publish_estimate_marker_from_xy(x0, y0, std=999.0)
+            goal_handle.succeed()
+            return Search.Result()
+
+        x1, y1, yaw1 = pose1
+        self.get_logger().info(f"Second pose: ({x1:.2f}, {y1:.2f}), yaw={yaw1:.2f} rad.")
+
+        doa1 = self._wait_for_fresh_bearing(BEARING_TIMEOUT_S)
+        if doa1 is None:
+            self.get_logger().warn("No DoA angle at second vantage; using lateral spot as leak.")
+            self._publish_estimate_marker_from_xy(x1, y1, std=999.0)
+            goal_handle.succeed()
+            return Search.Result()
+
+        phi1_global = self._wrap_pi(yaw1 + doa1)
+        self.get_logger().info(f"Second DoA (global): phi1={phi1_global:.2f} rad.")
+
+        # 6. Intersection of two lines (triangulation)
+        # IMPORTANT: flip bearings by pi here to go from "wave arrival direction"
+        # to "line-of-sight toward leak".
+        phi0_line = self._wrap_pi(phi0_global + math.pi)
+        phi1_line = self._wrap_pi(phi1_global + math.pi)
+
+        m0 = BearingMeasurement(x=x0, y=y0, phi=phi0_line)
+        m1 = BearingMeasurement(x=x1, y=y1, phi=phi1_line)
+        (mx, my), std = self._intersect_two_bearings(m0, m1)
+        self.get_logger().info(
+            f"Leak estimate from triangulation: ({mx:.2f}, {my:.2f}), residual std={std:.2f} m."
+        )
+
+        # 7. Mark leak on map
+        self._publish_estimate_marker_from_xy(mx, my, std=std)
 
         goal_handle.succeed()
-        result = Search.Result()
-        result.final_message = "Search complete."
-        self.log_info("Search action completed successfully.")
-        return result
+        return Search.Result()
 
 
-def main(args=None):
-    rclpy.init(args=args)
-    node = SearchActionServer()
-    rclpy.spin(node)
-    rclpy.shutdown()
+def main():
+    rclpy.init()
+    node = LeakSearchServer()
+    try:
+        rclpy.spin(node)
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
 
 
 if __name__ == '__main__':

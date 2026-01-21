@@ -143,29 +143,17 @@ def generate_launch_description():
     # ─── 11. Assemble ─────────────────────────────────────────────────
     return LaunchDescription([
         declare_sim_time,
-
-        # Sensors
+        robot_state_pub,
+        base_tf,
+        go2_driver,
+        state_pub,
+        odom_node, 
+        ekf_node,
         zed_launch,
         lidar_node,
         lidar_pub,
-        # z_band_filter,
-
-        # State estimation
-        state_pub, go2_driver, base_tf,
-        odom_node, ekf_node,
-
-        # SLAM + grid
         slam_toolbox,
-  
-
-        # Robot description
-        robot_state_pub,
-
-        # Nav2
         nav2_launch,
-
-        # Tools / viz
         log_pose_server,
-
         rviz2,
     ])

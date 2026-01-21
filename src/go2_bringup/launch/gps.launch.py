@@ -162,15 +162,15 @@ def generate_launch_description():
     )
 
     # Relay IMU so *anything* still listening on /imu/data keeps working
-    # imu_relay = Node(
-    #     package="topic_tools", executable="relay",
-    #     name="zed_imu_to_imu_data",
-    #     arguments=["/zed/zed_node/imu/data", "/imu/data"],
-    #     output="screen"
-    # )
+    imu_relay = Node(
+        package="topic_tools", executable="relay",
+        name="zed_imu_to_imu_data",
+        arguments=["/zed/zed_node/imu/data", "/imu/data"],
+        output="screen"
+    )
     #
     # ──────────────── Robot_localization (dual EKF + NavSat) ────────────────
-    #
+    # Commented out 11/14 to test Dual EKF + Navsat separately
     dual_ekf_navsat_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(gps_launch_dir, "dual_ekf_navsat_example.launch.py")
@@ -231,7 +231,7 @@ def generate_launch_description():
     ld.add_action(start_go2_lidar)
     ld.add_action(start_teleop_node)
     # ld.add_action(start_teleop_node)
-    ld.add_action(zed_launch)
+    # ld.add_action(zed_launch)
     # ld.add_action(imu_relay)
     # Optional helpers
     ld.add_action(rviz_local_node)
@@ -239,9 +239,9 @@ def generate_launch_description():
 
     # Localization + Nav2 + Visualization
     ld.add_action(dual_ekf_navsat_launch)
-    ld.add_action(nav2_launch)
+    # ld.add_action(nav2_launch)
     ld.add_action(rviz_demo_launch)
-    ld.add_action(mapviz_launch)
+    # ld.add_action(mapviz_launch)
 
     return ld
 

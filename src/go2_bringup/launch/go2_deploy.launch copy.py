@@ -12,11 +12,10 @@ from launch_ros.descriptions import ComposableNode
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-    urdf_path = os.path.join(get_package_share_path('go2_description'), 'urdf', 'go2_nav2_nvblox.urdf')
+    urdf_path = os.path.join(get_package_share_path('go2_description'), 'urdf', 'go2.urdf.xacro')
     rviz_config_path = os.path.join(get_package_share_path('go2_description'), 'config', 'nav_nvblox_config.rviz')
-    map_file = LaunchConfiguration('map_file', default=os.path.join(get_package_share_path('go2_description'), 'maps', 'lse_first_floor.yaml'))
+    map_file = LaunchConfiguration('map_file', default=os.path.join(get_package_share_path('go2_description'), 'maps', 'lab.yaml'))
     rviz = LaunchConfiguration('rviz', default='false')
-    visualization = LaunchConfiguration('visualization', default='true')
     initial_pose = LaunchConfiguration('initial_pose', default='false')
     robot_description = ParameterValue(Command(['xacro ', urdf_path]), value_type=str)
 
@@ -30,12 +29,6 @@ def generate_launch_description():
         'rviz',
         default_value='false',
         description='Whether to start RViz'
-    )
-
-    declare_visualization_cmd = DeclareLaunchArgument(
-        'visualization',
-        default_value='true',
-        description='Enable or disable visualization.'
     )
 
     declare_initial_pose_cmd = DeclareLaunchArgument(
@@ -145,68 +138,36 @@ def generate_launch_description():
         output='log'
     )
 
-    region_map_service_node = Node(
-    package='go2_control',                
-    executable='region_map_service_node', 
-    name='region_map_service_node',
-    output='log',
-    parameters=[
-            {
-            'map_yaml_file': os.path.join(
-                get_package_share_path('go2_description'),
-                'maps',
-                'test_room.yaml'  
-                )
-            },
-            {'publish_on_service_call': True},    # 
-            {'continuous_publish': True},         # or False
-            {'publish_rate': 1.0},  
-        ]
-    )
     search_action_server_node = Node(
         package='go2_control',
-        executable='search_action_server',  
+        executable='search_action_server',   # console_scripts entry name
+        name='leak_search_server',
+        parameters=[{'use_sim_time': use_sim_time}],
         output='log'
     )
-    take_picture_node = Node(
+
+    rounds_coordinator_node = Node(
         package='go2_control',
-        executable='picture_taker',
-        name='picture_taker',
+        executable='rounds_coordinator',     # console_scripts entry name
+        name='rounds_coordinator',
+        parameters=[{'use_sim_time': use_sim_time}],
         output='log'
     )
-    start_nav_node = Node(
-        package='go2_control',
-        executable='task_nav_to_pose_test',
-        name='task_nav_to_pose_test',
-        output='log'
-    )
+
+
 
     return LaunchDescription([
         declare_map_file_cmd,
         declare_rviz_cmd,
-        declare_visualization_cmd,
         declare_initial_pose_cmd,
+        robot_state_publisher_node,
         base_footprint_to_base_link_tf,
+        go2_driver_node,
+        state_publisher_node,
         odom_node,
         robot_localization_node,
         lidar_node,
-        robot_state_publisher_node,
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                os.path.join(get_package_share_directory('zed_wrapper'), 'launch', 'zed_camera.launch.py')
-            ]),
-            launch_arguments={'camera_model': 'zedxm'}.items()
-        ),
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('nvblox_examples_bringup'), 'launch', 'realsense_example.launch.py')]),
-            launch_arguments={
-                'mode': 'dynamic',
-                #'people_segmentation': 'peoplesemsegnet_shuffleseg',
-                # 'visualization': visualization,
-            }.items(),
-        ),  
-        go2_driver_node,
-        state_publisher_node,
+        start_go2_lidar,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(get_package_share_path('nav2_bringup'), 'launch', 'bringup_launch.py')]),
             launch_arguments={
@@ -216,9 +177,7 @@ def generate_launch_description():
             }.items(),
         ),
         rviz2_node,
-        set_initial_pose,
-        start_teleop_node,
-        take_picture_node,
-        start_go2_lidar,
-        start_nav_node,
+        # set_initial_pose,
+        search_action_server_node,
+        rounds_coordinator_node,
     ])

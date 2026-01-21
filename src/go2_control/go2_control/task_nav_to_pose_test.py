@@ -11,23 +11,23 @@ from std_srvs.srv import Trigger
 
 def perform_task_at_pose(task_pose, search_client_node):
     # Create a service client for the Trigger service.
-    client = search_client_node.create_client(Trigger, 'run_scan_controller')
-    if not client.wait_for_service(timeout_sec=5.0):
-        print("Service 'run_scan_controller' not available!")
-        return
+    # client = search_client_node.create_client(Trigger, 'run_scan_controller')
+    # if not client.wait_for_service(timeout_sec=5.0):
+    #     print("Service 'run_scan_controller' not available!")
+    #     return
 
-    # Create and send the request.
-    request = Trigger.Request()
-    future = client.call_async(request)
-    rclpy.spin_until_future_complete(search_client_node, future)
-    try:
-        response = future.result()
-        if response.success:
-            print("Service call executed successfully: " + response.message)
-        else:
-            print("Service call failed: " + response.message)
-    except Exception as e:
-        print("Service call failed: " + str(e))
+    # # Create and send the request.
+    # request = Trigger.Request()
+    # future = client.call_async(request)
+    # rclpy.spin_until_future_complete(search_client_node, future)
+    # try:
+    #     response = future.result()
+    #     if response.success:
+    #         print("Service call executed successfully: " + response.message)
+    #     else:
+    #         print("Service call failed: " + response.message)
+    # except Exception as e:
+    #     print("Service call failed: " + str(e))
     
     # Wait for 20 seconds so that the service completes its action while remaining in place.
     time.sleep(20)
@@ -93,10 +93,10 @@ def main():
     initial_pose.pose.position.y = 0.0
     initial_pose.pose.orientation.z = 0.0
     initial_pose.pose.orientation.w = 1.0
-    # navigator.setInitialPose(initial_pose)
+    navigator.setInitialPose(initial_pose)
 
-    # # Wait for navigation to fully activate.
-    # navigator.waitUntilNav2Active()
+    # Wait for navigation to fully activate.
+    navigator.waitUntilNav2Active()
 
     # Initialize a variable to hold the path segment.
     path_segment = []

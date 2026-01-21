@@ -24,7 +24,7 @@ class LogPoseActionServer(Node):
 
         self.pose_sub = self.create_subscription(
             PoseWithCovarianceStamped,
-            '/rtabmap/localization_pose',         # << was /slam_toolbox_pose
+            '/slam_toolbox_pose',         # << was /slam_toolbox_pose
             self.pose_callback,
             10)
 

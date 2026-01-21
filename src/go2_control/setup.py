@@ -76,6 +76,9 @@ setup(
             'gps_waypoint_logger = go2_control.gps_waypoint_logger:main',
             'picture_taker = go2_control.picture_taker:main',
             'logged_waypoint_follower = go2_control.logged_waypoint_follower:main',
+            'rounds_coordinator = go2_control.rounds_coordinator:main',
+            'pose_click_logger = go2_control.pose_click_logger:main',
+            'dummy_leak_publisher = go2_control.dummy_leak_publisher:main',
 
         ],
     },
