@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+## code not properly working ##
+## coede used to visualize the the current section of the occupancy grid map as a .png file for debugging ##
 import rclpy
 from rclpy.node import Node
 import numpy as np
