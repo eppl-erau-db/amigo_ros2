@@ -13,10 +13,12 @@ slam_toolbox:
     base_frame: base_footprint
     scan_topic: /scan
     mode: localization
+    use_odometry: true
+    odom_topic: /odometry/filtered
 
     # if you'd like to start localizing on bringup in a map and pose
-    map_file_name: "/home/castej-jetson/workspaces/amigo_ros2/src/go2_description/maps/Base1_serialized"
-    map_start_pose: [7.0, -9.7, 0.0]
+    # map_file_name: "/home/castej-jetson/workspaces/amigo_ros2/src/go2_description/maps/demo_map.yaml"
+    # map_start_pose: [7.0, -9.7, 0.0]
 
     debug_logging: false
     throttle_scans: 1

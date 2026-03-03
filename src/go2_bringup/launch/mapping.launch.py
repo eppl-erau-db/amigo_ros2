@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Go2 • UTLiDAR 3-D • ZED-X Mini • RTAB-Map SLAM  (ROS 2 Humble)
+Go2 • UTLiDAR 3-D • ZED-X Mini •
 Nav2 (MPPI) — cleaned wiring and rates
 """
 
@@ -27,7 +27,7 @@ def generate_launch_description():
     urdf_path    = os.path.join(pkg_go2_desc, "urdf", "go2.urdf.xacro")
     rviz_cfg     = os.path.join(pkg_go2_desc, "config", "nav_nvblox_config.rviz")
     nav2_cfg     = os.path.join(pkg_go2_desc, "config", "nav2_mppi_controller.yaml")
-    ekf_cfg      = os.path.join(pkg_go2_desc, "config", "ekf.yaml")
+    ekf_cfg      = os.path.join(pkg_go2_desc, "config", "local_odom_ekf.yaml")
 
     # ─── 3.  Robot description ────────────────────────────────────────
     robot_description = ParameterValue(
@@ -41,31 +41,66 @@ def generate_launch_description():
     )
 
     robot_state_pub = Node(
-        package="robot_state_publisher", executable="robot_state_publisher",
-        parameters=[{"robot_description": robot_description,
-                     "use_sim_time": use_sim_time}]
+        package="robot_state_publisher", 
+        executable="robot_state_publisher",
+        parameters=[{
+            "robot_description": robot_description,
+            "use_sim_time": use_sim_time
+        }]
+    )
+    
+    wit_imu_pub = Node(
+        package="wit_ros2_imu",
+        executable="wit_ros2_imu",
+        name="imu_driver_node",
+        output="screen",
+        parameters=[{"use_sim_time": use_sim_time}],
+        remappings=[("imu/data_raw", "imu/data")]
     )
 
     # ─── 4.  Go2 low-level stack ───────────────────────────────────────
-    state_pub = Node(package="go2_control", executable="go2_state",
-                     name="go2_state", output="screen")
-    odom_node = Node(package="go2_control", executable="odom_node",
-                     name="odom_node", output="screen")
-    base_tf = Node(package="go2_control", executable="base_to_base_tf",
-                   name="base_to_base_tf", output="screen")
-    go2_driver = Node(package="go2_driver", executable="go2_driver_node",
-                      name="go2_driver_node", output="screen")
-
+    state_pub = Node(
+        package="go2_control", 
+        executable="go2_state",
+        name="go2_state", 
+        output="screen"
+    )
+    odom_node = Node(
+        package="go2_control", 
+        executable="odom_node",
+        name="odom_node", 
+        output="screen"
+    )
+    base_tf = Node(
+        package="go2_control", 
+        executable="base_to_base_tf",
+        name="base_to_base_tf", 
+        output="screen"
+    )
+    
+    go2_driver = Node(
+        package="go2_driver", 
+        executable="go2_driver_node",
+        name="go2_driver_node", 
+        output="screen"
+    )
+    
     ekf_node = Node(
-        package="robot_localization", executable="ekf_node",
-        name="ekf_filter_node", output="screen",
+        package="robot_localization",
+        executable="ekf_node",
+        name="ekf_filter_node",
+        output="screen",
         parameters=[ekf_cfg, {"use_sim_time": use_sim_time}],
-        remappings=[("/odometry/filtered", "/odom")]  # EKF publishes /odom
+        remappings=[("odometry/filtered", "odometry/filtered")],
     )
 
     # ─── 5.  UTLiDAR publisher ────────────────────────────────────────
-    lidar_pub = Node(package="go2_control", executable="go2_lidar",
-                     name="go2_lidar", output="screen")
+    lidar_pub = Node(
+        package="go2_control", 
+        executable="go2_lidar",
+        name="go2_lidar", 
+        output="screen"
+    )
 
     # ─── 6-A.  ZED-X Mini camera (let YAMLs own FPS/resolution) ───────
     zed_launch = IncludeLaunchDescription(
@@ -147,8 +182,9 @@ def generate_launch_description():
         base_tf,
         go2_driver,
         state_pub,
+        wit_imu_pub,
         odom_node, 
-        ekf_node,
+        ekf_node,   
         zed_launch,
         lidar_node,
         lidar_pub,

@@ -21,7 +21,7 @@ def generate_launch_description():
     map_file = LaunchConfiguration(
         'map_file',
         default=os.path.join(get_package_share_path('go2_description'),
-                             'maps', 'lse_first_floor.yaml')
+                             'maps', 'demo_map.yaml')
     )
 
     rviz = LaunchConfiguration('rviz', default='false')
@@ -32,7 +32,7 @@ def generate_launch_description():
     declare_map_file_cmd = DeclareLaunchArgument(
         'map_file',
         default_value=os.path.join(get_package_share_path('go2_description'),
-                                   'maps', 'lse_first_floor.yaml'),
+                                   'maps', 'demo_map.yaml'),
         description='(Unused by Nav2 when using slam_toolbox localization; kept for compatibility)'
     )
 
