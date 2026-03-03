@@ -8,3 +8,11 @@
 [submodule "src/sllidar_ros2"]
 	path = src/sllidar_ros2
 	url = https://github.com/JCastel358/sllidar_ros2.git
+[submodule "src/audio_utils"]
+	path = src/audio_utils
+	url = https://github.com/JCastel358/audio_utils.git
+	branch = ros2
+[submodule "src/odas_ros"]
+	path = src/odas_ros
+	url = https://github.com/JCastel358/odas_ros.git
+	branch = ros2
