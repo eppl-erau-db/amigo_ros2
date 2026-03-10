@@ -14,7 +14,7 @@ slam_toolbox:
     scan_topic: /scan
     mode: localization
     use_odometry: true
-    odom_topic: /odometry/filtered
+    odom_topic: /odom
 
     # if you'd like to start localizing on bringup in a map and pose
     # map_file_name: "/home/castej-jetson/workspaces/amigo_ros2/src/go2_description/maps/demo_map.yaml"

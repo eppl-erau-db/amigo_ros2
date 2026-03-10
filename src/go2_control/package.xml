@@ -13,7 +13,11 @@
   <!-- Dependencies for building/running your Python nodes -->
   <depend>rclpy</depend>
   <depend>go2_interfaces</depend>
+  <depend>unitree_api</depend>
+  <depend>audio_utils_msgs</depend>
   <depend>example_interfaces</depend>
+  <depend>geometry_msgs</depend>
+  <depend>action_msgs</depend>
   <depend>tf2_ros</depend>
   <depend>std_msgs</depend>
   <depend>sensor_msgs</depend>

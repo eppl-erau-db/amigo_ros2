@@ -1,0 +1,1037 @@
+[INFO] [launch]: All log files can be found below /home/castej-jetson/.ros/log/2026-03-10-17-53-56-755531-ubuntu-85372
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch.user]: Using common configuration file: /home/castej-jetson/workspaces/amigo_ros2/install/zed_wrapper/share/zed_wrapper/config/common_stereo.yaml
+[INFO] [launch.user]: Using camera configuration file: /home/castej-jetson/workspaces/amigo_ros2/install/zed_wrapper/share/zed_wrapper/config/zedxm.yaml
+[INFO] [launch.user]: Using FFMPEG configuration file: /home/castej-jetson/workspaces/amigo_ros2/install/zed_wrapper/share/zed_wrapper/config/ffmpeg.yaml
+[INFO] [launch.user]: Using Object Detection configuration file: /home/castej-jetson/workspaces/amigo_ros2/install/zed_wrapper/share/zed_wrapper/config/object_detection.yaml
+[INFO] [launch.user]: Using Custom Object Detection configuration file: /home/castej-jetson/workspaces/amigo_ros2/install/zed_wrapper/share/zed_wrapper/config/custom_object_detection.yaml
+[INFO] [launch.user]: Loading ZED node `zed_node` in container `/zed/zed_container`
+[INFO] [robot_state_publisher-1]: process started with pid [85399]
+[INFO] [base_to_base_tf-2]: process started with pid [85401]
+[INFO] [go2_driver_node-3]: process started with pid [85403]
+[INFO] [go2_state-4]: process started with pid [85405]
+[INFO] [odom_node-5]: process started with pid [85407]
+[INFO] [ekf_node-6]: process started with pid [85409]
+[INFO] [robot_state_publisher-7]: process started with pid [85411]
+[INFO] [component_container_isolated-8]: process started with pid [85413]
+[INFO] [sllidar_node-9]: process started with pid [85415]
+[INFO] [go2_lidar-10]: process started with pid [85417]
+[INFO] [async_slam_toolbox_node-11]: process started with pid [85419]
+[INFO] [controller_server-12]: process started with pid [85426]
+[INFO] [smoother_server-13]: process started with pid [85428]
+[INFO] [planner_server-14]: process started with pid [85430]
+[INFO] [behavior_server-15]: process started with pid [85432]
+[INFO] [bt_navigator-16]: process started with pid [85434]
+[INFO] [waypoint_follower-17]: process started with pid [85446]
+[INFO] [velocity_smoother-18]: process started with pid [85468]
+[INFO] [lifecycle_manager-19]: process started with pid [85473]
+[INFO] [odas_server_node.py-20]: process started with pid [85479]
+[INFO] [odas_leak_classifier_node.py-21]: process started with pid [85483]
+[INFO] [log_pose_action_server-22]: process started with pid [85487]
+[INFO] [voice_stt_vosk_node-23]: process started with pid [85500]
+[INFO] [voice_command_node-24]: process started with pid [85502]
+[INFO] [rviz2-25]: process started with pid [85513]
+[robot_state_publisher-1] 1773179638.196046 [0] robot_stat: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[go2_driver_node-3] 1773179638.191712 [0] go2_driver: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[ekf_node-6] 1773179638.202716 [0]   ekf_node: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[ekf_node-6] X acceleration is being measured from IMU; X velocity control input is disabled
+[ekf_node-6] Y acceleration is being measured from IMU; Y velocity control input is disabled
+[robot_state_publisher-7] 1773179638.198487 [0] robot_stat: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[component_container_isolated-8] 1773179638.194612 [0] component_: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[sllidar_node-9] 1773179638.195759 [0] sllidar_no: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[sllidar_node-9] [0m[INFO] [1773179638.233702013] [sllidar_node]: SLLidar running on ROS2 package SLLidar.ROS2 SDK Version:1.0.1, SLLIDAR SDK Version:2.1.0[0m
+[sllidar_node-9] [0m[INFO] [1773179638.249578045] [sllidar_node]: SLLidar S/N: E18BED93C0EA98C6C2E29EF513514061[0m
+[sllidar_node-9] [0m[INFO] [1773179638.249679196] [sllidar_node]: Firmware Ver: 1.32[0m
+[sllidar_node-9] [0m[INFO] [1773179638.249700060] [sllidar_node]: Hardware Rev: 6[0m
+[sllidar_node-9] [0m[INFO] [1773179638.250463801] [sllidar_node]: SLLidar health status : 0[0m
+[sllidar_node-9] [0m[INFO] [1773179638.250504057] [sllidar_node]: SLLidar health status : OK.[0m
+[async_slam_toolbox_node-11] 1773179638.211544 [0] async_slam: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[async_slam_toolbox_node-11] [0m[INFO] [1773179638.300894828] [slam_toolbox]: Node using stack size 40000000[0m
+[controller_server-12] 1773179638.220586 [0] controller: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[smoother_server-13] 1773179638.220586 [0] smoother_s: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[planner_server-14] 1773179638.230401 [0] planner_se: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[behavior_server-15] 1773179638.221562 [0] behavior_s: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[behavior_server-15] [0m[INFO] [1773179638.307174739] [behavior_server]: 
+[behavior_server-15] 	behavior_server lifecycle node launched. 
+[behavior_server-15] 	Waiting on external lifecycle transitions to activate
+[behavior_server-15] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[bt_navigator-16] 1773179638.221364 [0] bt_navigat: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[waypoint_follower-17] 1773179638.237773 [0] waypoint_f: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[velocity_smoother-18] 1773179638.237669 [0] velocity_s: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[lifecycle_manager-19] 1773179638.240411 [0] lifecycle_: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[planner_server-14] [0m[INFO] [1773179638.314285078] [planner_server]: 
+[planner_server-14] 	planner_server lifecycle node launched. 
+[planner_server-14] 	Waiting on external lifecycle transitions to activate
+[planner_server-14] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[planner_server-14] [0m[INFO] [1773179638.318255110] [planner_server]: Creating[0m
+[lifecycle_manager-19] [0m[INFO] [1773179638.321994807] [lifecycle_manager_navigation]: Creating[0m
+[velocity_smoother-18] [0m[INFO] [1773179638.330026166] [velocity_smoother]: 
+[velocity_smoother-18] 	velocity_smoother lifecycle node launched. 
+[velocity_smoother-18] 	Waiting on external lifecycle transitions to activate
+[velocity_smoother-18] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179638.336458812] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service clients[0m[0m[0m
+[async_slam_toolbox_node-11] 1773179638.338115 [0] async_slam: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[smoother_server-13] [0m[INFO] [1773179638.340700171] [smoother_server]: 
+[smoother_server-13] 	smoother_server lifecycle node launched. 
+[smoother_server-13] 	Waiting on external lifecycle transitions to activate
+[smoother_server-13] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[bt_navigator-16] [0m[INFO] [1773179638.341000586] [bt_navigator]: 
+[bt_navigator-16] 	bt_navigator lifecycle node launched. 
+[bt_navigator-16] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-16] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[bt_navigator-16] [0m[INFO] [1773179638.341154857] [bt_navigator]: Creating[0m
+[controller_server-12] [0m[INFO] [1773179638.352341212] [controller_server]: 
+[controller_server-12] 	controller_server lifecycle node launched. 
+[controller_server-12] 	Waiting on external lifecycle transitions to activate
+[controller_server-12] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[planner_server-14] [0m[INFO] [1773179638.357132296] [global_costmap.global_costmap]: 
+[planner_server-14] 	global_costmap lifecycle node launched. 
+[planner_server-14] 	Waiting on external lifecycle transitions to activate
+[planner_server-14] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[planner_server-14] [0m[INFO] [1773179638.370392146] [global_costmap.global_costmap]: Creating Costmap[0m
+[smoother_server-13] [0m[INFO] [1773179638.365520550] [smoother_server]: Creating smoother server[0m
+[waypoint_follower-17] [0m[INFO] [1773179638.376290682] [waypoint_follower]: 
+[waypoint_follower-17] 	waypoint_follower lifecycle node launched. 
+[waypoint_follower-17] 	Waiting on external lifecycle transitions to activate
+[waypoint_follower-17] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[waypoint_follower-17] [0m[INFO] [1773179638.387622156] [waypoint_follower]: Creating[0m
+[controller_server-12] [0m[INFO] [1773179638.420973541] [controller_server]: Creating controller server[0m
+[sllidar_node-9] [0m[INFO] [1773179638.445164099] [sllidar_node]: current scan mode: Sensitivity, sample rate: 16 Khz, max_distance: 25.0 m, scan frequency:10.0 Hz, [0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462141662] [robot_state_publisher]: got segment FL_calf[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462339741] [robot_state_publisher]: got segment FL_calflower[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462632764] [robot_state_publisher]: got segment FL_calflower1[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462653372] [robot_state_publisher]: got segment FL_foot[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462667740] [robot_state_publisher]: got segment FL_hip[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462680188] [robot_state_publisher]: got segment FL_thigh[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462692668] [robot_state_publisher]: got segment FR_calf[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462704476] [robot_state_publisher]: got segment FR_calflower[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462716572] [robot_state_publisher]: got segment FR_calflower1[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462727996] [robot_state_publisher]: got segment FR_foot[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462739356] [robot_state_publisher]: got segment FR_hip[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462750812] [robot_state_publisher]: got segment FR_thigh[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462762044] [robot_state_publisher]: got segment Head_lower[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462773051] [robot_state_publisher]: got segment Head_upper[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462783739] [robot_state_publisher]: got segment RL_calf[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462794651] [robot_state_publisher]: got segment RL_calflower[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462805915] [robot_state_publisher]: got segment RL_calflower1[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462816603] [robot_state_publisher]: got segment RL_foot[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462827483] [robot_state_publisher]: got segment RL_hip[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462838619] [robot_state_publisher]: got segment RL_thigh[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462849563] [robot_state_publisher]: got segment RR_calf[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462860635] [robot_state_publisher]: got segment RR_calflower[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462908379] [robot_state_publisher]: got segment RR_calflower1[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462927771] [robot_state_publisher]: got segment RR_foot[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.462939771] [robot_state_publisher]: got segment RR_hip[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463011803] [robot_state_publisher]: got segment RR_thigh[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463037402] [robot_state_publisher]: got segment base_footprint[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463052314] [robot_state_publisher]: got segment base_link[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463064474] [robot_state_publisher]: got segment front_camera[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463076250] [robot_state_publisher]: got segment gps[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463088090] [robot_state_publisher]: got segment laser[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463099418] [robot_state_publisher]: got segment radar[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463109850] [robot_state_publisher]: got segment utlidar_imu[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463121946] [robot_state_publisher]: got segment zed_camera_center[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463133210] [robot_state_publisher]: got segment zed_camera_link[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463144058] [robot_state_publisher]: got segment zed_left_camera_frame[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463155098] [robot_state_publisher]: got segment zed_left_camera_optical_frame[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463166490] [robot_state_publisher]: got segment zed_right_camera_frame[0m
+[robot_state_publisher-1] [0m[INFO] [1773179638.463177626] [robot_state_publisher]: got segment zed_right_camera_optical_frame[0m
+[async_slam_toolbox_node-11] [0m[INFO] [1773179638.471732855] [slam_toolbox]: Using solver plugin solver_plugins::CeresSolver[0m
+[async_slam_toolbox_node-11] [0m[INFO] [1773179638.482366252] [slam_toolbox]: CeresSolver: Using SCHUR_JACOBI preconditioner.[0m
+[robot_state_publisher-7] [0m[INFO] [1773179638.488729426] [zed.zed_state_publisher]: got segment zed_camera_center[0m
+[robot_state_publisher-7] [0m[INFO] [1773179638.488897329] [zed.zed_state_publisher]: got segment zed_camera_link[0m
+[robot_state_publisher-7] [0m[INFO] [1773179638.488921457] [zed.zed_state_publisher]: got segment zed_left_camera_frame[0m
+[robot_state_publisher-7] [0m[INFO] [1773179638.488936273] [zed.zed_state_publisher]: got segment zed_left_camera_optical_frame[0m
+[robot_state_publisher-7] [0m[INFO] [1773179638.488949201] [zed.zed_state_publisher]: got segment zed_right_camera_frame[0m
+[robot_state_publisher-7] [0m[INFO] [1773179638.488960817] [zed.zed_state_publisher]: got segment zed_right_camera_optical_frame[0m
+[lifecycle_manager-19] [0m[INFO] [1773179638.501732989] [lifecycle_manager_navigation]: [34m[1mStarting managed nodes bringup...[0m[0m[0m
+[lifecycle_manager-19] [0m[INFO] [1773179638.501833213] [lifecycle_manager_navigation]: [34m[1mConfiguring controller_server[0m[0m[0m
+[controller_server-12] [0m[INFO] [1773179638.503889205] [local_costmap.local_costmap]: 
+[controller_server-12] 	local_costmap lifecycle node launched. 
+[controller_server-12] 	Waiting on external lifecycle transitions to activate
+[controller_server-12] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[controller_server-12] [0m[INFO] [1773179638.509926940] [local_costmap.local_costmap]: Creating Costmap[0m
+[controller_server-12] [0m[INFO] [1773179638.517719165] [controller_server]: Configuring controller interface[0m
+[controller_server-12] [0m[INFO] [1773179638.518950584] [controller_server]: getting goal checker plugins..[0m
+[controller_server-12] [0m[INFO] [1773179638.520246450] [controller_server]: Controller frequency set to 20.0000Hz[0m
+[controller_server-12] [0m[INFO] [1773179638.520400146] [local_costmap.local_costmap]: Configuring[0m
+[controller_server-12] [0m[INFO] [1773179638.542160153] [local_costmap.local_costmap]: Using plugin "obstacle_layer"[0m
+[controller_server-12] [0m[INFO] [1773179638.559019413] [local_costmap.local_costmap]: Subscribed to Topics: scan[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.546000394] [zed.zed_container]: Load Library: /home/castej-jetson/workspaces/amigo_ros2/install/zed_components/lib/libzed_camera_component.so[0m
+[controller_server-12] [0m[INFO] [1773179638.574318199] [local_costmap.local_costmap]: Initialized plugin "obstacle_layer"[0m
+[controller_server-12] [0m[INFO] [1773179638.574473238] [local_costmap.local_costmap]: Using plugin "3d_lidar_layer"[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.647887628] [zed.zed_container]: Found class: rclcpp_components::NodeFactoryTemplate<stereolabs::ZedCamera>[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.649235847] [zed.zed_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<stereolabs::ZedCamera>[0m
+[controller_server-12] [0m[INFO] [1773179638.728335718] [local_costmap.local_costmap]: 3d_lidar_layer being initialized as SpatioTemporalVoxelLayer![0m
+[controller_server-12] [0m[INFO] [1773179638.728448453] [local_costmap.local_costmap]: 3d_lidar_layer's global frame is odom.[0m
+[controller_server-12] [0m[INFO] [1773179638.738269918] [local_costmap.local_costmap]: 3d_lidar_layer loaded parameters from parameter server.[0m
+[controller_server-12] [0m[INFO] [1773179638.749320817] [local_costmap.local_costmap]: 3d_lidar_layer created underlying voxel grid.[0m
+[controller_server-12] [0m[INFO] [1773179638.756321876] [local_costmap.local_costmap]: Passthough filter activated.[0m
+[controller_server-12] [0m[INFO] [1773179638.759985637] [local_costmap.local_costmap]: 3d_lidar_layer initialization complete![0m
+[controller_server-12] [0m[INFO] [1773179638.760077061] [local_costmap.local_costmap]: Initialized plugin "3d_lidar_layer"[0m
+[controller_server-12] [0m[INFO] [1773179638.760099557] [local_costmap.local_costmap]: Using plugin "inflation_layer"[0m
+[controller_server-12] [0m[INFO] [1773179638.762060125] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"[0m
+[controller_server-12] [0m[INFO] [1773179638.779334423] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker[0m
+[controller_server-12] [0m[INFO] [1773179638.780972912] [controller_server]: Created goal checker : stopped_goal_checker of type nav2_controller::StoppedGoalChecker[0m
+[controller_server-12] [0m[INFO] [1773179638.781950380] [controller_server]: Controller Server has stopped_goal_checker  goal checkers available.[0m
+[controller_server-12] [0m[INFO] [1773179638.783584582] [controller_server]: Created controller : FollowPath of type nav2_mppi_controller::MPPIController[0m
+[controller_server-12] [0m[INFO] [1773179638.785409822] [controller_server]: Controller period is equal to model dt. Control sequence shifting is ON[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.786295835] [zed.zed_node]: ================================[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.786401242] [zed.zed_node]:       ZED Camera Component [0m
+[component_container_isolated-8] [0m[INFO] [1773179638.786425082] [zed.zed_node]: ================================[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.786442074] [zed.zed_node]:  * namespace: /zed[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.786457850] [zed.zed_node]:  * node name: zed_node[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.786471450] [zed.zed_node]: ================================[0m
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/zed/zed_node' in container '/zed/zed_container'
+[controller_server-12] [0m[INFO] [1773179638.788713361] [controller_server]: ConstraintCritic instantiated with 1 power and 4.000000 weight.[0m
+[controller_server-12] [0m[INFO] [1773179638.788810608] [controller_server]: Critic loaded : mppi::critics::ConstraintCritic[0m
+[controller_server-12] [0m[INFO] [1773179638.789836236] [controller_server]: ObstaclesCritic instantiated with 1 power and 5.000000 / 4.000000 weights. Critic will collision check based on footprint cost.[0m
+[controller_server-12] [0m[INFO] [1773179638.789918476] [controller_server]: Critic loaded : mppi::critics::ObstaclesCritic[0m
+[controller_server-12] [0m[INFO] [1773179638.790314826] [controller_server]: GoalCritic instantiated with 1 power and 5.000000 weight.[0m
+[controller_server-12] [0m[INFO] [1773179638.790367146] [controller_server]: Critic loaded : mppi::critics::GoalCritic[0m
+[controller_server-12] [0m[INFO] [1773179638.790784008] [controller_server]: GoalAngleCritic instantiated with 1 power, 3.000000 weight, and 0.500000 angular threshold.[0m
+[controller_server-12] [0m[INFO] [1773179638.790822088] [controller_server]: Critic loaded : mppi::critics::GoalAngleCritic[0m
+[controller_server-12] [0m[INFO] [1773179638.791558085] [controller_server]: ReferenceTrajectoryCritic instantiated with 1 power and 14.000000 weight[0m
+[controller_server-12] [0m[INFO] [1773179638.791622309] [controller_server]: Critic loaded : mppi::critics::PathAlignCritic[0m
+[controller_server-12] [0m[INFO] [1773179638.792087971] [controller_server]: Critic loaded : mppi::critics::PathFollowCritic[0m
+[controller_server-12] [0m[INFO] [1773179638.792840000] [controller_server]: PathAngleCritic instantiated with 1 power and 2.000000 weight. Reversing allowed.[0m
+[controller_server-12] [0m[INFO] [1773179638.792883904] [controller_server]: Critic loaded : mppi::critics::PathAngleCritic[0m
+[controller_server-12] [0m[INFO] [1773179638.793312286] [controller_server]: PreferForwardCritic instantiated with 1 power and 5.000000 weight.[0m
+[controller_server-12] [0m[INFO] [1773179638.793348670] [controller_server]: Critic loaded : mppi::critics::PreferForwardCritic[0m
+[controller_server-12] [0m[INFO] [1773179638.798186634] [controller_server]: Optimizer reset[0m
+[controller_server-12] [0m[INFO] [1773179638.804281650] [MPPIController]: Configured MPPI Controller: FollowPath[0m
+[controller_server-12] [0m[INFO] [1773179638.804331889] [controller_server]: Controller Server has FollowPath  controllers available.[0m
+[rviz2-25] 1773179638.806063 [0]      rviz2: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[lifecycle_manager-19] [0m[INFO] [1773179638.826741015] [lifecycle_manager_navigation]: [34m[1mConfiguring smoother_server[0m[0m[0m
+[smoother_server-13] [0m[INFO] [1773179638.827257524] [smoother_server]: Configuring smoother server[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.836738734] [zed.zed_node]: === DEBUG parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.837077325] [zed.zed_node]:  * SDK Verbose: 1[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.837252652] [zed.zed_node]:  * SDK Verbose File: [0m
+[component_container_isolated-8] [0m[INFO] [1773179638.837394603] [zed.zed_node]:  * Debug Common: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.837519435] [zed.zed_node]:  * Debug Simulation: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.837649994] [zed.zed_node]:  * Debug Video/Depth: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.837766314] [zed.zed_node]:  * Debug Control settings: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.837880169] [zed.zed_node]:  * Debug Point Cloud: %sFALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.837989129] [zed.zed_node]:  * Debug GNSS: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.838104840] [zed.zed_node]:  * Debug Positional Tracking: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.838227016] [zed.zed_node]:  * Debug sensors: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.838342695] [zed.zed_node]:  * Debug Mapping: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.838458471] [zed.zed_node]:  * Debug Object Detection: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.838602278] [zed.zed_node]:  * Debug Body Tracking: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.838715878] [zed.zed_node]:  * Debug Streaming: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.838830917] [zed.zed_node]:  * Debug ROI: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.838972357] [zed.zed_node]:  * Debug Advanced: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.839141028] [zed.zed_node]: === SVO INPUT parameters ===[0m
+[smoother_server-13] [0m[INFO] [1773179638.838913925] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.839262372] [zed.zed_node]: === LOCAL STREAMING parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.839382691] [zed.zed_node]: === GENERAL parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.839523299] [zed.zed_node]:  * Camera model: zedxm - ZED X Mini[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.839637570] [zed.zed_node]:  * Camera name: zed[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.839796546] [zed.zed_node]:  * Camera SN: 0[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.839930753] [zed.zed_node]:  * Camera ID: -1[0m
+[smoother_server-13] [0m[INFO] [1773179638.840484895] [smoother_server]: Smoother Server has simple_smoother  smoothers available.[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.842086040] [zed.zed_node]:  * Camera timeout [sec]: 5[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.842232856] [zed.zed_node]:  * Camera reconnection temptatives: 5[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.842359479] [zed.zed_node]:  * Camera framerate: 15[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.842480535] [zed.zed_node]:  * GPU ID: -1[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.842595094] [zed.zed_node]:  * Asynchronous image retrieval: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.842751350] [zed.zed_node]:  * Image Validity Check: 1[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.842907573] [zed.zed_node]:  * Camera resolution: SVGA[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.843059668] [zed.zed_node]:  * Publishing resolution: CUSTOM[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.843218196] [zed.zed_node]:  * Publishing downscale factor: 2[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.843352339] [zed.zed_node]:  * OpenCV custom calibration: [0m
+[component_container_isolated-8] [0m[INFO] [1773179638.843472211] [zed.zed_node]:  * Camera self calibration: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.843582898] [zed.zed_node]:  * Camera flip: FALSE[0m
+[component_container_isolated-8] [33m[WARN] [1773179638.843714706] [zed.zed_node]: 'pub_frame_rate' cannot be bigger than 'grab_frame_rate'[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.843740434] [zed.zed_node]:  * Publish framerate [Hz]:  15[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.843763665] [zed.zed_node]: === VIDEO parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.843900497] [zed.zed_node]:  * Saturation: 4 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.844028208] [zed.zed_node]:  * Sharpness: 4 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.844146992] [zed.zed_node]:  * Gamma: 8 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.844260431] [zed.zed_node]:  * Auto Exposure/Gain: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.844406159] [zed.zed_node]:  * Exposure: 80 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.844586158] [zed.zed_node]:  * Gain: 80 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.844710094] [zed.zed_node]:  * Auto White Balance: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.844815501] [zed.zed_node]:  * White Balance Temperature: 42 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.844935949] [zed.zed_node]:  * ZED X Exposure time: 16666 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.845045452] [zed.zed_node]:  * ZED X Auto Exp. time range min: 28 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.845166092] [zed.zed_node]:  * ZED X Auto Exp. time range max: 16666 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.845301195] [zed.zed_node]:  * ZED X Exposure comp.: 50 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.845418443] [zed.zed_node]:  * ZED X Analog Gain: 8000 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.845534890] [zed.zed_node]:  * ZED X Auto Analog Gain range min: 1000 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.845687210] [zed.zed_node]:  * ZED X Auto Analog Gain range max: 16000 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.845808553] [zed.zed_node]:  * ZED X Digital Gain: 128 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.845924713] [zed.zed_node]:  * ZED X Auto Digital Gain range min: 1 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.846029768] [zed.zed_node]:  * ZED X Auto Digital Gain range max: 256 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.846144104] [zed.zed_node]:  * ZED X Auto Digital Gain range max: 50 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.846196776] [zed.zed_node]: === DEPTH parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.846359431] [zed.zed_node]:  * Depth mode: NEURAL LIGHT [4][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.846496582] [zed.zed_node]:  * Min depth [m]: 0.3[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.846616646] [zed.zed_node]:  * Max depth [m]: 10[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.846734661] [zed.zed_node]:  * Depth Stabilization: 30[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.846869285] [zed.zed_node]:  * OpenNI mode (16bit point cloud): FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.846994820] [zed.zed_node]:  * Point cloud rate [Hz]: 15[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.847144452] [zed.zed_node]:  * Point cloud resolution: COMPACT[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.847256387] [zed.zed_node]:  * Depth Confidence: 95 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.847381251] [zed.zed_node]:  * Depth Texture Confidence: 100 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.847499074] [zed.zed_node]:  * Remove saturated areas: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.847526818] [zed.zed_node]: === GNSS FUSION parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.850834485] [zed.zed_node]:  * GNSS fusion enabled: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.850900597] [zed.zed_node]: === POSITIONAL TRACKING parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.851588370] [zed.zed_node]:  * Positional tracking enabled: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.852315727] [zed.zed_node]:  * Positional tracking mode: GEN 1[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.852687277] [zed.zed_node]:  * Map frame id: map[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.853097740] [zed.zed_node]:  * Odometry frame id: odom[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.853489482] [zed.zed_node]:  * Broadcast Odometry TF: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.853862760] [zed.zed_node]:  * Depth minimum range: 0[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.854280263] [zed.zed_node]:  * TF timestamp offset: 0 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.854625957] [zed.zed_node]:  * Path publishing rate: 2 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.854985956] [zed.zed_node]:  * Path history lenght: -1[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.855365538] [zed.zed_node]:  * Initial pose: [0,0,0,0,0,0,][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.855791169] [zed.zed_node]:  * Area Memory: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.856158815] [zed.zed_node]:  * Area Memory DB: [0m
+[component_container_isolated-8] [0m[INFO] [1773179638.856595101] [zed.zed_node]:  * Camera is static: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.856993340] [zed.zed_node]:  * Gravity as origin: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.857465946] [zed.zed_node]:  * IMU Fusion: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.857888056] [zed.zed_node]:  * Floor Alignment: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.858255191] [zed.zed_node]:  * Reset Odometry with Loop Closure: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.858647733] [zed.zed_node]:  * 2D mode: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.859047251] [zed.zed_node]:  * Reset pose with SVO loop: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.859117299] [zed.zed_node]: === Region of Interest parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.859678513] [zed.zed_node]:  * Automatic ROI generation: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.860141551] [zed.zed_node]:  * Manual ROI polygon: [][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.860213871] [zed.zed_node]: === SENSORS STACK parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.860633709] [zed.zed_node]:  * Broadcast IMU TF [not for ZED]: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.861113099] [zed.zed_node]:  * Sensors Camera Sync: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.861522345] [zed.zed_node]:  * Sensors publishing rate [Hz]: 100 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.861568905] [zed.zed_node]: === Spatial Mapping parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.865450841] [zed.zed_node]:  * Spatial Mapping Enabled: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.866031255] [zed.zed_node]:  * Spatial Mapping resolution [m]: 0.05[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.866637909] [zed.zed_node]:  * 3D Max Mapping range [m]: 5[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.867014867] [zed.zed_node]:  * Map publishing rate [Hz]: 1 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.868046895] [zed.zed_node]:  * Clicked point topic: /clicked_point[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.868406157] [zed.zed_node]:  * Plane Det. Max Dist. Thresh.: 0.15[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.868985227] [zed.zed_node]:  * Plane Det. Normals Sim. Thresh.: 15[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.869178730] [zed.zed_node]: === OBJECT DETECTION parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.871906239] [zed.zed_node]:  * Object Det. enabled: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.872477213] [zed.zed_node]:  * Object Det. allow reduced precision: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.873222522] [zed.zed_node]:  * Object Det. maximum range [m]: 20[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.873657464] [zed.zed_node]:  * Object Det. prediction timeout [sec]: 2[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.876466125] [zed.zed_node]:  * Object Det. tracking: TRUE[0m
+[lifecycle_manager-19] [0m[INFO] [1773179638.877085258] [lifecycle_manager_navigation]: [34m[1mConfiguring planner_server[0m[0m[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.877367081] [zed.zed_node]:  * Object Filtering mode: NMS3D[0m
+[planner_server-14] [0m[INFO] [1773179638.877767559] [planner_server]: Configuring[0m
+[planner_server-14] [0m[INFO] [1773179638.877852039] [global_costmap.global_costmap]: Configuring[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.878771043] [zed.zed_node]:  * Object Det. model: MULTI CLASS BOX FAST[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.879234690] [zed.zed_node]:  * MultiClassBox people: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.879985886] [zed.zed_node]:  * MultiClassBox vehicles: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.880867323] [zed.zed_node]:  * MultiClassBox bags: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.881178266] [zed.zed_node]:  * MultiClassBox animals: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.882245237] [zed.zed_node]:  * MultiClassBox electronics: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.882810163] [zed.zed_node]:  * MultiClassBox fruits and vegetables: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.883127858] [zed.zed_node]:  * MultiClassBox sport-related objects: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.883920975] [zed.zed_node]:  * MultiClassBox people confidence: 65 [DYNAMIC][0m
+[planner_server-14] [0m[INFO] [1773179638.883495696] [global_costmap.global_costmap]: Using plugin "static_layer"[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.885805287] [zed.zed_node]:  * MultiClassBox vehicles confidence: 60 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.887634751] [zed.zed_node]:  * MultiClassBox bags confidence: 40 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.891061394] [zed.zed_node]:  * MultiClassBox animals confidence: 40 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.891678799] [zed.zed_node]:  * MultiClassBox electronics confidence: 45 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.892070797] [zed.zed_node]:  * MultiClassBox fruits and vegetables confidence: 50 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.892436748] [zed.zed_node]:  * MultiClassBox sport-related objects confidence: 30 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.892511852] [zed.zed_node]: === Body Track. parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.892900842] [zed.zed_node]:  * Body Track. enabled: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.893278697] [zed.zed_node]:  * Body Track. model: HUMAN BODY MEDIUM[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.893640423] [zed.zed_node]:  * Body Track. format: BODY 38[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.894148933] [zed.zed_node]:  * Body Track. allow reduced precision: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.894513188] [zed.zed_node]:  * Body Track. maximum range [m]: 15[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.894889346] [zed.zed_node]:  * Body Track. KP selection: FULL[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.895256801] [zed.zed_node]:  * Body fitting: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.895611903] [zed.zed_node]:  * Body joints tracking: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.895986238] [zed.zed_node]:  * Body Track. prediction timeout [sec]: 0.5[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.896386588] [zed.zed_node]:  * Body Track. confidence thresh.: 50 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.896748570] [zed.zed_node]:  * Body Track. min. KP thresh.: 5 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1773179638.896807162] [zed.zed_node]: === STREAMING SERVER parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.897324376] [zed.zed_node]:  * Streaming Server enabled: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.897706679] [zed.zed_node]:  * Stream codec: H264[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.898127701] [zed.zed_node]:  * Stream port: 30000[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.898637523] [zed.zed_node]:  * Stream bitrate: 12500[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.899005041] [zed.zed_node]:  * Stream GOP size: -1[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.899451728] [zed.zed_node]:  * Stream Chunk size: 16084[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.899799758] [zed.zed_node]:  * Adaptive bitrate: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.900265708] [zed.zed_node]:  * Target frame rate:0[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.900323404] [zed.zed_node]: === ADVANCED parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.900642955] [zed.zed_node]:  * Thread sched. policy: SCHED_BATCH[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.900794826] [zed.zed_node]: === SERVICES ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.903243680] [zed.zed_node]:  * '/zed/zed_node/reset_odometry'[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.905430519] [zed.zed_node]:  * '/zed/zed_node/reset_pos_tracking'[0m
+[planner_server-14] [0m[INFO] [1773179638.906814994] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.908634186] [zed.zed_node]:  * '/zed/zed_node/set_pose'[0m
+[planner_server-14] [0m[INFO] [1773179638.909808581] [global_costmap.global_costmap]: Subscribing to updates[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.910945825] [zed.zed_node]:  * '/zed/zed_node/enable_obj_det'[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.913076536] [zed.zed_node]:  * '/zed/zed_node/enable_body_trk'[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.915217968] [zed.zed_node]:  * '/zed/zed_node/enable_mapping'[0m
+[odas_server_node.py-20] 1773179638.913219 [0]    python3: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[planner_server-14] [0m[INFO] [1773179638.913539894] [global_costmap.global_costmap]: Initialized plugin "static_layer"[0m
+[planner_server-14] [0m[INFO] [1773179638.913659414] [global_costmap.global_costmap]: Using plugin "inflation_layer"[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.917291463] [zed.zed_node]:  * '/zed/zed_node/enable_streaming'[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.920618778] [zed.zed_node]:  * '/zed/zed_node/start_svo_rec'[0m
+[planner_server-14] [0m[INFO] [1773179638.922017940] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.922876528] [zed.zed_node]:  * '/zed/zed_node/stop_svo_rec'[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.926787585] [zed.zed_node]:  * '/zed/zed_node/set_roi'[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.928972024] [zed.zed_node]:  * '/zed/zed_node/reset_roi'[0m
+[component_container_isolated-8] [0m[INFO] [1773179638.929170967] [zed.zed_node]: === STARTING CAMERA ===[0m
+[planner_server-14] [31m[ERROR] [1773179638.935076031] [global_costmap.global_costmap]: The configured inflation radius (0.350) is smaller than the computed inscribed radius (0.491) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions[0m
+[go2_state-4] 1773179638.951219 [0]  go2_state: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[planner_server-14] [0m[INFO] [1773179638.952468056] [planner_server]: Created global planner plugin GridBased of type nav2_smac_planner/SmacPlannerHybrid[0m
+[planner_server-14] [0m[INFO] [1773179638.952567288] [planner_server]: Configuring GridBased of type SmacPlannerHybrid[0m
+[planner_server-14] [0m[INFO] [1773179638.970973901] [planner_server]: Even sized heuristic lookup table size set 400.000000, increasing size by 1 to make odd[0m
+[odas_leak_classifier_node.py-21] 1773179639.056809 [0]    python3: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[component_container_isolated-8] [0m[INFO] [1773179639.109948537] [zed.zed_node]: ZED SDK Version: 5.0.0 - Build 99275_9ed05d06[0m
+[component_container_isolated-8] [0m[INFO] [1773179639.117766777] [zed.zed_node]: === CAMERA OPENING ===[0m
+[voice_stt_vosk_node-23] 1773179639.119368 [0] voice_stt_: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[log_pose_action_server-22] 1773179639.201935 [0] log_pose_a: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[go2_state-4] [0m[INFO] [1773179639.250127968] [go2_state]: state publisher has started[0m
+[go2_lidar-10] 1773179639.287168 [0]  go2_lidar: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[base_to_base_tf-2] 1773179639.343727 [0] base_to_ba: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[voice_command_node-24] 1773179639.353758 [0] voice_comm: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[odom_node-5] 1773179639.421847 [0]  odom_node: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[log_pose_action_server-22] [0m[INFO] [1773179639.448948857] [log_pose_action_server]: Log-pose action server ready (RTAB-Map pose)[0m
+[go2_lidar-10] [0m[INFO] [1773179639.454998784] [go2_lidar]: go2 lidar node has started[0m
+[rviz2-25] [0m[INFO] [1773179639.536942068] [rviz2]: Stereo is NOT SUPPORTED[0m
+[rviz2-25] [0m[INFO] [1773179639.537108307] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)[0m
+[base_to_base_tf-2] [0m[INFO] [1773179639.559234585] [base_to_base_tf]: base_footprint to base_link tf has started[0m
+[odom_node-5] [0m[INFO] [1773179639.572401988] [odom_node]: odom has started[0m
+[rviz2-25] [0m[INFO] [1773179639.576535347] [rviz2]: Stereo is NOT SUPPORTED[0m
+[voice_command_node-24] [0m[INFO] [1773179639.592184947] [voice_command_node]: Voice command node ready. mode="sport_test", topic="/voice/transcript", wake_phrases=['hey amigo', 'amigo'], search_phrases=['look for a leak'], stand_up_phrases=['stand up', 'get up'], lay_down_phrases=['lay down', 'lie down', 'down'], require_wake=True, action="search".[0m
+[component_container_isolated-8] [2026-03-10 21:53:59 UTC][ZED][INFO] Logging level INFO
+[component_container_isolated-8] [2026-03-10 21:53:59 UTC][ZED][INFO] [Init]  Depth mode: NEURAL LIGHT
+[async_slam_toolbox_node-11] [0m[INFO] [1773179639.988209740] [slam_toolbox]: Message Filter dropping message: frame 'laser' at time 1773179638.445 for reason 'discarding message because the queue is full'[0m
+[async_slam_toolbox_node-11] [33m[WARN] [1773179639.988805673] [slam_toolbox]: minimum laser range setting (0.0 m) exceeds the capabilities of the used Lidar (0.1 m)[0m
+[async_slam_toolbox_node-11] Registering sensor: [Custom Described Lidar]
+[voice_stt_vosk_node-23] [0m[INFO] [1773179640.027859338] [voice_stt_vosk_node]: Loaded Vosk model with grammar filter: ['hey amigo', 'amigo', 'hey amigo stand up', 'amigo stand up', 'hey amigo lay down', 'amigo lay down', 'hey amigo can you stand up', 'amigo can you stand up', 'hey amigo can you get up', 'amigo can you get up', 'hey amigo can you lay down', 'amigo can you lay down', 'hey amigo can you lie down', 'amigo can you lie down', 'hey amigo can you look for a leak', 'amigo can you look for a leak', 'stand up', 'lay down', 'lie down', 'look for a leak'][0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179640.028513768] [voice_stt_vosk_node]: Vosk STT ready. audio_topic="/sss", transcript_topic="/voice/transcript", sample_rate=16000, channel_index=0, channel_strategy="max_rms", max_alternatives=3.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179640.401304510] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-120.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179641.407316807] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-40.2,-120.0,-120.0,-120.0[0m
+[rviz2-25] [31m[ERROR] [1773179641.968872092] [rviz2]: Lookup would require extrapolation into the future.  Requested time 1773179641.922067 but the latest data is at time 1773179641.920333, when looking up transform from frame [laser] to frame [map][0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179642.410470809] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-38.7,-120.0,-120.0,-120.0[0m
+[component_container_isolated-8] [2026-03-10 21:54:02 UTC][ZED][INFO] [Init]  Camera FW version: 2001
+[component_container_isolated-8] [2026-03-10 21:54:02 UTC][ZED][INFO] [Init]  Video mode: SVGA@15
+[component_container_isolated-8] [2026-03-10 21:54:02 UTC][ZED][INFO] [Init]  Serial Number: S/N 56236837
+[component_container_isolated-8] [0m[INFO] [1773179642.982754402] [zed.zed_node]:  * ZED SDK running on GPU #0[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.982873282] [zed.zed_node]:  * Camera Model  -> ZED X Mini[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.982913794] [zed.zed_node]:  * Serial Number -> 56236837[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983033217] [zed.zed_node]:  * Focal Lenght	-> 2.18804 mm[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983067361] [zed.zed_node]:  * Input		-> GMSL[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983090977] [zed.zed_node]:  * Camera FW Version  -> 2001[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983115201] [zed.zed_node]:  * Sensors FW Version -> 1000[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983134401] [zed.zed_node]:  * Camera grab size -> 960x600[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983149569] [zed.zed_node]:  * Color/Depth publishing size -> 480x300[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983164385] [zed.zed_node]:  * Point Cloud publishing size -> 448x256[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983200512] [zed.zed_node]: === TF FRAMES ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983219616] [zed.zed_node]:  * Map			-> map[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983234912] [zed.zed_node]:  * Odometry		-> odom[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983249120] [zed.zed_node]:  * Base			-> zed_camera_link[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983263456] [zed.zed_node]:  * Camera		-> zed_camera_center[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983278976] [zed.zed_node]:  * Left			-> zed_left_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983297184] [zed.zed_node]:  * Left Optical		-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983311488] [zed.zed_node]:  * RGB			-> zed_left_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983324960] [zed.zed_node]:  * RGB Optical		-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983338304] [zed.zed_node]:  * Right			-> zed_right_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983351488] [zed.zed_node]:  * Right Optical		-> zed_right_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983365216] [zed.zed_node]:  * Depth			-> zed_left_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983378272] [zed.zed_node]:  * Depth Optical		-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983395584] [zed.zed_node]:  * Point Cloud		-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983409888] [zed.zed_node]:  * Disparity		-> zed_left_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983423583] [zed.zed_node]:  * Disparity Optical	-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983436735] [zed.zed_node]:  * Confidence		-> zed_left_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983450079] [zed.zed_node]:  * Confidence Optical	-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983523583] [zed.zed_node]:  * IMU			-> zed_imu_link[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.983572255] [zed.zed_node]: === PUBLISHED TOPICS ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.987102257] [zed.zed_node]: Advertised on topic: /zed/zed_node/status/health[0m
+[component_container_isolated-8] [0m[INFO] [1773179642.990866849] [zed.zed_node]: Advertised on topic: /zed/zed_node/status/heartbeat[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.139233254] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.154861574] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb/image_rect_color[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.154948038] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.159890930] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.167331507] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_gray/image_rect_gray[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.167476083] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.175997712] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.185915816] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_raw/image_raw_color[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.186001703] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_raw/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.191213970] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.199061522] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_raw_gray/image_raw_gray[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.199142098] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_raw_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.203962558] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.212037278] [zed.zed_node]: Advertised on topic: /zed/zed_node/left/image_rect_color[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.212159517] [zed.zed_node]: Advertised on topic: /zed/zed_node/left/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.217046473] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.225143144] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_gray/image_rect_gray[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.225220008] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.229960917] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.241033864] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_raw/image_raw_color[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.241148135] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_raw/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.248404906] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.256526089] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_raw_gray/image_raw_gray[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.256648328] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_raw_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.261960499] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.270292689] [zed.zed_node]: Advertised on topic: /zed/zed_node/right/image_rect_color[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.270379280] [zed.zed_node]: Advertised on topic: /zed/zed_node/right/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.275094781] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.282867933] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_gray/image_rect_gray[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.282950653] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.287911145] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.295562314] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_raw/image_raw_color[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.295642665] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_raw/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.300232407] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.313655968] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_raw_gray/image_raw_gray[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.313742976] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_raw_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.319136330] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.327335529] [zed.zed_node]: Advertised on topic: /zed/zed_node/depth/depth_registered[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.327421608] [zed.zed_node]: Advertised on topic: /zed/zed_node/depth/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.329656831] [zed.zed_node]: Advertised on topic: /zed/zed_node/depth/depth_info[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.334376396] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.341062385] [zed.zed_node]: Advertised on topic: /zed/zed_node/stereo/image_rect_color[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.345896157] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.352287747] [zed.zed_node]: Advertised on topic: /zed/zed_node/stereo_raw/image_raw_color[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.353770077] [zed.zed_node]: Advertised on topic: /zed/zed_node/confidence/confidence_map[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.357210159] [zed.zed_node]: Advertised on topic: /zed/zed_node/disparity/disparity_image[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.388925710] [zed.zed_node]: Advertised on topic: /zed/zed_node/point_cloud/cloud_registered[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.391475588] [zed.zed_node]: Advertised on topic: /zed/zed_node/pose[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.393680315] [zed.zed_node]: Advertised on topic: /zed/zed_node/pose/status[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.396242192] [zed.zed_node]: Advertised on topic: /zed/zed_node/pose_with_covariance[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.399717282] [zed.zed_node]: Advertised on topic: /zed/zed_node/odom[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.402553271] [zed.zed_node]: Advertised on topic: /zed/zed_node/path_map[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.405215852] [zed.zed_node]: Advertised on topic: /zed/zed_node/path_odom[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.409188796] [zed.zed_node]: Advertised on topic: /zed/plane_marker[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.412120528] [zed.zed_node]: Advertised on topic: /zed/plane[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.414809477] [zed.zed_node]: Advertised on topic: /zed/zed_node/imu/data[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.417644825] [zed.zed_node]: Advertised on topic: /zed/zed_node/imu/data_raw[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179643.419080499] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-47.5,-120.0,-120.0,-120.0[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.420279726] [zed.zed_node]: Advertised on topic: /zed/zed_node/temperature/imu[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.422809412] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_cam_imu_transform[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.422910500] [zed.zed_node]: Camera-IMU Translation: 
+[component_container_isolated-8]  0 -0.034502 -0.004356[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.422996067] [zed.zed_node]: Camera-IMU Rotation:
+[component_container_isolated-8] FFFF67FFC650
+[component_container_isolated-8] 0.999993 -0.003672 0.000780
+[component_container_isolated-8] 0.003676 0.999982 -0.004836
+[component_container_isolated-8] -0.000762 0.004838 0.999988
+[component_container_isolated-8] [0m
+[component_container_isolated-8] [0m[INFO] [1773179643.423038563] [zed.zed_node]: ===Subscribers ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.425637081] [zed.zed_node]:  * Plane detection: '/clicked_point'[0m
+[planner_server-14] [0m[INFO] [1773179643.555483305] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 148 X 76 at 0.050000 m/pix[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.570565803] [zed.zed_node]: === Starting Positional Tracking ===[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.570706251] [zed.zed_node]:  * Waiting for valid static transformations...[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.570865002] [zed.zed_node]:  Static transform ref. CMOS Sensor to Base [zed_left_camera_frame -> zed_camera_link][0m
+[component_container_isolated-8] [0m[INFO] [1773179643.570941578] [zed.zed_node]:   * Translation: {0.010,-0.025,-0.016}[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.570975305] [zed.zed_node]:   * Rotation: {0.000,-0.000,0.000}[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.571055625] [zed.zed_node]:  Static transform ref. CMOS Sensor to Camera Center [zed_left_camera_frame -> zed_camera_center][0m
+[component_container_isolated-8] [0m[INFO] [1773179643.571088713] [zed.zed_node]:   * Translation: {0.010,-0.025,0.000}[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.571137641] [zed.zed_node]:   * Rotation: {0.000,-0.000,0.000}[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.571195977] [zed.zed_node]:  Static transform Camera Center to Base [zed_camera_center -> zed_camera_link][0m
+[component_container_isolated-8] [0m[INFO] [1773179643.571226696] [zed.zed_node]:   * Translation: {0.000,0.000,-0.016}[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.571247624] [zed.zed_node]:   * Rotation: {0.000,-0.000,0.000}[0m
+[component_container_isolated-8] [0m[INFO] [1773179643.572385348] [zed.zed_node]: Initial ZED left camera pose (ZED pos. tracking): [0m
+[component_container_isolated-8] [0m[INFO] [1773179643.572472739] [zed.zed_node]:  * T: [-0.01,0.025,0.016][0m
+[component_container_isolated-8] [0m[INFO] [1773179643.572505795] [zed.zed_node]:  * Q: [0,0,0,1][0m
+[rviz2-25] [0m[INFO] [1773179643.600369298] [rviz2]: Trying to create a map of size 148 x 76 using 1 swatches[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179644.425326869] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-41.6,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179645.430204731] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-43.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179645.603272442] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 200.837433, "text": ""}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179645.603864920] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179646.440926534] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-49.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179647.443863536] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.2,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179648.452590560] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.9,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179649.201749904] [voice_stt_vosk_node]: Partial: "hey"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179649.453157935] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179650.454945655] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179651.458345430] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.2,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179652.464184298] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-46.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179653.471646773] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-41.6,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179654.474286290] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-43.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179655.481918136] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-43.8,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179656.488603520] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.8,-120.0,-120.0,-120.0[0m
+[planner_server-14] [0m[INFO] [1773179657.007059382] [planner_server]: Configured plugin GridBased of type SmacPlannerHybrid with maximum iterations 1000000, max on approach iterations 1000, and allowing unknown traversal. Tolerance 0.25.Using motion model: Reeds-Shepp.[0m
+[planner_server-14] [0m[INFO] [1773179657.007217205] [planner_server]: Planner Server has GridBased  planners available.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.025937033] [lifecycle_manager_navigation]: [34m[1mConfiguring behavior_server[0m[0m[0m
+[behavior_server-15] [0m[INFO] [1773179657.026447687] [behavior_server]: Configuring[0m
+[behavior_server-15] [0m[INFO] [1773179657.045451641] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors/Spin[0m
+[behavior_server-15] [0m[INFO] [1773179657.048788075] [behavior_server]: Configuring spin[0m
+[behavior_server-15] [0m[INFO] [1773179657.066100580] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp[0m
+[behavior_server-15] [0m[INFO] [1773179657.068914553] [behavior_server]: Configuring backup[0m
+[behavior_server-15] [0m[INFO] [1773179657.082833408] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading[0m
+[behavior_server-15] [0m[INFO] [1773179657.084775448] [behavior_server]: Configuring drive_on_heading[0m
+[behavior_server-15] [0m[INFO] [1773179657.096125481] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors/AssistedTeleop[0m
+[behavior_server-15] [0m[INFO] [1773179657.099004669] [behavior_server]: Configuring assisted_teleop[0m
+[behavior_server-15] [0m[INFO] [1773179657.115640793] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait[0m
+[behavior_server-15] [0m[INFO] [1773179657.117208819] [behavior_server]: Configuring wait[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.130879419] [lifecycle_manager_navigation]: [34m[1mConfiguring bt_navigator[0m[0m[0m
+[bt_navigator-16] [0m[INFO] [1773179657.131329721] [bt_navigator]: Configuring[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.284155239] [lifecycle_manager_navigation]: [34m[1mConfiguring waypoint_follower[0m[0m[0m
+[waypoint_follower-17] [0m[INFO] [1773179657.285476802] [waypoint_follower]: Configuring[0m
+[waypoint_follower-17] [0m[INFO] [1773179657.303151673] [waypoint_follower]: Created waypoint_task_executor : wait_at_waypoint of type nav2_waypoint_follower::WaitAtWaypoint[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.306064877] [lifecycle_manager_navigation]: [34m[1mConfiguring velocity_smoother[0m[0m[0m
+[velocity_smoother-18] [0m[INFO] [1773179657.306665099] [velocity_smoother]: Configuring velocity smoother[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.311553975] [lifecycle_manager_navigation]: [34m[1mActivating controller_server[0m[0m[0m
+[controller_server-12] [0m[INFO] [1773179657.312061429] [controller_server]: Activating[0m
+[controller_server-12] [0m[INFO] [1773179657.312170452] [local_costmap.local_costmap]: Activating[0m
+[controller_server-12] [0m[INFO] [1773179657.312203956] [local_costmap.local_costmap]: Checking transform[0m
+[controller_server-12] [0m[INFO] [1773179657.312369428] [local_costmap.local_costmap]: start[0m
+[controller_server-12] [0m[INFO] [1773179657.313359152] [local_costmap.local_costmap]: 3d_lidar_layer was activated.[0m
+[controller_server-12] [33m[WARN] [1773179657.414398770] [controller_server]: Parameter controller_server.verbose not found[0m
+[controller_server-12] [0m[INFO] [1773179657.415905804] [controller_server]: Optimizer reset[0m
+[controller_server-12] [0m[INFO] [1773179657.416266730] [MPPIController]: Activated MPPI Controller: FollowPath[0m
+[controller_server-12] [0m[INFO] [1773179657.416309834] [controller_server]: Creating bond (controller_server) to lifecycle manager.[0m
+[rviz2-25] [0m[INFO] [1773179657.430909454] [rviz2]: Trying to create a map of size 120 x 120 using 1 swatches[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179657.495794372] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-42.3,-120.0,-120.0,-120.0[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.525307052] [lifecycle_manager_navigation]: Server controller_server connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.525408747] [lifecycle_manager_navigation]: [34m[1mActivating smoother_server[0m[0m[0m
+[smoother_server-13] [0m[INFO] [1773179657.526014217] [smoother_server]: Activating[0m
+[smoother_server-13] [0m[INFO] [1773179657.526092840] [smoother_server]: Creating bond (smoother_server) to lifecycle manager.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.630888315] [lifecycle_manager_navigation]: Server smoother_server connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.630971931] [lifecycle_manager_navigation]: [34m[1mActivating planner_server[0m[0m[0m
+[planner_server-14] [0m[INFO] [1773179657.631531577] [planner_server]: Activating[0m
+[planner_server-14] [0m[INFO] [1773179657.631623928] [global_costmap.global_costmap]: Activating[0m
+[planner_server-14] [0m[INFO] [1773179657.631653336] [global_costmap.global_costmap]: Checking transform[0m
+[planner_server-14] [0m[INFO] [1773179657.631816535] [global_costmap.global_costmap]: start[0m
+[rviz2-25] [0m[INFO] [1773179657.654553626] [rviz2]: Trying to create a map of size 148 x 76 using 1 swatches[0m
+[planner_server-14] [0m[INFO] [1773179657.682036682] [planner_server]: Activating plugin GridBased of type SmacPlannerHybrid[0m
+[planner_server-14] [0m[INFO] [1773179657.683659683] [planner_server]: Creating bond (planner_server) to lifecycle manager.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.791331658] [lifecycle_manager_navigation]: Server planner_server connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.791422794] [lifecycle_manager_navigation]: [34m[1mActivating behavior_server[0m[0m[0m
+[behavior_server-15] [0m[INFO] [1773179657.792080935] [behavior_server]: Activating[0m
+[behavior_server-15] [0m[INFO] [1773179657.792148583] [behavior_server]: Activating spin[0m
+[behavior_server-15] [0m[INFO] [1773179657.792179111] [behavior_server]: Activating backup[0m
+[behavior_server-15] [0m[INFO] [1773179657.792200743] [behavior_server]: Activating drive_on_heading[0m
+[behavior_server-15] [0m[INFO] [1773179657.792221222] [behavior_server]: Activating assisted_teleop[0m
+[behavior_server-15] [0m[INFO] [1773179657.792239750] [behavior_server]: Activating wait[0m
+[behavior_server-15] [0m[INFO] [1773179657.792264582] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.899447503] [lifecycle_manager_navigation]: Server behavior_server connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179657.899556815] [lifecycle_manager_navigation]: [34m[1mActivating bt_navigator[0m[0m[0m
+[bt_navigator-16] [0m[INFO] [1773179657.900249644] [bt_navigator]: Activating[0m
+[bt_navigator-16] [0m[INFO] [1773179657.978289324] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179658.083545565] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179658.083645693] [lifecycle_manager_navigation]: [34m[1mActivating waypoint_follower[0m[0m[0m
+[waypoint_follower-17] [0m[INFO] [1773179658.084771576] [waypoint_follower]: Activating[0m
+[waypoint_follower-17] [0m[INFO] [1773179658.084861688] [waypoint_follower]: Creating bond (waypoint_follower) to lifecycle manager.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179658.191321348] [lifecycle_manager_navigation]: Server waypoint_follower connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179658.191420995] [lifecycle_manager_navigation]: [34m[1mActivating velocity_smoother[0m[0m[0m
+[velocity_smoother-18] [0m[INFO] [1773179658.192444895] [velocity_smoother]: Activating[0m
+[velocity_smoother-18] [0m[INFO] [1773179658.192588639] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179658.301550432] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1773179658.301642304] [lifecycle_manager_navigation]: [34m[1mManaged nodes are active[0m[0m[0m
+[lifecycle_manager-19] [0m[INFO] [1773179658.301668128] [lifecycle_manager_navigation]: [34m[1mCreating bond timer...[0m[0m[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179658.503541860] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-46.2,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179659.506843445] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.2,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179660.512788152] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-50.3,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179661.523809317] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-36.9,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179661.682097211] [voice_stt_vosk_node]: Partial: "hey amigo"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179662.528020843] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-42.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179662.646050023] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 703.498474, "result": [{"end": 20.91, "start": 5.04, "word": "hey"}, {"end": 21.33, "start": 20.91, "word": "amigo"}], "text": "hey amigo"}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179662.647447617] [voice_stt_vosk_node]: Transcript: "hey amigo"[0m
+[voice_command_node-24] [0m[INFO] [1773179662.649997303] [voice_command_node]: Transcript: "hey amigo"[0m
+[voice_command_node-24] [0m[INFO] [1773179662.650648980] [voice_command_node]: Wake phrase heard. Command window open for 8.0s.[0m
+[voice_command_node-24] [0m[INFO] [1773179662.651233490] [voice_command_node]: Debug: no sport intent match for "hey amigo". stand_up=['stand up', 'get up'], lay_down=['lay down', 'lie down', 'down'].[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179663.124162748] [voice_stt_vosk_node]: Partial: "amigo"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179663.369936075] [voice_stt_vosk_node]: Partial: "amigo can"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179663.538153752] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-38.4,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179663.613365955] [voice_stt_vosk_node]: Partial: "amigo can you"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179663.844800237] [voice_stt_vosk_node]: Partial: "amigo can you stand"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179664.088146629] [voice_stt_vosk_node]: Partial: "amigo can you stand up"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179664.537429775] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179664.802160975] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 88.859543, "result": [{"end": 22.65, "start": 22.26, "word": "amigo"}, {"end": 22.92, "start": 22.74, "word": "can"}, {"end": 23.01, "start": 22.92, "word": "you"}, {"end": 23.34, "start": 23.01, "word": "stand"}, {"end": 23.52, "start": 23.34, "word": "up"}], "text": "amigo can you stand up"}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179664.803276587] [voice_stt_vosk_node]: Transcript: "amigo can you stand up"[0m
+[voice_command_node-24] [0m[INFO] [1773179664.803632521] [voice_command_node]: Transcript: "amigo can you stand up"[0m
+[voice_command_node-24] [0m[INFO] [1773179664.804245319] [voice_command_node]: Wake phrase heard. Command window open for 8.0s.[0m
+[voice_command_node-24] [0m[INFO] [1773179664.805273634] [voice_command_node]: Published sport command "stand_up" (api_id=1004) to "/api/sport/request".[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179665.544691811] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179666.481647799] [voice_stt_vosk_node]: Partial: "hey"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179666.552793298] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-33.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179667.560347682] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-42.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179668.566563700] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179669.569487987] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-47.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179669.850817996] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 165.408447, "text": ""}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179669.851795880] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179670.576997501] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-41.9,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179671.577095395] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-39.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179672.583498733] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-37.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179673.586362597] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-37.3,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179674.590854003] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-31.3,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179674.879323244] [voice_stt_vosk_node]: Partial: "hey amigo"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179675.600622090] [voice_stt_vosk_node]: Partial: "hey amigo lie down"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179675.602154724] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-43.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179676.564258429] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 244.989716, "result": [{"end": 34.23, "start": 29.28, "word": "hey"}, {"end": 34.65, "start": 34.23, "word": "amigo"}, {"end": 34.95, "start": 34.77, "word": "lie"}, {"end": 35.31, "start": 34.95, "word": "down"}], "text": "hey amigo lie down"}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179676.565673368] [voice_stt_vosk_node]: Transcript: "hey amigo lie down"[0m
+[voice_command_node-24] [0m[INFO] [1773179676.566754259] [voice_command_node]: Transcript: "hey amigo lie down"[0m
+[voice_command_node-24] [0m[INFO] [1773179676.571300608] [voice_command_node]: Wake phrase heard. Command window open for 8.0s.[0m
+[voice_command_node-24] [0m[INFO] [1773179676.575894285] [voice_command_node]: Published sport command "lay_down" (api_id=1005) to "/api/sport/request".[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179676.607137036] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-40.3,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179677.610189499] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-42.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179678.487744591] [voice_stt_vosk_node]: Partial: "hey"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179678.618239187] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-40.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179679.626033291] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-41.3,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179680.627336955] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179681.621660423] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 155.187744, "text": ""}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179681.622371812] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179681.627376143] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-40.8,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179682.631361681] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-43.0,-120.0,-120.0,-120.0[0m
+[component_container_isolated-8] [0m[INFO] [1773179682.664585479] [zed.zed_node]: === Odometry reset for LOOP CLOSURE event ===[0m
+[controller_server-12] [33m[WARN] [1773179682.712653920] [local_costmap.local_costmap]: Sensor origin at (-0.00, -0.00) is out of map bounds (-3.00, 51.10) to (2.98, 57.08). The costmap cannot raytrace for it.[0m
+[controller_server-12] [33m[WARN] [1773179682.812588642] [local_costmap.local_costmap]: Sensor origin at (-0.00, 34.97) is out of map bounds (-3.00, -2.95) to (2.98, 3.02). The costmap cannot raytrace for it.[0m
+[rviz2-25] [0m[INFO] [1773179683.576317445] [rviz2]: Trying to create a map of size 148 x 778 using 1 swatches[0m
+[planner_server-14] [0m[INFO] [1773179683.632019134] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 148 X 778 at 0.050000 m/pix[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179683.639272096] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-39.6,-120.0,-120.0,-120.0[0m
+[rviz2-25] [0m[INFO] [1773179684.058247704] [rviz2]: Trying to create a map of size 148 x 778 using 1 swatches[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179684.642390786] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-40.6,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179684.960587258] [voice_stt_vosk_node]: Partial: "amigo"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179685.650264718] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-29.2,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179685.685101821] [voice_stt_vosk_node]: Partial: "amigo stand"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179685.929901638] [voice_stt_vosk_node]: Partial: "amigo stand up"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179686.646831335] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 185.582062, "result": [{"end": 44.67, "start": 44.22, "word": "amigo"}, {"end": 45.24, "start": 44.79, "word": "stand"}, {"end": 45.39, "start": 45.24, "word": "up"}], "text": "amigo stand up"}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179686.648340320] [voice_stt_vosk_node]: Transcript: "amigo stand up"[0m
+[voice_command_node-24] [0m[INFO] [1773179686.649530332] [voice_command_node]: Transcript: "amigo stand up"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179686.650320632] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.9,-120.0,-120.0,-120.0[0m
+[voice_command_node-24] [0m[INFO] [1773179686.650325432] [voice_command_node]: Wake phrase heard. Command window open for 8.0s.[0m
+[voice_command_node-24] [0m[INFO] [1773179686.651229556] [voice_command_node]: Published sport command "stand_up" (api_id=1004) to "/api/sport/request".[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179687.604547807] [voice_stt_vosk_node]: Partial: "hey"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179687.659032925] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-37.8,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179688.672807083] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-46.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179689.676111970] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-48.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179690.684520099] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-38.8,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179691.691707046] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 164.25766, "text": ""}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179691.693028385] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179691.694856857] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-37.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179692.698723465] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179693.701462396] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179694.709543222] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-46.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179695.718113581] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-40.6,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179696.729528118] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 160.316986, "text": ""}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179696.730243347] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179696.733097735] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-46.3,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179697.740618558] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-42.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179698.748363923] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-41.7,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179699.756093893] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179700.762837531] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-40.9,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179701.792436974] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 169.043396, "text": ""}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179701.793508394] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179701.795814304] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-40.7,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179702.805945988] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-47.9,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179703.811901111] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-41.2,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179703.938809060] [voice_stt_vosk_node]: Partial: "amigo"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179704.406042050] [voice_stt_vosk_node]: Partial: "amigo can you"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179704.660973944] [voice_stt_vosk_node]: Partial: "amigo"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179704.813800377] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-39.6,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179704.884730608] [voice_stt_vosk_node]: Partial: "amigo can you lay down"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179705.381927792] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 114.968544, "result": [{"end": 63.48, "start": 63.15, "word": "amigo"}, {"end": 63.78, "start": 63.57, "word": "can"}, {"end": 63.84, "start": 63.78, "word": "you"}, {"end": 64.02, "start": 63.84, "word": "lay"}, {"end": 64.26, "start": 64.02, "word": "down"}], "text": "amigo can you lay down"}, {"confidence": 114.304901, "result": [{"end": 63.48, "start": 63.15, "word": "amigo"}, {"end": 64.02, "start": 63.84, "word": "lay"}, {"end": 64.26, "start": 64.02, "word": "down"}], "text": "amigo lay down"}, {"confidence": 114.015343, "result": [{"end": 63.48, "start": 63.15, "word": "amigo"}, {"end": 63.78, "start": 63.57, "word": "can"}, {"end": 63.84, "start": 63.78, "word": "you"}, {"end": 63.99, "start": 63.84, "word": "lie"}, {"end": 64.26, "start": 63.99, "word": "down"}], "text": "amigo can you lie down"}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179705.384369702] [voice_stt_vosk_node]: Transcript: "amigo can you lay down"[0m
+[voice_command_node-24] [0m[INFO] [1773179705.384914723] [voice_command_node]: Transcript: "amigo can you lay down"[0m
+[voice_command_node-24] [0m[INFO] [1773179705.385503905] [voice_command_node]: Wake phrase heard. Command window open for 8.0s.[0m
+[voice_command_node-24] [0m[INFO] [1773179705.386419901] [voice_command_node]: Published sport command "lay_down" (api_id=1005) to "/api/sport/request".[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179705.815510202] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-43.3,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179706.833243030] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-37.3,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179707.836544109] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.2,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179708.846980164] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-48.8,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179709.847401540] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-46.4,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179710.436160960] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 167.583344, "text": ""}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179710.436838269] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179710.856061983] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-47.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179711.862098691] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-42.4,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179712.874831818] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.3,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179713.877892919] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-42.8,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179714.878882252] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179715.452954848] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 149.550903, "text": ""}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179715.453528542] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179715.889149399] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.6,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179716.893161499] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.9,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179717.901426124] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-46.8,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179718.910731766] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-41.6,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179719.912206976] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-38.9,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179720.526979492] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 160.635284, "text": ""}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179720.527690209] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179720.920524523] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-38.4,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179721.448859258] [voice_stt_vosk_node]: Partial: "hey amigo"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179721.924277320] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-39.7,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179721.937104306] [voice_stt_vosk_node]: Partial: "hey amigo can"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179722.168019941] [voice_stt_vosk_node]: Partial: "hey amigo can you stand"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179722.420469821] [voice_stt_vosk_node]: Partial: "hey amigo can you stand up"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179722.925092719] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-46.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179723.138460396] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 96.360352, "result": [{"end": 80.73, "start": 79.92, "word": "hey"}, {"end": 81.18, "start": 80.73, "word": "amigo"}, {"end": 81.33, "start": 81.18, "word": "can"}, {"end": 81.42, "start": 81.33, "word": "you"}, {"end": 81.75, "start": 81.42, "word": "stand"}, {"end": 81.93, "start": 81.75, "word": "up"}], "text": "hey amigo can you stand up"}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179723.139832710] [voice_stt_vosk_node]: Transcript: "hey amigo can you stand up"[0m
+[voice_command_node-24] [0m[INFO] [1773179723.141221824] [voice_command_node]: Transcript: "hey amigo can you stand up"[0m
+[voice_command_node-24] [0m[INFO] [1773179723.142835353] [voice_command_node]: Wake phrase heard. Command window open for 8.0s.[0m
+[voice_command_node-24] [0m[INFO] [1773179723.144039124] [voice_command_node]: Published sport command "stand_up" (api_id=1004) to "/api/sport/request".[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179723.927059440] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-43.7,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179724.934300440] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-39.4,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179725.946082156] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-39.4,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179726.949334722] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-41.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179727.445404116] [voice_stt_vosk_node]: Partial: "can"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179727.703268467] [voice_stt_vosk_node]: Partial: "amigo"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179727.952649846] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.4,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179728.183697351] [voice_stt_vosk_node]: Partial: "amigo lay"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179728.415522195] [voice_stt_vosk_node]: Partial: "amigo lay down"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179728.960672693] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-42.4,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179729.134592534] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 210.656967, "result": [{"end": 87.27, "start": 86.82, "word": "amigo"}, {"end": 87.72, "start": 87.54, "word": "lay"}, {"end": 88.02, "start": 87.72, "word": "down"}], "text": "amigo lay down"}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179729.137169675] [voice_stt_vosk_node]: Transcript: "amigo lay down"[0m
+[voice_command_node-24] [0m[INFO] [1773179729.137193067] [voice_command_node]: Transcript: "amigo lay down"[0m
+[voice_command_node-24] [0m[INFO] [1773179729.138026280] [voice_command_node]: Wake phrase heard. Command window open for 8.0s.[0m
+[voice_command_node-24] [0m[INFO] [1773179729.139194563] [voice_command_node]: Published sport command "lay_down" (api_id=1005) to "/api/sport/request".[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179729.969598030] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-37.8,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179730.976630925] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-38.3,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179731.984103433] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-48.6,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179732.986651928] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.6,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179733.997098724] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-41.4,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179734.177801575] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 165.065979, "text": ""}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179734.178579971] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179734.891345178] [voice_stt_vosk_node]: Partial: "hey"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179735.001961125] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-34.9,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179735.137296072] [voice_stt_vosk_node]: Partial: "hey amigo"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179735.607506753] [voice_stt_vosk_node]: Partial: "hey amigo stand"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179735.857592381] [voice_stt_vosk_node]: Partial: "hey amigo stand up"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179736.007913505] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-50.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179736.572757672] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 96.325211, "result": [{"end": 94.35, "start": 94.2, "word": "hey"}, {"end": 94.77, "start": 94.35, "word": "amigo"}, {"end": 95.19, "start": 94.77, "word": "stand"}, {"end": 95.37, "start": 95.19, "word": "up"}], "text": "hey amigo stand up"}, {"confidence": 94.135635, "result": [{"end": 94.77, "start": 94.26, "word": "amigo"}, {"end": 95.19, "start": 94.77, "word": "stand"}, {"end": 95.37, "start": 95.19, "word": "up"}], "text": "amigo stand up"}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179736.574001634] [voice_stt_vosk_node]: Transcript: "hey amigo stand up"[0m
+[voice_command_node-24] [0m[INFO] [1773179736.574655519] [voice_command_node]: Transcript: "hey amigo stand up"[0m
+[voice_command_node-24] [0m[INFO] [1773179736.575514812] [voice_command_node]: Wake phrase heard. Command window open for 8.0s.[0m
+[voice_command_node-24] [0m[INFO] [1773179736.576543351] [voice_command_node]: Published sport command "stand_up" (api_id=1004) to "/api/sport/request".[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179737.016714958] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-40.9,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179738.018253305] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-47.2,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179739.021328828] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.4,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179740.023247874] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-39.6,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179741.025680740] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-41.6,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179741.626773836] [voice_stt_vosk_node]: Partial: "leak"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179741.854560229] [voice_stt_vosk_node]: Partial: "amigo"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179742.027072776] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-36.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179742.096328098] [voice_stt_vosk_node]: Partial: "amigo can"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179742.348352180] [voice_stt_vosk_node]: Partial: "amigo can you"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179742.574682323] [voice_stt_vosk_node]: Partial: "amigo can you lay down"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179743.027222673] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179743.297689684] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 255.347031, "result": [{"end": 101.28, "start": 100.86, "word": "amigo"}, {"end": 101.58, "start": 101.43, "word": "can"}, {"end": 101.67, "start": 101.58, "word": "you"}, {"end": 101.82, "start": 101.67, "word": "lay"}, {"end": 102.12, "start": 101.82, "word": "down"}], "text": "amigo can you lay down"}]}[0m
+[voice_command_node-24] [0m[INFO] [1773179743.298989070] [voice_command_node]: Transcript: "amigo can you lay down"[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179743.299233229] [voice_stt_vosk_node]: Transcript: "amigo can you lay down"[0m
+[voice_command_node-24] [0m[INFO] [1773179743.299613932] [voice_command_node]: Wake phrase heard. Command window open for 8.0s.[0m
+[voice_command_node-24] [0m[INFO] [1773179743.300529192] [voice_command_node]: Published sport command "lay_down" (api_id=1005) to "/api/sport/request".[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179744.033737181] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-40.4,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179745.040032264] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-37.1,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179746.042513217] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-40.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179747.049612165] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-48.8,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179748.058863871] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-47.5,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179748.350065927] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 167.762421, "text": ""}]}[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179748.350863268] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179749.066689437] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.0,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179750.073908444] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-44.2,-120.0,-120.0,-120.0[0m
+[voice_stt_vosk_node-23] [0m[INFO] [1773179751.076400301] [voice_stt_vosk_node]: AudioStats: selected_ch=0, dbfs=-45.1,-120.0,-120.0,-120.0[0m
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[waypoint_follower-17] [0m[INFO] [1773179751.126542743] [rclcpp]: signal_handler(signum=2)[0m
+[INFO] [async_slam_toolbox_node-11]: process has finished cleanly [pid 85419]
+[ERROR] [go2_lidar-10]: process has died [pid 85417, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/go2_lidar --ros-args -r __node:=go2_lidar'].
+[INFO] [ekf_node-6]: process has finished cleanly [pid 85409]
+[ERROR] [odom_node-5]: process has died [pid 85407, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/odom_node --ros-args -r __node:=odom_node'].
+[ERROR] [voice_stt_vosk_node-23]: process has died [pid 85500, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/voice_stt_vosk_node --ros-args -r __node:=voice_stt_vosk_node --params-file /tmp/launch_params_los1ohru'].
+[ERROR] [go2_state-4]: process has died [pid 85405, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/go2_state --ros-args -r __node:=go2_state'].
+[INFO] [odas_leak_classifier_node.py-21]: process has finished cleanly [pid 85483]
+[INFO] [planner_server-14]: process has finished cleanly [pid 85430]
+[INFO] [lifecycle_manager-19]: process has finished cleanly [pid 85473]
+[INFO] [robot_state_publisher-7]: process has finished cleanly [pid 85411]
+[INFO] [waypoint_follower-17]: process has finished cleanly [pid 85446]
+[INFO] [behavior_server-15]: process has finished cleanly [pid 85432]
+[ERROR] [voice_command_node-24]: process has died [pid 85502, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/voice_command_node --ros-args -r __node:=voice_command_node --params-file /tmp/launch_params_ygtjm4o4'].
+[INFO] [sllidar_node-9]: process has finished cleanly [pid 85415]
+[INFO] [velocity_smoother-18]: process has finished cleanly [pid 85468]
+[INFO] [odas_server_node.py-20]: process has finished cleanly [pid 85479]
+[INFO] [go2_driver_node-3]: process has finished cleanly [pid 85403]
+[ERROR] [base_to_base_tf-2]: process has died [pid 85401, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/base_to_base_tf --ros-args -r __node:=base_to_base_tf'].
+[INFO] [smoother_server-13]: process has finished cleanly [pid 85428]
+[INFO] [bt_navigator-16]: process has finished cleanly [pid 85434]
+[ERROR] [log_pose_action_server-22]: process has died [pid 85487, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/log_pose_action_server --ros-args -r __node:=log_pose_action_server --params-file /tmp/launch_params_u6temajz'].
+[ERROR] [rviz2-25]: process has died [pid 85513, exit code -11, cmd '/opt/ros/humble/lib/rviz2/rviz2 -d /home/castej-jetson/workspaces/amigo_ros2/install/go2_description/share/go2_description/config/nav_nvblox_config.rviz --ros-args'].
+[INFO] [controller_server-12]: process has finished cleanly [pid 85426]
+[lifecycle_manager-19] [0m[INFO] [1773179751.126539639] [rclcpp]: signal_handler(signum=2)[0m
+[velocity_smoother-18] [0m[INFO] [1773179751.126550551] [rclcpp]: signal_handler(signum=2)[0m
+[velocity_smoother-18] [0m[INFO] [1773179751.126696503] [velocity_smoother]: Running Nav2 LifecycleNode rcl preshutdown (velocity_smoother)[0m
+[velocity_smoother-18] [0m[INFO] [1773179751.126840854] [velocity_smoother]: Deactivating[0m
+[component_container_isolated-8] [0m[INFO] [1773179751.126570807] [rclcpp]: signal_handler(signum=2)[0m
+[planner_server-14] [0m[INFO] [1773179751.126644087] [rclcpp]: signal_handler(signum=2)[0m
+[rviz2-25] [0m[INFO] [1773179751.126527927] [rclcpp]: signal_handler(signum=2)[0m
+[smoother_server-13] [0m[INFO] [1773179751.126693559] [rclcpp]: signal_handler(signum=2)[0m
+[smoother_server-13] [0m[INFO] [1773179751.127368052] [smoother_server]: Running Nav2 LifecycleNode rcl preshutdown (smoother_server)[0m
+[lifecycle_manager-19] [0m[INFO] [1773179751.127164693] [lifecycle_manager_navigation]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager_navigation)[0m
+[lifecycle_manager-19] [0m[INFO] [1773179751.127235284] [lifecycle_manager_navigation]: [34m[1mTerminating bond timer...[0m[0m[0m
+[lifecycle_manager-19] [0m[INFO] [1773179751.419202616] [lifecycle_manager_navigation]: Destroying lifecycle_manager_navigation[0m
+[velocity_smoother-18] [0m[INFO] [1773179751.126881398] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.[0m
+[velocity_smoother-18] [0m[INFO] [1773179751.295743110] [velocity_smoother]: Cleaning up[0m
+[velocity_smoother-18] [0m[INFO] [1773179751.295906502] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.[0m
+[velocity_smoother-18] [0m[INFO] [1773179751.300311763] [velocity_smoother]: Destroying[0m
+[controller_server-12] [0m[INFO] [1773179751.126757750] [rclcpp]: signal_handler(signum=2)[0m
+[controller_server-12] [0m[INFO] [1773179751.128004561] [controller_server]: Running Nav2 LifecycleNode rcl preshutdown (controller_server)[0m
+[controller_server-12] [0m[INFO] [1773179751.128121745] [controller_server]: Deactivating[0m
+[controller_server-12] [0m[INFO] [1773179751.128161456] [MPPIController]: Deactivated MPPI Controller: FollowPath[0m
+[controller_server-12] [0m[INFO] [1773179751.128193072] [local_costmap.local_costmap]: Deactivating[0m
+[controller_server-12] [0m[INFO] [1773179751.128241808] [local_costmap.local_costmap]: 3d_lidar_layer was deactivated.[0m
+[controller_server-12] [0m[INFO] [1773179751.214249378] [controller_server]: Destroying bond (controller_server) to lifecycle manager.[0m
+[controller_server-12] [0m[INFO] [1773179751.304737792] [controller_server]: Cleaning up[0m
+[controller_server-12] [0m[INFO] [1773179751.306422457] [MPPIController]: Cleaned up MPPI Controller: FollowPath[0m
+[controller_server-12] [0m[INFO] [1773179751.306651192] [local_costmap.local_costmap]: Cleaning up[0m
+[controller_server-12] [0m[INFO] [1773179751.361155631] [controller_server]: Destroying bond (controller_server) to lifecycle manager.[0m
+[controller_server-12] [0m[INFO] [1773179751.416572003] [local_costmap.local_costmap]: Destroying[0m
+[controller_server-12] [0m[INFO] [1773179751.434698454] [controller_server]: Destroying[0m
+[log_pose_action_server-22] Traceback (most recent call last):
+[log_pose_action_server-22]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/log_pose_action_server", line 33, in <module>
+[log_pose_action_server-22]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'log_pose_action_server')())
+[log_pose_action_server-22]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/log_pose_action_server.py", line 70, in main
+[log_pose_action_server-22]     rclpy.spin(LogPoseActionServer())
+[log_pose_action_server-22]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[log_pose_action_server-22]     executor.spin_once()
+[log_pose_action_server-22]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[log_pose_action_server-22]     self._spin_once_impl(timeout_sec)
+[log_pose_action_server-22]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[log_pose_action_server-22]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[log_pose_action_server-22]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[log_pose_action_server-22]     return next(self._cb_iter)
+[log_pose_action_server-22]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[log_pose_action_server-22]     wait_set.wait(timeout_nsec)
+[log_pose_action_server-22] KeyboardInterrupt
+[odom_node-5] Traceback (most recent call last):
+[odom_node-5]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/odom_node", line 33, in <module>
+[odom_node-5]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'odom_node')())
+[odom_node-5]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/odom_node.py", line 62, in main
+[odom_node-5]     rclpy.spin(node=node)
+[odom_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[odom_node-5]     executor.spin_once()
+[odom_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[odom_node-5]     self._spin_once_impl(timeout_sec)
+[odom_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 746, in _spin_once_impl
+[odom_node-5]     handler()
+[odom_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 254, in __call__
+[odom_node-5]     self._handler.send(None)
+[odom_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 440, in handler
+[odom_node-5]     arg = take_from_wait_list(entity)
+[odom_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 365, in _take_subscription
+[odom_node-5]     msg_info = sub.handle.take_message(sub.msg_type, sub.raw)
+[odom_node-5] KeyboardInterrupt
+[smoother_server-13] [0m[INFO] [1773179751.127496371] [smoother_server]: Deactivating[0m
+[smoother_server-13] [0m[INFO] [1773179751.127529875] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.[0m
+[smoother_server-13] [0m[INFO] [1773179751.138187910] [smoother_server]: Cleaning up[0m
+[smoother_server-13] [0m[INFO] [1773179751.199609728] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.[0m
+[smoother_server-13] [0m[INFO] [1773179751.329043640] [smoother_server]: Destroying[0m
+[async_slam_toolbox_node-11] [0m[INFO] [1773179751.127806866] [rclcpp]: signal_handler(signum=2)[0m
+[robot_state_publisher-7] [0m[INFO] [1773179751.127902417] [rclcpp]: signal_handler(signum=2)[0m
+[waypoint_follower-17] [0m[INFO] [1773179751.128239280] [waypoint_follower]: Running Nav2 LifecycleNode rcl preshutdown (waypoint_follower)[0m
+[waypoint_follower-17] [0m[INFO] [1773179751.128393679] [waypoint_follower]: Deactivating[0m
+[waypoint_follower-17] [0m[INFO] [1773179751.128436591] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.[0m
+[waypoint_follower-17] [0m[INFO] [1773179751.152166058] [waypoint_follower]: Cleaning up[0m
+[waypoint_follower-17] [0m[INFO] [1773179751.160773861] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.[0m
+[waypoint_follower-17] [0m[INFO] [1773179751.232108533] [waypoint_follower]: Destroying[0m
+[go2_lidar-10] Traceback (most recent call last):
+[go2_lidar-10]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/go2_lidar", line 33, in <module>
+[go2_lidar-10]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'go2_lidar')())
+[go2_lidar-10]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/go2_lidar.py", line 34, in main
+[go2_lidar-10]     rclpy.spin(node=node)
+[go2_lidar-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[go2_lidar-10]     executor.spin_once()
+[go2_lidar-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[go2_lidar-10]     self._spin_once_impl(timeout_sec)
+[go2_lidar-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[go2_lidar-10]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[go2_lidar-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[go2_lidar-10]     return next(self._cb_iter)
+[go2_lidar-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[go2_lidar-10]     wait_set.wait(timeout_nsec)
+[go2_lidar-10] KeyboardInterrupt
+[planner_server-14] [0m[INFO] [1773179751.128543471] [planner_server]: Running Nav2 LifecycleNode rcl preshutdown (planner_server)[0m
+[planner_server-14] [0m[INFO] [1773179751.128657390] [planner_server]: Deactivating[0m
+[planner_server-14] [0m[INFO] [1773179751.128709326] [global_costmap.global_costmap]: Deactivating[0m
+[planner_server-14] [0m[INFO] [1773179751.232430932] [planner_server]: Deactivating plugin GridBased of type SmacPlannerHybrid[0m
+[planner_server-14] [0m[INFO] [1773179751.232519828] [planner_server]: Destroying bond (planner_server) to lifecycle manager.[0m
+[planner_server-14] [0m[INFO] [1773179751.313106556] [planner_server]: Cleaning up[0m
+[planner_server-14] [0m[INFO] [1773179751.337892787] [global_costmap.global_costmap]: Cleaning up[0m
+[planner_server-14] [0m[INFO] [1773179751.346525390] [planner_server]: Cleaning up plugin GridBased of type SmacPlannerHybrid[0m
+[planner_server-14] [0m[INFO] [1773179751.348404358] [planner_server]: Destroying plugin GridBased of type SmacPlannerHybrid[0m
+[planner_server-14] [0m[INFO] [1773179751.356545507] [planner_server]: Destroying bond (planner_server) to lifecycle manager.[0m
+[planner_server-14] [0m[INFO] [1773179751.389895701] [global_costmap.global_costmap]: Destroying[0m
+[planner_server-14] [0m[INFO] [1773179751.404620598] [planner_server]: Destroying[0m
+[go2_driver_node-3] [0m[INFO] [1773179751.128727470] [rclcpp]: signal_handler(signum=2)[0m
+[ekf_node-6] [0m[INFO] [1773179751.129335179] [rclcpp]: signal_handler(signum=2)[0m
+[robot_state_publisher-1] [0m[INFO] [1773179751.130321351] [rclcpp]: signal_handler(signum=2)[0m
+[behavior_server-15] [0m[INFO] [1773179751.130314311] [rclcpp]: signal_handler(signum=2)[0m
+[behavior_server-15] [0m[INFO] [1773179751.130550342] [behavior_server]: Running Nav2 LifecycleNode rcl preshutdown (behavior_server)[0m
+[behavior_server-15] [0m[INFO] [1773179751.130715141] [behavior_server]: Deactivating[0m
+[behavior_server-15] [0m[INFO] [1773179751.130778117] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.[0m
+[behavior_server-15] [0m[INFO] [1773179751.141459256] [behavior_server]: Cleaning up[0m
+[behavior_server-15] [0m[INFO] [1773179751.149017207] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.[0m
+[behavior_server-15] [0m[INFO] [1773179751.236953025] [behavior_server]: Destroying[0m
+[bt_navigator-16] [0m[INFO] [1773179751.130908645] [rclcpp]: signal_handler(signum=2)[0m
+[bt_navigator-16] [0m[INFO] [1773179751.131025860] [bt_navigator]: Running Nav2 LifecycleNode rcl preshutdown (bt_navigator)[0m
+[bt_navigator-16] [0m[INFO] [1773179751.131149156] [bt_navigator]: Deactivating[0m
+[bt_navigator-16] [0m[INFO] [1773179751.131180804] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.[0m
+[bt_navigator-16] [0m[INFO] [1773179751.141627703] [bt_navigator]: Cleaning up[0m
+[bt_navigator-16] [0m[INFO] [1773179751.318431014] [bt_navigator]: Completed Cleaning up[0m
+[bt_navigator-16] [0m[INFO] [1773179751.318580101] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.[0m
+[bt_navigator-16] [0m[INFO] [1773179751.326221796] [bt_navigator]: Destroying[0m
+[base_to_base_tf-2] Traceback (most recent call last):
+[base_to_base_tf-2]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/base_to_base_tf", line 33, in <module>
+[base_to_base_tf-2]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'base_to_base_tf')())
+[base_to_base_tf-2]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/base_to_base_tf.py", line 43, in main
+[base_to_base_tf-2]     rclpy.spin(node=node)
+[base_to_base_tf-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[base_to_base_tf-2]     executor.spin_once()
+[base_to_base_tf-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[base_to_base_tf-2]     self._spin_once_impl(timeout_sec)
+[base_to_base_tf-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[base_to_base_tf-2]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[base_to_base_tf-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[base_to_base_tf-2]     return next(self._cb_iter)
+[base_to_base_tf-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[base_to_base_tf-2]     wait_set.wait(timeout_nsec)
+[base_to_base_tf-2] KeyboardInterrupt
+[go2_state-4] Traceback (most recent call last):
+[go2_state-4]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/go2_state", line 33, in <module>
+[go2_state-4]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'go2_state')())
+[go2_state-4]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/go2_state.py", line 38, in main
+[go2_state-4]     rclpy.spin(node=node)
+[go2_state-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[go2_state-4]     executor.spin_once()
+[go2_state-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[go2_state-4]     self._spin_once_impl(timeout_sec)
+[go2_state-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[go2_state-4]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[go2_state-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[go2_state-4]     return next(self._cb_iter)
+[go2_state-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[go2_state-4]     wait_set.wait(timeout_nsec)
+[go2_state-4] KeyboardInterrupt
+[voice_command_node-24] Traceback (most recent call last):
+[voice_command_node-24]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/voice_command_node", line 33, in <module>
+[voice_command_node-24]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'voice_command_node')())
+[voice_command_node-24]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/voice_command_node.py", line 352, in main
+[voice_command_node-24]     rclpy.spin(node)
+[voice_command_node-24]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[voice_command_node-24]     executor.spin_once()
+[voice_command_node-24]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[voice_command_node-24]     self._spin_once_impl(timeout_sec)
+[voice_command_node-24]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[voice_command_node-24]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[voice_command_node-24]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[voice_command_node-24]     return next(self._cb_iter)
+[voice_command_node-24]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[voice_command_node-24]     wait_set.wait(timeout_nsec)
+[voice_command_node-24] KeyboardInterrupt
+[sllidar_node-9] [0m[INFO] [1773179751.306746039] [sllidar_node]: Stop motor[0m
+[component_container_isolated-8] [0m[INFO] [1773179751.585751858] [zed.zed_node]: === CLOSING CAMERA ===[0m
+[voice_stt_vosk_node-23] Traceback (most recent call last):
+[voice_stt_vosk_node-23]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/voice_stt_vosk_node", line 33, in <module>
+[voice_stt_vosk_node-23]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'voice_stt_vosk_node')())
+[voice_stt_vosk_node-23]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/voice_stt_vosk_node.py", line 300, in main
+[voice_stt_vosk_node-23]     rclpy.spin(node)
+[voice_stt_vosk_node-23]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[voice_stt_vosk_node-23]     executor.spin_once()
+[voice_stt_vosk_node-23]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[voice_stt_vosk_node-23]     self._spin_once_impl(timeout_sec)
+[voice_stt_vosk_node-23]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[voice_stt_vosk_node-23]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[voice_stt_vosk_node-23]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[voice_stt_vosk_node-23]     return next(self._cb_iter)
+[voice_stt_vosk_node-23]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[voice_stt_vosk_node-23]     wait_set.wait(timeout_nsec)
+[voice_stt_vosk_node-23] KeyboardInterrupt
+[INFO] [robot_state_publisher-1]: process has finished cleanly [pid 85399]
+[INFO] [component_container_isolated-8]: process has finished cleanly [pid 85413]

@@ -79,6 +79,8 @@ setup(
             'rounds_coordinator = go2_control.rounds_coordinator:main',
             'pose_click_logger = go2_control.pose_click_logger:main',
             'dummy_leak_publisher = go2_control.dummy_leak_publisher:main',
+            'voice_command_node = go2_control.voice_command_node:main',
+            'voice_stt_vosk_node = go2_control.voice_stt_vosk_node:main',
 
         ],
     },

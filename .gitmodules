@@ -16,3 +16,6 @@
 	path = src/odas_ros
 	url = https://github.com/JCastel358/odas_ros.git
 	branch = ros2
+[submodule "src/unitree_ros2"]
+	path = src/unitree_ros2
+	url = https://github.com/JCastel358/unitree_ros2.git
