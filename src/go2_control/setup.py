@@ -81,6 +81,7 @@ setup(
             'dummy_leak_publisher = go2_control.dummy_leak_publisher:main',
             'voice_command_node = go2_control.voice_command_node:main',
             'voice_stt_vosk_node = go2_control.voice_stt_vosk_node:main',
+            'sound_localizer = go2_control.sound_localizer:main',
 
         ],
     },

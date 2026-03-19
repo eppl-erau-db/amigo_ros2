@@ -70,6 +70,10 @@ def generate_launch_description():
         name="odas_log_level", default_value="warn",
         description="ODAS ROS log verbosity (debug, info, warn, error, fatal)"
     )
+    declare_sound_localizer_enable = DeclareLaunchArgument(
+        name="sound_localizer_enable", default_value="true",
+        description="Enable the map-frame sound localization node"
+    )
     declare_voice_control = DeclareLaunchArgument(
         name="voice_control", default_value="false",
         description="Enable voice command node and leak search action server"
@@ -154,6 +158,7 @@ def generate_launch_description():
     odas_leak_classifier_debug = LaunchConfiguration("odas_leak_classifier_debug")
     odas_doa_zero_offset_deg = LaunchConfiguration("odas_doa_zero_offset_deg")
     odas_log_level = LaunchConfiguration("odas_log_level")
+    sound_localizer_enable = LaunchConfiguration("sound_localizer_enable")
     voice_control = LaunchConfiguration("voice_control")
     voice_transcript_topic = LaunchConfiguration("voice_transcript_topic")
     voice_wake_phrase = LaunchConfiguration("voice_wake_phrase")
@@ -355,6 +360,29 @@ def generate_launch_description():
         ),
     )
 
+    sound_localizer_node = Node(
+        package="go2_control",
+        executable="sound_localizer",
+        name="sound_localizer",
+        output="screen",
+        parameters=[{
+            "use_sim_time": use_sim_time,
+            "min_baseline_m": 0.10,
+            "intersection_method": "geometric",
+            "use_absolute_x_positions": False,
+            "publish_waypoints": False,
+            "num_waypoints": 0,
+            "enable_reasonableness_filter": False,
+        }],
+        condition=IfCondition(
+            PythonExpression([
+                "'", sound_localizer_enable, "' == 'true' and '",
+                odas_enable, "' == 'true' and '",
+                odas_enable_leak_classifier, "' == 'true'"
+            ])
+        ),
+    )
+
     voice_stt_vosk_node = Node(
         package="go2_control",
         executable="voice_stt_vosk_node",
@@ -448,6 +476,7 @@ def generate_launch_description():
         declare_odas_leak_classifier_debug,
         declare_odas_doa_zero_offset_deg,
         declare_odas_log_level,
+        declare_sound_localizer_enable,
         declare_voice_control,
         declare_voice_transcript_topic,
         declare_voice_wake_phrase,
@@ -481,6 +510,7 @@ def generate_launch_description():
         odas_launch,
         log_pose_server,
         search_action_server,
+        sound_localizer_node,
         voice_stt_vosk_node,
         voice_command_node,
         rviz2,
