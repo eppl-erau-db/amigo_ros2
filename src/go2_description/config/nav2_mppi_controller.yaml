@@ -44,7 +44,7 @@ bt_navigator:
     use_sim_time: False
     global_frame: map
     robot_base_frame: base_footprint
-    odom_topic: /odom
+    odom_topic: /odometry/filtered
     bt_loop_duration: 10
     default_server_timeout: 20
     plugin_lib_names:
@@ -373,7 +373,7 @@ global_costmap:
         # Combine with static map using "max" semantics
         combination_method: 0
 
-        observation_sources: zed_points #velodyne 
+        observation_sources: lidar_points #velodyne 
 
         velodyne:
             topic: /velodyne_points
@@ -389,17 +389,17 @@ global_costmap:
             clearing: true
             marking: true
 
-        zed_points:
-            topic: /zed/zed_node/point_cloud/cloud_registered
+        lidar_points:
+            topic: /pointcloud
             data_type: PointCloud2
             # expected_update_rate: 0.0
             # observation_persistence: 0.0
             min_obstacle_height: 0.05
             max_obstacle_height: 0.75
-            obstacle_min_range: 0.1
-            obstacle_max_range: 10.0
-            raytrace_min_range: 0.1
-            raytrace_max_range: 12.0
+            obstacle_min_range: 0.0
+            obstacle_max_range: 25.0
+            raytrace_min_range: 0.0
+            raytrace_max_range: 30.0
             clearing: true
             marking: true
 
@@ -521,7 +521,7 @@ velocity_smoother:
     min_velocity: [-3.0, -3.0, -2.0]
     max_accel: [3.5, 3.5, 6.0]
     max_decel: [-3.5, -3.5, -6.0]
-    odom_topic: "odom"
+    odom_topic: "/odometry/filtered"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]
     velocity_timeout: 1.0

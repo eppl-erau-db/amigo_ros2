@@ -298,7 +298,11 @@ def generate_launch_description():
         executable='async_slam_toolbox_node',
         name='slam_toolbox',
         output='screen',
-        parameters=[slam_toolbox_config],
+        parameters=[slam_toolbox_config, {
+            "use_sim_time": use_sim_time,
+            "scan_topic": "/scan",
+            "use_odometry": False,
+        }],
         remappings=[
             ('pose', '/slam_toolbox_pose')
         ]
@@ -470,7 +474,7 @@ def generate_launch_description():
         base_tf,
         go2_driver,
         state_pub,
-        # wit_imu_pub,
+        wit_imu_pub,
         odom_node, 
         ekf_node,   
         zed_launch,
