@@ -15,6 +15,8 @@ find_package(rosidl_default_generators REQUIRED)
 # (Make sure you actually have 'srv/RegionMap.srv' in the 'go2_interfaces/srv/' directory)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "action/LogPose.action"
+  "action/ExploreUntilDetected.action"
+  "action/LocalizeDetectedLeak.action"
   "srv/RegionMap.srv"
   "action/Search.action"
   DEPENDENCIES geometry_msgs nav_msgs # or any other interface package needed

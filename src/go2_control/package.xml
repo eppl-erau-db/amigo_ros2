@@ -21,8 +21,10 @@
   <depend>tf2_ros</depend>
   <depend>std_msgs</depend>
   <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
   <depend>cv_bridge</depend>
   <depend>visualization_msgs</depend>
+  <depend>explore_lite_msgs</depend>
 
   <!-- You had these as exec depends for runtime usage: -->
   <exec_depend>twist_mux</exec_depend>

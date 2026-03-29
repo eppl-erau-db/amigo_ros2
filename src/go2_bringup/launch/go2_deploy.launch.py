@@ -16,7 +16,7 @@ def generate_launch_description():
     voice_transcript_topic = LaunchConfiguration('voice_transcript_topic', default='/voice/transcript')
     voice_wake_phrase = LaunchConfiguration('voice_wake_phrase', default='hey amigo')
     voice_search_phrase = LaunchConfiguration('voice_search_phrase', default='look for a leak')
-    voice_command_mode = LaunchConfiguration('voice_command_mode', default='sport_test')
+    voice_command_mode = LaunchConfiguration('voice_command_mode', default='all')
 
     urdf_path = os.path.join(get_package_share_path('go2_description'), 'urdf', 'go2.urdf.xacro')
     rviz_config_path = os.path.join(get_package_share_path('go2_description'),
@@ -79,8 +79,8 @@ def generate_launch_description():
     )
     declare_voice_command_mode_cmd = DeclareLaunchArgument(
         'voice_command_mode',
-        default_value='sport_test',
-        description='Voice command behavior mode: search or sport_test.'
+        default_value='all',
+        description='Voice command behavior mode: search, sport_test, or all.'
     )
 
     # ───────────────── Robot & sensors ─────────────────

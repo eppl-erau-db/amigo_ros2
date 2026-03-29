@@ -1,0 +1,1312 @@
+[INFO] [launch]: All log files can be found below /home/castej-jetson/.ros/log/2026-03-24-17-22-57-411063-ubuntu-10279
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch.user]: Using common configuration file: /home/castej-jetson/workspaces/amigo_ros2/install/zed_wrapper/share/zed_wrapper/config/common_stereo.yaml
+[INFO] [launch.user]: Using camera configuration file: /home/castej-jetson/workspaces/amigo_ros2/install/zed_wrapper/share/zed_wrapper/config/zedxm.yaml
+[INFO] [launch.user]: Using FFMPEG configuration file: /home/castej-jetson/workspaces/amigo_ros2/install/zed_wrapper/share/zed_wrapper/config/ffmpeg.yaml
+[INFO] [launch.user]: Using Object Detection configuration file: /home/castej-jetson/workspaces/amigo_ros2/install/zed_wrapper/share/zed_wrapper/config/object_detection.yaml
+[INFO] [launch.user]: Using Custom Object Detection configuration file: /home/castej-jetson/workspaces/amigo_ros2/install/zed_wrapper/share/zed_wrapper/config/custom_object_detection.yaml
+[INFO] [launch.user]: Loading ZED node `zed_node` in container `/zed/zed_container`
+[INFO] [robot_state_publisher-1]: process started with pid [10293]
+[INFO] [base_to_base_tf-2]: process started with pid [10295]
+[INFO] [go2_driver_node-3]: process started with pid [10297]
+[INFO] [go2_state-4]: process started with pid [10299]
+[INFO] [odom_node-5]: process started with pid [10301]
+[INFO] [ekf_node-6]: process started with pid [10303]
+[INFO] [robot_state_publisher-7]: process started with pid [10305]
+[INFO] [component_container_isolated-8]: process started with pid [10307]
+[INFO] [sllidar_node-9]: process started with pid [10309]
+[INFO] [go2_lidar-10]: process started with pid [10311]
+[INFO] [async_slam_toolbox_node-11]: process started with pid [10313]
+[INFO] [controller_server-12]: process started with pid [10316]
+[INFO] [smoother_server-13]: process started with pid [10318]
+[INFO] [planner_server-14]: process started with pid [10321]
+[INFO] [behavior_server-15]: process started with pid [10335]
+[INFO] [bt_navigator-16]: process started with pid [10338]
+[INFO] [waypoint_follower-17]: process started with pid [10350]
+[INFO] [velocity_smoother-18]: process started with pid [10376]
+[INFO] [lifecycle_manager-19]: process started with pid [10388]
+[INFO] [explore-20]: process started with pid [10390]
+[INFO] [odas_server_node.py-21]: process started with pid [10453]
+[INFO] [odas_leak_classifier_node.py-22]: process started with pid [10475]
+[INFO] [sound_localizer-23]: process started with pid [10485]
+[INFO] [explore_until_detected_action_server-24]: process started with pid [10487]
+[INFO] [localize_detected_leak_action_server-25]: process started with pid [10500]
+[INFO] [search_action_server-26]: process started with pid [10505]
+[INFO] [voice_stt_vosk_node-27]: process started with pid [10515]
+[INFO] [voice_command_node-28]: process started with pid [10518]
+[INFO] [log_pose_action_server-29]: process started with pid [10521]
+[INFO] [rviz2-30]: process started with pid [10524]
+[robot_state_publisher-1] 1774387378.917356 [0] robot_stat: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[robot_state_publisher-1] [0m[INFO] [1774387379.042364075] [robot_state_publisher]: got segment FL_calf[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042548476] [robot_state_publisher]: got segment FL_calflower[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042576894] [robot_state_publisher]: got segment FL_calflower1[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042592160] [robot_state_publisher]: got segment FL_foot[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042669159] [robot_state_publisher]: got segment FL_hip[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042686888] [robot_state_publisher]: got segment FL_thigh[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042701258] [robot_state_publisher]: got segment FR_calf[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042713003] [robot_state_publisher]: got segment FR_calflower[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042724396] [robot_state_publisher]: got segment FR_calflower1[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042735693] [robot_state_publisher]: got segment FR_foot[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042746638] [robot_state_publisher]: got segment FR_hip[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042757999] [robot_state_publisher]: got segment FR_thigh[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042769488] [robot_state_publisher]: got segment Head_lower[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042780753] [robot_state_publisher]: got segment Head_upper[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042863161] [robot_state_publisher]: got segment RL_calf[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042888059] [robot_state_publisher]: got segment RL_calflower[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042903292] [robot_state_publisher]: got segment RL_calflower1[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042915197] [robot_state_publisher]: got segment RL_foot[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042926974] [robot_state_publisher]: got segment RL_hip[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042937471] [robot_state_publisher]: got segment RL_thigh[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042948416] [robot_state_publisher]: got segment RR_calf[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042959105] [robot_state_publisher]: got segment RR_calflower[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042970018] [robot_state_publisher]: got segment RR_calflower1[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042980771] [robot_state_publisher]: got segment RR_foot[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.042991940] [robot_state_publisher]: got segment RR_hip[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043002661] [robot_state_publisher]: got segment RR_thigh[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043013126] [robot_state_publisher]: got segment base_footprint[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043023751] [robot_state_publisher]: got segment base_link[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043034312] [robot_state_publisher]: got segment front_camera[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043045257] [robot_state_publisher]: got segment gps[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043061451] [robot_state_publisher]: got segment laser[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043073068] [robot_state_publisher]: got segment radar[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043083885] [robot_state_publisher]: got segment utlidar_imu[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043095694] [robot_state_publisher]: got segment zed_camera_center[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043106767] [robot_state_publisher]: got segment zed_camera_link[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043117488] [robot_state_publisher]: got segment zed_left_camera_frame[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043128625] [robot_state_publisher]: got segment zed_left_camera_optical_frame[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043139666] [robot_state_publisher]: got segment zed_right_camera_frame[0m
+[robot_state_publisher-1] [0m[INFO] [1774387379.043150387] [robot_state_publisher]: got segment zed_right_camera_optical_frame[0m
+[go2_driver_node-3] 1774387378.910384 [0] go2_driver: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[ekf_node-6] 1774387378.922210 [0]   ekf_node: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[ekf_node-6] X acceleration is being measured from IMU; X velocity control input is disabled
+[ekf_node-6] Y acceleration is being measured from IMU; Y velocity control input is disabled
+[robot_state_publisher-7] 1774387378.920913 [0] robot_stat: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[robot_state_publisher-7] [0m[INFO] [1774387379.172940482] [zed.zed_state_publisher]: got segment zed_camera_center[0m
+[robot_state_publisher-7] [0m[INFO] [1774387379.175945619] [zed.zed_state_publisher]: got segment zed_camera_link[0m
+[robot_state_publisher-7] [0m[INFO] [1774387379.175976886] [zed.zed_state_publisher]: got segment zed_left_camera_frame[0m
+[robot_state_publisher-7] [0m[INFO] [1774387379.175991800] [zed.zed_state_publisher]: got segment zed_left_camera_optical_frame[0m
+[robot_state_publisher-7] [0m[INFO] [1774387379.176004569] [zed.zed_state_publisher]: got segment zed_right_camera_frame[0m
+[robot_state_publisher-7] [0m[INFO] [1774387379.176016346] [zed.zed_state_publisher]: got segment zed_right_camera_optical_frame[0m
+[component_container_isolated-8] 1774387378.916517 [0] component_: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[sllidar_node-9] 1774387378.922067 [0] sllidar_no: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[sllidar_node-9] [0m[INFO] [1774387378.990239168] [sllidar_node]: SLLidar running on ROS2 package SLLidar.ROS2 SDK Version:1.0.1, SLLIDAR SDK Version:2.1.0[0m
+[sllidar_node-9] [0m[INFO] [1774387379.077624151] [sllidar_node]: SLLidar S/N: E18BED93C0EA98C6C2E29EF513514061[0m
+[sllidar_node-9] [0m[INFO] [1774387379.077714335] [sllidar_node]: Firmware Ver: 1.32[0m
+[sllidar_node-9] [0m[INFO] [1774387379.077732449] [sllidar_node]: Hardware Rev: 6[0m
+[sllidar_node-9] [0m[INFO] [1774387379.078509992] [sllidar_node]: SLLidar health status : 0[0m
+[sllidar_node-9] [0m[INFO] [1774387379.078585999] [sllidar_node]: SLLidar health status : OK.[0m
+[async_slam_toolbox_node-11] 1774387378.929784 [0] async_slam: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[async_slam_toolbox_node-11] [0m[INFO] [1774387378.974584785] [slam_toolbox]: Node using stack size 40000000[0m
+[async_slam_toolbox_node-11] 1774387378.987439 [0] async_slam: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[async_slam_toolbox_node-11] [0m[INFO] [1774387379.092286479] [slam_toolbox]: Using solver plugin solver_plugins::CeresSolver[0m
+[async_slam_toolbox_node-11] [0m[INFO] [1774387379.093048660] [slam_toolbox]: CeresSolver: Using SCHUR_JACOBI preconditioner.[0m
+[controller_server-12] 1774387378.932129 [0] controller: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[controller_server-12] [0m[INFO] [1774387378.981587726] [controller_server]: 
+[controller_server-12] 	controller_server lifecycle node launched. 
+[controller_server-12] 	Waiting on external lifecycle transitions to activate
+[controller_server-12] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[controller_server-12] [0m[INFO] [1774387378.995462332] [controller_server]: Creating controller server[0m
+[controller_server-12] [0m[INFO] [1774387379.017185814] [local_costmap.local_costmap]: 
+[controller_server-12] 	local_costmap lifecycle node launched. 
+[controller_server-12] 	Waiting on external lifecycle transitions to activate
+[controller_server-12] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[controller_server-12] [0m[INFO] [1774387379.018580181] [local_costmap.local_costmap]: Creating Costmap[0m
+[controller_server-12] [0m[INFO] [1774387379.186946270] [controller_server]: Configuring controller interface[0m
+[controller_server-12] [0m[INFO] [1774387379.187235064] [controller_server]: getting goal checker plugins..[0m
+[controller_server-12] [0m[INFO] [1774387379.187383621] [controller_server]: Controller frequency set to 20.0000Hz[0m
+[controller_server-12] [0m[INFO] [1774387379.187449515] [local_costmap.local_costmap]: Configuring[0m
+[controller_server-12] [0m[INFO] [1774387379.198576513] [local_costmap.local_costmap]: Using plugin "obstacle_layer"[0m
+[controller_server-12] [0m[INFO] [1774387379.207910643] [local_costmap.local_costmap]: Subscribed to Topics: scan[0m
+[controller_server-12] [0m[INFO] [1774387379.218393454] [local_costmap.local_costmap]: Initialized plugin "obstacle_layer"[0m
+[controller_server-12] [0m[INFO] [1774387379.218537659] [local_costmap.local_costmap]: Using plugin "3d_lidar_layer"[0m
+[smoother_server-13] 1774387378.934208 [0] smoother_s: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[smoother_server-13] [0m[INFO] [1774387379.008096154] [smoother_server]: 
+[smoother_server-13] 	smoother_server lifecycle node launched. 
+[smoother_server-13] 	Waiting on external lifecycle transitions to activate
+[smoother_server-13] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[smoother_server-13] [0m[INFO] [1774387379.036936733] [smoother_server]: Creating smoother server[0m
+[planner_server-14] 1774387378.941938 [0] planner_se: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[planner_server-14] [0m[INFO] [1774387378.988933322] [planner_server]: 
+[planner_server-14] 	planner_server lifecycle node launched. 
+[planner_server-14] 	Waiting on external lifecycle transitions to activate
+[planner_server-14] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[planner_server-14] [0m[INFO] [1774387378.992729923] [planner_server]: Creating[0m
+[planner_server-14] [0m[INFO] [1774387379.041017616] [global_costmap.global_costmap]: 
+[planner_server-14] 	global_costmap lifecycle node launched. 
+[planner_server-14] 	Waiting on external lifecycle transitions to activate
+[planner_server-14] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[planner_server-14] [0m[INFO] [1774387379.042347338] [global_costmap.global_costmap]: Creating Costmap[0m
+[behavior_server-15] 1774387378.950034 [0] behavior_s: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[behavior_server-15] [0m[INFO] [1774387379.014848257] [behavior_server]: 
+[behavior_server-15] 	behavior_server lifecycle node launched. 
+[behavior_server-15] 	Waiting on external lifecycle transitions to activate
+[behavior_server-15] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[bt_navigator-16] 1774387378.975015 [0] bt_navigat: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[bt_navigator-16] [0m[INFO] [1774387379.060808571] [bt_navigator]: 
+[bt_navigator-16] 	bt_navigator lifecycle node launched. 
+[bt_navigator-16] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-16] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[bt_navigator-16] [0m[INFO] [1774387379.060981675] [bt_navigator]: Creating[0m
+[waypoint_follower-17] 1774387378.952133 [0] waypoint_f: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[waypoint_follower-17] [0m[INFO] [1774387379.031831692] [waypoint_follower]: 
+[waypoint_follower-17] 	waypoint_follower lifecycle node launched. 
+[waypoint_follower-17] 	Waiting on external lifecycle transitions to activate
+[waypoint_follower-17] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[waypoint_follower-17] [0m[INFO] [1774387379.035123128] [waypoint_follower]: Creating[0m
+[velocity_smoother-18] 1774387379.044693 [0] velocity_s: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[velocity_smoother-18] [0m[INFO] [1774387379.113682956] [velocity_smoother]: 
+[velocity_smoother-18] 	velocity_smoother lifecycle node launched. 
+[velocity_smoother-18] 	Waiting on external lifecycle transitions to activate
+[velocity_smoother-18] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.[0m
+[lifecycle_manager-19] 1774387378.996471 [0] lifecycle_: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[lifecycle_manager-19] [0m[INFO] [1774387379.025180910] [lifecycle_manager_navigation]: Creating[0m
+[lifecycle_manager-19] [0m[INFO] [1774387379.028054740] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service clients[0m[0m[0m
+[lifecycle_manager-19] [0m[INFO] [1774387379.186290530] [lifecycle_manager_navigation]: [34m[1mStarting managed nodes bringup...[0m[0m[0m
+[lifecycle_manager-19] [0m[INFO] [1774387379.186398508] [lifecycle_manager_navigation]: [34m[1mConfiguring controller_server[0m[0m[0m
+[explore-20] 1774387379.098679 [0]    explore: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[explore-20] [0m[INFO] [1774387379.158734676] [explore_node]: Waiting for costmap to become available, topic: map[0m
+[sllidar_node-9] [0m[INFO] [1774387379.273383679] [sllidar_node]: current scan mode: Sensitivity, sample rate: 16 Khz, max_distance: 25.0 m, scan frequency:10.0 Hz, [0m
+[component_container_isolated-8] [0m[INFO] [1774387379.284096143] [zed.zed_container]: Load Library: /home/castej-jetson/workspaces/amigo_ros2/install/zed_components/lib/libzed_camera_component.so[0m
+[controller_server-12] [0m[INFO] [1774387379.288366388] [local_costmap.local_costmap]: 3d_lidar_layer being initialized as SpatioTemporalVoxelLayer![0m
+[controller_server-12] [0m[INFO] [1774387379.288485823] [local_costmap.local_costmap]: 3d_lidar_layer's global frame is odom.[0m
+[controller_server-12] [0m[INFO] [1774387379.290212956] [local_costmap.local_costmap]: 3d_lidar_layer loaded parameters from parameter server.[0m
+[controller_server-12] [0m[INFO] [1774387379.293841447] [local_costmap.local_costmap]: 3d_lidar_layer created underlying voxel grid.[0m
+[controller_server-12] [0m[INFO] [1774387379.299842090] [local_costmap.local_costmap]: Passthough filter activated.[0m
+[controller_server-12] [0m[INFO] [1774387379.306164457] [local_costmap.local_costmap]: 3d_lidar_layer initialization complete![0m
+[controller_server-12] [0m[INFO] [1774387379.306327896] [local_costmap.local_costmap]: Initialized plugin "3d_lidar_layer"[0m
+[controller_server-12] [0m[INFO] [1774387379.306355739] [local_costmap.local_costmap]: Using plugin "inflation_layer"[0m
+[controller_server-12] [0m[INFO] [1774387379.307842818] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"[0m
+[controller_server-12] [0m[INFO] [1774387379.340717429] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker[0m
+[controller_server-12] [0m[INFO] [1774387379.342984195] [controller_server]: Created goal checker : stopped_goal_checker of type nav2_controller::StoppedGoalChecker[0m
+[controller_server-12] [0m[INFO] [1774387379.344117227] [controller_server]: Controller Server has stopped_goal_checker  goal checkers available.[0m
+[controller_server-12] [0m[INFO] [1774387379.345611187] [controller_server]: Created controller : FollowPath of type nav2_mppi_controller::MPPIController[0m
+[controller_server-12] [0m[INFO] [1774387379.356647712] [controller_server]: Controller period is equal to model dt. Control sequence shifting is ON[0m
+[controller_server-12] [0m[INFO] [1774387379.362135060] [controller_server]: ConstraintCritic instantiated with 1 power and 4.000000 weight.[0m
+[controller_server-12] [0m[INFO] [1774387379.362241662] [controller_server]: Critic loaded : mppi::critics::ConstraintCritic[0m
+[controller_server-12] [0m[INFO] [1774387379.370727107] [controller_server]: ObstaclesCritic instantiated with 1 power and 5.000000 / 4.000000 weights. Critic will collision check based on footprint cost.[0m
+[controller_server-12] [0m[INFO] [1774387379.370820459] [controller_server]: Critic loaded : mppi::critics::ObstaclesCritic[0m
+[controller_server-12] [0m[INFO] [1774387379.372647858] [controller_server]: GoalCritic instantiated with 1 power and 5.000000 weight.[0m
+[controller_server-12] [0m[INFO] [1774387379.372728729] [controller_server]: Critic loaded : mppi::critics::GoalCritic[0m
+[controller_server-12] [0m[INFO] [1774387379.374400913] [controller_server]: GoalAngleCritic instantiated with 1 power, 3.000000 weight, and 0.500000 angular threshold.[0m
+[controller_server-12] [0m[INFO] [1774387379.374491770] [controller_server]: Critic loaded : mppi::critics::GoalAngleCritic[0m
+[controller_server-12] [0m[INFO] [1774387379.380159070] [controller_server]: ReferenceTrajectoryCritic instantiated with 1 power and 14.000000 weight[0m
+[controller_server-12] [0m[INFO] [1774387379.380251398] [controller_server]: Critic loaded : mppi::critics::PathAlignCritic[0m
+[controller_server-12] [0m[INFO] [1774387379.387065043] [controller_server]: Critic loaded : mppi::critics::PathFollowCritic[0m
+[controller_server-12] [0m[INFO] [1774387379.389607835] [controller_server]: PathAngleCritic instantiated with 1 power and 2.000000 weight. Reversing allowed.[0m
+[controller_server-12] [0m[INFO] [1774387379.389685954] [controller_server]: Critic loaded : mppi::critics::PathAngleCritic[0m
+[controller_server-12] [0m[INFO] [1774387379.391163688] [controller_server]: PreferForwardCritic instantiated with 1 power and 5.000000 weight.[0m
+[controller_server-12] [0m[INFO] [1774387379.391379324] [controller_server]: Critic loaded : mppi::critics::PreferForwardCritic[0m
+[controller_server-12] [0m[INFO] [1774387379.394395503] [controller_server]: Optimizer reset[0m
+[controller_server-12] [0m[INFO] [1774387379.407328681] [MPPIController]: Configured MPPI Controller: FollowPath[0m
+[controller_server-12] [0m[INFO] [1774387379.407383790] [controller_server]: Controller Server has FollowPath  controllers available.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387379.430110404] [lifecycle_manager_navigation]: [34m[1mConfiguring smoother_server[0m[0m[0m
+[smoother_server-13] [0m[INFO] [1774387379.430785474] [smoother_server]: Configuring smoother server[0m
+[smoother_server-13] [0m[INFO] [1774387379.441638526] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother[0m
+[smoother_server-13] [0m[INFO] [1774387379.450953583] [smoother_server]: Smoother Server has simple_smoother  smoothers available.[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.459613156] [zed.zed_container]: Found class: rclcpp_components::NodeFactoryTemplate<stereolabs::ZedCamera>[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.461543379] [zed.zed_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<stereolabs::ZedCamera>[0m
+[lifecycle_manager-19] [0m[INFO] [1774387379.466956897] [lifecycle_manager_navigation]: [34m[1mConfiguring planner_server[0m[0m[0m
+[planner_server-14] [0m[INFO] [1774387379.467464143] [planner_server]: Configuring[0m
+[planner_server-14] [0m[INFO] [1774387379.467548246] [global_costmap.global_costmap]: Configuring[0m
+[planner_server-14] [0m[INFO] [1774387379.477862338] [global_costmap.global_costmap]: Using plugin "static_layer"[0m
+[planner_server-14] [0m[INFO] [1774387379.493025095] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability[0m
+[planner_server-14] [0m[INFO] [1774387379.496211465] [global_costmap.global_costmap]: Subscribing to updates[0m
+[planner_server-14] [0m[INFO] [1774387379.499113042] [global_costmap.global_costmap]: Initialized plugin "static_layer"[0m
+[planner_server-14] [0m[INFO] [1774387379.499193273] [global_costmap.global_costmap]: Using plugin "inflation_layer"[0m
+[planner_server-14] [0m[INFO] [1774387379.503997455] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"[0m
+[planner_server-14] [31m[ERROR] [1774387379.520105642] [global_costmap.global_costmap]: The configured inflation radius (0.350) is smaller than the computed inscribed radius (0.491) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions[0m
+[planner_server-14] [0m[INFO] [1774387379.540584083] [planner_server]: Created global planner plugin GridBased of type nav2_smac_planner/SmacPlanner2D[0m
+[planner_server-14] [0m[INFO] [1774387379.540702654] [planner_server]: Configuring GridBased of type SmacPlanner2D[0m
+[planner_server-14] [0m[INFO] [1774387379.549477598] [planner_server]: Configured plugin GridBased of type SmacPlanner2D with tolerance 0.12, maximum iterations 1000000, max on approach iterations 1000, and allowing unknown traversal.[0m
+[planner_server-14] [0m[INFO] [1774387379.550067795] [planner_server]: Planner Server has GridBased  planners available.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387379.590929502] [lifecycle_manager_navigation]: [34m[1mConfiguring behavior_server[0m[0m[0m
+[behavior_server-15] [0m[INFO] [1774387379.591388391] [behavior_server]: Configuring[0m
+[odas_server_node.py-21] 1774387379.597221 [0]    python3: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[behavior_server-15] [0m[INFO] [1774387379.608829276] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors/Spin[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.612620053] [zed.zed_node]: ================================[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.612708477] [zed.zed_node]:       ZED Camera Component [0m
+[component_container_isolated-8] [0m[INFO] [1774387379.612728287] [zed.zed_node]: ================================[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.612743905] [zed.zed_node]:  * namespace: /zed[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.612758786] [zed.zed_node]:  * node name: zed_node[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.612771779] [zed.zed_node]: ================================[0m
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/zed/zed_node' in container '/zed/zed_container'
+[behavior_server-15] [0m[INFO] [1774387379.617452398] [behavior_server]: Configuring spin[0m
+[behavior_server-15] [0m[INFO] [1774387379.642585599] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp[0m
+[behavior_server-15] [0m[INFO] [1774387379.653616364] [behavior_server]: Configuring backup[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.663041190] [zed.zed_node]: === DEBUG parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.664220178] [zed.zed_node]:  * SDK Verbose: 1[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.665094497] [zed.zed_node]:  * SDK Verbose File: [0m
+[component_container_isolated-8] [0m[INFO] [1774387379.665810723] [zed.zed_node]:  * Debug Common: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.666606443] [zed.zed_node]:  * Debug Simulation: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.667379090] [zed.zed_node]:  * Debug Video/Depth: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.668097203] [zed.zed_node]:  * Debug Control settings: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.668899708] [zed.zed_node]:  * Debug Point Cloud: %sFALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.669710406] [zed.zed_node]:  * Debug GNSS: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.670520304] [zed.zed_node]:  * Debug Positional Tracking: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.671369373] [zed.zed_node]:  * Debug sensors: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.672168102] [zed.zed_node]:  * Debug Mapping: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.672947085] [zed.zed_node]:  * Debug Object Detection: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.673757047] [zed.zed_node]:  * Debug Body Tracking: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.674745809] [zed.zed_node]:  * Debug Streaming: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.675506614] [zed.zed_node]:  * Debug ROI: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.676148112] [zed.zed_node]:  * Debug Advanced: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.676788843] [zed.zed_node]: === SVO INPUT parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.677542479] [zed.zed_node]: === LOCAL STREAMING parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.678164776] [zed.zed_node]: === GENERAL parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.678856871] [zed.zed_node]:  * Camera model: zedxm - ZED X Mini[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.679627853] [zed.zed_node]:  * Camera name: zed[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.680516606] [zed.zed_node]:  * Camera SN: 0[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.681154808] [zed.zed_node]:  * Camera ID: -1[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.681853592] [zed.zed_node]:  * Camera timeout [sec]: 5[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.682497715] [zed.zed_node]:  * Camera reconnection temptatives: 5[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.683084776] [zed.zed_node]:  * Camera framerate: 15[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.683687455] [zed.zed_node]:  * GPU ID: -1[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.684306968] [zed.zed_node]:  * Asynchronous image retrieval: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.684876459] [zed.zed_node]:  * Image Validity Check: 1[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.685637969] [zed.zed_node]:  * Camera resolution: SVGA[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.686476893] [zed.zed_node]:  * Publishing resolution: CUSTOM[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.687266981] [zed.zed_node]:  * Publishing downscale factor: 2[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.687939170] [zed.zed_node]:  * OpenCV custom calibration: [0m
+[component_container_isolated-8] [0m[INFO] [1774387379.688753325] [zed.zed_node]:  * Camera self calibration: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.689428202] [zed.zed_node]:  * Camera flip: FALSE[0m
+[component_container_isolated-8] [33m[WARN] [1774387379.690123113] [zed.zed_node]: 'pub_frame_rate' cannot be bigger than 'grab_frame_rate'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.690185071] [zed.zed_node]:  * Publish framerate [Hz]:  15[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.690213778] [zed.zed_node]: === VIDEO parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.690914770] [zed.zed_node]:  * Saturation: 4 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.691564941] [zed.zed_node]:  * Sharpness: 4 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.692283310] [zed.zed_node]:  * Gamma: 8 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.692946155] [zed.zed_node]:  * Auto Exposure/Gain: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.693588549] [zed.zed_node]:  * Exposure: 80 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.694279972] [zed.zed_node]:  * Gain: 80 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.694922047] [zed.zed_node]:  * Auto White Balance: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.695570778] [zed.zed_node]:  * White Balance Temperature: 42 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.696241143] [zed.zed_node]:  * ZED X Exposure time: 16666 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.696902963] [zed.zed_node]:  * ZED X Auto Exp. time range min: 28 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.697574160] [zed.zed_node]:  * ZED X Auto Exp. time range max: 16666 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.698242061] [zed.zed_node]:  * ZED X Exposure comp.: 50 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.698875143] [zed.zed_node]:  * ZED X Analog Gain: 8000 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.699379125] [zed.zed_node]:  * ZED X Auto Analog Gain range min: 1000 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.699862209] [zed.zed_node]:  * ZED X Auto Analog Gain range max: 16000 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.700354125] [zed.zed_node]:  * ZED X Digital Gain: 128 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.700850811] [zed.zed_node]:  * ZED X Auto Digital Gain range min: 1 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.701485652] [zed.zed_node]:  * ZED X Auto Digital Gain range max: 256 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.702107213] [zed.zed_node]:  * ZED X Auto Digital Gain range max: 50 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.702176179] [zed.zed_node]: === DEPTH parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.702717733] [zed.zed_node]:  * Depth mode: NEURAL LIGHT [4][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.703216882] [zed.zed_node]:  * Min depth [m]: 0.3[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.703699038] [zed.zed_node]:  * Max depth [m]: 10[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.704181802] [zed.zed_node]:  * Depth Stabilization: 30[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.704673559] [zed.zed_node]:  * OpenNI mode (16bit point cloud): FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.705186406] [zed.zed_node]:  * Point cloud rate [Hz]: 15[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.705695316] [zed.zed_node]:  * Point cloud resolution: COMPACT[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.706234309] [zed.zed_node]:  * Depth Confidence: 95 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.706776342] [zed.zed_node]:  * Depth Texture Confidence: 100 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.707263075] [zed.zed_node]:  * Remove saturated areas: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.707321512] [zed.zed_node]: === GNSS FUSION parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.707813813] [zed.zed_node]:  * GNSS fusion enabled: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.707868730] [zed.zed_node]: === POSITIONAL TRACKING parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.708318115] [zed.zed_node]:  * Positional tracking enabled: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.708832722] [zed.zed_node]:  * Positional tracking mode: GEN 1[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.709316062] [zed.zed_node]:  * Map frame id: map[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.709830413] [zed.zed_node]:  * Odometry frame id: odom[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.710305336] [zed.zed_node]:  * Broadcast Odometry TF: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.710758721] [zed.zed_node]:  * Depth minimum range: 0[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.711094272] [zed.zed_node]:  * TF timestamp offset: 0 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.711490980] [zed.zed_node]:  * Path publishing rate: 2 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.711974960] [zed.zed_node]:  * Path history lenght: -1[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.712657038] [zed.zed_node]:  * Initial pose: [0,0,0,0,0,0,][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.713047122] [zed.zed_node]:  * Area Memory: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.713733104] [zed.zed_node]:  * Area Memory DB: [0m
+[component_container_isolated-8] [0m[INFO] [1774387379.714190682] [zed.zed_node]:  * Camera is static: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.714576861] [zed.zed_node]:  * Gravity as origin: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.715007588] [zed.zed_node]:  * IMU Fusion: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.715377286] [zed.zed_node]:  * Floor Alignment: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.715594074] [zed.zed_node]:  * Reset Odometry with Loop Closure: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.715970972] [zed.zed_node]:  * 2D mode: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.716361728] [zed.zed_node]:  * Reset pose with SVO loop: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.716511629] [zed.zed_node]: === Region of Interest parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.717148327] [zed.zed_node]:  * Automatic ROI generation: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.718487873] [zed.zed_node]:  * Manual ROI polygon: [][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.718550311] [zed.zed_node]: === SENSORS STACK parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.718865668] [zed.zed_node]:  * Broadcast IMU TF [not for ZED]: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.719187361] [zed.zed_node]:  * Sensors Camera Sync: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.719576932] [zed.zed_node]:  * Sensors publishing rate [Hz]: 100 [DYNAMIC][0m
+[behavior_server-15] [0m[INFO] [1774387379.718997200] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading[0m
+[behavior_server-15] [0m[INFO] [1774387379.720875643] [behavior_server]: Configuring drive_on_heading[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.721781005] [zed.zed_node]: === Spatial Mapping parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.722165232] [zed.zed_node]:  * Spatial Mapping Enabled: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.722587831] [zed.zed_node]:  * Spatial Mapping resolution [m]: 0.05[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.723008925] [zed.zed_node]:  * 3D Max Mapping range [m]: 5[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.723230097] [zed.zed_node]:  * Map publishing rate [Hz]: 1 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.723553583] [zed.zed_node]:  * Clicked point topic: /clicked_point[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.723964692] [zed.zed_node]:  * Plane Det. Max Dist. Thresh.: 0.15[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.724166247] [zed.zed_node]:  * Plane Det. Normals Sim. Thresh.: 15[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.724342263] [zed.zed_node]: === OBJECT DETECTION parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.724555498] [zed.zed_node]:  * Object Det. enabled: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.724862374] [zed.zed_node]:  * Object Det. allow reduced precision: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.725203557] [zed.zed_node]:  * Object Det. maximum range [m]: 20[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.725478622] [zed.zed_node]:  * Object Det. prediction timeout [sec]: 2[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.725826398] [zed.zed_node]:  * Object Det. tracking: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.726413907] [zed.zed_node]:  * Object Filtering mode: NMS3D[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.731632655] [zed.zed_node]:  * Object Det. model: MULTI CLASS BOX FAST[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.731919369] [zed.zed_node]:  * MultiClassBox people: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.732355344] [zed.zed_node]:  * MultiClassBox vehicles: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.732548770] [zed.zed_node]:  * MultiClassBox bags: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.732982922] [zed.zed_node]:  * MultiClassBox animals: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.733220927] [zed.zed_node]:  * MultiClassBox electronics: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.733727822] [zed.zed_node]:  * MultiClassBox fruits and vegetables: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.734080302] [zed.zed_node]:  * MultiClassBox sport-related objects: TRUE [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.734642817] [zed.zed_node]:  * MultiClassBox people confidence: 65 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.735061927] [zed.zed_node]:  * MultiClassBox vehicles confidence: 60 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.735457803] [zed.zed_node]:  * MultiClassBox bags confidence: 40 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.735817516] [zed.zed_node]:  * MultiClassBox animals confidence: 40 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.736154603] [zed.zed_node]:  * MultiClassBox electronics confidence: 45 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.736421091] [zed.zed_node]:  * MultiClassBox fruits and vegetables confidence: 50 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.736945203] [zed.zed_node]:  * MultiClassBox sport-related objects confidence: 30 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.737002328] [zed.zed_node]: === Body Track. parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.737215083] [zed.zed_node]:  * Body Track. enabled: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.737719129] [zed.zed_node]:  * Body Track. model: HUMAN BODY MEDIUM[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.738100028] [zed.zed_node]:  * Body Track. format: BODY 38[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.738493760] [zed.zed_node]:  * Body Track. allow reduced precision: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.738823134] [zed.zed_node]:  * Body Track. maximum range [m]: 15[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.739056115] [zed.zed_node]:  * Body Track. KP selection: FULL[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.739541055] [zed.zed_node]:  * Body fitting: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.739941700] [zed.zed_node]:  * Body joints tracking: TRUE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.740212860] [zed.zed_node]:  * Body Track. prediction timeout [sec]: 0.5[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.740795473] [zed.zed_node]:  * Body Track. confidence thresh.: 50 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.741126383] [zed.zed_node]:  * Body Track. min. KP thresh.: 5 [DYNAMIC][0m
+[component_container_isolated-8] [0m[INFO] [1774387379.741167411] [zed.zed_node]: === STREAMING SERVER parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.741601627] [zed.zed_node]:  * Streaming Server enabled: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.741930265] [zed.zed_node]:  * Stream codec: H264[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.742307547] [zed.zed_node]:  * Stream port: 30000[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.744937483] [zed.zed_node]:  * Stream bitrate: 12500[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.745233062] [zed.zed_node]:  * Stream GOP size: -1[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.745712273] [zed.zed_node]:  * Stream Chunk size: 16084[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.746025358] [zed.zed_node]:  * Adaptive bitrate: FALSE[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.746364269] [zed.zed_node]:  * Target frame rate:0[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.746406800] [zed.zed_node]: === ADVANCED parameters ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.746729550] [zed.zed_node]:  * Thread sched. policy: SCHED_BATCH[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.746980677] [zed.zed_node]: === SERVICES ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.748248600] [zed.zed_node]:  * '/zed/zed_node/reset_odometry'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.749758818] [zed.zed_node]:  * '/zed/zed_node/reset_pos_tracking'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.754964028] [zed.zed_node]:  * '/zed/zed_node/set_pose'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.757362614] [zed.zed_node]:  * '/zed/zed_node/enable_obj_det'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.762574801] [zed.zed_node]:  * '/zed/zed_node/enable_body_trk'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.764178211] [zed.zed_node]:  * '/zed/zed_node/enable_mapping'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.765057203] [zed.zed_node]:  * '/zed/zed_node/enable_streaming'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.766243967] [zed.zed_node]:  * '/zed/zed_node/start_svo_rec'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.767549750] [zed.zed_node]:  * '/zed/zed_node/stop_svo_rec'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.769004923] [zed.zed_node]:  * '/zed/zed_node/set_roi'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.770115968] [zed.zed_node]:  * '/zed/zed_node/reset_roi'[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.770189415] [zed.zed_node]: === STARTING CAMERA ===[0m
+[behavior_server-15] [0m[INFO] [1774387379.764805180] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors/AssistedTeleop[0m
+[behavior_server-15] [0m[INFO] [1774387379.770341045] [behavior_server]: Configuring assisted_teleop[0m
+[rviz2-30] 1774387379.769045 [0]      rviz2: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[behavior_server-15] [0m[INFO] [1774387379.794172304] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait[0m
+[behavior_server-15] [0m[INFO] [1774387379.797720147] [behavior_server]: Configuring wait[0m
+[lifecycle_manager-19] [0m[INFO] [1774387379.815490854] [lifecycle_manager_navigation]: [34m[1mConfiguring bt_navigator[0m[0m[0m
+[bt_navigator-16] [0m[INFO] [1774387379.816009493] [bt_navigator]: Configuring[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.913046172] [zed.zed_node]: ZED SDK Version: 5.0.0 - Build 99275_9ed05d06[0m
+[component_container_isolated-8] [0m[INFO] [1774387379.922882332] [zed.zed_node]: === CAMERA OPENING ===[0m
+[lifecycle_manager-19] [0m[INFO] [1774387380.057766882] [lifecycle_manager_navigation]: [34m[1mConfiguring waypoint_follower[0m[0m[0m
+[waypoint_follower-17] [0m[INFO] [1774387380.058728250] [waypoint_follower]: Configuring[0m
+[voice_stt_vosk_node-27] 1774387380.062010 [0] voice_stt_: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[waypoint_follower-17] [0m[INFO] [1774387380.077422851] [waypoint_follower]: Created waypoint_task_executor : wait_at_waypoint of type nav2_waypoint_follower::WaitAtWaypoint[0m
+[lifecycle_manager-19] [0m[INFO] [1774387380.081870521] [lifecycle_manager_navigation]: [34m[1mConfiguring velocity_smoother[0m[0m[0m
+[velocity_smoother-18] [0m[INFO] [1774387380.082504371] [velocity_smoother]: Configuring velocity smoother[0m
+[lifecycle_manager-19] [0m[INFO] [1774387380.090967095] [lifecycle_manager_navigation]: [34m[1mActivating controller_server[0m[0m[0m
+[controller_server-12] [0m[INFO] [1774387380.091562605] [controller_server]: Activating[0m
+[controller_server-12] [0m[INFO] [1774387380.091658390] [local_costmap.local_costmap]: Activating[0m
+[controller_server-12] [0m[INFO] [1774387380.091688217] [local_costmap.local_costmap]: Checking transform[0m
+[controller_server-12] [0m[INFO] [1774387380.091731741] [local_costmap.local_costmap]: Timed out waiting for transform from base_footprint to odom to become available, tf error: Invalid frame ID "odom" passed to canTransform argument target_frame - frame does not exist[0m
+[go2_state-4] 1774387380.103914 [0]  go2_state: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[go2_lidar-10] 1774387380.116808 [0]  go2_lidar: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[odas_leak_classifier_node.py-22] 1774387380.214721 [0]    python3: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[odom_node-5] 1774387380.244867 [0]  odom_node: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[log_pose_action_server-29] 1774387380.246558 [0] log_pose_a: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[base_to_base_tf-2] 1774387380.291182 [0] base_to_ba: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[voice_command_node-28] 1774387380.301223 [0] voice_comm: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[sound_localizer-23] 1774387380.401224 [0] sound_loca: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[component_container_isolated-8] [2026-03-24 21:23:00 UTC][ZED][INFO] Logging level INFO
+[go2_lidar-10] [0m[INFO] [1774387380.466222670] [go2_lidar]: go2 lidar node has started[0m
+[log_pose_action_server-29] [0m[INFO] [1774387380.505654459] [log_pose_action_server]: Log-pose action server ready (RTAB-Map pose)[0m
+[go2_state-4] [0m[INFO] [1774387380.506388350] [go2_state]: state publisher has started[0m
+[base_to_base_tf-2] [0m[INFO] [1774387380.519019903] [base_to_base_tf]: base_footprint to base_link tf has started[0m
+[explore_until_detected_action_server-24] 1774387380.552720 [0] explore_un: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[odom_node-5] [0m[INFO] [1774387380.569001006] [odom_node]: odom has started[0m
+[controller_server-12] [0m[INFO] [1774387380.595361619] [local_costmap.local_costmap]: Timed out waiting for transform from base_footprint to odom to become available, tf error: Invalid frame ID "odom" passed to canTransform argument target_frame - frame does not exist[0m
+[search_action_server-26] 1774387380.631450 [0] search_act: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[sound_localizer-23] [0m[INFO] [1774387380.673690300] [sound_localizer]: Sound localizer started: leak_topic=/leak_detected, doa_topic=/doa_angle, map_frame=map, base_frame=base_link, marker_topic=/sound_localizer/markers, intersection_method=geometric, publish_waypoints=False, num_waypoints=0, min_baseline_m=0.10, stable_min_baseline_m=0.50, stable_required_consecutive_estimates=3[0m
+[voice_command_node-28] [0m[INFO] [1774387380.681652594] [voice_command_node]: Voice command node ready. mode="all", enabled_groups=['search', 'sport_test'], topic="/voice/transcript", wake_phrases=['hey amigo', 'amigo'], search_phrases=['look for a leak'], stand_up_phrases=['stand up', 'get up'], lay_down_phrases=['lay down', 'lie down', 'down'], require_wake=True, action="search", debug_topic="/voice/debug".[0m
+[localize_detected_leak_action_server-25] 1774387380.768037 [0] localize_d: config: //CycloneDDS/Domain/General: 'NetworkInterfaceAddress': deprecated element (file:///home/castej-jetson/.ros/cyclonedds.xml line 4)
+[explore_until_detected_action_server-24] [0m[INFO] [1774387380.867829578] [explore_until_detected_server]: Explore-until-detected action server ready: action="explore_until_detected", leak_topic="/leak_detected", status_topic="explore/status", resume_topic="explore/resume"[0m
+[sound_localizer-23] [33m[WARN] [1774387380.883584807] [sound_localizer]: TF lookup map->base_link failed: "map" passed to lookupTransform argument target_frame does not exist. [0m
+[search_action_server-26] [0m[INFO] [1774387380.923360115] [leak_search_server]: Leak search mission coordinator ready: action="search", explore_action="explore_until_detected", localize_action="localize_detected_leak", debug_topic="/voice/debug"[0m
+[component_container_isolated-8] [2026-03-24 21:23:00 UTC][ZED][INFO] [Init]  Depth mode: NEURAL LIGHT
+[localize_detected_leak_action_server-25] [33m[WARN] [1774387380.939367784] [rcl.logging_rosout]: Publisher already registered for provided node name. If this is due to multiple nodes with the same name then all logs for that logger name will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.[0m
+[rviz2-30] [0m[INFO] [1774387380.984392371] [rviz2]: Stereo is NOT SUPPORTED[0m
+[rviz2-30] [0m[INFO] [1774387380.984557634] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)[0m
+[rviz2-30] [0m[INFO] [1774387381.045347569] [rviz2]: Stereo is NOT SUPPORTED[0m
+[controller_server-12] [0m[INFO] [1774387381.091918031] [local_costmap.local_costmap]: start[0m
+[controller_server-12] [0m[INFO] [1774387381.092832450] [local_costmap.local_costmap]: 3d_lidar_layer was activated.[0m
+[async_slam_toolbox_node-11] [0m[INFO] [1774387381.132534317] [slam_toolbox]: Message Filter dropping message: frame 'laser' at time 1774387379.274 for reason 'discarding message because the queue is full'[0m
+[async_slam_toolbox_node-11] [33m[WARN] [1774387381.133083775] [slam_toolbox]: minimum laser range setting (0.0 m) exceeds the capabilities of the used Lidar (0.1 m)[0m
+[async_slam_toolbox_node-11] Registering sensor: [Custom Described Lidar]
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387381.171810065] [localize_detected_leak_server]: Localize-detected-leak action server ready: action="localize_detected_leak", map_topic="/map", target_perpendicular_baseline_m=1.00, distance_ladder=[0.5, 0.75, 1.0, 1.25], allow_unknown=True, clearance_radius_m=0.50[0m
+[controller_server-12] [33m[WARN] [1774387381.193811787] [controller_server]: Parameter controller_server.verbose not found[0m
+[controller_server-12] [0m[INFO] [1774387381.197830650] [controller_server]: Optimizer reset[0m
+[controller_server-12] [0m[INFO] [1774387381.198552828] [MPPIController]: Activated MPPI Controller: FollowPath[0m
+[controller_server-12] [0m[INFO] [1774387381.198654501] [controller_server]: Creating bond (controller_server) to lifecycle manager.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387381.306329905] [lifecycle_manager_navigation]: Server controller_server connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387381.306447964] [lifecycle_manager_navigation]: [34m[1mActivating smoother_server[0m[0m[0m
+[smoother_server-13] [0m[INFO] [1774387381.307050419] [smoother_server]: Activating[0m
+[smoother_server-13] [0m[INFO] [1774387381.307129018] [smoother_server]: Creating bond (smoother_server) to lifecycle manager.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387381.359857387] [voice_stt_vosk_node]: Loaded Vosk model with grammar filter: ['hey amigo', 'amigo', 'hey amigo stand up', 'amigo stand up', 'hey amigo lay down', 'amigo lay down', 'hey amigo can you stand up', 'amigo can you stand up', 'hey amigo can you get up', 'amigo can you get up', 'hey amigo can you lay down', 'amigo can you lay down', 'hey amigo can you lie down', 'amigo can you lie down', 'hey amigo can you look for a leak', 'amigo can you look for a leak', 'stand up', 'lay down', 'lie down', 'look for a leak'][0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387381.360503846] [voice_stt_vosk_node]: Vosk STT ready. audio_topic="/sss", transcript_topic="/voice/transcript", sample_rate=16000, channel_index=0, channel_strategy="max_rms", max_alternatives=3.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387381.416736439] [lifecycle_manager_navigation]: Server smoother_server connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387381.416836224] [lifecycle_manager_navigation]: [34m[1mActivating planner_server[0m[0m[0m
+[planner_server-14] [0m[INFO] [1774387381.417441655] [planner_server]: Activating[0m
+[planner_server-14] [0m[INFO] [1774387381.417542336] [global_costmap.global_costmap]: Activating[0m
+[planner_server-14] [0m[INFO] [1774387381.417811993] [global_costmap.global_costmap]: Checking transform[0m
+[planner_server-14] [0m[INFO] [1774387381.418120821] [global_costmap.global_costmap]: start[0m
+[planner_server-14] [33m[WARN] [1774387381.418672455] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [0m[INFO] [1774387381.468330304] [planner_server]: Activating plugin GridBased of type SmacPlanner2D[0m
+[planner_server-14] [0m[INFO] [1774387381.469563504] [planner_server]: Creating bond (planner_server) to lifecycle manager.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387381.579676347] [lifecycle_manager_navigation]: Server planner_server connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387381.579771652] [lifecycle_manager_navigation]: [34m[1mActivating behavior_server[0m[0m[0m
+[behavior_server-15] [0m[INFO] [1774387381.580465859] [behavior_server]: Activating[0m
+[behavior_server-15] [0m[INFO] [1774387381.580536553] [behavior_server]: Activating spin[0m
+[behavior_server-15] [0m[INFO] [1774387381.580570285] [behavior_server]: Activating backup[0m
+[behavior_server-15] [0m[INFO] [1774387381.580592239] [behavior_server]: Activating drive_on_heading[0m
+[behavior_server-15] [0m[INFO] [1774387381.580612048] [behavior_server]: Activating assisted_teleop[0m
+[behavior_server-15] [0m[INFO] [1774387381.580630898] [behavior_server]: Activating wait[0m
+[behavior_server-15] [0m[INFO] [1774387381.580659125] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.[0m
+[planner_server-14] [33m[WARN] [1774387381.618315044] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[lifecycle_manager-19] [0m[INFO] [1774387381.686081875] [lifecycle_manager_navigation]: Server behavior_server connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387381.686206974] [lifecycle_manager_navigation]: [34m[1mActivating bt_navigator[0m[0m[0m
+[bt_navigator-16] [0m[INFO] [1774387381.687619999] [bt_navigator]: Activating[0m
+[planner_server-14] [33m[WARN] [1774387381.818561273] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[bt_navigator-16] [0m[INFO] [1774387381.884564198] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387381.996802227] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387381.996928638] [lifecycle_manager_navigation]: [34m[1mActivating waypoint_follower[0m[0m[0m
+[waypoint_follower-17] [0m[INFO] [1774387381.997632287] [waypoint_follower]: Activating[0m
+[waypoint_follower-17] [0m[INFO] [1774387381.997721127] [waypoint_follower]: Creating bond (waypoint_follower) to lifecycle manager.[0m
+[planner_server-14] [33m[WARN] [1774387382.018319138] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[lifecycle_manager-19] [0m[INFO] [1774387382.109163832] [lifecycle_manager_navigation]: Server waypoint_follower connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387382.109270882] [lifecycle_manager_navigation]: [34m[1mActivating velocity_smoother[0m[0m[0m
+[velocity_smoother-18] [0m[INFO] [1774387382.109903740] [velocity_smoother]: Activating[0m
+[velocity_smoother-18] [0m[INFO] [1774387382.110034920] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387382.218146793] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387382.218232561] [lifecycle_manager_navigation]: [34m[1mManaged nodes are active[0m[0m[0m
+[lifecycle_manager-19] [0m[INFO] [1774387382.218259540] [lifecycle_manager_navigation]: [34m[1mCreating bond timer...[0m[0m[0m
+[planner_server-14] [33m[WARN] [1774387382.218318937] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387382.418363476] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387382.618326951] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387382.818384067] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387383.018538890] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[rviz2-30] [0m[INFO] [1774387383.166528989] [rviz2]: Trying to create a map of size 120 x 120 using 1 swatches[0m
+[planner_server-14] [33m[WARN] [1774387383.218316005] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387383.418314164] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387383.618310595] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[component_container_isolated-8] [2026-03-24 21:23:03 UTC][ZED][INFO] [Init]  Camera FW version: 2001
+[component_container_isolated-8] [2026-03-24 21:23:03 UTC][ZED][INFO] [Init]  Video mode: SVGA@15
+[component_container_isolated-8] [2026-03-24 21:23:03 UTC][ZED][INFO] [Init]  Serial Number: S/N 56236837
+[planner_server-14] [33m[WARN] [1774387383.818320979] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387384.018313539] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [0m[INFO] [1774387384.109886034] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 152 X 91 at 0.050000 m/pix[0m
+[rviz2-30] [0m[INFO] [1774387384.137568989] [rviz2]: Trying to create a map of size 152 x 91 using 1 swatches[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.196958308] [zed.zed_node]:  * ZED SDK running on GPU #0[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197067822] [zed.zed_node]:  * Camera Model  -> ZED X Mini[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197095089] [zed.zed_node]:  * Serial Number -> 56236837[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197257440] [zed.zed_node]:  * Focal Lenght	-> 2.18794 mm[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197306276] [zed.zed_node]:  * Input		-> GMSL[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197333031] [zed.zed_node]:  * Camera FW Version  -> 2001[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197350376] [zed.zed_node]:  * Sensors FW Version -> 1000[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197369546] [zed.zed_node]:  * Camera grab size -> 960x600[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197398349] [zed.zed_node]:  * Color/Depth publishing size -> 480x300[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197415438] [zed.zed_node]:  * Point Cloud publishing size -> 448x256[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197444785] [zed.zed_node]: === TF FRAMES ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197468531] [zed.zed_node]:  * Map			-> map[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197485204] [zed.zed_node]:  * Odometry		-> odom[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197498838] [zed.zed_node]:  * Base			-> zed_camera_link[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197512567] [zed.zed_node]:  * Camera		-> zed_camera_center[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197526328] [zed.zed_node]:  * Left			-> zed_left_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197540090] [zed.zed_node]:  * Left Optical		-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197553755] [zed.zed_node]:  * RGB			-> zed_left_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197567420] [zed.zed_node]:  * RGB Optical		-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197580861] [zed.zed_node]:  * Right			-> zed_right_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197594110] [zed.zed_node]:  * Right Optical		-> zed_right_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197607232] [zed.zed_node]:  * Depth			-> zed_left_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197626561] [zed.zed_node]:  * Depth Optical		-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197640899] [zed.zed_node]:  * Point Cloud		-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197654084] [zed.zed_node]:  * Disparity		-> zed_left_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197667525] [zed.zed_node]:  * Disparity Optical	-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197680806] [zed.zed_node]:  * Confidence		-> zed_left_camera_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197694312] [zed.zed_node]:  * Confidence Optical	-> zed_left_camera_optical_frame[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197779087] [zed.zed_node]:  * IMU			-> zed_imu_link[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.197834165] [zed.zed_node]: === PUBLISHED TOPICS ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.201738363] [zed.zed_node]: Advertised on topic: /zed/zed_node/status/health[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.207130601] [zed.zed_node]: Advertised on topic: /zed/zed_node/status/heartbeat[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.400801036] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.422731143] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb/image_rect_color[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.422819600] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.430826958] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.440777119] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_gray/image_rect_gray[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.440863366] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.447215725] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.457495068] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_raw/image_raw_color[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.457589765] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_raw/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.464341840] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.473907901] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_raw_gray/image_raw_gray[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.473994885] [zed.zed_node]: Advertised on topic: /zed/zed_node/rgb_raw_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.480913728] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.490673119] [zed.zed_node]: Advertised on topic: /zed/zed_node/left/image_rect_color[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.490757671] [zed.zed_node]: Advertised on topic: /zed/zed_node/left/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.499345242] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.521484969] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_gray/image_rect_gray[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.521609812] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.530672756] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.543120425] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_raw/image_raw_color[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.543234932] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_raw/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.551082147] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.565500910] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_raw_gray/image_raw_gray[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.565586934] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_raw_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.573194095] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.584204993] [zed.zed_node]: Advertised on topic: /zed/zed_node/right/image_rect_color[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.584388562] [zed.zed_node]: Advertised on topic: /zed/zed_node/right/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.593942686] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.608367529] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_gray/image_rect_gray[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.608466643] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.616185463] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.626203501] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_raw/image_raw_color[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.626314039] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_raw/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.634554795] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.644277831] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_raw_gray/image_raw_gray[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.644365359] [zed.zed_node]: Advertised on topic: /zed/zed_node/right_raw_gray/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.651442232] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.665381463] [zed.zed_node]: Advertised on topic: /zed/zed_node/depth/depth_registered[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.665506146] [zed.zed_node]: Advertised on topic: /zed/zed_node/depth/camera_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.668235356] [zed.zed_node]: Advertised on topic: /zed/zed_node/depth/depth_info[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.676116047] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.685957686] [zed.zed_node]: Advertised on topic: /zed/zed_node/stereo/image_rect_color[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.693639574] [FFMPEGPublisher]: using encoder: libx264[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.701862761] [zed.zed_node]: Advertised on topic: /zed/zed_node/stereo_raw/image_raw_color[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.703816636] [zed.zed_node]: Advertised on topic: /zed/zed_node/confidence/confidence_map[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.707463658] [zed.zed_node]: Advertised on topic: /zed/zed_node/disparity/disparity_image[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.734634566] [zed.zed_node]: Advertised on topic: /zed/zed_node/point_cloud/cloud_registered[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.737547474] [zed.zed_node]: Advertised on topic: /zed/zed_node/pose[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.740225447] [zed.zed_node]: Advertised on topic: /zed/zed_node/pose/status[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.743187927] [zed.zed_node]: Advertised on topic: /zed/zed_node/pose_with_covariance[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.747310737] [zed.zed_node]: Advertised on topic: /zed/zed_node/odom[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.750328998] [zed.zed_node]: Advertised on topic: /zed/zed_node/path_map[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.753535404] [zed.zed_node]: Advertised on topic: /zed/zed_node/path_odom[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.757844055] [zed.zed_node]: Advertised on topic: /zed/plane_marker[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.761090145] [zed.zed_node]: Advertised on topic: /zed/plane[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.764201822] [zed.zed_node]: Advertised on topic: /zed/zed_node/imu/data[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.767293082] [zed.zed_node]: Advertised on topic: /zed/zed_node/imu/data_raw[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.770140767] [zed.zed_node]: Advertised on topic: /zed/zed_node/temperature/imu[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.772994949] [zed.zed_node]: Advertised on topic: /zed/zed_node/left_cam_imu_transform[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.773107759] [zed.zed_node]: Camera-IMU Translation: 
+[component_container_isolated-8]  0 -0.034502 -0.004356[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.773279839] [zed.zed_node]: Camera-IMU Rotation:
+[component_container_isolated-8] FFFF5A52B650
+[component_container_isolated-8] 0.999993 -0.003672 0.000780
+[component_container_isolated-8] 0.003676 0.999982 -0.004836
+[component_container_isolated-8] -0.000762 0.004838 0.999988
+[component_container_isolated-8] [0m
+[component_container_isolated-8] [0m[INFO] [1774387384.773316994] [zed.zed_node]: ===Subscribers ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.776507271] [zed.zed_node]:  * Plane detection: '/clicked_point'[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.907469458] [zed.zed_node]: === Starting Positional Tracking ===[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.907595134] [zed.zed_node]:  * Waiting for valid static transformations...[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.907761293] [zed.zed_node]:  Static transform ref. CMOS Sensor to Base [zed_left_camera_frame -> zed_camera_link][0m
+[component_container_isolated-8] [0m[INFO] [1774387384.907804977] [zed.zed_node]:   * Translation: {0.010,-0.025,-0.016}[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.907825651] [zed.zed_node]:   * Rotation: {0.000,-0.000,0.000}[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.907885400] [zed.zed_node]:  Static transform ref. CMOS Sensor to Camera Center [zed_left_camera_frame -> zed_camera_center][0m
+[component_container_isolated-8] [0m[INFO] [1774387384.907906490] [zed.zed_node]:   * Translation: {0.010,-0.025,0.000}[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.907935517] [zed.zed_node]:   * Rotation: {0.000,-0.000,0.000}[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.907973409] [zed.zed_node]:  Static transform Camera Center to Base [zed_camera_center -> zed_camera_link][0m
+[component_container_isolated-8] [0m[INFO] [1774387384.907992162] [zed.zed_node]:   * Translation: {0.000,0.000,-0.016}[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.908010692] [zed.zed_node]:   * Rotation: {0.000,-0.000,0.000}[0m
+[component_container_isolated-8] [0m[INFO] [1774387384.909135307] [zed.zed_node]: Initial ZED left camera pose (ZED pos. tracking): [0m
+[component_container_isolated-8] [0m[INFO] [1774387384.909194993] [zed.zed_node]:  * T: [-0.01,0.025,0.016][0m
+[component_container_isolated-8] [0m[INFO] [1774387384.909227123] [zed.zed_node]:  * Q: [0,0,0,1][0m
+[explore-20] [0m[INFO] [1774387385.193169317] [explore_node]: Waiting to connect to move_base nav2 server[0m
+[explore-20] [0m[INFO] [1774387385.193884262] [explore_node]: Connected to move_base nav2 server[0m
+[explore-20] [0m[INFO] [1774387385.194561892] [explore_node]: Exploration is paused at startup; waiting for resume command.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387386.969754665] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 174.52597, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387386.970344351] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387391.987229533] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 170.072968, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387391.987943935] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[rviz2-30] [0m[INFO] [1774387392.581346382] [rviz]: Message Filter dropping message: frame 'laser' at time 1774387392.407 for reason 'unknown'[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387397.035300367] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 172.763519, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387397.035903079] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387400.874495818] [voice_stt_vosk_node]: Partial: "amigo"[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387401.846932751] [voice_stt_vosk_node]: Partial: "amigo can you"[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387402.066913390] [voice_stt_vosk_node]: Partial: "amigo can you look for"[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387402.292593553] [voice_stt_vosk_node]: Partial: "amigo can you look for a leak"[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387403.319080282] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 238.422333, "result": [{"end": 19.2, "start": 18.75, "word": "amigo"}, {"end": 19.77, "start": 19.62, "word": "can"}, {"end": 19.89, "start": 19.77, "word": "you"}, {"end": 20.13, "start": 19.89, "word": "look"}, {"end": 20.31, "start": 20.13, "word": "for"}, {"end": 20.34, "start": 20.31, "word": "a"}, {"end": 20.7, "start": 20.34, "word": "leak"}], "text": "amigo can you look for a leak"}]}[0m
+[voice_command_node-28] [0m[INFO] [1774387403.321170718] [voice_command_node]: Transcript: "amigo can you look for a leak"[0m
+[voice_command_node-28] [0m[INFO] [1774387403.322516668] [voice_command_node]: Wake phrase heard. Command window open for 8.0s.[0m
+[voice_command_node-28] [0m[INFO] [1774387403.325313186] [voice_command_node]: Voice command matched. Sending Search action goal.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387403.327898101] [voice_stt_vosk_node]: Transcript: "amigo can you look for a leak"[0m
+[search_action_server-26] [0m[INFO] [1774387403.327922007] [leak_search_server]: Search goal received.[0m
+[voice_command_node-28] [0m[INFO] [1774387403.329935603] [voice_command_node]: Search goal accepted.[0m
+[explore-20] [0m[INFO] [1774387403.333193669] [explore_node]: Exploration resuming.[0m
+[explore_until_detected_action_server-24] [0m[INFO] [1774387403.333766778] [explore_until_detected_server]: ExploreUntilDetected execution started. Exploration resumed. leak_initially_detected=False[0m
+[bt_navigator-16] [0m[INFO] [1774387403.421661413] [bt_navigator]: Begin navigating from current location (0.00, -0.00) to (-2.57, 0.45)[0m
+[controller_server-12] [0m[INFO] [1774387403.443202471] [controller_server]: Received a goal, begin computing control effort.[0m
+[controller_server-12] [33m[WARN] [1774387403.443315026] [controller_server]: No goal checker was specified in parameter 'current_goal_checker'. Server will use only plugin loaded stopped_goal_checker . This warning will appear once.[0m
+[controller_server-12] [0m[INFO] [1774387403.445125595] [controller_server]: Optimizer reset[0m
+[controller_server-12] [0m[INFO] [1774387404.493452846] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387405.543465726] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387406.546447563] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387407.593457945] [controller_server]: Passing new path to controller.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387408.324669450] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 145.194214, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387408.325303781] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[controller_server-12] [0m[INFO] [1774387408.546815317] [controller_server]: Optimizer reset[0m
+[controller_server-12] [0m[INFO] [1774387408.550918647] [controller_server]: Optimizer reset[0m
+[controller_server-12] [31m[ERROR] [1774387408.551162862] [controller_server]: Optimizer fail to compute path[0m
+[controller_server-12] [33m[WARN] [1774387408.551282714] [controller_server]: [follow_path] [ActionServer] Aborting handle.[0m
+[controller_server-12] [0m[INFO] [1774387408.562634246] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap[0m
+[controller_server-12] [0m[INFO] [1774387408.584803468] [controller_server]: Received a goal, begin computing control effort.[0m
+[controller_server-12] [0m[INFO] [1774387408.595373135] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387409.635005752] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387410.138604721] [controller_server]: Optimizer reset[0m
+[controller_server-12] [0m[INFO] [1774387410.141561575] [controller_server]: Optimizer reset[0m
+[controller_server-12] [31m[ERROR] [1774387410.141714454] [controller_server]: Optimizer fail to compute path[0m
+[controller_server-12] [33m[WARN] [1774387410.141835009] [controller_server]: [follow_path] [ActionServer] Aborting handle.[0m
+[controller_server-12] [0m[INFO] [1774387410.162195329] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap[0m
+[planner_server-14] [0m[INFO] [1774387410.163313834] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap[0m
+[controller_server-12] [0m[INFO] [1774387410.242892665] [controller_server]: Received a goal, begin computing control effort.[0m
+[controller_server-12] [0m[INFO] [1774387411.293288548] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387412.343316963] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387413.046689629] [controller_server]: Optimizer reset[0m
+[controller_server-12] [0m[INFO] [1774387413.049592144] [controller_server]: Optimizer reset[0m
+[controller_server-12] [31m[ERROR] [1774387413.049742110] [controller_server]: Optimizer fail to compute path[0m
+[controller_server-12] [33m[WARN] [1774387413.049874122] [controller_server]: [follow_path] [ActionServer] Aborting handle.[0m
+[controller_server-12] [0m[INFO] [1774387413.062287551] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap[0m
+[controller_server-12] [0m[INFO] [1774387413.065301180] [controller_server]: Received a goal, begin computing control effort.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387413.342346948] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 148.842712, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387413.343005986] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[controller_server-12] [0m[INFO] [1774387413.365508497] [controller_server]: Passing new path to controller.[0m
+[rviz2-30] [0m[INFO] [1774387414.154084061] [rviz2]: Trying to create a map of size 152 x 145 using 1 swatches[0m
+[sound_localizer-23] [0m[INFO] [1774387414.164370922] [sound_localizer]: Reset sound-localization session: new leak event[0m
+[planner_server-14] [0m[INFO] [1774387414.218307096] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 152 X 145 at 0.050000 m/pix[0m
+[explore_until_detected_action_server-24] [0m[INFO] [1774387414.361763929] [explore_until_detected_server]: ExploreUntilDetected stopping exploration because a fresh leak detection was observed.[0m
+[explore-20] [0m[INFO] [1774387414.363693840] [explore_node]: Exploration stopped.[0m
+[controller_server-12] [0m[INFO] [1774387414.365499642] [controller_server]: Passing new path to controller.[0m
+[sound_localizer-23] [0m[INFO] [1774387414.383865187] [sound_localizer]: Recorded first sound bearing at (-1.88, 0.25)[0m
+[bt_navigator-16] [31m[ERROR] [1774387414.392855798] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt![0m
+[bt_navigator-16] [0m[INFO] [1774387414.393029062] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.[0m
+[bt_navigator-16] [0m[INFO] [1774387414.393471152] [bt_navigator]: Goal canceled[0m
+[controller_server-12] [0m[INFO] [1774387414.415516213] [controller_server]: Goal was canceled. Stopping the robot.[0m
+[controller_server-12] [0m[INFO] [1774387414.415620415] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.864490552] [localize_detected_leak_server]: LocalizeDetectedLeak goal received.[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.866529369] [localize_detected_leak_server]: LocalizeDetectedLeak execution started. map_available=True, leak_detected=True, estimate_valid=False, estimate_stable=False[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.867433230] [localize_detected_leak_server]: Captured first leak bearing for baseline planning: 5.2 deg in map frame. robot_pose=(-1.91, 0.23, 170.2 deg)[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.868653570] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=95.2 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.869306720] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=95.2 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.869859700] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=95.2 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.870382693] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=95.2 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.872652444] [localize_detected_leak_server]: Getting path...[0m
+[planner_server-14] [33m[WARN] [1774387414.874140585] [planner_server]: No planners specified in action call. Server will use only plugin GridBased  in server. This warning will appear once.[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.881671089] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=80.2 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.883539906] [localize_detected_leak_server]: Getting path...[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.918817451] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=80.2 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.919758276] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=110.2 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.920519148] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=110.2 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.921210413] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=110.2 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.921853962] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=110.2 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.924417692] [localize_detected_leak_server]: Getting path...[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.932693963] [localize_detected_leak_server]: Getting path...[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.940899411] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=65.2 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.941635865] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=65.2 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.942498634] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=125.2 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.943252562] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=125.2 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.943897615] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=125.2 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.944465797] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=125.2 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.946365080] [localize_detected_leak_server]: Getting path...[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.953121751] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=50.2 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.953836475] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=50.2 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.954476055] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=50.2 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.955290980] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=140.2 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.955890237] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=140.2 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.956454643] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=140.2 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.957062156] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=140.2 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.958763917] [localize_detected_leak_server]: Getting path...[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.964328731] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=35.2 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.965023837] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=35.2 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.965617173] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=35.2 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.966279284] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=155.2 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.966923793] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=155.2 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.967491046] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=155.2 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.968035706] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=155.2 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.968595919] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-84.8 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.969164197] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-84.8 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.969778111] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-84.8 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.970339284] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-84.8 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.970897929] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-99.8 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.971445692] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-99.8 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.972047701] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-99.8 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.972577672] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-99.8 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.973097817] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-69.8 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.973602600] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-69.8 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.974181407] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-69.8 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.974705617] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-69.8 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.975202048] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-114.8 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.975707024] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-114.8 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.976263620] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-114.8 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.976875806] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-114.8 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.977380878] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-54.8 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.977868764] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-54.8 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.978374924] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-54.8 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.978904510] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-54.8 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.979446577] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-129.8 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.979981828] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-129.8 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.980527511] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-129.8 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.981070411] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-129.8 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.982862324] [localize_detected_leak_server]: Getting path...[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.989934481] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-39.8 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.990607281] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-39.8 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.991149636] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-39.8 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.991695224] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-144.8 deg travel=0.50 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.992211273] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-144.8 deg travel=0.75 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.992744059] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-144.8 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.993244586] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-144.8 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387414.995061302] [localize_detected_leak_server]: Getting path...[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387415.002959585] [localize_detected_leak_server]: Getting path...[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387415.009759397] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-24.8 deg travel=1.00 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387415.010398209] [localize_detected_leak_server]: [debug] Rejected candidate for endpoint clearance: heading=-24.8 deg travel=1.25 m reason=occupied:100[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387415.011090883] [localize_detected_leak_server]: [debug] candidate_ranking 80deg/1.00m/B=0.97/path=1.02, 65deg/0.75m/B=0.66/path=0.77, 80deg/0.50m/B=0.48/path=0.54, 65deg/0.50m/B=0.42/path=0.53, -25deg/0.75m/B=0.37/path=0.72[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387415.011780420] [localize_detected_leak_server]: Baseline move 1/3: heading=80.2 deg, travel=1.00 m, B_perp=0.97 m, path_length=1.02 m[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387415.012324056] [localize_detected_leak_server]: [debug] Sending Nav2 goal: goal=(-1.74, 1.22, 80.2 deg), endpoint=(-1.75, 1.23), baseline=0.97 m[0m
+[localize_detected_leak_action_server-25] [0m[INFO] [1774387415.013616882] [localize_detected_leak_server]: Navigating to goal: -1.7400918113835746 1.2189198660704625...[0m
+[bt_navigator-16] [0m[INFO] [1774387415.014907820] [bt_navigator]: Begin navigating from current location (-1.91, 0.23) to (-1.74, 1.22)[0m
+[controller_server-12] [0m[INFO] [1774387415.036607442] [controller_server]: Received a goal, begin computing control effort.[0m
+[controller_server-12] [0m[INFO] [1774387416.086908534] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387417.136867146] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387418.136914542] [controller_server]: Passing new path to controller.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387418.400301419] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 141.627014, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387418.400891267] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[controller_server-12] [0m[INFO] [1774387419.186907934] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387420.186888395] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387421.236913394] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387422.287027756] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387423.286944259] [controller_server]: Passing new path to controller.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387423.433599631] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 118.627953, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387423.435891273] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[controller_server-12] [0m[INFO] [1774387424.336905820] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387425.337487063] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387426.386871462] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [31m[ERROR] [1774387427.037015205] [controller_server]: Failed to make progress[0m
+[controller_server-12] [33m[WARN] [1774387427.037179830] [controller_server]: [follow_path] [ActionServer] Aborting handle.[0m
+[controller_server-12] [0m[INFO] [1774387427.056125512] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap[0m
+[controller_server-12] [0m[INFO] [1774387427.058757622] [controller_server]: Received a goal, begin computing control effort.[0m
+[controller_server-12] [0m[INFO] [1774387427.409127708] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387428.459120148] [controller_server]: Passing new path to controller.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387428.471394172] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 127.09388, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387428.472038945] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[controller_server-12] [0m[INFO] [1774387429.459682235] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387430.509131383] [controller_server]: Passing new path to controller.[0m
+[rviz2-30] [31m[ERROR] [1774387430.930443652] [rviz2]: Lookup would require extrapolation into the future.  Requested time 1774387430.889189 but the latest data is at time 1774387430.879774, when looking up transform from frame [laser] to frame [map][0m
+[controller_server-12] [0m[INFO] [1774387431.559131163] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387432.559120123] [controller_server]: Passing new path to controller.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387433.505041699] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 125.956322, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387433.505651952] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[controller_server-12] [0m[INFO] [1774387433.609092944] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387434.609094537] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387435.659116926] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387436.709118260] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [0m[INFO] [1774387437.709115156] [controller_server]: Passing new path to controller.[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387438.571468326] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 115.976372, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387438.572302757] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[controller_server-12] [0m[INFO] [1774387438.759121132] [controller_server]: Passing new path to controller.[0m
+[controller_server-12] [31m[ERROR] [1774387439.109276899] [controller_server]: Failed to make progress[0m
+[controller_server-12] [33m[WARN] [1774387439.109985164] [controller_server]: [follow_path] [ActionServer] Aborting handle.[0m
+[behavior_server-15] [0m[INFO] [1774387439.126434815] [behavior_server]: Running spin[0m
+[behavior_server-15] [0m[INFO] [1774387439.126690476] [behavior_server]: Turning 1.57 for spin behavior.[0m
+[component_container_isolated-8] [0m[INFO] [1774387440.343009143] [zed.zed_node]: === Odometry reset for LOOP CLOSURE event ===[0m
+[planner_server-14] [33m[WARN] [1774387440.418311940] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[behavior_server-15] [31m[ERROR] [1774387440.427194214] [behavior_server]: Pose Goes Off Grid.[0m
+[behavior_server-15] [33m[WARN] [1774387440.427453714] [behavior_server]: Collision Ahead - Exiting Spin[0m
+[behavior_server-15] [33m[WARN] [1774387440.427486704] [behavior_server]: spin failed[0m
+[behavior_server-15] [33m[WARN] [1774387440.427511182] [behavior_server]: [spin] [ActionServer] Aborting handle.[0m
+[behavior_server-15] [0m[INFO] [1774387440.456120703] [behavior_server]: Running wait[0m
+[controller_server-12] [33m[WARN] [1774387440.492165694] [local_costmap.local_costmap]: Sensor origin at (-1.67, 0.16) is out of map bounds (-4.65, 114.35) to (1.33, 120.33). The costmap cannot raytrace for it.[0m
+[controller_server-12] [33m[WARN] [1774387440.592128198] [local_costmap.local_costmap]: Sensor origin at (-1.67, 89.47) is out of map bounds (-4.65, 114.40) to (1.33, 120.38). The costmap cannot raytrace for it.[0m
+[planner_server-14] [33m[WARN] [1774387440.618321486] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387440.637904200] [sound_localizer]: Updated sound estimate in map frame: x=-522.40, y=-30.31, baseline=117.35 m, bearing_separation=12.3 deg, stable=False, reason=need_more_estimates, bearings=(3.4, 15.7) deg[0m
+[planner_server-14] [33m[WARN] [1774387440.818321560] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387440.891502725] [sound_localizer]: Updated sound estimate in map frame: x=-589.68, y=-34.26, baseline=117.56 m, bearing_separation=11.0 deg, stable=False, reason=need_more_estimates, bearings=(3.4, 14.4) deg[0m
+[planner_server-14] [33m[WARN] [1774387441.018309782] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387441.140152893] [sound_localizer]: Updated sound estimate in map frame: x=-753.58, y=-43.89, baseline=117.97 m, bearing_separation=8.7 deg, stable=False, reason=bearing_separation_too_small:8.7deg, bearings=(3.4, 12.1) deg[0m
+[planner_server-14] [33m[WARN] [1774387441.218302097] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387441.391993005] [sound_localizer]: Updated sound estimate in map frame: x=11.23, y=119.50, baseline=1.07 m, bearing_separation=8.0 deg, stable=False, reason=bearing_separation_too_small:8.0deg, bearings=(15.7, 7.6) deg[0m
+[planner_server-14] [33m[WARN] [1774387441.418322474] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387441.618283175] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387441.641482604] [sound_localizer]: Updated sound estimate in map frame: x=16.97, y=121.11, baseline=1.77 m, bearing_separation=7.4 deg, stable=False, reason=bearing_separation_too_small:7.4deg, bearings=(15.7, 8.2) deg[0m
+[planner_server-14] [33m[WARN] [1774387441.818328670] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387441.896553868] [sound_localizer]: Updated sound estimate in map frame: x=-235.22, y=-13.45, baseline=119.14 m, bearing_separation=25.8 deg, stable=False, reason=bearing_separation_too_small:7.4deg, bearings=(3.4, 29.1) deg[0m
+[planner_server-14] [33m[WARN] [1774387442.018305037] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387442.140076234] [sound_localizer]: Updated sound estimate in map frame: x=-237.44, y=-13.58, baseline=119.89 m, bearing_separation=25.8 deg, stable=False, reason=bearing_separation_too_small:7.4deg, bearings=(3.4, 29.1) deg[0m
+[planner_server-14] [33m[WARN] [1774387442.218271544] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387442.389038264] [sound_localizer]: Updated sound estimate in map frame: x=-177.36, y=-10.06, baseline=120.30 m, bearing_separation=32.7 deg, stable=False, reason=estimate_spread_too_large:39.38m, bearings=(3.4, 36.0) deg[0m
+[planner_server-14] [33m[WARN] [1774387442.418311261] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387442.618305158] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387442.650861179] [sound_localizer]: Updated sound estimate in map frame: x=-168.69, y=-9.55, baseline=121.12 m, bearing_separation=34.3 deg, stable=False, reason=estimate_spread_too_large:43.02m, bearings=(3.4, 37.6) deg[0m
+[planner_server-14] [33m[WARN] [1774387442.818333484] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387442.892852967] [sound_localizer]: Updated sound estimate in map frame: x=-272.47, y=-15.64, baseline=121.74 m, bearing_separation=23.4 deg, stable=False, reason=estimate_spread_too_large:66.41m, bearings=(3.4, 26.8) deg[0m
+[planner_server-14] [33m[WARN] [1774387443.018308681] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387443.141771709] [sound_localizer]: Updated sound estimate in map frame: x=-271.82, y=-15.60, baseline=122.91 m, bearing_separation=23.7 deg, stable=False, reason=estimate_spread_too_large:69.09m, bearings=(3.4, 27.1) deg[0m
+[planner_server-14] [33m[WARN] [1774387443.218315390] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387443.392455317] [sound_localizer]: Updated sound estimate in map frame: x=-399.01, y=-23.07, baseline=123.75 m, bearing_separation=16.9 deg, stable=False, reason=estimate_spread_too_large:84.72m, bearings=(3.4, 20.3) deg[0m
+[planner_server-14] [33m[WARN] [1774387443.418309811] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387443.594857501] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 122.049644, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387443.595873844] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[planner_server-14] [33m[WARN] [1774387443.618326982] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387443.640167684] [sound_localizer]: Updated sound estimate in map frame: x=-376.34, y=-21.74, baseline=125.31 m, bearing_separation=18.1 deg, stable=False, reason=estimate_spread_too_large:77.37m, bearings=(3.4, 21.5) deg[0m
+[planner_server-14] [33m[WARN] [1774387443.818254336] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387443.892014345] [sound_localizer]: Updated sound estimate in map frame: x=-825.03, y=-48.08, baseline=126.43 m, bearing_separation=8.6 deg, stable=False, reason=bearing_separation_too_small:8.6deg, bearings=(3.4, 12.0) deg[0m
+[planner_server-14] [33m[WARN] [1774387444.018326274] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387444.145272080] [sound_localizer]: Updated sound estimate in map frame: x=-827.45, y=-48.23, baseline=128.38 m, bearing_separation=8.8 deg, stable=False, reason=bearing_separation_too_small:8.6deg, bearings=(3.4, 12.1) deg[0m
+[rviz2-30] [0m[INFO] [1774387444.165003068] [rviz2]: Trying to create a map of size 280 x 2633 using 1 swatches[0m
+[planner_server-14] [33m[WARN] [1774387444.218307554] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [0m[INFO] [1774387444.218360350] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 280 X 2633 at 0.050000 m/pix[0m
+[sound_localizer-23] [0m[INFO] [1774387444.390140777] [sound_localizer]: Updated sound estimate in map frame: x=75.59, y=137.57, baseline=15.04 m, bearing_separation=10.5 deg, stable=False, reason=bearing_separation_too_small:8.6deg, bearings=(15.7, 5.2) deg[0m
+[planner_server-14] [33m[WARN] [1774387444.418324544] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387444.618309632] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387444.640152439] [sound_localizer]: Updated sound estimate in map frame: x=98.08, y=143.89, baseline=17.31 m, bearing_separation=9.4 deg, stable=False, reason=bearing_separation_too_small:8.8deg, bearings=(15.7, 6.2) deg[0m
+[planner_server-14] [33m[WARN] [1774387444.818323774] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387444.891915913] [sound_localizer]: Updated sound estimate in map frame: x=122.79, y=150.82, baseline=19.15 m, bearing_separation=8.4 deg, stable=False, reason=bearing_separation_too_small:8.4deg, bearings=(15.7, 7.3) deg[0m
+[planner_server-14] [33m[WARN] [1774387445.018307121] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387445.141246825] [sound_localizer]: Updated sound estimate in map frame: x=486.56, y=28.62, baseline=136.83 m, bearing_separation=15.8 deg, stable=False, reason=bearing_separation_too_small:8.4deg, bearings=(3.3, -12.5) deg[0m
+[planner_server-14] [33m[WARN] [1774387445.218345014] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387445.401041841] [sound_localizer]: Updated sound estimate in map frame: x=35.29, y=126.26, baseline=24.11 m, bearing_separation=37.1 deg, stable=False, reason=bearing_separation_too_small:8.4deg, bearings=(15.7, -21.4) deg[0m
+[planner_server-14] [33m[WARN] [1774387445.418322431] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[behavior_server-15] [0m[INFO] [1774387445.456446371] [behavior_server]: wait completed successfully[0m
+[planner_server-14] [33m[WARN] [1774387445.486685963] [planner_server]: GridBased: failed to create plan, no valid path found.[0m
+[planner_server-14] [33m[WARN] [1774387445.488102889] [planner_server]: Planning algorithm GridBased failed to generate a valid path to (-1.74, 1.22)[0m
+[planner_server-14] [33m[WARN] [1774387445.490245140] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.[0m
+[planner_server-14] [0m[INFO] [1774387445.505619206] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap[0m
+[planner_server-14] [33m[WARN] [1774387445.618267754] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387445.627853775] [planner_server]: GridBased: failed to create plan, no valid path found.[0m
+[planner_server-14] [33m[WARN] [1774387445.627969575] [planner_server]: Planning algorithm GridBased failed to generate a valid path to (-1.74, 1.22)[0m
+[planner_server-14] [33m[WARN] [1774387445.628002885] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.[0m
+[sound_localizer-23] [0m[INFO] [1774387445.641905406] [sound_localizer]: Updated sound estimate in map frame: x=27.34, y=123.66, baseline=24.29 m, bearing_separation=45.8 deg, stable=False, reason=estimate_spread_too_large:310.22m, bearings=(14.4, -31.4) deg[0m
+[behavior_server-15] [0m[INFO] [1774387445.647202509] [behavior_server]: Running backup[0m
+[behavior_server-15] [0m[INFO] [1774387445.647670509] [behavior_server]: DriveOnHeading: no acceleration or deceleration limits set[0m
+[behavior_server-15] [0m[INFO] [1774387445.750343847] [behavior_server]: backup completed successfully[0m
+[planner_server-14] [33m[WARN] [1774387445.776860530] [planner_server]: GridBased: failed to create plan, no valid path found.[0m
+[planner_server-14] [33m[WARN] [1774387445.776964843] [planner_server]: Planning algorithm GridBased failed to generate a valid path to (-1.74, 1.22)[0m
+[planner_server-14] [33m[WARN] [1774387445.776996585] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.[0m
+[planner_server-14] [0m[INFO] [1774387445.795554846] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap[0m
+[planner_server-14] [33m[WARN] [1774387445.818314446] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387445.828252763] [planner_server]: GridBased: failed to create plan, no valid path found.[0m
+[planner_server-14] [33m[WARN] [1774387445.828362131] [planner_server]: Planning algorithm GridBased failed to generate a valid path to (-1.74, 1.22)[0m
+[planner_server-14] [33m[WARN] [1774387445.828395057] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.[0m
+[controller_server-12] [0m[INFO] [1774387445.845986793] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap[0m
+[planner_server-14] [0m[INFO] [1774387445.848002045] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap[0m
+[sound_localizer-23] [0m[INFO] [1774387445.897858865] [sound_localizer]: Updated sound estimate in map frame: x=31.28, y=123.96, baseline=25.67 m, bearing_separation=43.5 deg, stable=False, reason=estimate_spread_too_large:4.31m, bearings=(12.1, -31.4) deg[0m
+[planner_server-14] [33m[WARN] [1774387446.018338951] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387446.030166909] [planner_server]: GridBased: failed to create plan, no valid path found.[0m
+[planner_server-14] [33m[WARN] [1774387446.030268470] [planner_server]: Planning algorithm GridBased failed to generate a valid path to (-1.74, 1.22)[0m
+[planner_server-14] [33m[WARN] [1774387446.030299828] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.[0m
+[planner_server-14] [0m[INFO] [1774387446.046155448] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap[0m
+[sound_localizer-23] [0m[INFO] [1774387446.140506497] [sound_localizer]: Updated sound estimate in map frame: x=21.32, y=120.86, baseline=26.71 m, bearing_separation=59.2 deg, stable=False, reason=estimate_spread_too_large:5.68m, bearings=(7.6, -51.6) deg[0m
+[planner_server-14] [33m[WARN] [1774387446.218315158] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387446.228080474] [planner_server]: GridBased: failed to create plan, no valid path found.[0m
+[planner_server-14] [33m[WARN] [1774387446.228199826] [planner_server]: Planning algorithm GridBased failed to generate a valid path to (-1.74, 1.22)[0m
+[planner_server-14] [33m[WARN] [1774387446.228237584] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.[0m
+[behavior_server-15] [0m[INFO] [1774387446.246362712] [behavior_server]: Running spin[0m
+[behavior_server-15] [0m[INFO] [1774387446.246560778] [behavior_server]: Turning 1.57 for spin behavior.[0m
+[planner_server-14] [33m[WARN] [1774387446.418313541] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387446.618335954] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387446.821916491] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387447.018291907] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387447.218328596] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387447.418249773] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[behavior_server-15] [33m[WARN] [1774387447.447142901] [behavior_server]: Collision Ahead - Exiting Spin[0m
+[behavior_server-15] [33m[WARN] [1774387447.447235535] [behavior_server]: spin failed[0m
+[behavior_server-15] [33m[WARN] [1774387447.447264589] [behavior_server]: [spin] [ActionServer] Aborting handle.[0m
+[behavior_server-15] [0m[INFO] [1774387447.475894311] [behavior_server]: Running wait[0m
+[planner_server-14] [33m[WARN] [1774387447.618319899] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387447.818327854] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387448.018305589] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387448.218305259] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387448.418311041] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387448.618321687] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387448.628120879] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 133.562927, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387448.630309150] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[planner_server-14] [33m[WARN] [1774387448.818315085] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387449.018322261] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[rviz2-30] [0m[INFO] [1774387449.193372163] [rviz2]: Trying to create a map of size 585 x 3370 using 1 swatches[0m
+[planner_server-14] [33m[WARN] [1774387449.218286191] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [0m[INFO] [1774387449.218335500] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 585 X 3370 at 0.050000 m/pix[0m
+[planner_server-14] [33m[WARN] [1774387449.418330052] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387449.570554877] [sound_localizer]: Reset sound-localization session: new leak event[0m
+[planner_server-14] [33m[WARN] [1774387449.618309341] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387449.633645688] [sound_localizer]: Recorded first sound bearing at (-28.54, 151.47)[0m
+[planner_server-14] [33m[WARN] [1774387449.818292982] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387450.018300415] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387450.218319701] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387450.388888485] [sound_localizer]: Updated sound estimate in map frame: x=35.94, y=125.67, baseline=13.57 m, bearing_separation=8.3 deg, stable=False, reason=need_more_estimates, bearings=(-21.8, -13.5) deg[0m
+[planner_server-14] [33m[WARN] [1774387450.418270735] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387450.618316484] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387450.639946878] [sound_localizer]: Updated sound estimate in map frame: x=45.56, y=121.81, baseline=19.24 m, bearing_separation=10.1 deg, stable=False, reason=need_more_estimates, bearings=(-21.8, -11.7) deg[0m
+[planner_server-14] [33m[WARN] [1774387450.818296220] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387450.891222986] [sound_localizer]: Updated sound estimate in map frame: x=36.08, y=125.61, baseline=23.64 m, bearing_separation=13.5 deg, stable=False, reason=bearing_separation_too_small:8.3deg, bearings=(-21.8, -8.3) deg[0m
+[planner_server-14] [33m[WARN] [1774387451.018303749] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387451.158274354] [sound_localizer]: Updated sound estimate in map frame: x=28.06, y=128.82, baseline=29.59 m, bearing_separation=18.0 deg, stable=False, reason=estimate_spread_too_large:9.69m, bearings=(-21.8, -3.8) deg[0m
+[planner_server-14] [33m[WARN] [1774387451.218283931] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387451.393046625] [sound_localizer]: Updated sound estimate in map frame: x=17.06, y=133.22, baseline=34.19 m, bearing_separation=23.2 deg, stable=False, reason=estimate_spread_too_large:10.78m, bearings=(-21.8, 1.4) deg[0m
+[planner_server-14] [33m[WARN] [1774387451.418291088] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[planner_server-14] [33m[WARN] [1774387451.618302085] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387451.641184840] [sound_localizer]: Updated sound estimate in map frame: x=18.37, y=132.70, baseline=40.42 m, bearing_separation=25.5 deg, stable=False, reason=estimate_spread_too_large:7.43m, bearings=(-21.8, 3.7) deg[0m
+[planner_server-14] [33m[WARN] [1774387451.818307257] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387451.888804848] [sound_localizer]: Updated sound estimate in map frame: x=27.20, y=129.16, baseline=45.21 m, bearing_separation=24.6 deg, stable=False, reason=estimate_spread_too_large:6.81m, bearings=(-21.8, 2.8) deg[0m
+[planner_server-14] [33m[WARN] [1774387452.018308796] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[sound_localizer-23] [0m[INFO] [1774387452.157349661] [sound_localizer]: Updated sound estimate in map frame: x=252.06, y=39.17, baseline=135.10 m, bearing_separation=26.6 deg, stable=False, reason=estimate_spread_too_large:164.64m, bearings=(-21.8, 4.7) deg[0m
+[controller_server-12] [33m[WARN] [1774387452.192120476] [local_costmap.local_costmap]: Sensor origin at (-67.33, 79.67) is out of map bounds (-4.65, -2.80) to (1.33, 3.18). The costmap cannot raytrace for it.[0m
+[sound_localizer-23] [0m[INFO] [1774387452.391019377] [sound_localizer]: Updated sound estimate in map frame: x=325.41, y=9.81, baseline=156.77 m, bearing_separation=24.2 deg, stable=False, reason=estimate_spread_too_large:187.80m, bearings=(-21.8, 2.4) deg[0m
+[planner_server-14] [33m[WARN] [1774387452.418310142] [nav2_costmap_2d]: Robot is out of bounds of the costmap![0m
+[behavior_server-15] [0m[INFO] [1774387452.476532823] [behavior_server]: wait completed successfully[0m
+[sound_localizer-23] [0m[INFO] [1774387452.725594455] [sound_localizer]: Updated sound estimate in map frame: x=401.99, y=-20.84, baseline=159.97 m, bearing_separation=20.0 deg, stable=False, reason=estimate_spread_too_large:81.33m, bearings=(-21.8, -1.8) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387452.900828608] [sound_localizer]: Updated sound estimate in map frame: x=530.59, y=-72.31, baseline=162.27 m, bearing_separation=15.4 deg, stable=False, reason=estimate_spread_too_large:119.84m, bearings=(-21.8, -6.4) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387453.144735956] [sound_localizer]: Updated sound estimate in map frame: x=707.21, y=-143.00, baseline=165.11 m, bearing_separation=11.7 deg, stable=False, reason=estimate_spread_too_large:173.00m, bearings=(-21.8, -10.1) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387453.398908974] [sound_localizer]: Updated sound estimate in map frame: x=977.43, y=-251.16, baseline=167.22 m, bearing_separation=8.6 deg, stable=False, reason=bearing_separation_too_small:8.6deg, bearings=(-21.8, -13.2) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387453.649147062] [sound_localizer]: Updated sound estimate in map frame: x=1334.46, y=-394.05, baseline=170.01 m, bearing_separation=6.4 deg, stable=False, reason=bearing_separation_too_small:6.4deg, bearings=(-21.8, -15.4) deg[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387453.701508722] [voice_stt_vosk_node]: FinalResultRaw: {"alternatives": [{"confidence": 146.317139, "text": ""}]}[0m
+[voice_stt_vosk_node-27] [0m[INFO] [1774387453.704188848] [voice_stt_vosk_node]: FinalResult was empty text.[0m
+[sound_localizer-23] [0m[INFO] [1774387453.921684215] [sound_localizer]: Updated sound estimate in map frame: x=1690.24, y=-536.45, baseline=172.16 m, bearing_separation=5.2 deg, stable=False, reason=bearing_separation_too_small:5.2deg, bearings=(-21.8, -16.7) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387454.146542809] [sound_localizer]: Updated sound estimate in map frame: x=-1661.90, y=533.15, baseline=167.04 m, bearing_separation=5.4 deg, stable=False, reason=bearing_separation_too_small:5.2deg, bearings=(-13.5, -18.9) deg[0m
+[async_slam_toolbox_node-11] [0m[INFO] [1774387454.272970167] [slam_toolbox]: Message Filter dropping message: frame 'laser' at time 1774387454.119 for reason 'discarding message because the queue is full'[0m
+[rviz2-30] [0m[INFO] [1774387454.379805314] [rviz2]: Trying to create a map of size 1451 x 3719 using 1 swatches[0m
+[sound_localizer-23] [0m[INFO] [1774387454.401496088] [sound_localizer]: Updated sound estimate in map frame: x=-1778.91, y=561.23, baseline=169.04 m, bearing_separation=5.2 deg, stable=False, reason=bearing_separation_too_small:5.2deg, bearings=(-13.5, -18.7) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387454.660114237] [sound_localizer]: Updated sound estimate in map frame: x=-1360.17, y=460.73, baseline=171.82 m, bearing_separation=6.9 deg, stable=False, reason=bearing_separation_too_small:5.2deg, bearings=(-13.5, -20.4) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387454.899848421] [sound_localizer]: Updated sound estimate in map frame: x=-1148.38, y=409.90, baseline=174.03 m, bearing_separation=8.4 deg, stable=False, reason=bearing_separation_too_small:5.2deg, bearings=(-13.5, -21.9) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387455.149514392] [sound_localizer]: Updated sound estimate in map frame: x=-1117.88, y=402.58, baseline=177.13 m, bearing_separation=8.8 deg, stable=False, reason=bearing_separation_too_small:6.9deg, bearings=(-13.5, -22.3) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387455.400008557] [sound_localizer]: Updated sound estimate in map frame: x=-843.93, y=306.49, baseline=175.70 m, bearing_separation=11.9 deg, stable=False, reason=bearing_separation_too_small:8.4deg, bearings=(-11.7, -23.6) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387455.645183066] [sound_localizer]: Updated sound estimate in map frame: x=-629.62, y=222.64, baseline=175.95 m, bearing_separation=16.6 deg, stable=False, reason=bearing_separation_too_small:8.8deg, bearings=(-8.3, -24.9) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387455.898973710] [sound_localizer]: Updated sound estimate in map frame: x=-488.91, y=163.52, baseline=174.31 m, bearing_separation=22.2 deg, stable=False, reason=estimate_spread_too_large:204.28m, bearings=(-3.8, -26.0) deg[0m
+[ERROR] [planner_server-14]: process has died [pid 10321, exit code -11, cmd '/opt/ros/humble/lib/nav2_planner/planner_server --ros-args --log-level info --ros-args -r __node:=planner_server --params-file /tmp/launch_params_nqzjr1st -r /tf:=tf -r /tf_static:=tf_static'].
+[sound_localizer-23] [0m[INFO] [1774387456.140116277] [sound_localizer]: Updated sound estimate in map frame: x=-444.24, y=121.84, baseline=174.45 m, bearing_separation=25.6 deg, stable=False, reason=estimate_spread_too_large:121.07m, bearings=(1.4, -24.2) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387456.399820069] [sound_localizer]: Updated sound estimate in map frame: x=-401.29, y=105.70, baseline=172.63 m, bearing_separation=29.0 deg, stable=False, reason=estimate_spread_too_large:55.17m, bearings=(3.7, -25.3) deg[0m
+[lifecycle_manager-19] [0m[INFO] [1774387456.620477717] [lifecycle_manager_navigation]: [34m[1mHave not received a heartbeat from planner_server.[0m[0m[0m
+[lifecycle_manager-19] [31m[ERROR] [1774387456.620582063] [lifecycle_manager_navigation]: CRITICAL FAILURE: SERVER planner_server IS DOWN after not receiving a heartbeat for 4000 ms. Shutting down related nodes.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387456.620616877] [lifecycle_manager_navigation]: [34m[1mTerminating bond timer...[0m[0m[0m
+[lifecycle_manager-19] [0m[INFO] [1774387456.620635884] [lifecycle_manager_navigation]: [34m[1mResetting managed nodes...[0m[0m[0m
+[lifecycle_manager-19] [0m[INFO] [1774387456.620651147] [lifecycle_manager_navigation]: [34m[1mDeactivating velocity_smoother[0m[0m[0m
+[velocity_smoother-18] [0m[INFO] [1774387456.622748851] [velocity_smoother]: Deactivating[0m
+[velocity_smoother-18] [0m[INFO] [1774387456.622882891] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.[0m
+[sound_localizer-23] [0m[INFO] [1774387456.647646207] [sound_localizer]: Updated sound estimate in map frame: x=-402.61, y=107.96, baseline=172.76 m, bearing_separation=29.2 deg, stable=False, reason=estimate_spread_too_large:29.92m, bearings=(2.8, -26.4) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387456.898292247] [sound_localizer]: Updated sound estimate in map frame: x=-194.00, y=2.21, baseline=103.38 m, bearing_separation=32.2 deg, stable=False, reason=estimate_spread_too_large:155.20m, bearings=(4.7, -27.4) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387457.144817229] [sound_localizer]: Updated sound estimate in map frame: x=-186.11, y=-11.56, baseline=104.65 m, bearing_separation=27.9 deg, stable=False, reason=estimate_spread_too_large:160.37m, bearings=(2.4, -25.5) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387457.396179942] [sound_localizer]: Updated sound estimate in map frame: x=-211.59, y=-1.66, baseline=105.09 m, bearing_separation=24.7 deg, stable=False, reason=estimate_spread_too_large:14.50m, bearings=(-1.8, -26.5) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387457.643425319] [sound_localizer]: Updated sound estimate in map frame: x=-261.75, y=17.22, baseline=108.47 m, bearing_separation=20.1 deg, stable=False, reason=estimate_spread_too_large:44.84m, bearings=(-6.4, -26.6) deg[0m
+[lifecycle_manager-19] [0m[INFO] [1774387457.737536596] [lifecycle_manager_navigation]: [34m[1mDeactivating waypoint_follower[0m[0m[0m
+[waypoint_follower-17] [0m[INFO] [1774387457.738367750] [waypoint_follower]: Deactivating[0m
+[waypoint_follower-17] [0m[INFO] [1774387457.738470208] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.[0m
+[sound_localizer-23] [0m[INFO] [1774387457.892526943] [sound_localizer]: Updated sound estimate in map frame: x=-300.97, y=36.10, baseline=108.75 m, bearing_separation=17.5 deg, stable=False, reason=estimate_spread_too_large:50.20m, bearings=(-10.1, -27.6) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387458.140805490] [sound_localizer]: Updated sound estimate in map frame: x=-388.19, y=69.45, baseline=112.17 m, bearing_separation=13.4 deg, stable=False, reason=estimate_spread_too_large:76.72m, bearings=(-13.2, -26.6) deg[0m
+[sound_localizer-23] [0m[INFO] [1774387458.395403456] [sound_localizer]: Updated sound estimate in map frame: x=-531.21, y=119.26, baseline=112.31 m, bearing_separation=9.2 deg, stable=False, reason=bearing_separation_too_small:9.2deg, bearings=(-15.4, -24.6) deg[0m
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[lifecycle_manager-19] [0m[INFO] [1774387458.475374686] [rclcpp]: signal_handler(signum=2)[0m
+[lifecycle_manager-19] [0m[INFO] [1774387458.475569651] [lifecycle_manager_navigation]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager_navigation)[0m
+[INFO] [async_slam_toolbox_node-11]: process has finished cleanly [pid 10313]
+[INFO] [explore-20]: process has finished cleanly [pid 10390]
+[INFO] [robot_state_publisher-7]: process has finished cleanly [pid 10305]
+[INFO] [go2_driver_node-3]: process has finished cleanly [pid 10297]
+[INFO] [velocity_smoother-18]: process has finished cleanly [pid 10376]
+[ERROR] [localize_detected_leak_action_server-25]: process has died [pid 10500, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/localize_detected_leak_action_server --ros-args -r __node:=localize_detected_leak_server --params-file /tmp/launch_params_vzvic_9m'].
+[ERROR] [rviz2-30]: process has died [pid 10524, exit code -11, cmd '/opt/ros/humble/lib/rviz2/rviz2 -d /home/castej-jetson/workspaces/amigo_ros2/install/go2_description/share/go2_description/config/nav_nvblox_config.rviz --ros-args'].
+[INFO] [odas_leak_classifier_node.py-22]: process has finished cleanly [pid 10475]
+[INFO] [waypoint_follower-17]: process has finished cleanly [pid 10350]
+[ERROR] [log_pose_action_server-29]: process has died [pid 10521, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/log_pose_action_server --ros-args -r __node:=log_pose_action_server --params-file /tmp/launch_params_g_5etv9f'].
+[INFO] [robot_state_publisher-1]: process has finished cleanly [pid 10293]
+[INFO] [odas_server_node.py-21]: process has finished cleanly [pid 10453]
+[INFO] [behavior_server-15]: process has finished cleanly [pid 10335]
+[ERROR] [sound_localizer-23]: process has died [pid 10485, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/sound_localizer --ros-args -r __node:=sound_localizer --params-file /tmp/launch_params_yx2ewvpa'].
+[ERROR] [voice_command_node-28]: process has died [pid 10518, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/voice_command_node --ros-args -r __node:=voice_command_node --params-file /tmp/launch_params_ujr51hfo'].
+[ERROR] [explore_until_detected_action_server-24]: process has died [pid 10487, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/explore_until_detected_action_server --ros-args -r __node:=explore_until_detected_server --params-file /tmp/launch_params_4807f68g'].
+[ERROR] [search_action_server-26]: process has died [pid 10505, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/search_action_server --ros-args -r __node:=leak_search_server --params-file /tmp/launch_params_i787n01s'].
+[INFO] [ekf_node-6]: process has finished cleanly [pid 10303]
+[ERROR] [go2_state-4]: process has died [pid 10299, exit code 1, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/go2_state --ros-args -r __node:=go2_state'].
+[ERROR] [go2_lidar-10]: process has died [pid 10311, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/go2_lidar --ros-args -r __node:=go2_lidar'].
+[INFO] [smoother_server-13]: process has finished cleanly [pid 10318]
+[INFO] [sllidar_node-9]: process has finished cleanly [pid 10309]
+[ERROR] [odom_node-5]: process has died [pid 10301, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/odom_node --ros-args -r __node:=odom_node'].
+[ERROR] [voice_stt_vosk_node-27]: process has died [pid 10515, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/voice_stt_vosk_node --ros-args -r __node:=voice_stt_vosk_node --params-file /tmp/launch_params_j8wdx9yf'].
+[INFO] [controller_server-12]: process has finished cleanly [pid 10316]
+[explore-20] [0m[INFO] [1774387458.475361887] [rclcpp]: signal_handler(signum=2)[0m
+[explore-20] [0m[INFO] [1774387458.475890625] [explore_node]: Exploration stopped.[0m
+[ekf_node-6] [0m[INFO] [1774387458.475386013] [rclcpp]: signal_handler(signum=2)[0m
+[smoother_server-13] [0m[INFO] [1774387458.475452602] [rclcpp]: signal_handler(signum=2)[0m
+[smoother_server-13] [0m[INFO] [1774387458.475859075] [smoother_server]: Running Nav2 LifecycleNode rcl preshutdown (smoother_server)[0m
+[smoother_server-13] [0m[INFO] [1774387458.475995196] [smoother_server]: Deactivating[0m
+[behavior_server-15] [0m[INFO] [1774387458.475483320] [rclcpp]: signal_handler(signum=2)[0m
+[behavior_server-15] [0m[INFO] [1774387458.475804742] [behavior_server]: Running Nav2 LifecycleNode rcl preshutdown (behavior_server)[0m
+[behavior_server-15] [0m[INFO] [1774387458.475965853] [behavior_server]: Deactivating[0m
+[behavior_server-15] [0m[INFO] [1774387458.476027514] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.[0m
+[controller_server-12] [0m[INFO] [1774387458.475557652] [rclcpp]: signal_handler(signum=2)[0m
+[waypoint_follower-17] [0m[INFO] [1774387458.475585778] [rclcpp]: signal_handler(signum=2)[0m
+[waypoint_follower-17] [0m[INFO] [1774387458.475861539] [waypoint_follower]: Running Nav2 LifecycleNode rcl preshutdown (waypoint_follower)[0m
+[waypoint_follower-17] [0m[INFO] [1774387458.475966973] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.[0m
+[async_slam_toolbox_node-11] [0m[INFO] [1774387458.475623088] [rclcpp]: signal_handler(signum=2)[0m
+[log_pose_action_server-29] Traceback (most recent call last):
+[log_pose_action_server-29]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/log_pose_action_server", line 33, in <module>
+[log_pose_action_server-29]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'log_pose_action_server')())
+[log_pose_action_server-29]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/log_pose_action_server.py", line 70, in main
+[log_pose_action_server-29]     rclpy.spin(LogPoseActionServer())
+[log_pose_action_server-29]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[component_container_isolated-8] [0m[INFO] [1774387458.475670030] [rclcpp]: signal_handler(signum=2)[0m
+[robot_state_publisher-7] [0m[INFO] [1774387458.475688941] [rclcpp]: signal_handler(signum=2)[0m
+[go2_driver_node-3] [0m[INFO] [1774387458.475747465] [rclcpp]: signal_handler(signum=2)[0m
+[smoother_server-13] [0m[INFO] [1774387458.476059768] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.[0m
+[smoother_server-13] [0m[INFO] [1774387458.576602757] [smoother_server]: Cleaning up[0m
+[smoother_server-13] [0m[INFO] [1774387458.643316192] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.[0m
+[smoother_server-13] [0m[INFO] [1774387459.586301434] [smoother_server]: Destroying[0m
+[controller_server-12] [0m[INFO] [1774387458.476380806] [controller_server]: Running Nav2 LifecycleNode rcl preshutdown (controller_server)[0m
+[controller_server-12] [0m[INFO] [1774387458.476528190] [controller_server]: Deactivating[0m
+[controller_server-12] [0m[INFO] [1774387458.476579291] [MPPIController]: Deactivated MPPI Controller: FollowPath[0m
+[controller_server-12] [0m[INFO] [1774387458.476615065] [local_costmap.local_costmap]: Deactivating[0m
+[controller_server-12] [0m[INFO] [1774387458.476671702] [local_costmap.local_costmap]: 3d_lidar_layer was deactivated.[0m
+[controller_server-12] [0m[INFO] [1774387458.493286720] [controller_server]: Destroying bond (controller_server) to lifecycle manager.[0m
+[controller_server-12] [0m[INFO] [1774387458.595088424] [controller_server]: Cleaning up[0m
+[controller_server-12] [0m[INFO] [1774387458.595255839] [MPPIController]: Cleaned up MPPI Controller: FollowPath[0m
+[controller_server-12] [0m[INFO] [1774387458.595481618] [local_costmap.local_costmap]: Cleaning up[0m
+[controller_server-12] [0m[INFO] [1774387458.665054383] [controller_server]: Destroying bond (controller_server) to lifecycle manager.[0m
+[controller_server-12] [0m[INFO] [1774387459.609188865] [local_costmap.local_costmap]: Destroying[0m
+[controller_server-12] [0m[INFO] [1774387459.642645643] [controller_server]: Destroying[0m
+[log_pose_action_server-29]     executor.spin_once()
+[log_pose_action_server-29]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[log_pose_action_server-29]     self._spin_once_impl(timeout_sec)
+[log_pose_action_server-29]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[log_pose_action_server-29]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[log_pose_action_server-29]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[log_pose_action_server-29]     return next(self._cb_iter)
+[log_pose_action_server-29]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[log_pose_action_server-29]     wait_set.wait(timeout_nsec)
+[log_pose_action_server-29] KeyboardInterrupt
+[rviz2-30] [0m[INFO] [1774387458.477025379] [rclcpp]: signal_handler(signum=2)[0m
+[go2_lidar-10] Traceback (most recent call last):
+[go2_lidar-10]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/go2_lidar", line 33, in <module>
+[go2_lidar-10]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'go2_lidar')())
+[go2_lidar-10]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/go2_lidar.py", line 34, in main
+[go2_lidar-10]     rclpy.spin(node=node)
+[go2_lidar-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[go2_lidar-10]     executor.spin_once()
+[go2_lidar-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[go2_lidar-10]     self._spin_once_impl(timeout_sec)
+[go2_lidar-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[go2_lidar-10]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[go2_lidar-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[go2_lidar-10]     return next(self._cb_iter)
+[go2_lidar-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[go2_lidar-10]     wait_set.wait(timeout_nsec)
+[go2_lidar-10] KeyboardInterrupt
+[base_to_base_tf-2] Traceback (most recent call last):
+[base_to_base_tf-2]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/base_to_base_tf", line 33, in <module>
+[base_to_base_tf-2]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'base_to_base_tf')())
+[base_to_base_tf-2]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/base_to_base_tf.py", line 43, in main
+[base_to_base_tf-2]     rclpy.spin(node=node)
+[base_to_base_tf-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[base_to_base_tf-2]     executor.spin_once()
+[base_to_base_tf-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[base_to_base_tf-2]     self._spin_once_impl(timeout_sec)
+[base_to_base_tf-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[base_to_base_tf-2]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[base_to_base_tf-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[base_to_base_tf-2]     return next(self._cb_iter)
+[base_to_base_tf-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[base_to_base_tf-2]     wait_set.wait(timeout_nsec)
+[base_to_base_tf-2] KeyboardInterrupt
+[odom_node-5] Traceback (most recent call last):
+[odom_node-5]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/odom_node", line 33, in <module>
+[odom_node-5]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'odom_node')())
+[odom_node-5]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/odom_node.py", line 62, in main
+[odom_node-5]     rclpy.spin(node=node)
+[odom_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[odom_node-5]     executor.spin_once()
+[odom_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[odom_node-5]     self._spin_once_impl(timeout_sec)
+[odom_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[odom_node-5]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[odom_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[odom_node-5]     return next(self._cb_iter)
+[odom_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[odom_node-5]     wait_set.wait(timeout_nsec)
+[odom_node-5] KeyboardInterrupt
+[robot_state_publisher-1] [0m[INFO] [1774387458.483958084] [rclcpp]: signal_handler(signum=2)[0m
+[velocity_smoother-18] [0m[INFO] [1774387458.475438202] [rclcpp]: signal_handler(signum=2)[0m
+[velocity_smoother-18] [0m[INFO] [1774387458.485778175] [velocity_smoother]: Running Nav2 LifecycleNode rcl preshutdown (velocity_smoother)[0m
+[velocity_smoother-18] [0m[INFO] [1774387458.485924823] [velocity_smoother]: Cleaning up[0m
+[velocity_smoother-18] [0m[INFO] [1774387458.486002867] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.[0m
+[velocity_smoother-18] [0m[INFO] [1774387458.511940794] [velocity_smoother]: Destroying[0m
+[bt_navigator-16] [0m[INFO] [1774387458.498401574] [rclcpp]: signal_handler(signum=2)[0m
+[bt_navigator-16] [0m[INFO] [1774387458.498592283] [bt_navigator]: Running Nav2 LifecycleNode rcl preshutdown (bt_navigator)[0m
+[bt_navigator-16] [0m[INFO] [1774387458.498728500] [bt_navigator]: Deactivating[0m
+[bt_navigator-16] [33m[WARN] [1774387458.498761362] [bt_navigator]: [navigate_to_pose] [ActionServer] Requested to deactivate server but goal is still executing. Should check if action server is running before deactivating.[0m
+[bt_navigator-16] [31m[ERROR] [1774387458.525735840] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to cancel action server for compute_path_to_pose[0m
+[bt_navigator-16] [31m[ERROR] [1774387458.546033886] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for compute_path_to_pose in node halt![0m
+[bt_navigator-16] [0m[INFO] [1774387458.546183574] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.[0m
+[bt_navigator-16] [0m[INFO] [1774387458.547597288] [bt_navigator]: Goal canceled[0m
+[bt_navigator-16] [33m[WARN] [1774387458.547696866] [bt_navigator]: [navigate_to_pose] [ActionServer] Stopping the thread per request.[0m
+[bt_navigator-16] [0m[INFO] [1774387458.550131068] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.[0m
+[bt_navigator-16] [0m[INFO] [1774387458.650994711] [bt_navigator]: Cleaning up[0m
+[bt_navigator-16] [0m[INFO] [1774387459.909601029] [bt_navigator]: Completed Cleaning up[0m
+[bt_navigator-16] [0m[INFO] [1774387459.909768572] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.[0m
+[bt_navigator-16] [0m[INFO] [1774387459.921565916] [bt_navigator]: Destroying[0m
+[search_action_server-26] Traceback (most recent call last):
+[search_action_server-26]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/search_action_server", line 33, in <module>
+[search_action_server-26]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'search_action_server')())
+[search_action_server-26]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/search_action_server.py", line 587, in main
+[search_action_server-26]     rclpy.spin(node)
+[search_action_server-26]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[search_action_server-26]     executor.spin_once()
+[search_action_server-26]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[search_action_server-26]     self._spin_once_impl(timeout_sec)
+[search_action_server-26]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[search_action_server-26]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[search_action_server-26]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[search_action_server-26]     return next(self._cb_iter)
+[search_action_server-26]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[search_action_server-26]     wait_set.wait(timeout_nsec)
+[search_action_server-26] KeyboardInterrupt
+[search_action_server-26] Exception ignored in: <coroutine object ActionServer._execute_goal at 0xffff733e1bd0>
+[search_action_server-26] Traceback (most recent call last):
+[search_action_server-26]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/action/server.py", line 340, in _execute_goal
+[search_action_server-26]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/impl/rcutils_logger.py", line 345, in error
+[search_action_server-26] AttributeError: 'NoneType' object has no attribute 'ERROR'
+[explore_until_detected_action_server-24] Traceback (most recent call last):
+[explore_until_detected_action_server-24]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/explore_until_detected_action_server", line 33, in <module>
+[explore_until_detected_action_server-24]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'explore_until_detected_action_server')())
+[explore_until_detected_action_server-24]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/explore_until_detected_action_server.py", line 189, in main
+[explore_until_detected_action_server-24]     rclpy.spin(node)
+[explore_until_detected_action_server-24]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[explore_until_detected_action_server-24]     executor.spin_once()
+[explore_until_detected_action_server-24]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[explore_until_detected_action_server-24]     self._spin_once_impl(timeout_sec)
+[explore_until_detected_action_server-24]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[explore_until_detected_action_server-24]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[explore_until_detected_action_server-24]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[explore_until_detected_action_server-24]     return next(self._cb_iter)
+[explore_until_detected_action_server-24]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[explore_until_detected_action_server-24]     wait_set.wait(timeout_nsec)
+[explore_until_detected_action_server-24] KeyboardInterrupt
+[behavior_server-15] [0m[INFO] [1774387458.576579879] [behavior_server]: Cleaning up[0m
+[behavior_server-15] [0m[INFO] [1774387458.586015389] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.[0m
+[behavior_server-15] [0m[INFO] [1774387459.641431853] [behavior_server]: Destroying[0m
+[voice_command_node-28] Traceback (most recent call last):
+[voice_command_node-28]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/voice_command_node", line 33, in <module>
+[voice_command_node-28]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'voice_command_node')())
+[voice_command_node-28]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/voice_command_node.py", line 501, in main
+[voice_command_node-28]     rclpy.spin(node)
+[voice_command_node-28]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[voice_command_node-28]     executor.spin_once()
+[voice_command_node-28]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[voice_command_node-28]     self._spin_once_impl(timeout_sec)
+[voice_command_node-28]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[voice_command_node-28]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[voice_command_node-28]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[voice_command_node-28]     return next(self._cb_iter)
+[voice_command_node-28]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[voice_command_node-28]     wait_set.wait(timeout_nsec)
+[voice_command_node-28] KeyboardInterrupt
+[localize_detected_leak_action_server-25] Traceback (most recent call last):
+[localize_detected_leak_action_server-25]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/localize_detected_leak_action_server", line 33, in <module>
+[localize_detected_leak_action_server-25]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'localize_detected_leak_action_server')())
+[localize_detected_leak_action_server-25]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/localize_detected_leak_action_server.py", line 779, in main
+[localize_detected_leak_action_server-25]     rclpy.spin(node)
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[localize_detected_leak_action_server-25]     executor.spin_once()
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[localize_detected_leak_action_server-25]     self._spin_once_impl(timeout_sec)
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 746, in _spin_once_impl
+[localize_detected_leak_action_server-25]     handler()
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 254, in __call__
+[localize_detected_leak_action_server-25]     self._handler.send(None)
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/action/server.py", line 336, in _execute_goal
+[localize_detected_leak_action_server-25]     execute_result = await await_or_execute(execute_callback, goal_handle)
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 104, in await_or_execute
+[localize_detected_leak_action_server-25]     return await callback(*args)
+[localize_detected_leak_action_server-25]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/localize_detected_leak_action_server.py", line 726, in execute_cb
+[localize_detected_leak_action_server-25]     nav_outcome = await self._monitor_navigation(goal_handle, goal_pose)
+[localize_detected_leak_action_server-25]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/localize_detected_leak_action_server.py", line 521, in _monitor_navigation
+[localize_detected_leak_action_server-25]     while not self.navigator.isTaskComplete():
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/lib/python3.10/site-packages/nav2_simple_commander/robot_navigator.py", line 283, in isTaskComplete
+[localize_detected_leak_action_server-25]     rclpy.spin_until_future_complete(self, self.result_future, timeout_sec=0.10)
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 253, in spin_until_future_complete
+[localize_detected_leak_action_server-25]     executor.spin_until_future_complete(future, timeout_sec)
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 320, in spin_until_future_complete
+[localize_detected_leak_action_server-25]     self.spin_once_until_future_complete(future, timeout_left)
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 758, in spin_once_until_future_complete
+[localize_detected_leak_action_server-25]     self._spin_once_impl(timeout_sec)
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[localize_detected_leak_action_server-25]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[localize_detected_leak_action_server-25]     return next(self._cb_iter)
+[localize_detected_leak_action_server-25]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[localize_detected_leak_action_server-25]     wait_set.wait(timeout_nsec)
+[localize_detected_leak_action_server-25] KeyboardInterrupt
+[sllidar_node-9] [0m[INFO] [1774387458.651603990] [sllidar_node]: Stop motor[0m
+[go2_state-4] Traceback (most recent call last):
+[go2_state-4]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/go2_state", line 33, in <module>
+[go2_state-4]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'go2_state')())
+[go2_state-4]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/go2_state.py", line 38, in main
+[go2_state-4]     rclpy.spin(node=node)
+[go2_state-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[go2_state-4]     executor.spin_once()
+[go2_state-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[go2_state-4]     self._spin_once_impl(timeout_sec)
+[go2_state-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 748, in _spin_once_impl
+[go2_state-4]     raise handler.exception()
+[go2_state-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 254, in __call__
+[go2_state-4]     self._handler.send(None)
+[go2_state-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 440, in handler
+[go2_state-4]     arg = take_from_wait_list(entity)
+[go2_state-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 365, in _take_subscription
+[go2_state-4]     msg_info = sub.handle.take_message(sub.msg_type, sub.raw)
+[go2_state-4] RuntimeError: Unable to convert call argument to Python object (compile in debug mode for details)
+[waypoint_follower-17] [31m[ERROR] [1774387458.841228521] [waypoint_follower]: Failed to finish transition 4. Current state is now: inactive (Could not publish transition: publisher's context is invalid, at ./src/rcl/publisher.c:389, at ./src/rcl_lifecycle.c:368)[0m
+[waypoint_follower-17] [0m[INFO] [1774387458.862445333] [waypoint_follower]: Destroying[0m
+[waypoint_follower-17] [31m[ERROR] [1774387458.862500786] [waypoint_follower]: Unable to start transition 2 from current state cleaningup: Could not publish transition: publisher's context is invalid, at ./src/rcl/publisher.c:389, at ./src/rcl_lifecycle.c:368[0m
+[component_container_isolated-8] [0m[INFO] [1774387458.934875156] [zed.zed_node]: === CLOSING CAMERA ===[0m
+[voice_stt_vosk_node-27] Traceback (most recent call last):
+[voice_stt_vosk_node-27]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/voice_stt_vosk_node", line 33, in <module>
+[voice_stt_vosk_node-27]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'voice_stt_vosk_node')())
+[voice_stt_vosk_node-27]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/voice_stt_vosk_node.py", line 300, in main
+[voice_stt_vosk_node-27]     rclpy.spin(node)
+[voice_stt_vosk_node-27]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[voice_stt_vosk_node-27]     executor.spin_once()
+[voice_stt_vosk_node-27]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[voice_stt_vosk_node-27]     self._spin_once_impl(timeout_sec)
+[voice_stt_vosk_node-27]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[voice_stt_vosk_node-27]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[voice_stt_vosk_node-27]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[voice_stt_vosk_node-27]     return next(self._cb_iter)
+[voice_stt_vosk_node-27]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[voice_stt_vosk_node-27]     wait_set.wait(timeout_nsec)
+[voice_stt_vosk_node-27] KeyboardInterrupt
+[sound_localizer-23] Traceback (most recent call last):
+[sound_localizer-23]   File "/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/sound_localizer", line 33, in <module>
+[sound_localizer-23]     sys.exit(load_entry_point('go2-control', 'console_scripts', 'sound_localizer')())
+[sound_localizer-23]   File "/home/castej-jetson/workspaces/amigo_ros2/build/go2_control/go2_control/sound_localizer.py", line 761, in main
+[sound_localizer-23]     rclpy.spin(node)
+[sound_localizer-23]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[sound_localizer-23]     executor.spin_once()
+[sound_localizer-23]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[sound_localizer-23]     self._spin_once_impl(timeout_sec)
+[sound_localizer-23]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[sound_localizer-23]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[sound_localizer-23]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[sound_localizer-23]     return next(self._cb_iter)
+[sound_localizer-23]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[sound_localizer-23]     wait_set.wait(timeout_nsec)
+[sound_localizer-23] KeyboardInterrupt
+[ERROR] [base_to_base_tf-2]: process has died [pid 10295, exit code -2, cmd '/home/castej-jetson/workspaces/amigo_ros2/install/go2_control/lib/go2_control/base_to_base_tf --ros-args -r __node:=base_to_base_tf'].
+[INFO] [component_container_isolated-8]: process has finished cleanly [pid 10307]
+[lifecycle_manager-19] [31m[ERROR] [1774387460.842636661] [lifecycle_manager_navigation]: Failed to change state for node: waypoint_follower. Exception: waypoint_follower/get_state service client: async_send_request failed.[0m
+[lifecycle_manager-19] [0m[INFO] [1774387460.842819979] [lifecycle_manager_navigation]: [34m[1mManaged nodes have been reset[0m[0m[0m
+[INFO] [bt_navigator-16]: process has finished cleanly [pid 10338]
+[lifecycle_manager-19] [0m[INFO] [1774387462.516281544] [lifecycle_manager_navigation]: Destroying lifecycle_manager_navigation[0m
+[INFO] [lifecycle_manager-19]: process has finished cleanly [pid 10388]

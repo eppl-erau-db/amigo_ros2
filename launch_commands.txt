@@ -1,0 +1,78 @@
+reggular launch:
+
+ros2 launch go2_bringup mapping.launch.py launch_profile:=all voice_control:=true
+------------------------------------------------------------------
+If you want the full mission stack without RViz/log-pose tools:
+
+ros2 launch go2_bringup mapping.launch.py launch_profile:=mission_base voice_control:=true
+---------------------------------------------------
+If the mission stack is already running and you only want RViz + operator tools:
+
+ros2 launch go2_bringup mapping.launch.py launch_profile:=operator_tools
+-------------------------------------------------------------------------
+Useful debug launch flags:
+
+ros2 launch go2_bringup mapping.launch.py \
+  launch_profile:=all \
+  voice_control:=true \
+  search_debug:=true \
+  voice_debug:=true \
+  voice_command_debug:=true \
+  odas_leak_classifier_debug:=true
+
+
+--------------------------------------------------------------------------------
+
+After launch, explore_lite starts paused. The mission begins when you say hey amigo ... look for a leak.
+
+If you want to test without voice, you can send the public action directly:
+
+ros2 action send_goal /search go2_interfaces/action/Search \
+"{initial_pose: {header: {frame_id: 'map'}, pose: {orientation: {w: 1.0}}}, behavior_tree: ''}"
+
+
+--------------------------------------------------------------------------
+Topics To Watch
+These are the most useful ones.
+
+Voice / mission:
+
+/voice/transcript
+/voice/debug
+/search/_action/status
+Exploration handoff:
+
+/explore/status
+/explore/resume
+Leak detection / localization:
+
+/leak_detected
+/doa_angle
+/sound_localizer/estimate_valid
+/sound_localizer/estimate_stable
+/sound_localizer/current_estimate
+/sound_localizer/estimated_locations
+/sound_localizer/markers
+Navigation / map:
+
+/map
+/scan
+/plan
+/local_costmap/costmap
+/global_costmap/costmap
+/tf
+--------------------------------
+
+
+
+ros2 topic echo /voice/debug
+ros2 topic echo /explore/status
+ros2 topic echo /leak_detected
+ros2 topic echo /doa_angle
+ros2 topic echo /sound_localizer/estimate_stable
+ros2 topic echo /sound_localizer/current_estimate
+
+ros2 action info /search
+ros2 action info /explore_until_detected
+ros2 action info /localize_detected_leak
+

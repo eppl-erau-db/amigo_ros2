@@ -8,6 +8,7 @@ Inputs:
 
 Outputs:
 - /sound_localizer/estimate_valid (std_msgs/Bool)
+- /sound_localizer/estimate_stable (std_msgs/Bool)
 - /sound_localizer/current_estimate (geometry_msgs/PoseStamped)
 - /sound_localizer/estimated_locations (geometry_msgs/PoseArray)
 - /sound_localizer/approach_waypoints (geometry_msgs/PoseArray)
@@ -60,6 +61,14 @@ class Measurement:
         return math.hypot(self.x_map - other.x_map, self.y_map - other.y_map)
 
 
+@dataclass(frozen=True)
+class EstimateSample:
+    x_map: float
+    y_map: float
+    baseline_m: float
+    bearing_separation_rad: float
+
+
 def wrap_pi(angle_rad: float) -> float:
     return math.atan2(math.sin(angle_rad), math.cos(angle_rad))
 
@@ -106,6 +115,26 @@ class SoundLocalizer(Node):
         self.min_bearing_separation_deg = float(
             self.declare_parameter("min_bearing_separation_deg", 5.0).value
         )
+        self.stable_min_baseline_m = float(
+            self.declare_parameter("stable_min_baseline_m", 0.50).value
+        )
+        self.stable_min_bearing_separation_deg = float(
+            self.declare_parameter("stable_min_bearing_separation_deg", 10.0).value
+        )
+        self.stable_required_consecutive_estimates = max(
+            1,
+            int(
+                self.declare_parameter(
+                    "stable_required_consecutive_estimates", 3
+                ).value
+            ),
+        )
+        self.stable_centroid_radius_m = float(
+            self.declare_parameter("stable_centroid_radius_m", 0.20).value
+        )
+        self.stable_max_doa_age_s = float(
+            self.declare_parameter("stable_max_doa_age_s", 1.0).value
+        )
         self.parallel_tan_epsilon = float(
             self.declare_parameter("parallel_tan_epsilon", 1.0e-6).value
         )
@@ -119,7 +148,8 @@ class SoundLocalizer(Node):
             2, int(self.declare_parameter("measurement_history_size", 20).value)
         )
         self.estimate_history_size = max(
-            1, int(self.declare_parameter("estimate_history_size", 10).value)
+            self.stable_required_consecutive_estimates,
+            int(self.declare_parameter("estimate_history_size", 10).value),
         )
         self.marker_topic = str(
             self.declare_parameter("marker_topic", "/sound_localizer/markers").value
@@ -152,6 +182,9 @@ class SoundLocalizer(Node):
             self.intersection_method = "geometric"
 
         self.min_bearing_separation_rad = math.radians(self.min_bearing_separation_deg)
+        self.stable_min_bearing_separation_rad = math.radians(
+            self.stable_min_bearing_separation_deg
+        )
         self._tf_buffer = Buffer(cache_time=Duration(seconds=10.0))
         self._tf_listener = TransformListener(self._tf_buffer, self)
 
@@ -160,14 +193,18 @@ class SoundLocalizer(Node):
         self._last_doa_stamp: Optional[Time] = None
 
         self._measurements: Deque[Measurement] = deque(maxlen=self.measurement_history_size)
-        self._estimate_history: Deque[Tuple[float, float]] = deque(maxlen=self.estimate_history_size)
+        self._estimate_history: Deque[EstimateSample] = deque(maxlen=self.estimate_history_size)
         self._latest_estimate: Optional[Tuple[float, float]] = None
+        self._estimate_stable = False
         self._last_pair: Optional[Tuple[Measurement, Measurement]] = None
 
         self._warn_times_ns: dict[str, int] = {}
 
         self.estimate_valid_pub = self.create_publisher(
             Bool, "/sound_localizer/estimate_valid", 10
+        )
+        self.estimate_stable_pub = self.create_publisher(
+            Bool, "/sound_localizer/estimate_stable", 10
         )
         self.current_estimate_pub = self.create_publisher(
             PoseStamped, "/sound_localizer/current_estimate", 10
@@ -187,6 +224,7 @@ class SoundLocalizer(Node):
         self.create_timer(self.sample_period_s, self._timer_cb)
 
         self._publish_valid(False)
+        self._publish_stable(False)
         self._publish_empty_arrays()
         self._clear_markers()
         self.get_logger().info(
@@ -197,7 +235,9 @@ class SoundLocalizer(Node):
             f"intersection_method={self.intersection_method}, "
             f"publish_waypoints={self.publish_waypoints}, "
             f"num_waypoints={self.num_waypoints}, "
-            f"min_baseline_m={self.min_baseline_m:.2f}"
+            f"min_baseline_m={self.min_baseline_m:.2f}, "
+            f"stable_min_baseline_m={self.stable_min_baseline_m:.2f}, "
+            f"stable_required_consecutive_estimates={self.stable_required_consecutive_estimates}"
         )
 
     def _warn_throttled(self, key: str, message: str, period_s: float = 5.0) -> None:
@@ -209,6 +249,9 @@ class SoundLocalizer(Node):
 
     def _publish_valid(self, is_valid: bool) -> None:
         self.estimate_valid_pub.publish(Bool(data=bool(is_valid)))
+
+    def _publish_stable(self, is_stable: bool) -> None:
+        self.estimate_stable_pub.publish(Bool(data=bool(is_stable)))
 
     def _publish_empty_arrays(self) -> None:
         stamp = self.get_clock().now().to_msg()
@@ -238,8 +281,10 @@ class SoundLocalizer(Node):
         self._measurements.clear()
         self._estimate_history.clear()
         self._latest_estimate = None
+        self._estimate_stable = False
         self._last_pair = None
         self._publish_valid(False)
+        self._publish_stable(False)
         self._publish_empty_arrays()
         self._clear_markers()
         self.get_logger().info(f"Reset sound-localization session: {reason}")
@@ -304,7 +349,9 @@ class SoundLocalizer(Node):
         estimate_trail_marker.color.g = 0.90
         estimate_trail_marker.color.b = 1.00
         estimate_trail_marker.color.a = 0.85
-        estimate_trail_marker.points = [point_xy(x, y) for x, y in self._estimate_history]
+        estimate_trail_marker.points = [
+            point_xy(sample.x_map, sample.y_map) for sample in self._estimate_history
+        ]
         if len(estimate_trail_marker.points) == 1:
             estimate_trail_marker.points.append(point_xy(est_x, est_y))
         markers.markers.append(estimate_trail_marker)
@@ -513,6 +560,66 @@ class SoundLocalizer(Node):
             return False
         return True
 
+    def _latest_doa_age_s(self) -> Optional[float]:
+        if self._last_doa_stamp is None:
+            return None
+        return (self.get_clock().now() - self._last_doa_stamp).nanoseconds / 1.0e9
+
+    def _evaluate_stability(self) -> tuple[bool, str]:
+        if not self._leak_detected:
+            return False, "leak_not_latched"
+
+        doa_age_s = self._latest_doa_age_s()
+        if doa_age_s is None:
+            return False, "missing_doa"
+        if doa_age_s > self.stable_max_doa_age_s:
+            return False, f"doa_stale:{doa_age_s:.2f}s"
+
+        if len(self._estimate_history) < self.stable_required_consecutive_estimates:
+            return False, "need_more_estimates"
+
+        recent_samples = list(self._estimate_history)[-self.stable_required_consecutive_estimates :]
+        min_baseline_m = min(sample.baseline_m for sample in recent_samples)
+        if min_baseline_m < self.stable_min_baseline_m:
+            return False, f"baseline_too_small:{min_baseline_m:.2f}m"
+
+        min_bearing_sep_rad = min(
+            sample.bearing_separation_rad for sample in recent_samples
+        )
+        if min_bearing_sep_rad < self.stable_min_bearing_separation_rad:
+            return False, (
+                f"bearing_separation_too_small:{math.degrees(min_bearing_sep_rad):.1f}deg"
+            )
+
+        centroid_x = sum(sample.x_map for sample in recent_samples) / len(recent_samples)
+        centroid_y = sum(sample.y_map for sample in recent_samples) / len(recent_samples)
+        max_spread_m = max(
+            math.hypot(sample.x_map - centroid_x, sample.y_map - centroid_y)
+            for sample in recent_samples
+        )
+        if max_spread_m > self.stable_centroid_radius_m:
+            return False, f"estimate_spread_too_large:{max_spread_m:.2f}m"
+
+        return True, "stable"
+
+    def _update_stability_state(self) -> str:
+        is_stable, reason = self._evaluate_stability()
+        if is_stable != self._estimate_stable:
+            if is_stable:
+                self.get_logger().info(
+                    "Sound estimate became stable: "
+                    f"reason={reason}, required_estimates={self.stable_required_consecutive_estimates}, "
+                    f"centroid_radius_m={self.stable_centroid_radius_m:.2f}"
+                )
+            else:
+                self.get_logger().warn(
+                    "Sound estimate is no longer stable: "
+                    f"reason={reason}"
+                )
+        self._estimate_stable = is_stable
+        self._publish_stable(is_stable)
+        return reason
+
     def _generate_waypoints(
         self, robot_pose: RobotPose2D, estimate_xy: Tuple[float, float]
     ) -> PoseArray:
@@ -562,16 +669,21 @@ class SoundLocalizer(Node):
         history_msg = PoseArray()
         history_msg.header.stamp = stamp
         history_msg.header.frame_id = self.map_frame
-        history_msg.poses = [pose_with_yaw(x, y, 0.0) for x, y in self._estimate_history]
+        history_msg.poses = [
+            pose_with_yaw(sample.x_map, sample.y_map, 0.0)
+            for sample in self._estimate_history
+        ]
         self.estimate_history_pub.publish(history_msg)
 
         self.waypoints_pub.publish(self._generate_waypoints(robot_pose, self._latest_estimate))
         self._publish_markers(robot_pose)
         self._publish_valid(True)
+        self._publish_stable(self._estimate_stable)
 
     def _timer_cb(self) -> None:
         robot_pose = self._lookup_robot_pose()
         if robot_pose is not None and self._latest_estimate is not None:
+            self._update_stability_state()
             self._publish_outputs(robot_pose)
 
         if not self._leak_detected:
@@ -613,16 +725,30 @@ class SoundLocalizer(Node):
         if not self._estimate_is_reasonable(estimate_xy, previous, current):
             return
 
+        baseline_m = current.baseline_to(previous)
+        bearing_separation_rad = angle_diff_rad(
+            current.doa_map_rad, previous.doa_map_rad
+        )
         self._last_pair = (previous, current)
         self._latest_estimate = estimate_xy
-        self._estimate_history.append(estimate_xy)
+        self._estimate_history.append(
+            EstimateSample(
+                x_map=estimate_xy[0],
+                y_map=estimate_xy[1],
+                baseline_m=baseline_m,
+                bearing_separation_rad=bearing_separation_rad,
+            )
+        )
+        stability_reason = self._update_stability_state()
         self._publish_outputs(robot_pose)
 
         est_x, est_y = estimate_xy
         self.get_logger().info(
             "Updated sound estimate in map frame: "
             f"x={est_x:.2f}, y={est_y:.2f}, "
-            f"baseline={current.baseline_to(previous):.2f} m, "
+            f"baseline={baseline_m:.2f} m, "
+            f"bearing_separation={math.degrees(bearing_separation_rad):.1f} deg, "
+            f"stable={self._estimate_stable}, reason={stability_reason}, "
             f"bearings=({math.degrees(previous.doa_map_rad):.1f}, "
             f"{math.degrees(current.doa_map_rad):.1f}) deg"
         )
@@ -635,7 +761,8 @@ def main(args=None) -> None:
         rclpy.spin(node)
     finally:
         node.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == "__main__":

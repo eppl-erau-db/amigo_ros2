@@ -82,6 +82,8 @@ setup(
             'voice_command_node = go2_control.voice_command_node:main',
             'voice_stt_vosk_node = go2_control.voice_stt_vosk_node:main',
             'sound_localizer = go2_control.sound_localizer:main',
+            'explore_until_detected_action_server = go2_control.explore_until_detected_action_server:main',
+            'localize_detected_leak_action_server = go2_control.localize_detected_leak_action_server:main',
 
         ],
     },

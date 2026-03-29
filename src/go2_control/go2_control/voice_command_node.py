@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-Voice command bridge for Go2 search behavior.
+Voice command bridge for Go2 voice-triggered actions.
 
 - Subscribes to a transcript topic (`std_msgs/String`)
 - Uses a wake phrase to arm commands for a short window
-- Sends a `go2_interfaces/Search` goal when a search phrase is heard
+- Can trigger one or more command groups from the same launch
 """
 
+import json
 import re
 import time
 from typing import Iterable, List
@@ -91,6 +92,10 @@ class VoiceCommandNode(Node):
             'log_transcripts', False).value)
         self.debug_decisions = bool(self.declare_parameter(
             'debug_decisions', False).value)
+        self.debug_topic = str(self.declare_parameter(
+            'debug_topic', '/voice/debug').value)
+        self.publish_debug_topic = bool(self.declare_parameter(
+            'publish_debug_topic', True).value)
 
         self._wake_phrases_norm = self._build_phrase_list(
             self.wake_phrase, self.wake_phrases_extra, fallback='hey amigo')
@@ -109,23 +114,36 @@ class VoiceCommandNode(Node):
 
         self.search_client = ActionClient(self, Search, self.search_action_name)
         self.sport_req_pub = self.create_publisher(UnitreeRequest, self.sport_request_topic, 10)
+        self.debug_pub = self.create_publisher(String, self.debug_topic, 10)
         self.tfbuf = tf2_ros.Buffer(cache_time=Duration(seconds=10.0))
         self.tflistener = tf2_ros.TransformListener(self.tfbuf, self)
 
         self.create_subscription(String, self.transcript_topic, self._transcript_cb, 10)
 
-        if self.command_mode not in ('search', 'sport_test'):
+        self._enabled_command_groups, unknown_command_groups = self._parse_command_mode(
+            self.command_mode
+        )
+        if unknown_command_groups:
             self.get_logger().warn(
-                f'Unknown command_mode="{self.command_mode}". Falling back to "search".'
+                f'Unknown command_mode token(s)={unknown_command_groups}. '
+                'Supported values include "search", "sport_test", and "all".'
             )
-            self.command_mode = 'search'
+        if not self._enabled_command_groups:
+            self.get_logger().warn(
+                f'command_mode="{self.command_mode}" enabled no valid command groups. '
+                'Falling back to "search".'
+            )
+            self._enabled_command_groups = {'search'}
 
         self.get_logger().info(
-            f'Voice command node ready. mode="{self.command_mode}", topic="{self.transcript_topic}", '
+            f'Voice command node ready. mode="{self.command_mode}", '
+            f'enabled_groups={sorted(self._enabled_command_groups)}, '
+            f'topic="{self.transcript_topic}", '
             f'wake_phrases={self._wake_phrases_norm}, search_phrases={self._search_phrases_norm}, '
             f'stand_up_phrases={self._stand_up_phrases_norm}, '
             f'lay_down_phrases={self._lay_down_phrases_norm}, '
-            f'require_wake={self.require_wake_phrase}, action="{self.search_action_name}".'
+            f'require_wake={self.require_wake_phrase}, action="{self.search_action_name}", '
+            f'debug_topic="{self.debug_topic}".'
         )
 
     @staticmethod
@@ -143,6 +161,39 @@ class VoiceCommandNode(Node):
         if not phrases:
             phrases.append(self._normalize(fallback))
         return phrases
+
+    @staticmethod
+    def _parse_command_mode(raw_mode: str) -> tuple[set[str], list[str]]:
+        enabled_groups: set[str] = set()
+        unknown_groups: list[str] = []
+
+        for token in re.split(r'[\s,]+', str(raw_mode).strip().lower()):
+            if not token:
+                continue
+            if token in ('all', 'multi', 'hybrid'):
+                enabled_groups.update(('search', 'sport_test'))
+            elif token == 'search':
+                enabled_groups.add('search')
+            elif token in ('sport', 'sport_test'):
+                enabled_groups.add('sport_test')
+            else:
+                unknown_groups.append(token)
+
+        return enabled_groups, unknown_groups
+
+
+    def _emit_debug_event(self, event: str, **payload) -> None:
+        if not self.publish_debug_topic:
+            return
+        message = String()
+        event_payload = {
+            'source': 'voice_command_node',
+            'event': str(event),
+            'timestamp_ns': self.get_clock().now().nanoseconds,
+        }
+        event_payload.update(payload)
+        message.data = json.dumps(event_payload, separators=(',', ':'), sort_keys=True)
+        self.debug_pub.publish(message)
 
     def _is_awake(self, now_mono: float) -> bool:
         if not self.require_wake_phrase:
@@ -168,6 +219,12 @@ class VoiceCommandNode(Node):
 
         if self.log_transcripts:
             self.get_logger().info(f'Transcript: "{transcript}"')
+        self._emit_debug_event(
+            'transcript_received',
+            raw=raw,
+            transcript=transcript,
+            awake=self._is_awake(now),
+        )
 
         # Drop rapid duplicate transcripts from streaming STT backends.
         if (transcript == self._last_transcript_norm and
@@ -177,6 +234,12 @@ class VoiceCommandNode(Node):
                     f'Debug: dropped duplicate transcript "{transcript}" '
                     f'within {self.dedupe_window_s:.1f}s dedupe window.'
                 )
+            self._emit_debug_event(
+                'transcript_dropped',
+                reason='duplicate',
+                transcript=transcript,
+                dedupe_window_s=self.dedupe_window_s,
+            )
             return
         self._last_transcript_norm = transcript
         self._last_transcript_time = now
@@ -186,66 +249,112 @@ class VoiceCommandNode(Node):
             self.get_logger().info(
                 f'Wake phrase heard. Command window open for {self.wake_window_s:.1f}s.'
             )
+            self._emit_debug_event(
+                'wake_detected',
+                transcript=transcript,
+                wake_window_s=self.wake_window_s,
+            )
 
         if not self._is_awake(now):
             if self.debug_decisions:
                 self.get_logger().info(
                     f'Debug: ignored transcript while asleep: "{transcript}"'
                 )
+            self._emit_debug_event(
+                'transcript_ignored',
+                reason='asleep',
+                transcript=transcript,
+            )
             return
 
-        if self.command_mode == 'search':
-            if self._contains_any_intent(transcript, self._search_phrases_norm):
-                self._trigger_search_if_allowed(now)
-            elif self.debug_decisions:
-                self.get_logger().info(
-                    f'Debug: no search intent match for "{transcript}". '
-                    f'Expected one of {self._search_phrases_norm}.'
-                )
-            return
-
-        if self.command_mode == 'sport_test':
-            if self._contains_any_intent(transcript, self._stand_up_phrases_norm):
+        if 'sport_test' in self._enabled_command_groups:
+            matched_phrase = self._match_intent_phrase(transcript, self._stand_up_phrases_norm)
+            if matched_phrase is not None:
                 self._trigger_sport_if_allowed(
                     now_mono=now,
                     command_label='stand_up',
                     api_id=ROBOT_SPORT_API_ID_STANDUP,
+                    transcript=transcript,
+                    matched_phrase=matched_phrase,
                 )
                 return
 
-            if self._contains_any_intent(transcript, self._lay_down_phrases_norm):
+            matched_phrase = self._match_intent_phrase(transcript, self._lay_down_phrases_norm)
+            if matched_phrase is not None:
                 self._trigger_sport_if_allowed(
                     now_mono=now,
                     command_label='lay_down',
                     api_id=ROBOT_SPORT_API_ID_STANDDOWN,
+                    transcript=transcript,
+                    matched_phrase=matched_phrase,
                 )
                 return
-            if self.debug_decisions:
-                self.get_logger().info(
-                    f'Debug: no sport intent match for "{transcript}". '
-                    f'stand_up={self._stand_up_phrases_norm}, '
-                    f'lay_down={self._lay_down_phrases_norm}.'
-                )
+
+        if 'search' in self._enabled_command_groups:
+            matched_phrase = self._match_intent_phrase(transcript, self._search_phrases_norm)
+            if matched_phrase is not None:
+                self._trigger_search_if_allowed(now, transcript, matched_phrase)
+                return
+
+        if self.debug_decisions:
+            enabled_groups = sorted(self._enabled_command_groups)
+            self.get_logger().info(
+                f'Debug: no command intent match for "{transcript}". '
+                f'enabled_groups={enabled_groups}, '
+                f'search={self._search_phrases_norm}, '
+                f'stand_up={self._stand_up_phrases_norm}, '
+                f'lay_down={self._lay_down_phrases_norm}.'
+            )
+        self._emit_debug_event(
+            'transcript_ignored',
+            reason='no_intent_match',
+            transcript=transcript,
+            enabled_groups=sorted(self._enabled_command_groups),
+        )
 
     @staticmethod
-    def _contains_any_intent(transcript: str, phrase_list: Iterable[str]) -> bool:
-        return any(phrase in transcript for phrase in phrase_list)
+    def _match_intent_phrase(transcript: str, phrase_list: Iterable[str]) -> str | None:
+        for phrase in phrase_list:
+            if phrase in transcript:
+                return phrase
+        return None
 
-    def _trigger_search_if_allowed(self, now_mono: float) -> None:
+    def _trigger_search_if_allowed(self, now_mono: float, transcript: str, matched_phrase: str) -> None:
         if self._goal_in_flight:
             self.get_logger().info('Search goal already in progress; ignoring voice command.')
+            self._emit_debug_event(
+                'search_rejected',
+                reason='goal_in_flight',
+                transcript=transcript,
+                matched_phrase=matched_phrase,
+            )
             return
 
         elapsed = now_mono - self._last_command_time
         if elapsed < self.command_cooldown_s:
+            remaining_s = self.command_cooldown_s - elapsed
             self.get_logger().info(
-                f'Search command on cooldown ({self.command_cooldown_s - elapsed:.1f}s remaining).'
+                f'Search command on cooldown ({remaining_s:.1f}s remaining).'
+            )
+            self._emit_debug_event(
+                'search_rejected',
+                reason='cooldown',
+                transcript=transcript,
+                matched_phrase=matched_phrase,
+                remaining_s=remaining_s,
             )
             return
 
         if not self.search_client.wait_for_server(timeout_sec=1.0):
             self.get_logger().warn(
                 f'Search action server "{self.search_action_name}" not available.'
+            )
+            self._emit_debug_event(
+                'search_rejected',
+                reason='server_unavailable',
+                transcript=transcript,
+                matched_phrase=matched_phrase,
+                action=self.search_action_name,
             )
             return
 
@@ -259,14 +368,36 @@ class VoiceCommandNode(Node):
             self._awake_until = 0.0
 
         self.get_logger().info('Voice command matched. Sending Search action goal.')
+        self._emit_debug_event(
+            'search_dispatched',
+            transcript=transcript,
+            matched_phrase=matched_phrase,
+            action=self.search_action_name,
+        )
         send_future = self.search_client.send_goal_async(goal)
         send_future.add_done_callback(self._on_goal_response)
 
-    def _trigger_sport_if_allowed(self, now_mono: float, command_label: str, api_id: int) -> None:
+    def _trigger_sport_if_allowed(
+        self,
+        now_mono: float,
+        command_label: str,
+        api_id: int,
+        transcript: str,
+        matched_phrase: str,
+    ) -> None:
         elapsed = now_mono - self._last_command_time
         if elapsed < self.command_cooldown_s:
+            remaining_s = self.command_cooldown_s - elapsed
             self.get_logger().info(
-                f'Command on cooldown ({self.command_cooldown_s - elapsed:.1f}s remaining).'
+                f'Command on cooldown ({remaining_s:.1f}s remaining).'
+            )
+            self._emit_debug_event(
+                'sport_rejected',
+                reason='cooldown',
+                transcript=transcript,
+                matched_phrase=matched_phrase,
+                command=command_label,
+                remaining_s=remaining_s,
             )
             return
 
@@ -281,6 +412,13 @@ class VoiceCommandNode(Node):
         self.get_logger().info(
             f'Published sport command "{command_label}" (api_id={api_id}) '
             f'to "{self.sport_request_topic}".'
+        )
+        self._emit_debug_event(
+            'sport_dispatched',
+            transcript=transcript,
+            matched_phrase=matched_phrase,
+            command=command_label,
+            api_id=api_id,
         )
 
     def _build_initial_pose(self) -> PoseStamped:
@@ -312,14 +450,17 @@ class VoiceCommandNode(Node):
         except Exception as exc:
             self._goal_in_flight = False
             self.get_logger().error(f'Failed to send Search goal: {exc}')
+            self._emit_debug_event('search_send_error', error=str(exc))
             return
 
         if goal_handle is None or not goal_handle.accepted:
             self._goal_in_flight = False
             self.get_logger().warn('Search goal was rejected by server.')
+            self._emit_debug_event('search_goal_rejected', action=self.search_action_name)
             return
 
         self.get_logger().info('Search goal accepted.')
+        self._emit_debug_event('search_goal_accepted', action=self.search_action_name)
         result_future = goal_handle.get_result_async()
         result_future.add_done_callback(self._on_search_result)
 
@@ -329,6 +470,7 @@ class VoiceCommandNode(Node):
             wrapped_result = future.result()
         except Exception as exc:
             self.get_logger().error(f'Failed while waiting for Search result: {exc}')
+            self._emit_debug_event('search_result_error', error=str(exc))
             return
 
         status = wrapped_result.status
@@ -343,6 +485,13 @@ class VoiceCommandNode(Node):
                 f'Search ended with status={status}, '
                 f'error_code={result.error_code}, error_msg="{result.error_msg}".'
             )
+        self._emit_debug_event(
+            'search_result',
+            status=int(status),
+            error_code=int(result.error_code),
+            error_msg=str(result.error_msg),
+            final_message=str(result.final_message),
+        )
 
 
 def main() -> None:
