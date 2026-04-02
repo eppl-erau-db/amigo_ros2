@@ -80,6 +80,7 @@ setup(
             'pose_click_logger = go2_control.pose_click_logger:main',
             'dummy_leak_publisher = go2_control.dummy_leak_publisher:main',
             'voice_command_node = go2_control.voice_command_node:main',
+            'person_follow_controller_node = go2_control.person_follow_controller_node:main',
             'voice_stt_vosk_node = go2_control.voice_stt_vosk_node:main',
             'sound_localizer = go2_control.sound_localizer:main',
             'explore_until_detected_action_server = go2_control.explore_until_detected_action_server:main',

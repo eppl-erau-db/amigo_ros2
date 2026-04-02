@@ -74,10 +74,30 @@ class VoiceCommandNode(Node):
             self.lay_down_phrases_extra = [str(value) for value in raw_lay_down_phrases]
         else:
             self.lay_down_phrases_extra = []
+        self.follow_phrase = str(self.declare_parameter(
+            'follow_phrase', 'follow me').value)
+        raw_follow_phrases = self.declare_parameter('follow_phrases', ['']).value
+        if isinstance(raw_follow_phrases, str):
+            self.follow_phrases_extra = [raw_follow_phrases]
+        elif isinstance(raw_follow_phrases, (list, tuple)):
+            self.follow_phrases_extra = [str(value) for value in raw_follow_phrases]
+        else:
+            self.follow_phrases_extra = []
+        self.stop_follow_phrase = str(self.declare_parameter(
+            'stop_follow_phrase', 'stop following').value)
+        raw_stop_follow_phrases = self.declare_parameter('stop_follow_phrases', ['']).value
+        if isinstance(raw_stop_follow_phrases, str):
+            self.stop_follow_phrases_extra = [raw_stop_follow_phrases]
+        elif isinstance(raw_stop_follow_phrases, (list, tuple)):
+            self.stop_follow_phrases_extra = [str(value) for value in raw_stop_follow_phrases]
+        else:
+            self.stop_follow_phrases_extra = []
         self.search_action_name = str(self.declare_parameter(
             'search_action_name', 'search').value)
         self.sport_request_topic = str(self.declare_parameter(
             'sport_request_topic', '/api/sport/request').value)
+        self.command_topic = str(self.declare_parameter(
+            'command_topic', '/voice/command').value)
         self.wake_window_s = float(self.declare_parameter(
             'wake_window_s', 8.0).value)
         self.command_cooldown_s = float(self.declare_parameter(
@@ -105,15 +125,22 @@ class VoiceCommandNode(Node):
             self.stand_up_phrase, self.stand_up_phrases_extra, fallback='stand up')
         self._lay_down_phrases_norm = self._build_phrase_list(
             self.lay_down_phrase, self.lay_down_phrases_extra, fallback='lay down')
+        self._follow_phrases_norm = self._build_phrase_list(
+            self.follow_phrase, self.follow_phrases_extra, fallback='follow me')
+        self._stop_follow_phrases_norm = self._build_phrase_list(
+            self.stop_follow_phrase, self.stop_follow_phrases_extra, fallback='stop following')
 
         self._awake_until = 0.0
         self._last_command_time = 0.0
         self._last_transcript_norm = ''
         self._last_transcript_time = 0.0
         self._goal_in_flight = False
+        self._active_search_goal_handle = None
+        self._pending_follow_dispatch = None
 
         self.search_client = ActionClient(self, Search, self.search_action_name)
         self.sport_req_pub = self.create_publisher(UnitreeRequest, self.sport_request_topic, 10)
+        self.command_pub = self.create_publisher(String, self.command_topic, 10)
         self.debug_pub = self.create_publisher(String, self.debug_topic, 10)
         self.tfbuf = tf2_ros.Buffer(cache_time=Duration(seconds=10.0))
         self.tflistener = tf2_ros.TransformListener(self.tfbuf, self)
@@ -126,7 +153,7 @@ class VoiceCommandNode(Node):
         if unknown_command_groups:
             self.get_logger().warn(
                 f'Unknown command_mode token(s)={unknown_command_groups}. '
-                'Supported values include "search", "sport_test", and "all".'
+                'Supported values include "search", "sport_test", "follow", and "all".'
             )
         if not self._enabled_command_groups:
             self.get_logger().warn(
@@ -142,8 +169,10 @@ class VoiceCommandNode(Node):
             f'wake_phrases={self._wake_phrases_norm}, search_phrases={self._search_phrases_norm}, '
             f'stand_up_phrases={self._stand_up_phrases_norm}, '
             f'lay_down_phrases={self._lay_down_phrases_norm}, '
+            f'follow_phrases={self._follow_phrases_norm}, '
+            f'stop_follow_phrases={self._stop_follow_phrases_norm}, '
             f'require_wake={self.require_wake_phrase}, action="{self.search_action_name}", '
-            f'debug_topic="{self.debug_topic}".'
+            f'command_topic="{self.command_topic}", debug_topic="{self.debug_topic}".'
         )
 
     @staticmethod
@@ -171,11 +200,13 @@ class VoiceCommandNode(Node):
             if not token:
                 continue
             if token in ('all', 'multi', 'hybrid'):
-                enabled_groups.update(('search', 'sport_test'))
+                enabled_groups.update(('search', 'sport_test', 'follow'))
             elif token == 'search':
                 enabled_groups.add('search')
             elif token in ('sport', 'sport_test'):
                 enabled_groups.add('sport_test')
+            elif token in ('follow', 'follow_me', 'person_follow'):
+                enabled_groups.add('follow')
             else:
                 unknown_groups.append(token)
 
@@ -290,6 +321,27 @@ class VoiceCommandNode(Node):
                 )
                 return
 
+        if 'follow' in self._enabled_command_groups:
+            matched_phrase = self._match_intent_phrase(transcript, self._stop_follow_phrases_norm)
+            if matched_phrase is not None:
+                self._trigger_follow_command_if_allowed(
+                    now_mono=now,
+                    command_label='stop_follow',
+                    transcript=transcript,
+                    matched_phrase=matched_phrase,
+                )
+                return
+
+            matched_phrase = self._match_intent_phrase(transcript, self._follow_phrases_norm)
+            if matched_phrase is not None:
+                self._trigger_follow_command_if_allowed(
+                    now_mono=now,
+                    command_label='follow_me',
+                    transcript=transcript,
+                    matched_phrase=matched_phrase,
+                )
+                return
+
         if 'search' in self._enabled_command_groups:
             matched_phrase = self._match_intent_phrase(transcript, self._search_phrases_norm)
             if matched_phrase is not None:
@@ -303,7 +355,9 @@ class VoiceCommandNode(Node):
                 f'enabled_groups={enabled_groups}, '
                 f'search={self._search_phrases_norm}, '
                 f'stand_up={self._stand_up_phrases_norm}, '
-                f'lay_down={self._lay_down_phrases_norm}.'
+                f'lay_down={self._lay_down_phrases_norm}, '
+                f'follow={self._follow_phrases_norm}, '
+                f'stop_follow={self._stop_follow_phrases_norm}.'
             )
         self._emit_debug_event(
             'transcript_ignored',
@@ -318,6 +372,11 @@ class VoiceCommandNode(Node):
             if phrase in transcript:
                 return phrase
         return None
+
+    def _publish_command(self, command_label: str) -> None:
+        msg = String()
+        msg.data = command_label
+        self.command_pub.publish(msg)
 
     def _trigger_search_if_allowed(self, now_mono: float, transcript: str, matched_phrase: str) -> None:
         if self._goal_in_flight:
@@ -367,6 +426,7 @@ class VoiceCommandNode(Node):
         if self.require_wake_phrase:
             self._awake_until = 0.0
 
+        self._publish_command('search')
         self.get_logger().info('Voice command matched. Sending Search action goal.')
         self._emit_debug_event(
             'search_dispatched',
@@ -409,6 +469,7 @@ class VoiceCommandNode(Node):
         if self.require_wake_phrase:
             self._awake_until = 0.0
 
+        self._publish_command(command_label)
         self.get_logger().info(
             f'Published sport command "{command_label}" (api_id={api_id}) '
             f'to "{self.sport_request_topic}".'
@@ -419,6 +480,155 @@ class VoiceCommandNode(Node):
             matched_phrase=matched_phrase,
             command=command_label,
             api_id=api_id,
+        )
+
+    def _trigger_follow_command_if_allowed(
+        self,
+        now_mono: float,
+        command_label: str,
+        transcript: str,
+        matched_phrase: str,
+    ) -> None:
+        elapsed = now_mono - self._last_command_time
+        bypass_cooldown = (
+            command_label == 'stop_follow' or
+            (command_label == 'follow_me' and self._goal_in_flight)
+        )
+        if not bypass_cooldown and elapsed < self.command_cooldown_s:
+            remaining_s = self.command_cooldown_s - elapsed
+            self.get_logger().info(
+                f'Command on cooldown ({remaining_s:.1f}s remaining).'
+            )
+            self._emit_debug_event(
+                'follow_rejected',
+                reason='cooldown',
+                transcript=transcript,
+                matched_phrase=matched_phrase,
+                command=command_label,
+                remaining_s=remaining_s,
+            )
+            return
+
+        if command_label == 'stop_follow':
+            self._pending_follow_dispatch = None
+            self._dispatch_follow_command(command_label, transcript, matched_phrase)
+            return
+
+        if command_label == 'follow_me' and self._goal_in_flight:
+            self._pending_follow_dispatch = {
+                'command_label': command_label,
+                'matched_phrase': matched_phrase,
+                'transcript': transcript,
+            }
+            self.get_logger().info(
+                'Follow command matched while Search is active. '
+                'Canceling Search before enabling follow mode.'
+            )
+            self._emit_debug_event(
+                'follow_preempt_requested',
+                transcript=transcript,
+                matched_phrase=matched_phrase,
+                command=command_label,
+                action=self.search_action_name,
+            )
+            self._cancel_active_search_for_follow()
+            return
+
+        self._dispatch_follow_command(command_label, transcript, matched_phrase)
+
+    def _dispatch_follow_command(
+        self,
+        command_label: str,
+        transcript: str,
+        matched_phrase: str,
+    ) -> None:
+        self._last_command_time = time.monotonic()
+        if self.require_wake_phrase:
+            self._awake_until = 0.0
+
+        self._publish_command(command_label)
+        self.get_logger().info(
+            f'Published follow command "{command_label}" to "{self.command_topic}".'
+        )
+        self._emit_debug_event(
+            'follow_dispatched',
+            transcript=transcript,
+            matched_phrase=matched_phrase,
+            command=command_label,
+            topic=self.command_topic,
+        )
+
+    def _cancel_active_search_for_follow(self) -> None:
+        if self._pending_follow_dispatch is None or not self._goal_in_flight:
+            return
+
+        if self._active_search_goal_handle is None:
+            self.get_logger().info(
+                'Search goal is still being accepted; follow dispatch will wait for '
+                'the goal handle and then request cancellation.'
+            )
+            self._emit_debug_event(
+                'follow_preempt_waiting_for_goal_handle',
+                action=self.search_action_name,
+            )
+            return
+
+        try:
+            cancel_future = self._active_search_goal_handle.cancel_goal_async()
+            cancel_future.add_done_callback(self._on_search_cancel_response)
+        except Exception as exc:
+            self.get_logger().error(
+                f'Failed to cancel active Search goal before follow dispatch: {exc}'
+            )
+            self._emit_debug_event(
+                'follow_preempt_cancel_error',
+                action=self.search_action_name,
+                error=str(exc),
+            )
+
+    def _on_search_cancel_response(self, future) -> None:
+        try:
+            cancel_response = future.result()
+        except Exception as exc:
+            self.get_logger().error(f'Failed to cancel Search goal: {exc}')
+            self._emit_debug_event(
+                'follow_preempt_cancel_error',
+                action=self.search_action_name,
+                error=str(exc),
+            )
+            return
+
+        goals_canceling = getattr(cancel_response, 'goals_canceling', [])
+        if goals_canceling:
+            self.get_logger().info(
+                'Search cancel accepted. Waiting for the Search result callback '
+                'before enabling follow mode.'
+            )
+            self._emit_debug_event(
+                'follow_preempt_cancel_accepted',
+                action=self.search_action_name,
+                goals_canceling=len(goals_canceling),
+            )
+            return
+
+        self.get_logger().warn(
+            'Search cancel was not accepted immediately. '
+            'Follow dispatch will wait for Search to finish.'
+        )
+        self._emit_debug_event(
+            'follow_preempt_cancel_rejected',
+            action=self.search_action_name,
+        )
+
+    def _complete_pending_follow_dispatch(self) -> None:
+        if self._pending_follow_dispatch is None:
+            return
+        payload = self._pending_follow_dispatch
+        self._pending_follow_dispatch = None
+        self._dispatch_follow_command(
+            str(payload['command_label']),
+            str(payload['transcript']),
+            str(payload['matched_phrase']),
         )
 
     def _build_initial_pose(self) -> PoseStamped:
@@ -449,28 +659,37 @@ class VoiceCommandNode(Node):
             goal_handle = future.result()
         except Exception as exc:
             self._goal_in_flight = False
+            self._active_search_goal_handle = None
             self.get_logger().error(f'Failed to send Search goal: {exc}')
             self._emit_debug_event('search_send_error', error=str(exc))
+            self._complete_pending_follow_dispatch()
             return
 
         if goal_handle is None or not goal_handle.accepted:
             self._goal_in_flight = False
+            self._active_search_goal_handle = None
             self.get_logger().warn('Search goal was rejected by server.')
             self._emit_debug_event('search_goal_rejected', action=self.search_action_name)
+            self._complete_pending_follow_dispatch()
             return
 
+        self._active_search_goal_handle = goal_handle
         self.get_logger().info('Search goal accepted.')
         self._emit_debug_event('search_goal_accepted', action=self.search_action_name)
+        if self._pending_follow_dispatch is not None:
+            self._cancel_active_search_for_follow()
         result_future = goal_handle.get_result_async()
         result_future.add_done_callback(self._on_search_result)
 
     def _on_search_result(self, future) -> None:
         self._goal_in_flight = False
+        self._active_search_goal_handle = None
         try:
             wrapped_result = future.result()
         except Exception as exc:
             self.get_logger().error(f'Failed while waiting for Search result: {exc}')
             self._emit_debug_event('search_result_error', error=str(exc))
+            self._complete_pending_follow_dispatch()
             return
 
         status = wrapped_result.status
@@ -492,6 +711,7 @@ class VoiceCommandNode(Node):
             error_msg=str(result.error_msg),
             final_message=str(result.final_message),
         )
+        self._complete_pending_follow_dispatch()
 
 
 def main() -> None:

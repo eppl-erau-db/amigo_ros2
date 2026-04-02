@@ -39,6 +39,7 @@
   <exec_depend>nav2_simple_commander</exec_depend>
   <exec_depend>slam_toolbox</exec_depend>
   <exec_depend>rplidar_ros2</exec_depend>
+  <test_depend>python3-pytest</test_depend>
 
   <export>
     <build_type>ament_python</build_type>

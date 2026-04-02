@@ -76,3 +76,36 @@ ros2 action info /search
 ros2 action info /explore_until_detected
 ros2 action info /localize_detected_leak
 
+
+-----------------------------------------------------------------
+
+source /opt/ros/*/setup.bash
+source /home/castej-jetson/workspaces/amigo_ros2/install/setup.bash
+ros2 launch go2_bringup mapping.launch.py voice_control:=true person_follow_enable:=true
+
+after .onnx file:
+ros2 launch go2_bringup mapping.launch.py voice_control:=true \
+  zed_follow_params_path:=/home/castej-jetson/workspaces/amigo_ros2/src/go2_bringup/config/zed_follow_person_custom.yaml
+
+
+The new C++ node in person_follow_vision_node.cpp (line 35) subscribes to /zed/zed_node/rgb/image_rect_color and /zed/zed_node/obj_det/objects, keeps a stable person target using ZED’s published tracking id in label_id, and publishes:
+ros2 topic echo /person_follow_vision_node/annotated_image
+ros2 topic echo /person_follow_vision_node/target_point
+ros2 topic echo /person_follow_vision_node/target_visible
+ros2 topic echo /person_follow_vision_node/target_id
+ros2 topic echo /person_follow_vision_node/status
+
+
+
+
+
+
+ros2 topic echo/person_follow_controller_node/debug_twist
+ros2 topic echo /person_follow_controller_node/desired_standoff_point
+ros2 topic echo /person_follow_controller_node/state
+
+ros2 topic echo /person_follow_controller_node/nominal_twist
+ros2 topic echo /person_follow_controller_node/safety_status
+ros2 topic echo /person_follow_controller_node/debug_twist
+
+

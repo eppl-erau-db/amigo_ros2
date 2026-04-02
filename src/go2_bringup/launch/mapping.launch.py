@@ -212,6 +212,14 @@ def generate_launch_description():
         name='voice_search_phrase', default_value='look for a leak',
         description='Phrase that triggers Search action (used in search mode)'
     )
+    declare_voice_follow_phrase = DeclareLaunchArgument(
+        name='voice_follow_phrase', default_value='follow me',
+        description='Phrase that enables person-follow perception mode'
+    )
+    declare_voice_stop_follow_phrase = DeclareLaunchArgument(
+        name='voice_stop_follow_phrase', default_value='stop following',
+        description='Phrase that disables person-follow perception mode'
+    )
     declare_voice_stand_up_phrase = DeclareLaunchArgument(
         name='voice_stand_up_phrase', default_value='stand up',
         description='Phrase that triggers StandUp sport SDK command (sport_test mode)'
@@ -266,7 +274,64 @@ def generate_launch_description():
     )
     declare_voice_command_mode = DeclareLaunchArgument(
         name='voice_command_mode', default_value='all',
-        description='Voice command behavior mode: search, sport_test, or all'
+        description='Voice command behavior mode: search, sport_test, follow, or all'
+    )
+    declare_voice_command_topic = DeclareLaunchArgument(
+        name='voice_command_topic', default_value='/voice/command',
+        description='Topic where parsed voice commands are published'
+    )
+    declare_person_follow_enable = DeclareLaunchArgument(
+        name='person_follow_enable', default_value='true',
+        description='Enable the person-follow perception pipeline'
+    )
+    declare_person_follow_distance_m = DeclareLaunchArgument(
+        name='person_follow_distance_m', default_value='0.75',
+        description='Desired person-follow standoff distance in meters'
+    )
+    declare_person_follow_distance_band_m = DeclareLaunchArgument(
+        name='person_follow_distance_band_m', default_value='0.10',
+        description='Allowed standoff band around the desired follow distance in meters'
+    )
+    declare_person_follow_max_vx_mps = DeclareLaunchArgument(
+        name='person_follow_max_vx_mps', default_value='0.60',
+        description='Maximum forward follow speed in meters per second'
+    )
+    declare_person_follow_max_vy_mps = DeclareLaunchArgument(
+        name='person_follow_max_vy_mps', default_value='0.30',
+        description='Maximum lateral follow speed in meters per second'
+    )
+    declare_person_follow_max_wz_radps = DeclareLaunchArgument(
+        name='person_follow_max_wz_radps', default_value='1.20',
+        description='Maximum follow yaw rate in radians per second'
+    )
+    declare_person_follow_use_strafe = DeclareLaunchArgument(
+        name='person_follow_use_strafe', default_value='false',
+        description='Allow strafing in follow mode instead of rotate-first centering'
+    )
+    declare_person_follow_candidate_horizon_s = DeclareLaunchArgument(
+        name='person_follow_candidate_horizon_s', default_value='0.80',
+        description='Short-horizon safety simulation window for follow controller commands'
+    )
+    declare_person_follow_reacquire_timeout_s = DeclareLaunchArgument(
+        name='person_follow_reacquire_timeout_s', default_value='1.50',
+        description='How long to actively yaw-search after a target loss before holding position'
+    )
+    declare_person_follow_sit_on_loss_timeout_s = DeclareLaunchArgument(
+        name='person_follow_sit_on_loss_timeout_s', default_value='3.00',
+        description='How long to wait after sustained target loss before sending StandDown'
+    )
+    declare_person_follow_debug = DeclareLaunchArgument(
+        name='person_follow_debug', default_value='false',
+        description='Enable extra person-follow controller debug logging'
+    )
+    declare_zed_follow_params_path = DeclareLaunchArgument(
+        name='zed_follow_params_path',
+        default_value=os.path.join(
+            get_package_share_directory('go2_bringup'),
+            'config',
+            'zed_follow_person.yaml',
+        ),
+        description='ROS params override YAML for the ZED follow-person object-detection pipeline'
     )
 
     launch_profile = LaunchConfiguration('launch_profile')
@@ -288,6 +353,8 @@ def generate_launch_description():
     voice_transcript_topic = LaunchConfiguration('voice_transcript_topic')
     voice_wake_phrase = LaunchConfiguration('voice_wake_phrase')
     voice_search_phrase = LaunchConfiguration('voice_search_phrase')
+    voice_follow_phrase = LaunchConfiguration('voice_follow_phrase')
+    voice_stop_follow_phrase = LaunchConfiguration('voice_stop_follow_phrase')
     voice_stand_up_phrase = LaunchConfiguration('voice_stand_up_phrase')
     voice_lay_down_phrase = LaunchConfiguration('voice_lay_down_phrase')
     voice_stt_enable = LaunchConfiguration('voice_stt_enable')
@@ -302,6 +369,19 @@ def generate_launch_description():
     voice_command_debug = LaunchConfiguration('voice_command_debug')
     voice_command_cooldown_s = LaunchConfiguration('voice_command_cooldown_s')
     voice_command_mode = LaunchConfiguration('voice_command_mode')
+    voice_command_topic = LaunchConfiguration('voice_command_topic')
+    person_follow_enable = LaunchConfiguration('person_follow_enable')
+    person_follow_distance_m = LaunchConfiguration('person_follow_distance_m')
+    person_follow_distance_band_m = LaunchConfiguration('person_follow_distance_band_m')
+    person_follow_max_vx_mps = LaunchConfiguration('person_follow_max_vx_mps')
+    person_follow_max_vy_mps = LaunchConfiguration('person_follow_max_vy_mps')
+    person_follow_max_wz_radps = LaunchConfiguration('person_follow_max_wz_radps')
+    person_follow_use_strafe = LaunchConfiguration('person_follow_use_strafe')
+    person_follow_candidate_horizon_s = LaunchConfiguration('person_follow_candidate_horizon_s')
+    person_follow_reacquire_timeout_s = LaunchConfiguration('person_follow_reacquire_timeout_s')
+    person_follow_sit_on_loss_timeout_s = LaunchConfiguration('person_follow_sit_on_loss_timeout_s')
+    person_follow_debug = LaunchConfiguration('person_follow_debug')
+    zed_follow_params_path = LaunchConfiguration('zed_follow_params_path')
 
     pkg_go2_desc = get_package_share_path('go2_description')
     urdf_path = os.path.join(pkg_go2_desc, 'urdf', 'go2.urdf.xacro')
@@ -383,7 +463,8 @@ def generate_launch_description():
             'camera_model': 'zedxm',
             'publish_tf': 'false',
             'publish_map_tf': 'false',
-            'publish_imu_tf': 'false'
+            'publish_imu_tf': 'false',
+            'ros_params_override_path': zed_follow_params_path,
         }.items()
     )
     lidar_node = Node(
@@ -558,9 +639,23 @@ def generate_launch_description():
                 'amigo can you lie down',
                 'hey amigo can you look for a leak',
                 'amigo can you look for a leak',
+                'hey amigo follow me',
+                'amigo follow me',
+                'hey amigo can you follow me',
+                'amigo can you follow me',
+                'hey amigo track me',
+                'amigo track me',
+                'hey amigo stop following',
+                'amigo stop following',
+                'hey amigo stop follow me',
+                'amigo stop follow me',
                 'stand up',
                 'lay down',
                 'lie down',
+                'follow me',
+                'track me',
+                'stop following',
+                'stop follow me',
                 'look for a leak',
             ],
         }],
@@ -581,11 +676,16 @@ def generate_launch_description():
             'wake_phrase': voice_wake_phrase,
             'wake_phrases': ['amigo'],
             'search_phrase': voice_search_phrase,
+            'follow_phrase': voice_follow_phrase,
+            'follow_phrases': ['track me', 'come with me'],
+            'stop_follow_phrase': voice_stop_follow_phrase,
+            'stop_follow_phrases': ['stop follow me', 'cancel follow', 'stop tracking me'],
             'stand_up_phrase': voice_stand_up_phrase,
             'lay_down_phrase': voice_lay_down_phrase,
             'lay_down_phrases': ['lie down', 'down'],
             'stand_up_phrases': ['get up'],
             'command_mode': voice_command_mode,
+            'command_topic': voice_command_topic,
             'search_action_name': 'search',
             'require_wake_phrase': True,
             'command_cooldown_s': voice_command_cooldown_s,
@@ -595,6 +695,44 @@ def generate_launch_description():
             'publish_debug_topic': True,
         }],
         condition=IfCondition(voice_control),
+    )
+    person_follow_node = Node(
+        package='go2_person_follow',
+        executable='person_follow_vision_node',
+        name='person_follow_vision_node',
+        output='screen',
+        parameters=[{
+            'use_sim_time': use_sim_time,
+            'command_topic': voice_command_topic,
+            'image_topic': '/zed/zed_node/rgb/image_rect_color',
+            'objects_topic': '/zed/zed_node/obj_det/objects',
+        }],
+        condition=IfCondition(person_follow_enable),
+    )
+    person_follow_controller_node = Node(
+        package='go2_control',
+        executable='person_follow_controller_node',
+        name='person_follow_controller_node',
+        output='screen',
+        parameters=[{
+            'use_sim_time': use_sim_time,
+            'command_topic': voice_command_topic,
+            'target_point_topic': '/person_follow_vision_node/target_point',
+            'target_visible_topic': '/person_follow_vision_node/target_visible',
+            'target_status_topic': '/person_follow_vision_node/status',
+            'local_costmap_topic': '/local_costmap/costmap',
+            'desired_distance_m': person_follow_distance_m,
+            'distance_band_m': person_follow_distance_band_m,
+            'max_forward_speed_mps': person_follow_max_vx_mps,
+            'max_lateral_speed_mps': person_follow_max_vy_mps,
+            'max_yaw_rate_radps': person_follow_max_wz_radps,
+            'use_strafe': person_follow_use_strafe,
+            'candidate_horizon_s': person_follow_candidate_horizon_s,
+            'reacquire_timeout_s': person_follow_reacquire_timeout_s,
+            'sit_on_loss_timeout_s': person_follow_sit_on_loss_timeout_s,
+            'debug_enable': person_follow_debug,
+        }],
+        condition=IfCondition(person_follow_enable),
     )
 
     log_pose_server = Node(
@@ -632,6 +770,8 @@ def generate_launch_description():
             search_action_server,
             voice_stt_vosk_node,
             voice_command_node,
+            person_follow_node,
+            person_follow_controller_node,
         ],
     )
     operator_tools_group = GroupAction(
@@ -663,6 +803,8 @@ def generate_launch_description():
         declare_voice_transcript_topic,
         declare_voice_wake_phrase,
         declare_voice_search_phrase,
+        declare_voice_follow_phrase,
+        declare_voice_stop_follow_phrase,
         declare_voice_stand_up_phrase,
         declare_voice_lay_down_phrase,
         declare_voice_stt_enable,
@@ -677,6 +819,19 @@ def generate_launch_description():
         declare_voice_command_debug,
         declare_voice_command_cooldown_s,
         declare_voice_command_mode,
+        declare_voice_command_topic,
+        declare_person_follow_enable,
+        declare_person_follow_distance_m,
+        declare_person_follow_distance_band_m,
+        declare_person_follow_max_vx_mps,
+        declare_person_follow_max_vy_mps,
+        declare_person_follow_max_wz_radps,
+        declare_person_follow_use_strafe,
+        declare_person_follow_candidate_horizon_s,
+        declare_person_follow_reacquire_timeout_s,
+        declare_person_follow_sit_on_loss_timeout_s,
+        declare_person_follow_debug,
+        declare_zed_follow_params_path,
         mission_base_group,
         operator_tools_group,
     ])

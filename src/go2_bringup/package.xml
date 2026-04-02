@@ -15,6 +15,7 @@
 
   <!-- Runtime dependencies -->
   <exec_depend>go2_control</exec_depend>
+  <exec_depend>go2_person_follow</exec_depend>
   <exec_depend>go2_description</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>rplidar_ros2</exec_depend>
