@@ -19,6 +19,10 @@
 [submodule "src/unitree_ros2"]
 	path = src/unitree_ros2
 	url = https://github.com/JCastel358/unitree_ros2.git
+[submodule "src/m-explore-ros2"]
+	path = src/m-explore-ros2
+	url = https://github.com/JCastel358/m-explore-ros2.git
+	branch = main
 [submodule "src/zed-ros2-examples"]
 	path = src/zed-ros2-examples
 	url = https://github.com/JCastel358/zed-ros2-examples.git
