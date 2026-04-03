@@ -14,6 +14,7 @@ find_package(image_transport REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(go2_interfaces REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(zed_msgs REQUIRED)
 find_package(OpenCV REQUIRED)
@@ -31,6 +32,7 @@ ament_target_dependencies(person_follow_vision_node
   rclcpp
   sensor_msgs
   geometry_msgs
+  go2_interfaces
   std_msgs
   zed_msgs
 )

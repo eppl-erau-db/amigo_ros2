@@ -159,6 +159,12 @@ class FollowStateMachine:
         return self.state == FollowStates.REACQUIRE and self.loss_age_s(now_s) <= self.reacquire_timeout_s
 
 
+def follow_state_event(previous_state: str, current_state: str) -> str | None:
+    if previous_state != FollowStates.LOST_SIT and current_state == FollowStates.LOST_SIT:
+        return "lost_target_timeout"
+    return None
+
+
 def compute_nominal_follow_command(
     target_x_m: float,
     target_y_m: float,

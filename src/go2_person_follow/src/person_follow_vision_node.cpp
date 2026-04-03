@@ -12,6 +12,7 @@
 #include <string>
 
 #include <geometry_msgs/msg/point_stamped.hpp>
+#include <go2_interfaces/msg/robot_mode_state.hpp>
 #include <image_transport/camera_subscriber.hpp>
 #include <image_transport/image_transport.hpp>
 #include <opencv2/imgproc.hpp>
@@ -42,8 +43,8 @@ public:
       "image_topic", "/zed/zed_node/rgb/image_rect_color");
     objects_topic_ = this->declare_parameter<std::string>(
       "objects_topic", "/zed/zed_node/obj_det/objects");
-    command_topic_ = this->declare_parameter<std::string>(
-      "command_topic", "/voice/command");
+    robot_mode_state_topic_ = this->declare_parameter<std::string>(
+      "robot_mode_state_topic", "/robot_mode_state");
     image_transport_ = this->declare_parameter<std::string>(
       "image_transport", "raw");
     annotated_image_topic_ = this->declare_parameter<std::string>(
@@ -58,10 +59,6 @@ public:
       "status_topic", "~/status");
     target_label_ = normalizeToken(
       this->declare_parameter<std::string>("target_label", "person"));
-    follow_command_token_ = normalizeToken(
-      this->declare_parameter<std::string>("follow_command_token", "follow_me"));
-    stop_command_token_ = normalizeToken(
-      this->declare_parameter<std::string>("stop_command_token", "stop_follow"));
     min_target_confidence_ = this->declare_parameter("min_target_confidence", 40.0);
     max_target_age_s_ = this->declare_parameter("max_target_age_s", 1.0);
 
@@ -86,9 +83,9 @@ public:
     objects_sub_ = this->create_subscription<zed_msgs::msg::ObjectsStamped>(
       objects_topic_, sensor_qos,
       std::bind(&PersonFollowVisionNode::objectsCallback, this, std::placeholders::_1));
-    command_sub_ = this->create_subscription<std_msgs::msg::String>(
-      command_topic_, 10,
-      std::bind(&PersonFollowVisionNode::commandCallback, this, std::placeholders::_1));
+    robot_mode_state_sub_ = this->create_subscription<go2_interfaces::msg::RobotModeState>(
+      robot_mode_state_topic_, 10,
+      std::bind(&PersonFollowVisionNode::robotModeStateCallback, this, std::placeholders::_1));
 
     annotated_image_pub_ = this->create_publisher<sensor_msgs::msg::Image>(
       annotated_image_topic_, 10);
@@ -113,11 +110,11 @@ public:
 
     RCLCPP_INFO(
       this->get_logger(),
-      "Person follow vision node ready. enabled=%s image_topic=%s objects_topic=%s command_topic=%s image_transport=%s",
+      "Person follow vision node ready. enabled=%s image_topic=%s objects_topic=%s robot_mode_state_topic=%s image_transport=%s",
       enabled_ ? "true" : "false",
       image_topic_.c_str(),
       objects_topic_.c_str(),
-      command_topic_.c_str(),
+      robot_mode_state_topic_.c_str(),
       image_transport_.c_str());
   }
 
@@ -371,27 +368,29 @@ private:
     publishStatus(reason);
   }
 
-  void commandCallback(const std_msgs::msg::String::SharedPtr msg)
+  void robotModeStateCallback(const go2_interfaces::msg::RobotModeState::SharedPtr msg)
   {
-    const std::string command = normalizeToken(msg->data);
+    const bool should_enable =
+      msg->task_mode == "FOLLOW" &&
+      msg->posture_mode == "STANDING" &&
+      msg->motion_enabled;
     std::lock_guard<std::mutex> lock(state_mutex_);
 
-    if (command == follow_command_token_) {
-      enabled_ = true;
-      active_target_id_ = -1;
-      last_target_update_time_ = this->now();
-      publishTargetVisible(false);
-      publishTargetId(-1);
-      publishStatus("follow_enabled_waiting_for_target");
-      RCLCPP_INFO(this->get_logger(), "Follow command received. Waiting for a person target.");
+    if (should_enable == enabled_) {
       return;
     }
 
-    if (command == stop_command_token_) {
-      enabled_ = false;
-      clearTarget("follow_disabled");
-      RCLCPP_INFO(this->get_logger(), "Stop-follow command received. Person follow disabled.");
-    }
+    enabled_ = should_enable;
+    active_target_id_ = -1;
+    last_target_update_time_ = this->now();
+    publishTargetVisible(false);
+    publishTargetId(-1);
+    publishStatus(enabled_ ? "follow_enabled_waiting_for_target" : "follow_disabled");
+
+    RCLCPP_INFO(
+      this->get_logger(),
+      "Mission supervisor %s person follow perception.",
+      enabled_ ? "enabled" : "disabled");
   }
 
   void objectsCallback(const zed_msgs::msg::ObjectsStamped::SharedPtr msg)
@@ -596,7 +595,7 @@ private:
 
   std::string image_topic_;
   std::string objects_topic_;
-  std::string command_topic_;
+  std::string robot_mode_state_topic_;
   std::string image_transport_;
   std::string annotated_image_topic_;
   std::string target_point_topic_;
@@ -604,8 +603,6 @@ private:
   std::string target_id_topic_;
   std::string status_topic_;
   std::string target_label_;
-  std::string follow_command_token_;
-  std::string stop_command_token_;
   std::string last_status_;
 
   rclcpp::Time last_target_update_time_{0, 0, RCL_ROS_TIME};
@@ -618,7 +615,7 @@ private:
 
   image_transport::CameraSubscriber image_sub_;
   rclcpp::Subscription<zed_msgs::msg::ObjectsStamped>::SharedPtr objects_sub_;
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr command_sub_;
+  rclcpp::Subscription<go2_interfaces::msg::RobotModeState>::SharedPtr robot_mode_state_sub_;
 
   rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr annotated_image_pub_;
   rclcpp::Publisher<geometry_msgs::msg::PointStamped>::SharedPtr target_point_pub_;

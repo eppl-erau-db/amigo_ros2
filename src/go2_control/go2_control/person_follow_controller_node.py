@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import math
-import re
 import time
 
 import rclpy
@@ -11,7 +10,6 @@ from nav_msgs.msg import OccupancyGrid
 from rclpy.node import Node
 from std_msgs.msg import Bool, String
 import tf2_ros
-from unitree_api.msg import Request as UnitreeRequest
 
 from go2_control.person_follow_controller_core import (
     FollowControlParams,
@@ -23,27 +21,27 @@ from go2_control.person_follow_controller_core import (
     Twist2D,
     apply_acceleration_limits,
     compute_nominal_follow_command,
+    follow_state_event,
     select_safe_command,
     trajectory_is_safe,
 )
-
-
-ROBOT_SPORT_API_ID_STANDDOWN = 1005
+from go2_interfaces.msg import RobotModeState
 
 
 class PersonFollowControllerNode(Node):
     def __init__(self) -> None:
         super().__init__("person_follow_controller_node")
 
-        self.command_topic = str(self.declare_parameter("command_topic", "/voice/command").value)
-        self.follow_command_token = self._normalize_token(
-            str(self.declare_parameter("follow_command_token", "follow_me").value)
-        )
-        self.stop_command_token = self._normalize_token(
-            str(self.declare_parameter("stop_command_token", "stop_follow").value)
-        )
-        self.stand_up_command_token = self._normalize_token(
-            str(self.declare_parameter("stand_up_command_token", "stand_up").value)
+        # Kept for launch compatibility during the transition to supervisor-owned mode.
+        self.declare_parameter("command_topic", "/voice/command")
+        self.declare_parameter("follow_command_token", "follow_me")
+        self.declare_parameter("stop_command_token", "stop_follow")
+        self.declare_parameter("stand_up_command_token", "stand_up")
+        self.declare_parameter("resume_after_stand_up", True)
+        self.declare_parameter("sport_request_topic", "/api/sport/request")
+
+        self.robot_mode_state_topic = str(
+            self.declare_parameter("robot_mode_state_topic", "/robot_mode_state").value
         )
         self.target_point_topic = str(
             self.declare_parameter(
@@ -63,9 +61,8 @@ class PersonFollowControllerNode(Node):
         self.local_costmap_topic = str(
             self.declare_parameter("local_costmap_topic", "/local_costmap/costmap").value
         )
-        self.cmd_vel_topic = str(self.declare_parameter("cmd_vel_topic", "cmd_vel").value)
-        self.sport_request_topic = str(
-            self.declare_parameter("sport_request_topic", "/api/sport/request").value
+        self.cmd_vel_topic = str(
+            self.declare_parameter("cmd_vel_topic", "/motion/candidate/follow").value
         )
         self.base_frame = str(self.declare_parameter("base_frame", "base_footprint").value)
         self.control_frequency_hz = max(
@@ -85,8 +82,8 @@ class PersonFollowControllerNode(Node):
             0.05, float(self.declare_parameter("reacquire_yaw_rate_radps", 0.70).value)
         )
         self.debug_enable = bool(self.declare_parameter("debug_enable", False).value)
-        self.resume_after_stand_up = bool(
-            self.declare_parameter("resume_after_stand_up", True).value
+        self.use_local_costmap_safety = bool(
+            self.declare_parameter("use_local_costmap_safety", True).value
         )
         self.allow_yaw_without_costmap = bool(
             self.declare_parameter("allow_yaw_without_costmap", True).value
@@ -151,6 +148,7 @@ class PersonFollowControllerNode(Node):
             reacquire_timeout_s=self.reacquire_timeout_s,
             sit_on_loss_timeout_s=self.sit_on_loss_timeout_s,
         )
+        self.follow_enabled = False
         self.latest_target_point: PointStamped | None = None
         self.latest_target_received_mono_s: float | None = None
         self.latest_target_visible = False
@@ -160,7 +158,7 @@ class PersonFollowControllerNode(Node):
         self.last_command = Twist2D()
         self.last_control_time_s = time.monotonic()
         self.last_known_bearing_rad = 0.0
-        self._lost_sit_sent = False
+        self._lost_timeout_published = False
         self._last_state_text = ""
         self._last_warning_times: dict[str, float] = {}
 
@@ -168,18 +166,25 @@ class PersonFollowControllerNode(Node):
         self.tf_listener = tf2_ros.TransformListener(self.tf_buffer, self)
 
         self.cmd_vel_pub = self.create_publisher(Twist, self.cmd_vel_topic, 10)
-        self.sport_request_pub = self.create_publisher(UnitreeRequest, self.sport_request_topic, 10)
         self.state_pub = self.create_publisher(String, "~/state", 10)
+        self.event_pub = self.create_publisher(String, "~/event", 10)
         self.debug_twist_pub = self.create_publisher(Twist, "~/debug_twist", 10)
         self.nominal_twist_pub = self.create_publisher(Twist, "~/nominal_twist", 10)
-        self.desired_standoff_pub = self.create_publisher(PointStamped, "~/desired_standoff_point", 10)
+        self.desired_standoff_pub = self.create_publisher(
+            PointStamped, "~/desired_standoff_point", 10
+        )
         self.safety_status_pub = self.create_publisher(String, "~/safety_status", 10)
 
-        self.create_subscription(String, self.command_topic, self._command_cb, 10)
+        self.create_subscription(
+            RobotModeState, self.robot_mode_state_topic, self._robot_mode_state_cb, 10
+        )
         self.create_subscription(PointStamped, self.target_point_topic, self._target_point_cb, 10)
         self.create_subscription(Bool, self.target_visible_topic, self._target_visible_cb, 10)
         self.create_subscription(String, self.target_status_topic, self._target_status_cb, 10)
-        self.create_subscription(OccupancyGrid, self.local_costmap_topic, self._costmap_cb, 10)
+        if self.use_local_costmap_safety:
+            self.create_subscription(
+                OccupancyGrid, self.local_costmap_topic, self._costmap_cb, 10
+            )
 
         self.control_timer = self.create_timer(
             1.0 / self.control_frequency_hz,
@@ -188,48 +193,42 @@ class PersonFollowControllerNode(Node):
 
         self._publish_state(self.state_machine.state)
         self.get_logger().info(
-            'Person follow controller ready. '
-            f'command_topic={self.command_topic} '
-            f'target_point_topic={self.target_point_topic} '
-            f'local_costmap_topic={self.local_costmap_topic}'
+            "Person follow controller ready. "
+            f"robot_mode_state_topic={self.robot_mode_state_topic} "
+            f"target_point_topic={self.target_point_topic} "
+            f"cmd_vel_topic={self.cmd_vel_topic} "
+            f"use_local_costmap_safety={self.use_local_costmap_safety}"
         )
 
-    @staticmethod
-    def _normalize_token(text: str) -> str:
-        lowered = text.lower()
-        lowered = re.sub(r"[^a-z0-9]+", "_", lowered)
-        return lowered.strip("_")
-
-    def _command_cb(self, msg: String) -> None:
-        command = self._normalize_token(str(msg.data))
+    def _robot_mode_state_cb(self, msg: RobotModeState) -> None:
+        should_follow = (
+            str(msg.task_mode) == "FOLLOW" and
+            str(msg.posture_mode) == "STANDING" and
+            bool(msg.motion_enabled)
+        )
         now_s = time.monotonic()
 
-        if command == self.follow_command_token:
-            self._arm_follow_mode(now_s, "Follow mode armed. Waiting for a tracked target.")
+        if should_follow == self.follow_enabled:
             return
 
-        if (
-            command == self.stand_up_command_token and
-            self.resume_after_stand_up and
-            self.state_machine.state == FollowStates.LOST_SIT
-        ):
-            self._arm_follow_mode(
-                now_s,
-                "Stand-up command received after loss sit. Re-arming follow mode.",
-            )
+        self.follow_enabled = should_follow
+        if self.follow_enabled:
+            self._arm_follow_mode(now_s)
             return
 
-        if command == self.stop_command_token:
-            self.state_machine.handle_stop_command(now_s)
-            self._lost_sit_sent = False
-            self.last_command = Twist2D()
-            self._publish_twist(Twist2D())
-            self._publish_state(self.state_machine.state)
-            self.get_logger().info("Follow mode stopped.")
+        self._disarm_follow_mode(now_s, "Follow mode disabled by mission supervisor.")
 
-    def _arm_follow_mode(self, now_s: float, log_message: str) -> None:
+    def _arm_follow_mode(self, now_s: float) -> None:
         self.state_machine.handle_follow_command(now_s)
-        self._lost_sit_sent = False
+        self._lost_timeout_published = False
+        self.last_command = Twist2D()
+        self._publish_twist(Twist2D())
+        self._publish_state(self.state_machine.state)
+        self.get_logger().info("Follow mode armed by mission supervisor.")
+
+    def _disarm_follow_mode(self, now_s: float, log_message: str) -> None:
+        self.state_machine.handle_stop_command(now_s)
+        self._lost_timeout_published = False
         self.last_command = Twist2D()
         self._publish_twist(Twist2D())
         self._publish_state(self.state_machine.state)
@@ -267,6 +266,7 @@ class PersonFollowControllerNode(Node):
         current_state = self.state_machine.update(now_s, has_fresh_target)
         if current_state != previous_state:
             self._publish_state(current_state)
+            self._publish_follow_event_if_needed(previous_state, current_state)
 
         if current_state == FollowStates.IDLE:
             return
@@ -277,19 +277,23 @@ class PersonFollowControllerNode(Node):
             return
 
         if current_state == FollowStates.LOST_SIT:
-            self._handle_lost_sit()
+            self._handle_lost_target_timeout()
             return
 
         if not has_fresh_target:
             reacquire_cmd = self._build_reacquire_command(now_s)
-            limited = apply_acceleration_limits(self.last_command, reacquire_cmd, self.control_params, dt_s)
+            limited = apply_acceleration_limits(
+                self.last_command, reacquire_cmd, self.control_params, dt_s
+            )
             self.last_command = limited
             self._publish_twist(limited)
             return
 
         target_point_base = self._transform_target_point_to_base()
         if target_point_base is None:
-            limited = apply_acceleration_limits(self.last_command, Twist2D(), self.control_params, dt_s)
+            limited = apply_acceleration_limits(
+                self.last_command, Twist2D(), self.control_params, dt_s
+            )
             self.last_command = limited
             self._publish_twist(limited)
             return
@@ -308,7 +312,17 @@ class PersonFollowControllerNode(Node):
         self._publish_twist(limited)
         self._publish_desired_standoff_point(target_z)
 
+    def _publish_follow_event_if_needed(self, previous_state: str, current_state: str) -> None:
+        event_name = follow_state_event(previous_state, current_state)
+        if event_name is None:
+            return
+        event_msg = String()
+        event_msg.data = event_name
+        self.event_pub.publish(event_msg)
+
     def _has_fresh_target(self, now_s: float) -> bool:
+        if not self.follow_enabled:
+            return False
         if not self.latest_target_visible or self.latest_target_point is None:
             return False
         if self.latest_target_received_mono_s is None:
@@ -322,6 +336,10 @@ class PersonFollowControllerNode(Node):
         return Twist2D(vx=0.0, vy=0.0, wz=direction * self.reacquire_yaw_rate_radps)
 
     def _choose_safe_command(self, nominal: Twist2D) -> Twist2D:
+        if not self.use_local_costmap_safety:
+            self._publish_safety_status("delegated_to_unitree_backend")
+            return nominal
+
         if self.latest_costmap is None or not self.latest_costmap_frame:
             if self.allow_yaw_without_costmap:
                 self._publish_safety_status("costmap_unavailable_fallback")
@@ -378,7 +396,11 @@ class PersonFollowControllerNode(Node):
     def _fallback_command_without_safety(self, nominal: Twist2D, warning: str) -> Twist2D:
         if not self.allow_nominal_without_safety:
             self._warn_throttled("follow_safety_fallback_disabled", warning)
-            return Twist2D(vx=0.0, vy=0.0, wz=nominal.wz if self.allow_yaw_without_costmap else 0.0)
+            return Twist2D(
+                vx=0.0,
+                vy=0.0,
+                wz=nominal.wz if self.allow_yaw_without_costmap else 0.0,
+            )
 
         self._warn_throttled("follow_safety_fallback", warning)
         return Twist2D(
@@ -458,20 +480,19 @@ class PersonFollowControllerNode(Node):
             ),
         )
 
-    def _handle_lost_sit(self) -> None:
+    def _handle_lost_target_timeout(self) -> None:
         self.last_command = Twist2D()
         self._publish_twist(Twist2D())
-        if self._lost_sit_sent:
+        if self._lost_timeout_published:
             return
 
-        request = UnitreeRequest()
-        request.header.identity.api_id = int(ROBOT_SPORT_API_ID_STANDDOWN)
-        self.sport_request_pub.publish(request)
-        self._lost_sit_sent = True
-        self._publish_state(self.state_machine.state)
+        event_msg = String()
+        event_msg.data = "lost_target_timeout"
+        self.event_pub.publish(event_msg)
+        self._lost_timeout_published = True
         self.get_logger().warn(
-            f'Tracked person lost for {self.sit_on_loss_timeout_s:.1f}s. '
-            'Sent StandDown command and holding position.'
+            f"Tracked person lost for {self.sit_on_loss_timeout_s:.1f}s. "
+            "Published lost_target_timeout and holding position."
         )
 
     def _publish_twist(self, command: Twist2D) -> None:

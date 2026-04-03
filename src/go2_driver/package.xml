@@ -11,6 +11,8 @@
 
   <depend>rclcpp</depend>
   <depend>geometry_msgs</depend>
+  <depend>go2_interfaces</depend>
+  <depend>std_msgs</depend>
   <depend>unitree_go</depend>
   <depend>unitree_api</depend>
 

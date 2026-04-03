@@ -7,6 +7,7 @@ endif()
 
 # Required packages for building interfaces
 find_package(ament_cmake REQUIRED)
+find_package(builtin_interfaces REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
@@ -17,9 +18,11 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "action/LogPose.action"
   "action/ExploreUntilDetected.action"
   "action/LocalizeDetectedLeak.action"
+  "msg/RobotModeState.msg"
   "srv/RegionMap.srv"
+  "srv/SetRobotMode.srv"
   "action/Search.action"
-  DEPENDENCIES geometry_msgs nav_msgs # or any other interface package needed
+  DEPENDENCIES builtin_interfaces geometry_msgs nav_msgs # or any other interface package needed
 )
 
 # Export dependencies so other packages that depend on go2_interfaces

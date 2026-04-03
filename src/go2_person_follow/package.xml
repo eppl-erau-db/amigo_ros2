@@ -13,6 +13,7 @@
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
   <depend>geometry_msgs</depend>
+  <depend>go2_interfaces</depend>
   <depend>std_msgs</depend>
   <depend>zed_msgs</depend>
 

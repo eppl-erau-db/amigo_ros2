@@ -15,6 +15,7 @@ from go2_control.person_follow_controller_core import (  # noqa: E402
     Pose2D,
     SafetyOracleParams,
     compute_nominal_follow_command,
+    follow_state_event,
     select_safe_command,
 )
 
@@ -141,3 +142,8 @@ def test_sustained_loss_transitions_to_lost_sit() -> None:
     machine.update(0.8, has_fresh_target=False)
 
     assert machine.update(3.2, has_fresh_target=False) == FollowStates.LOST_SIT
+
+
+def test_lost_sit_transition_emits_timeout_event() -> None:
+    assert follow_state_event(FollowStates.REACQUIRE, FollowStates.LOST_SIT) == "lost_target_timeout"
+    assert follow_state_event(FollowStates.FOLLOWING, FollowStates.FOLLOWING) is None

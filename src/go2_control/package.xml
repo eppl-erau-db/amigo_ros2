@@ -12,6 +12,7 @@
 
   <!-- Dependencies for building/running your Python nodes -->
   <depend>rclpy</depend>
+  <depend>ament_index_python</depend>
   <depend>go2_interfaces</depend>
   <depend>unitree_api</depend>
   <depend>audio_utils_msgs</depend>

@@ -104,8 +104,45 @@ ros2 topic echo/person_follow_controller_node/debug_twist
 ros2 topic echo /person_follow_controller_node/desired_standoff_point
 ros2 topic echo /person_follow_controller_node/state
 
+
+
+ros2 launch go2_bringup mapping.launch.py voice_control:=true person_follow_enable:=true person_follow_unitree_network_interface:=eno1
+
+ros2 launch go2_bringup mapping.launch.py voice_control:=true person_follow_enable:=true person_follow_motion_backend:=obstacles_avoid person_follow_unitree_network_interface:=eno1
+
+
+ros2 launch go2_bringup mapping.launch.py voice_control:=true person_follow_enable:=true person_follow_motion_backend:=legacy
+
+
+
 ros2 topic echo /person_follow_controller_node/nominal_twist
 ros2 topic echo /person_follow_controller_node/safety_status
 ros2 topic echo /person_follow_controller_node/debug_twist
+
+
+
+
+ros2 launch go2_bringup mapping.launch.py \
+  voice_control:=true \
+  person_follow_enable:=true \
+  person_follow_motion_backend:=sport_free_avoid \
+  person_follow_unitree_network_interface:=eno1
+
+ros2 launch go2_bringup mapping.launch.py \
+  voice_control:=true \
+  person_follow_motion_backend:=obstacles_avoid \
+  person_follow_unitree_network_interface:=eno1 \
+  startup_motion_gait:=economic
+  
+  
+with RVIZ:  
+ros2 launch go2_bringup mapping.launch.py voice_control:=true   person_follow_unitree_network_interface:=eno1 person_follow_motion_backend:=obstacles_avoid 2>&1 | tee mission_log.txt
+  
+without RVIZ:
+ros2 launch go2_bringup mapping.launch.py   launch_profile:=mission_base   voice_control:=true   person_follow_unitree_network_interface:=eno1 person_follow_motion_backend:=obstacles_avoid 2>&1 | tee mission_log.txt
+  
+
+ros2 run go2_control voice_speaker_enroll_node
+ros2 launch go2_bringup mapping.launch.py voice_control:=true voice_speaker_enable:=true
 
 

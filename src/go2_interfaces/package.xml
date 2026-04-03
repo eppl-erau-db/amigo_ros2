@@ -11,11 +11,13 @@
   <buildtool_depend>rosidl_default_generators</buildtool_depend>
 
   <!-- Dependencies your .msg / .srv / .action rely on -->
+  <build_depend>builtin_interfaces</build_depend>
   <build_depend>geometry_msgs</build_depend>
   <build_depend>nav_msgs</build_depend>
 
   <!-- For runtime use of generated interfaces -->
   <exec_depend>rosidl_default_runtime</exec_depend>
+  <exec_depend>builtin_interfaces</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>nav_msgs</exec_depend>
 
