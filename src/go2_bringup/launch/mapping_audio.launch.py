@@ -16,19 +16,26 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-from _mapping_common import (
-    AUDIO_ARGUMENT_NAMES,
-    VOICE_ARGUMENT_NAMES,
-    declare_launch_arguments,
-)
+from _mapping_common import AUDIO_ARGUMENT_NAMES, VOICE_ARGUMENT_NAMES, declare_launch_arguments
 
 
-ARGUMENT_NAMES = AUDIO_ARGUMENT_NAMES + VOICE_ARGUMENT_NAMES
+ARGUMENT_NAMES = AUDIO_ARGUMENT_NAMES + VOICE_ARGUMENT_NAMES + [
+    "person_follow_enable",
+    "person_follow_motion_backend",
+    "person_follow_unitree_network_interface",
+    "startup_motion_gait",
+]
 
 
 def generate_launch_description():
     launch_dir = os.path.dirname(__file__)
     voice_control = LaunchConfiguration("voice_control")
+    person_follow_enable = LaunchConfiguration("person_follow_enable")
+    person_follow_motion_backend = LaunchConfiguration("person_follow_motion_backend")
+    person_follow_unitree_network_interface = LaunchConfiguration(
+        "person_follow_unitree_network_interface"
+    )
+    startup_motion_gait = LaunchConfiguration("startup_motion_gait")
     odas_enable = LaunchConfiguration("odas_enable")
     odas_configuration_path = LaunchConfiguration("odas_configuration_path")
     odas_audio_queue_size = LaunchConfiguration("odas_audio_queue_size")
@@ -41,6 +48,7 @@ def generate_launch_description():
     odas_doa_zero_offset_deg = LaunchConfiguration("odas_doa_zero_offset_deg")
     odas_log_level = LaunchConfiguration("odas_log_level")
     voice_transcript_topic = LaunchConfiguration("voice_transcript_topic")
+    voice_authorized_transcript_topic = LaunchConfiguration("voice_authorized_transcript_topic")
     voice_wake_phrase = LaunchConfiguration("voice_wake_phrase")
     voice_shake_hand_phrase = LaunchConfiguration("voice_shake_hand_phrase")
     voice_search_phrase = LaunchConfiguration("voice_search_phrase")
@@ -56,10 +64,121 @@ def generate_launch_description():
     voice_stt_publish_partial = LaunchConfiguration("voice_stt_publish_partial")
     voice_stt_debug_audio = LaunchConfiguration("voice_stt_debug_audio")
     voice_stt_max_alternatives = LaunchConfiguration("voice_stt_max_alternatives")
+    voice_verifier_enable = LaunchConfiguration("voice_verifier_enable")
+    voice_verifier_audio_topic = LaunchConfiguration("voice_verifier_audio_topic")
+    voice_verifier_model_name_or_path = LaunchConfiguration("voice_verifier_model_name_or_path")
+    voice_verifier_reference_embedding_path = LaunchConfiguration(
+        "voice_verifier_reference_embedding_path"
+    )
+    voice_verifier_threshold = LaunchConfiguration("voice_verifier_threshold")
+    voice_verifier_score_topic = LaunchConfiguration("voice_verifier_score_topic")
+    voice_verifier_authorized_topic = LaunchConfiguration("voice_verifier_authorized_topic")
+    voice_verifier_decision_ttl_s = LaunchConfiguration("voice_verifier_decision_ttl_s")
+    voice_verifier_debug = LaunchConfiguration("voice_verifier_debug")
+    voice_verifier_window_duration_s = LaunchConfiguration("voice_verifier_window_duration_s")
+    voice_verifier_eval_period_s = LaunchConfiguration("voice_verifier_eval_period_s")
+    voice_verifier_channel = LaunchConfiguration("voice_verifier_channel")
+    voice_verifier_channel_strategy = LaunchConfiguration("voice_verifier_channel_strategy")
+    voice_verifier_min_dbfs = LaunchConfiguration("voice_verifier_min_dbfs")
+    voice_command_window_s = LaunchConfiguration("voice_command_window_s")
+    voice_attention_enable = LaunchConfiguration("voice_attention_enable")
+    voice_attention_request_topic = LaunchConfiguration("voice_attention_request_topic")
+    voice_attention_ready_topic = LaunchConfiguration("voice_attention_ready_topic")
+    voice_attention_motion_cmd_topic = LaunchConfiguration("voice_attention_motion_cmd_topic")
+    voice_attention_motion_reassert_topic = LaunchConfiguration(
+        "voice_attention_motion_reassert_topic"
+    )
+    voice_attention_motion_backend = LaunchConfiguration("voice_attention_motion_backend")
+    voice_attention_motion_network_interface = LaunchConfiguration(
+        "voice_attention_motion_network_interface"
+    )
+    voice_attention_motion_gait = LaunchConfiguration("voice_attention_motion_gait")
+    voice_attention_motion_command_timeout_s = LaunchConfiguration(
+        "voice_attention_motion_command_timeout_s"
+    )
+    voice_attention_motion_gait_reassert_period_s = LaunchConfiguration(
+        "voice_attention_motion_gait_reassert_period_s"
+    )
+    voice_attention_doa_topic = LaunchConfiguration("voice_attention_doa_topic")
+    voice_attention_doa_ttl_s = LaunchConfiguration("voice_attention_doa_ttl_s")
+    voice_attention_turn_tolerance_deg = LaunchConfiguration("voice_attention_turn_tolerance_deg")
+    voice_attention_turn_timeout_s = LaunchConfiguration("voice_attention_turn_timeout_s")
+    voice_attention_turn_kp = LaunchConfiguration("voice_attention_turn_kp")
+    voice_attention_max_turn_rate_radps = LaunchConfiguration(
+        "voice_attention_max_turn_rate_radps"
+    )
+    voice_attention_visual_refine_enable = LaunchConfiguration(
+        "voice_attention_visual_refine_enable"
+    )
+    voice_attention_visual_target_point_topic = LaunchConfiguration(
+        "voice_attention_visual_target_point_topic"
+    )
+    voice_attention_visual_target_visible_topic = LaunchConfiguration(
+        "voice_attention_visual_target_visible_topic"
+    )
+    voice_attention_visual_target_status_topic = LaunchConfiguration(
+        "voice_attention_visual_target_status_topic"
+    )
+    voice_attention_visual_objects_topic = LaunchConfiguration(
+        "voice_attention_visual_objects_topic"
+    )
+    voice_attention_visual_refine_timeout_s = LaunchConfiguration(
+        "voice_attention_visual_refine_timeout_s"
+    )
+    voice_attention_visual_target_ttl_s = LaunchConfiguration(
+        "voice_attention_visual_target_ttl_s"
+    )
+    voice_attention_visual_center_tolerance_rad = LaunchConfiguration(
+        "voice_attention_visual_center_tolerance_rad"
+    )
+    voice_attention_visual_turn_kp = LaunchConfiguration("voice_attention_visual_turn_kp")
+    voice_attention_visual_max_turn_rate_radps = LaunchConfiguration(
+        "voice_attention_visual_max_turn_rate_radps"
+    )
+    voice_attention_pitch_rad = LaunchConfiguration("voice_attention_pitch_rad")
+    voice_attention_pitch_hold_s = LaunchConfiguration("voice_attention_pitch_hold_s")
+    voice_attention_return_to_neutral = LaunchConfiguration("voice_attention_return_to_neutral")
+    voice_attention_reassert_gait_after_pitch = LaunchConfiguration(
+        "voice_attention_reassert_gait_after_pitch"
+    )
+    voice_attention_gait_reassert_settle_s = LaunchConfiguration(
+        "voice_attention_gait_reassert_settle_s"
+    )
+    voice_attention_debug = LaunchConfiguration("voice_attention_debug")
     voice_debug = LaunchConfiguration("voice_debug")
     voice_command_debug = LaunchConfiguration("voice_command_debug")
     voice_command_mode = LaunchConfiguration("voice_command_mode")
     voice_command_topic = LaunchConfiguration("voice_command_topic")
+    voice_verifier_condition = IfCondition(
+        PythonExpression(
+            ["'", voice_control, "' == 'true' and '", voice_verifier_enable, "' == 'true'"]
+        )
+    )
+    voice_attention_condition = IfCondition(
+        PythonExpression(
+            [
+                "'",
+                voice_control,
+                "' == 'true' and '",
+                voice_verifier_enable,
+                "' == 'true' and '",
+                voice_attention_enable,
+                "' == 'true'",
+            ]
+        )
+    )
+    voice_command_transcript_topic = PythonExpression(
+        [
+            "'",
+            voice_authorized_transcript_topic,
+            "' if '",
+            voice_verifier_enable,
+            "' == 'true' else '",
+            voice_transcript_topic,
+            "'",
+        ]
+    )
+    voice_attention_motion_bridge_env = {"RMW_IMPLEMENTATION": "rmw_fastrtps_cpp"}
 
     odas_launch = IncludeLaunchDescription(
         AnyLaunchDescriptionSource(
@@ -149,6 +268,114 @@ def generate_launch_description():
             )
         ),
     )
+    voice_speaker_verifier_node = Node(
+        package="go2_control",
+        executable="voice_speaker_verifier_node",
+        name="voice_speaker_verifier_node",
+        output="screen",
+        parameters=[
+            {
+                "audio_topic": voice_verifier_audio_topic,
+                "model_name_or_path": voice_verifier_model_name_or_path,
+                "reference_embedding_path": voice_verifier_reference_embedding_path,
+                "threshold": voice_verifier_threshold,
+                "sample_rate": 16000,
+                "channel_index": voice_verifier_channel,
+                "channel_strategy": voice_verifier_channel_strategy,
+                "window_duration_s": voice_verifier_window_duration_s,
+                "eval_period_s": voice_verifier_eval_period_s,
+                "min_dbfs": voice_verifier_min_dbfs,
+                "debug": voice_verifier_debug,
+                "score_topic": voice_verifier_score_topic,
+                "authorized_topic": voice_verifier_authorized_topic,
+            }
+        ],
+        condition=voice_verifier_condition,
+    )
+    voice_identity_gate_node = Node(
+        package="go2_control",
+        executable="voice_identity_gate_node",
+        name="voice_identity_gate_node",
+        output="screen",
+        parameters=[
+            {
+                "input_transcript_topic": voice_transcript_topic,
+                "output_transcript_topic": voice_authorized_transcript_topic,
+                "authorized_topic": voice_verifier_authorized_topic,
+                "score_topic": voice_verifier_score_topic,
+                "wake_phrase": voice_wake_phrase,
+                "wake_phrases": ["amigo"],
+                "decision_ttl_s": voice_verifier_decision_ttl_s,
+                "command_window_s": voice_command_window_s,
+                "attention_enabled": voice_attention_enable,
+                "attention_request_topic": voice_attention_request_topic,
+                "attention_ready_topic": voice_attention_ready_topic,
+                "post_command_hold_s": voice_attention_pitch_hold_s,
+                "debug": voice_verifier_debug,
+            }
+        ],
+        condition=voice_verifier_condition,
+    )
+    voice_attention_ack_node = Node(
+        package="go2_control",
+        executable="voice_attention_ack_node",
+        name="voice_attention_ack_node",
+        output="screen",
+        parameters=[
+            {
+                "request_topic": voice_attention_request_topic,
+                "ready_topic": voice_attention_ready_topic,
+                "turn_cmd_topic": voice_attention_motion_cmd_topic,
+                "gait_reassert_topic": voice_attention_motion_reassert_topic,
+                "doa_topic": voice_attention_doa_topic,
+                "sst_topic": "/sst",
+                "doa_ttl_s": voice_attention_doa_ttl_s,
+                "doa_zero_offset_deg": odas_doa_zero_offset_deg,
+                "turn_tolerance_deg": voice_attention_turn_tolerance_deg,
+                "turn_timeout_s": voice_attention_turn_timeout_s,
+                "turn_kp": voice_attention_turn_kp,
+                "max_turn_rate_radps": voice_attention_max_turn_rate_radps,
+                "person_follow_enable": person_follow_enable,
+                "visual_refine_enable": voice_attention_visual_refine_enable,
+                "visual_target_point_topic": voice_attention_visual_target_point_topic,
+                "visual_target_visible_topic": voice_attention_visual_target_visible_topic,
+                "visual_target_status_topic": voice_attention_visual_target_status_topic,
+                "visual_objects_topic": voice_attention_visual_objects_topic,
+                "visual_refine_timeout_s": voice_attention_visual_refine_timeout_s,
+                "visual_target_ttl_s": voice_attention_visual_target_ttl_s,
+                "visual_center_tolerance_rad": voice_attention_visual_center_tolerance_rad,
+                "visual_turn_kp": voice_attention_visual_turn_kp,
+                "visual_max_turn_rate_radps": voice_attention_visual_max_turn_rate_radps,
+                "pitch_rad": voice_attention_pitch_rad,
+                "pitch_hold_s": voice_attention_pitch_hold_s,
+                "return_to_neutral": voice_attention_return_to_neutral,
+                "reassert_gait_after_pitch": voice_attention_reassert_gait_after_pitch,
+                "gait_reassert_settle_s": voice_attention_gait_reassert_settle_s,
+                "debug": voice_attention_debug,
+            }
+        ],
+        condition=voice_attention_condition,
+    )
+    voice_attention_motion_bridge_node = Node(
+        package="go2_driver",
+        executable="voice_attention_motion_bridge_node",
+        name="voice_attention_motion_bridge_node",
+        output="screen",
+        parameters=[
+            {
+                "backend": voice_attention_motion_backend,
+                "network_interface": voice_attention_motion_network_interface,
+                "desired_gait": voice_attention_motion_gait,
+                "cmd_vel_topic": voice_attention_motion_cmd_topic,
+                "reassert_gait_topic": voice_attention_motion_reassert_topic,
+                "command_timeout_s": voice_attention_motion_command_timeout_s,
+                "gait_reassert_period_s": voice_attention_motion_gait_reassert_period_s,
+                "debug": voice_attention_debug,
+            }
+        ],
+        additional_env=voice_attention_motion_bridge_env,
+        condition=voice_attention_condition,
+    )
     voice_command_node = Node(
         package="go2_control",
         executable="voice_command_node",
@@ -156,7 +383,7 @@ def generate_launch_description():
         output="screen",
         parameters=[
             {
-                "transcript_topic": voice_transcript_topic,
+                "transcript_topic": ParameterValue(voice_command_transcript_topic, value_type=str),
                 "wake_phrase": voice_wake_phrase,
                 "wake_phrases": ["amigo"],
                 "shake_hand_phrase": voice_shake_hand_phrase,
@@ -186,6 +413,10 @@ def generate_launch_description():
         [
             odas_launch,
             voice_stt_vosk_node,
+            voice_speaker_verifier_node,
+            voice_identity_gate_node,
+            voice_attention_ack_node,
+            voice_attention_motion_bridge_node,
             voice_command_node,
         ]
     )

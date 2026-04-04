@@ -80,6 +80,25 @@ target_link_libraries(person_follow_motion_bridge_node
   Threads::Threads
 )
 
+add_executable(voice_attention_motion_bridge_node src/voice_attention_motion_bridge_node.cpp)
+target_include_directories(voice_attention_motion_bridge_node PRIVATE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+  "${UNITREE_SDK_ROOT}/include"
+  "${UNITREE_SDK_THIRDPARTY_ROOT}/include"
+  "${UNITREE_SDK_THIRDPARTY_ROOT}/include/ddscxx")
+ament_target_dependencies(voice_attention_motion_bridge_node
+  rclcpp
+  geometry_msgs
+  std_msgs
+)
+target_link_libraries(voice_attention_motion_bridge_node
+  ${UNITREE_SDK2_LIB}
+  ${UNITREE_DDSC_LIB}
+  ${UNITREE_DDSCXX_LIB}
+  Threads::Threads
+)
+
 add_executable(go2_motion_mode_switcher src/go2_motion_mode_switcher.cpp)
 target_include_directories(go2_motion_mode_switcher PRIVATE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -107,6 +126,7 @@ ament_target_dependencies(z_band_filter_node
 install(TARGETS
   go2_driver_node
   person_follow_motion_bridge_node
+  voice_attention_motion_bridge_node
   go2_motion_mode_switcher
   z_band_filter_node
   DESTINATION lib/${PROJECT_NAME}

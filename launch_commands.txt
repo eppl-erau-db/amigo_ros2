@@ -142,7 +142,59 @@ without RVIZ:
 ros2 launch go2_bringup mapping.launch.py   launch_profile:=mission_base   voice_control:=true   person_follow_unitree_network_interface:=eno1 person_follow_motion_backend:=obstacles_avoid 2>&1 | tee mission_log.txt
   
 
-ros2 run go2_control voice_speaker_enroll_node
-ros2 launch go2_bringup mapping.launch.py voice_control:=true voice_speaker_enable:=true
+python3 src/go2_control/go2_control/create_speaker_reference.py \
+  --output /home/castej-jetson/workspaces/amigo_ros2/models/speaker_ref.pt \
+  /path/to/enroll_01.wav \
+  /path/to/enroll_02.wav \
+  /path/to/enroll_03.wav
 
+ros2 launch go2_bringup mapping.launch.py \
+  voice_control:=true \
+  voice_verifier_enable:=false
+
+
+ros2 launch go2_bringup mapping.launch.py \
+  voice_control:=true \
+  launch_profile:=mission_base \
+  person_follow_motion_backend:=obstacles_avoid \
+  person_follow_unitree_network_interface:=eno1 \
+  voice_verifier_enable:=true \
+  person_follow_enable:=true \
+  voice_verifier_reference_embedding_path:=/home/castej-jetson/workspaces/amigo_ros2/models/speaker_ref.pt \
+  voice_verifier_threshold:=0.68 \
+  voice_verifier_debug:=true \
+  voice_debug:=true \
+  voice_command_debug:=true \
+  voice_attention_debug:=true 2>&1 | tee mission_log.txt
+
+
+Example Params For DoA + Visual Refinement Attention Acknowledgment
+
+voice_attention_doa_topic:=/doa_angle
+voice_attention_doa_ttl_s:=1.0
+voice_attention_turn_tolerance_deg:=15.0
+voice_attention_turn_timeout_s:=1.5
+voice_attention_turn_kp:=0.8
+voice_attention_max_turn_rate_radps:=0.5
+voice_attention_visual_refine_enable:=true
+voice_attention_visual_target_point_topic:=/person_follow_vision_node/target_point
+voice_attention_visual_target_visible_topic:=/person_follow_vision_node/target_visible
+voice_attention_visual_target_status_topic:=/person_follow_vision_node/status
+voice_attention_visual_objects_topic:=/zed/zed_node/obj_det/objects
+voice_attention_visual_refine_timeout_s:=1.0
+voice_attention_visual_center_tolerance_rad:=0.15
+voice_attention_pitch_rad:=0.15
+voice_attention_pitch_hold_s:=0.6
+voice_attention_debug:=false
+
+
+
+
+mkdir -p /home/castej-jetson/workspaces/amigo_ros2/models/enroll
+
+
+ros2 topic echo /voice/transcript
+ros2 topic echo /voice/authorized_transcript
+ros2 topic echo /voice/speaker_score
+ros2 topic echo /voice/speaker_authorized
 

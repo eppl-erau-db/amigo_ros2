@@ -26,6 +26,8 @@
   <depend>cv_bridge</depend>
   <depend>visualization_msgs</depend>
   <depend>explore_lite_msgs</depend>
+  <depend>odas_ros_msgs</depend>
+  <depend>zed_msgs</depend>
 
   <!-- You had these as exec depends for runtime usage: -->
   <exec_depend>twist_mux</exec_depend>

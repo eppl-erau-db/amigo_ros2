@@ -34,6 +34,7 @@ AUDIO_ARGUMENT_NAMES = [
 VOICE_ARGUMENT_NAMES = [
     "voice_control",
     "voice_transcript_topic",
+    "voice_authorized_transcript_topic",
     "voice_wake_phrase",
     "voice_shake_hand_phrase",
     "voice_search_phrase",
@@ -49,6 +50,53 @@ VOICE_ARGUMENT_NAMES = [
     "voice_stt_publish_partial",
     "voice_stt_debug_audio",
     "voice_stt_max_alternatives",
+    "voice_verifier_enable",
+    "voice_verifier_audio_topic",
+    "voice_verifier_model_name_or_path",
+    "voice_verifier_reference_embedding_path",
+    "voice_verifier_threshold",
+    "voice_verifier_score_topic",
+    "voice_verifier_authorized_topic",
+    "voice_verifier_decision_ttl_s",
+    "voice_verifier_debug",
+    "voice_verifier_window_duration_s",
+    "voice_verifier_eval_period_s",
+    "voice_verifier_channel",
+    "voice_verifier_channel_strategy",
+    "voice_verifier_min_dbfs",
+    "voice_command_window_s",
+    "voice_attention_enable",
+    "voice_attention_request_topic",
+    "voice_attention_ready_topic",
+    "voice_attention_motion_cmd_topic",
+    "voice_attention_motion_reassert_topic",
+    "voice_attention_motion_backend",
+    "voice_attention_motion_network_interface",
+    "voice_attention_motion_gait",
+    "voice_attention_motion_command_timeout_s",
+    "voice_attention_motion_gait_reassert_period_s",
+    "voice_attention_doa_topic",
+    "voice_attention_doa_ttl_s",
+    "voice_attention_turn_tolerance_deg",
+    "voice_attention_turn_timeout_s",
+    "voice_attention_turn_kp",
+    "voice_attention_max_turn_rate_radps",
+    "voice_attention_visual_refine_enable",
+    "voice_attention_visual_target_point_topic",
+    "voice_attention_visual_target_visible_topic",
+    "voice_attention_visual_target_status_topic",
+    "voice_attention_visual_objects_topic",
+    "voice_attention_visual_refine_timeout_s",
+    "voice_attention_visual_target_ttl_s",
+    "voice_attention_visual_center_tolerance_rad",
+    "voice_attention_visual_turn_kp",
+    "voice_attention_visual_max_turn_rate_radps",
+    "voice_attention_pitch_rad",
+    "voice_attention_pitch_hold_s",
+    "voice_attention_return_to_neutral",
+    "voice_attention_reassert_gait_after_pitch",
+    "voice_attention_gait_reassert_settle_s",
+    "voice_attention_debug",
     "voice_debug",
     "voice_command_debug",
     "voice_command_cooldown_s",
@@ -112,7 +160,11 @@ def _default_vosk_model_path(launch_dir: str) -> str:
     return ""
 
 
-def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
+def build_argument_specs(launch_dir: str) -> dict[str, tuple[object, str]]:
+    default_voice_audio_topic = "/sss"
+    default_voice_channel = "0"
+    default_voice_channel_strategy = "max_rms"
+
     return {
         "launch_profile": ("all", "Launch profile: all, mission_base, or operator_tools"),
         "use_sim_time": ("false", "Use simulated clock if true"),
@@ -163,6 +215,10 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "/voice/transcript",
             "Transcript topic (std_msgs/String)",
         ),
+        "voice_authorized_transcript_topic": (
+            "/voice/authorized_transcript",
+            "Transcript topic after speaker-identity gating",
+        ),
         "voice_wake_phrase": ("hey amigo", "Wake phrase that arms the command parser"),
         "voice_shake_hand_phrase": (
             "hello amigo",
@@ -196,10 +252,16 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             _default_vosk_model_path(launch_dir),
             "Path to local Vosk model directory",
         ),
-        "voice_stt_audio_topic": ("/sss", "AudioFrame topic used as STT input"),
-        "voice_stt_channel": ("0", "Channel index from AudioFrame for STT"),
+        "voice_stt_audio_topic": (
+            default_voice_audio_topic,
+            "AudioFrame topic used as STT input",
+        ),
+        "voice_stt_channel": (
+            default_voice_channel,
+            "Channel index from AudioFrame for STT",
+        ),
         "voice_stt_channel_strategy": (
-            "max_rms",
+            default_voice_channel_strategy,
             'STT channel strategy: "fixed" or "max_rms"',
         ),
         "voice_stt_publish_partial": (
@@ -213,6 +275,194 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
         "voice_stt_max_alternatives": (
             "3",
             "Vosk max alternatives per final result (0 disables)",
+        ),
+        "voice_verifier_enable": (
+            "false",
+            "Enable speaker verification and transcript identity gating",
+        ),
+        "voice_verifier_audio_topic": (
+            [LaunchConfiguration("voice_stt_audio_topic")],
+            "AudioFrame topic used as speaker verification input",
+        ),
+        "voice_verifier_model_name_or_path": (
+            "english",
+            "WeSpeaker model name or local path for speaker verification",
+        ),
+        "voice_verifier_reference_embedding_path": (
+            "",
+            "Path to enrolled speaker reference embedding (.pt or .npy)",
+        ),
+        "voice_verifier_threshold": (
+            "0.68",
+            "Minimum normalized speaker similarity required to authorize transcripts",
+        ),
+        "voice_verifier_score_topic": (
+            "/voice/speaker_score",
+            "Speaker verification score topic (std_msgs/Float32)",
+        ),
+        "voice_verifier_authorized_topic": (
+            "/voice/speaker_authorized",
+            "Speaker authorization topic (std_msgs/Bool)",
+        ),
+        "voice_verifier_decision_ttl_s": (
+            "2.5",
+            "How long the latest speaker authorization decision remains fresh for wake authorization",
+        ),
+        "voice_verifier_debug": (
+            "false",
+            "Enable verbose speaker verification and gate debug logs",
+        ),
+        "voice_verifier_window_duration_s": (
+            "2.0",
+            "Rolling audio window duration used for speaker verification",
+        ),
+        "voice_verifier_eval_period_s": (
+            "0.5",
+            "How often to evaluate speaker similarity from the rolling audio buffer",
+        ),
+        "voice_verifier_channel": (
+            [LaunchConfiguration("voice_stt_channel")],
+            "Channel index from AudioFrame for speaker verification",
+        ),
+        "voice_verifier_channel_strategy": (
+            [LaunchConfiguration("voice_stt_channel_strategy")],
+            'Speaker verification channel strategy: "fixed" or "max_rms"',
+        ),
+        "voice_verifier_min_dbfs": (
+            "-50.0",
+            "Minimum rolling-window level required before attempting speaker verification",
+        ),
+        "voice_command_window_s": (
+            "2.5",
+            "How long the single post-acknowledgment command window remains open",
+        ),
+        "voice_attention_enable": (
+            "true",
+            "Enable the voice attention acknowledgment sequence before opening the command window",
+        ),
+        "voice_attention_request_topic": (
+            "/voice/attention_request",
+            "Attention request topic published by the voice identity gate",
+        ),
+        "voice_attention_ready_topic": (
+            "/voice/attention_ready",
+            "Attention-ready topic published once attention pitch is engaged and the command window may open",
+        ),
+        "voice_attention_motion_cmd_topic": (
+            "/voice/attention/cmd_vel",
+            "Yaw-only attention motion topic consumed by the Unitree SDK attention bridge",
+        ),
+        "voice_attention_motion_reassert_topic": (
+            "/voice/attention/reassert_gait",
+            "Topic used to reassert the desired Unitree gait after the attention acknowledgment",
+        ),
+        "voice_attention_motion_backend": (
+            [LaunchConfiguration("person_follow_motion_backend")],
+            "Unitree SDK backend used by the attention motion bridge",
+        ),
+        "voice_attention_motion_network_interface": (
+            [LaunchConfiguration("person_follow_unitree_network_interface")],
+            "Optional network interface passed to the attention motion bridge",
+        ),
+        "voice_attention_motion_gait": (
+            [LaunchConfiguration("startup_motion_gait")],
+            "Desired Unitree gait to reassert around attention turning",
+        ),
+        "voice_attention_motion_command_timeout_s": (
+            "0.35",
+            "How long the attention motion bridge waits before sending a stop and disabling the backend",
+        ),
+        "voice_attention_motion_gait_reassert_period_s": (
+            "0.5",
+            "How often the attention motion bridge may reassert the desired gait while turning",
+        ),
+        "voice_attention_doa_topic": (
+            "/doa_angle",
+            "DOA topic used for rough attention turning",
+        ),
+        "voice_attention_doa_ttl_s": (
+            "2.5",
+            "How long a DOA sample remains fresh for rough turning",
+        ),
+        "voice_attention_turn_tolerance_deg": (
+            "15.0",
+            "Rough-turn stop tolerance in degrees",
+        ),
+        "voice_attention_turn_timeout_s": (
+            "1.5",
+            "Timeout for the rough DOA turn stage",
+        ),
+        "voice_attention_turn_kp": (
+            "0.8",
+            "Proportional gain for the rough DOA turn stage",
+        ),
+        "voice_attention_max_turn_rate_radps": (
+            "0.5",
+            "Maximum yaw rate used during the rough DOA turn stage",
+        ),
+        "voice_attention_visual_refine_enable": (
+            "true",
+            "Enable visual yaw-centering refinement before the pitch acknowledgment",
+        ),
+        "voice_attention_visual_target_point_topic": (
+            "/person_follow_vision_node/target_point",
+            "Preferred visual target-point topic for attention refinement",
+        ),
+        "voice_attention_visual_target_visible_topic": (
+            "/person_follow_vision_node/target_visible",
+            "Preferred visual target-visible topic for attention refinement",
+        ),
+        "voice_attention_visual_target_status_topic": (
+            "/person_follow_vision_node/status",
+            "Preferred visual target-status topic for attention refinement diagnostics",
+        ),
+        "voice_attention_visual_objects_topic": (
+            "/zed/zed_node/obj_det/objects",
+            "Raw ZED objects topic used as a fallback when person-follow target outputs are unavailable",
+        ),
+        "voice_attention_visual_refine_timeout_s": (
+            "2.0",
+            "Timeout for the visual yaw-centering refinement stage",
+        ),
+        "voice_attention_visual_target_ttl_s": (
+            "1.0",
+            "How long a visual target sample remains fresh during refinement",
+        ),
+        "voice_attention_visual_center_tolerance_rad": (
+            "0.15",
+            "Yaw error tolerance for visual centering in radians",
+        ),
+        "voice_attention_visual_turn_kp": (
+            "0.8",
+            "Proportional gain for visual yaw-centering refinement",
+        ),
+        "voice_attention_visual_max_turn_rate_radps": (
+            "0.35",
+            "Maximum yaw rate used during visual yaw-centering refinement",
+        ),
+        "voice_attention_pitch_rad": (
+            "-0.15",
+            "Pitch acknowledgment magnitude in radians; negative is the default because this hardware responds inverted to positive pitch",
+        ),
+        "voice_attention_pitch_hold_s": (
+            "0.6",
+            "How long to hold the acknowledgment after the command is captured before releasing it and returning to neutral",
+        ),
+        "voice_attention_return_to_neutral": (
+            "true",
+            "Return to a neutral Euler pose after the pitch acknowledgment",
+        ),
+        "voice_attention_reassert_gait_after_pitch": (
+            "true",
+            "Reassert the desired Unitree gait after the pitch acknowledgment completes",
+        ),
+        "voice_attention_gait_reassert_settle_s": (
+            "0.2",
+            "How long the attention node waits after requesting gait reassertion following the pitch acknowledgment",
+        ),
+        "voice_attention_debug": (
+            "false",
+            "Enable verbose attention acknowledgment logs",
         ),
         "voice_debug": ("false", "Enable verbose voice pipeline debugging logs"),
         "voice_command_debug": (
@@ -330,7 +580,7 @@ def declare_launch_arguments(names: list[str], launch_dir: str) -> list[DeclareL
         actions.append(
             DeclareLaunchArgument(
                 name=name,
-                default_value=str(default_value),
+                default_value=default_value,
                 description=description,
             )
         )
