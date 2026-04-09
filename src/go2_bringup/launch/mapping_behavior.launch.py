@@ -31,9 +31,17 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration("use_sim_time")
     odas_enable = LaunchConfiguration("odas_enable")
     odas_enable_leak_classifier = LaunchConfiguration("odas_enable_leak_classifier")
+    odas_doa_zero_offset_deg = LaunchConfiguration("odas_doa_zero_offset_deg")
     sound_localizer_enable = LaunchConfiguration("sound_localizer_enable")
     search_debug = LaunchConfiguration("search_debug")
+    explore_area_debug = LaunchConfiguration("explore_area_debug")
+    explore_area_landmark_config_path = LaunchConfiguration("explore_area_landmark_config_path")
+    explore_area_artifact_root = LaunchConfiguration("explore_area_artifact_root")
+    explore_area_park_at_home_on_complete = LaunchConfiguration(
+        "explore_area_park_at_home_on_complete"
+    )
     voice_command_cooldown_s = LaunchConfiguration("voice_command_cooldown_s")
+    voice_wake_window_s = LaunchConfiguration("voice_wake_window_s")
     voice_command_topic = LaunchConfiguration("voice_command_topic")
     person_follow_enable = LaunchConfiguration("person_follow_enable")
     person_follow_distance_m = LaunchConfiguration("person_follow_distance_m")
@@ -64,6 +72,7 @@ def generate_launch_description():
     paths = go2_description_paths()
     nav2_settings = derive_nav2_settings(paths["nav2_cfg"])
     person_follow_motion_bridge_env = {"RMW_IMPLEMENTATION": "rmw_fastrtps_cpp"}
+    explore_area_python_env = {"PYTHONNOUSERSITE": "1"}
 
     voice_stand_up_recovery_motion_mode_value = ParameterValue(
         startup_motion_mode,
@@ -119,6 +128,12 @@ def generate_launch_description():
                 "clearance_radius_m": nav2_settings["clearance_radius_m"],
                 "local_inflation_radius_m": nav2_settings["local_inflation_radius_m"],
                 "global_inflation_radius_m": nav2_settings["global_inflation_radius_m"],
+                "approach_goal_tolerance_m": 0.30,
+                "found_pose_hold_timeout_s": 5.0,
+                "found_pose_ack_phrases": ["ok", "okay", "good"],
+                "sit_on_stable_estimate_without_final_approach": True,
+                "voice_transcript_topic": "/voice/transcript",
+                "sport_request_topic": "/api/sport/request",
             }
         ],
         condition=leak_stack_condition,
@@ -138,6 +153,24 @@ def generate_launch_description():
             }
         ],
         condition=leak_stack_condition,
+    )
+    explore_area_action_server = Node(
+        package="go2_control",
+        executable="explore_area_action_server",
+        name="explore_area_action_server",
+        output="screen",
+        parameters=[
+            {
+                "use_sim_time": use_sim_time,
+                "debug_enable": explore_area_debug,
+                "debug_topic": "/explore_area/debug",
+                "publish_debug_topic": True,
+                "landmark_config_path": explore_area_landmark_config_path,
+                "artifact_root": explore_area_artifact_root,
+                "park_at_home_on_complete": explore_area_park_at_home_on_complete,
+            }
+        ],
+        additional_env=explore_area_python_env,
     )
     sound_localizer_node = Node(
         package="go2_control",
@@ -174,11 +207,14 @@ def generate_launch_description():
                 "debug_topic": "/voice/debug",
                 "base_cmd_vel_topic": "cmd_vel",
                 "nav_candidate_topic": "/motion/candidate/nav",
+                "attention_candidate_topic": "/motion/candidate/attention",
                 "follow_candidate_topic": "/motion/candidate/follow",
+                "hello_candidate_topic": "/motion/candidate/hello",
                 "follow_command_topic": person_follow_unitree_cmd_vel_topic,
                 "follow_event_topic": "/person_follow_controller_node/event",
                 "follow_motion_backend": person_follow_motion_backend,
                 "search_action_name": "search",
+                "explore_area_action_name": "explore_area",
                 "sport_request_topic": "/api/sport/request",
                 "command_cooldown_s": voice_command_cooldown_s,
                 "stand_up_recovery_enabled": True,
@@ -191,6 +227,78 @@ def generate_launch_description():
                 "stand_up_recovery_network_interface": person_follow_unitree_network_interface,
                 "lay_down_settle_s": 2.5,
                 "stand_up_settle_s": 2.5,
+            }
+        ],
+    )
+    voice_attention_controller_node = Node(
+        package="go2_control",
+        executable="voice_attention_controller_node",
+        name="voice_attention_controller_node",
+        output="screen",
+        parameters=[
+            {
+                "use_sim_time": use_sim_time,
+                "robot_mode_state_topic": "/robot_mode_state",
+                "sport_request_topic": "/api/sport/request",
+                "status_topic": "/voice/attention/status",
+                "mode_service_name": "/mission_supervisor_node/set_mode",
+                "command_window_s": voice_wake_window_s,
+                "debug_enable": person_follow_debug,
+            }
+        ],
+    )
+    voice_ready_controller_node = Node(
+        package="go2_control",
+        executable="voice_ready_controller_node",
+        name="voice_ready_controller_node",
+        output="screen",
+        parameters=[
+            {
+                "use_sim_time": use_sim_time,
+                "robot_mode_state_topic": "/robot_mode_state",
+                "sport_request_topic": "/api/sport/request",
+                "status_topic": "/voice/attention/status",
+                "mode_service_name": "/mission_supervisor_node/set_mode",
+                "debug_enable": person_follow_debug,
+            }
+        ],
+    )
+    walk_upright_controller_node = Node(
+        package="go2_control",
+        executable="walk_upright_controller_node",
+        name="walk_upright_controller_node",
+        output="screen",
+        parameters=[
+            {
+                "use_sim_time": use_sim_time,
+                "robot_mode_state_topic": "/robot_mode_state",
+                "sport_request_topic": "/api/sport/request",
+                "mode_service_name": "/mission_supervisor_node/set_mode",
+                "auto_exit_timeout_s": voice_wake_window_s,
+                "restore_localization_on_exit": True,
+                "filtered_odom_topic": "/odometry/filtered",
+                "localization_restore_service_name": "/set_pose",
+                "localization_restore_delay_s": 1.0,
+                "localization_snapshot_max_age_s": 1.0,
+                "debug_enable": person_follow_debug,
+            }
+        ],
+    )
+    hello_controller_node = Node(
+        package="go2_control",
+        executable="hello_controller_node",
+        name="hello_controller_node",
+        output="screen",
+        parameters=[
+            {
+                "use_sim_time": use_sim_time,
+                "robot_mode_state_topic": "/robot_mode_state",
+                "objects_topic": "/zed/zed_node/obj_det/objects",
+                "cmd_vel_topic": "/motion/candidate/hello",
+                "sport_request_topic": "/api/sport/request",
+                "base_frame": "base_footprint",
+                "greet_memory_frame": "odom",
+                "debug_enable": person_follow_debug,
             }
         ],
     )
@@ -262,8 +370,13 @@ def generate_launch_description():
             explore_phase_server,
             localize_phase_server,
             search_action_server,
+            explore_area_action_server,
             sound_localizer_node,
             mission_supervisor_node,
+            voice_attention_controller_node,
+            voice_ready_controller_node,
+            walk_upright_controller_node,
+            hello_controller_node,
             person_follow_node,
             person_follow_controller_node,
             person_follow_motion_bridge_node,

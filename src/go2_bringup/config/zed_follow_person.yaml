@@ -4,6 +4,16 @@
       pub_resolution: 'NATIVE'
       pub_downscale_factor: 1.0
 
+    pos_tracking:
+      # Keep ZED odometry planar and avoid loop-closure odom resets that can
+      # destabilize the EKF when the robot is pitched far from nominal.
+      two_d_mode: true
+      # The ZED wrapper currently rejects an exact 0.0 here because of its
+      # parameter range descriptor, so keep this just above zero.
+      fixed_z_value: 0.01
+      area_memory: false
+      reset_odom_with_loop_closure: false
+
     object_detection:
       od_enabled: true
       enable_tracking: true

@@ -1,0 +1,22 @@
+# ExploreArea.action
+
+# Goal definition
+geometry_msgs/PoseStamped initial_pose
+bool save_map
+
+---
+# Result definition
+bool success
+string reason
+string map_yaml_path
+string landmark_registry_path
+uint16 required_landmarks_found
+uint16 total_landmarks_found
+
+---
+# Feedback definition
+string stage
+string active_landmark_role
+uint16 required_landmarks_found
+uint16 total_landmarks_found
+geometry_msgs/PoseStamped current_pose

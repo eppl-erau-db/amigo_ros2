@@ -99,10 +99,10 @@ class PersonFollowControllerNode(Node):
         )
 
         self.control_params = FollowControlParams(
-            desired_distance_m=float(self.declare_parameter("desired_distance_m", 0.75).value),
+            desired_distance_m=float(self.declare_parameter("desired_distance_m", 1.25).value),
             distance_band_m=float(self.declare_parameter("distance_band_m", 0.10).value),
             min_follow_distance_m=float(
-                self.declare_parameter("min_follow_distance_m", 0.60).value
+                self.declare_parameter("min_follow_distance_m", 0.75).value
             ),
             lateral_deadband_m=float(self.declare_parameter("lateral_deadband_m", 0.10).value),
             yaw_deadband_rad=float(self.declare_parameter("yaw_deadband_rad", 0.10).value),

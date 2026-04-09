@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import math
+import re
 import time
 from dataclasses import dataclass
 from typing import Optional
@@ -15,13 +16,17 @@ from rclpy.duration import Duration
 from rclpy.node import Node
 from rclpy.task import Future
 from rclpy.time import Time
-from std_msgs.msg import Bool, Int32
+from std_msgs.msg import Bool, Int32, String
 from tf2_ros import Buffer, TransformException, TransformListener
+from unitree_api.msg import Request as UnitreeRequest
 
 from go2_interfaces.action import LocalizeDetectedLeak
 
 
 EPS = 1.0e-6
+ROBOT_SPORT_API_ID_STOPMOVE = 1003
+ROBOT_SPORT_API_ID_STANDUP = 1004
+ROBOT_SPORT_API_ID_SIT = 1009
 
 
 @dataclass(frozen=True)
@@ -41,6 +46,16 @@ class CandidateGoal:
     goal_y: float
     endpoint_x: float
     endpoint_y: float
+
+
+@dataclass(frozen=True)
+class ApproachGoalCandidate:
+    goal_x: float
+    goal_y: float
+    goal_yaw: float
+    radius_m: float
+    offset_deg: float
+    path_length_m: float
 
 
 def wrap_pi(angle_rad: float) -> float:
@@ -80,6 +95,12 @@ class LocalizeDetectedLeakServer(Node):
                 'estimate_topic', '/sound_localizer/current_estimate'
             ).value
         )
+        self.voice_transcript_topic = str(
+            self.declare_parameter('voice_transcript_topic', '/voice/transcript').value
+        )
+        self.sport_request_topic = str(
+            self.declare_parameter('sport_request_topic', '/api/sport/request').value
+        )
 
         self.feedback_period_s = max(
             0.1, float(self.declare_parameter('feedback_period_s', 0.5).value)
@@ -93,6 +114,45 @@ class LocalizeDetectedLeakServer(Node):
         )
         self.post_navigation_wait_s = max(
             0.0, float(self.declare_parameter('post_navigation_wait_s', 2.0).value)
+        )
+        self.approach_goal_tolerance_m = max(
+            0.05, float(self.declare_parameter('approach_goal_tolerance_m', 0.30).value)
+        )
+        raw_approach_radii = self.declare_parameter(
+            'approach_radius_candidates_m', [0.0, 0.12, 0.20, 0.28]
+        ).value
+        self.approach_radius_candidates_m = sorted(
+            {
+                min(
+                    self.approach_goal_tolerance_m,
+                    max(0.0, float(radius)),
+                )
+                for radius in (raw_approach_radii or [0.0, 0.12, 0.20, 0.28])
+            }
+        )
+        self.found_pose_hold_timeout_s = max(
+            1.0, float(self.declare_parameter('found_pose_hold_timeout_s', 5.0).value)
+        )
+        raw_ack_phrases = self.declare_parameter(
+            'found_pose_ack_phrases', ['ok', 'okay', 'good']
+        ).value
+        self.found_pose_ack_phrases = [
+            normalized
+            for normalized in (
+                self._normalize_transcript(str(value))
+                for value in (raw_ack_phrases or ['ok', 'okay', 'good'])
+            )
+            if normalized
+        ]
+        if not self.found_pose_ack_phrases:
+            self.found_pose_ack_phrases = ['ok', 'okay', 'good']
+        self.release_to_stand_on_exit = bool(
+            self.declare_parameter('release_to_stand_on_exit', True).value
+        )
+        self.sit_on_stable_estimate_without_final_approach = bool(
+            self.declare_parameter(
+                'sit_on_stable_estimate_without_final_approach', True
+            ).value
         )
         self.max_motion_legs = max(
             1, int(self.declare_parameter('max_motion_legs', 3).value)
@@ -155,14 +215,20 @@ class LocalizeDetectedLeakServer(Node):
         self._estimate_stable = False
         self._latest_estimate: PoseStamped | None = None
         self._warn_times_mono: dict[str, float] = {}
+        self._holding_found_pose = False
+        self._found_pose_ack_phrase: str | None = None
 
         self.navigator = BasicNavigator()
         self.tf_buffer = Buffer(cache_time=Duration(seconds=10.0))
         self.tf_listener = TransformListener(self.tf_buffer, self)
+        self.sport_req_pub = self.create_publisher(
+            UnitreeRequest, self.sport_request_topic, 10
+        )
 
         self.create_subscription(OccupancyGrid, self.map_topic, self._map_cb, 10)
         self.create_subscription(Bool, self.leak_topic, self._leak_cb, 10)
         self.create_subscription(Int32, self.doa_topic, self._doa_cb, 10)
+        self.create_subscription(String, self.voice_transcript_topic, self._transcript_cb, 10)
         self.create_subscription(Bool, self.estimate_valid_topic, self._estimate_valid_cb, 10)
         self.create_subscription(Bool, self.estimate_stable_topic, self._estimate_stable_cb, 10)
         self.create_subscription(PoseStamped, self.estimate_topic, self._estimate_cb, 10)
@@ -180,9 +246,11 @@ class LocalizeDetectedLeakServer(Node):
             'Localize-detected-leak action server ready: '
             f'action="{self.action_name}", map_topic="{self.map_topic}", '
             f'target_perpendicular_baseline_m={self.target_perpendicular_baseline_m:.2f}, '
+            f'approach_goal_tolerance_m={self.approach_goal_tolerance_m:.2f}, '
             f'distance_ladder={self.candidate_distance_ladder_m}, '
             f'allow_unknown={self.allow_unknown}, '
-            f'clearance_radius_m={self.clearance_radius_m:.2f}'
+            f'clearance_radius_m={self.clearance_radius_m:.2f}, '
+            f'voice_transcript_topic="{self.voice_transcript_topic}"'
         )
 
     def _warn_throttled(self, key: str, message: str, period_s: float = 3.0) -> None:
@@ -211,6 +279,30 @@ class LocalizeDetectedLeakServer(Node):
 
     def _estimate_cb(self, msg: PoseStamped) -> None:
         self._latest_estimate = msg
+
+    @staticmethod
+    def _normalize_transcript(text: str) -> str:
+        lower = str(text).lower()
+        alnum_spaces_only = re.sub(r'[^a-z0-9 ]+', ' ', lower)
+        return re.sub(r'\s+', ' ', alnum_spaces_only).strip()
+
+    def _transcript_cb(self, msg: String) -> None:
+        if not self._holding_found_pose:
+            return
+
+        transcript = self._normalize_transcript(msg.data)
+        if not transcript:
+            return
+
+        padded_transcript = f' {transcript} '
+        for phrase in self.found_pose_ack_phrases:
+            if transcript == phrase or f' {phrase} ' in padded_transcript:
+                if self._found_pose_ack_phrase != phrase:
+                    self.get_logger().info(
+                        f'Received leak-found acknowledgement phrase "{phrase}".'
+                    )
+                self._found_pose_ack_phrase = phrase
+                return
 
     def goal_cb(self, goal_request: LocalizeDetectedLeak.Goal):
         del goal_request
@@ -315,6 +407,348 @@ class LocalizeDetectedLeakServer(Node):
         pose.pose.orientation.z = math.sin(yaw / 2.0)
         pose.pose.orientation.w = math.cos(yaw / 2.0)
         return pose
+
+    def _publish_sport_request(self, api_id: int) -> None:
+        request = UnitreeRequest()
+        request.header.identity.api_id = int(api_id)
+        self.sport_req_pub.publish(request)
+
+    def _clear_all_costmaps(self, reason: str) -> None:
+        try:
+            self.navigator.clearAllCostmaps()
+            self._log_debug(f'Cleared Nav2 costmaps before {reason}.')
+        except Exception as exc:
+            self._warn_throttled(
+                'nav2_clear_costmaps',
+                f'Failed to clear Nav2 costmaps before {reason}: {exc}',
+                period_s=5.0,
+            )
+
+    @staticmethod
+    def _distance_between_xy(x0: float, y0: float, x1: float, y1: float) -> float:
+        return math.hypot(x1 - x0, y1 - y0)
+
+    def _distance_to_estimate(self, robot_pose: RobotPose2D, estimate_pose: PoseStamped) -> float:
+        return self._distance_between_xy(
+            robot_pose.x,
+            robot_pose.y,
+            float(estimate_pose.pose.position.x),
+            float(estimate_pose.pose.position.y),
+        )
+
+    def _select_approach_goal(
+        self,
+        robot_pose: RobotPose2D,
+        estimate_pose: PoseStamped,
+    ) -> PoseStamped | None:
+        if self._map_msg is None:
+            return None
+
+        estimate_x = float(estimate_pose.pose.position.x)
+        estimate_y = float(estimate_pose.pose.position.y)
+        start_pose = self._pose_stamped_from_xy_yaw(
+            robot_pose.x, robot_pose.y, robot_pose.yaw
+        )
+        base_angle = math.atan2(robot_pose.y - estimate_y, robot_pose.x - estimate_x)
+        offset_candidates_deg = [0.0, -30.0, 30.0, -60.0, 60.0, -90.0, 90.0, 180.0]
+        candidates: list[ApproachGoalCandidate] = []
+        seen_keys: set[tuple[int, int]] = set()
+
+        for radius_m in self.approach_radius_candidates_m:
+            angles = [0.0] if radius_m <= EPS else offset_candidates_deg
+            for offset_deg in angles:
+                heading_rad = base_angle + math.radians(offset_deg)
+                goal_x = estimate_x + (radius_m * math.cos(heading_rad))
+                goal_y = estimate_y + (radius_m * math.sin(heading_rad))
+                dedupe_key = (
+                    int(round(goal_x * 100.0)),
+                    int(round(goal_y * 100.0)),
+                )
+                if dedupe_key in seen_keys:
+                    continue
+                seen_keys.add(dedupe_key)
+
+                clearance_ok, clearance_reason = self._point_has_clearance_status(
+                    self._map_msg, goal_x, goal_y
+                )
+                if not clearance_ok:
+                    self._log_debug(
+                        'Rejected approach candidate for endpoint clearance: '
+                        f'goal=({goal_x:.2f}, {goal_y:.2f}) '
+                        f'radius={radius_m:.2f} m reason={clearance_reason}'
+                    )
+                    continue
+
+                if radius_m <= EPS:
+                    goal_yaw = math.atan2(estimate_y - robot_pose.y, estimate_x - robot_pose.x)
+                else:
+                    goal_yaw = math.atan2(estimate_y - goal_y, estimate_x - goal_x)
+                goal_pose = self._pose_stamped_from_xy_yaw(goal_x, goal_y, goal_yaw)
+                path = self._path_for_goal(start_pose, goal_pose)
+                if path is None or not getattr(path, 'poses', []):
+                    self._log_debug(
+                        'Rejected approach candidate because Nav2 returned no path: '
+                        f'goal=({goal_x:.2f}, {goal_y:.2f}) radius={radius_m:.2f} m'
+                    )
+                    continue
+
+                candidates.append(
+                    ApproachGoalCandidate(
+                        goal_x=goal_x,
+                        goal_y=goal_y,
+                        goal_yaw=goal_yaw,
+                        radius_m=radius_m,
+                        offset_deg=offset_deg,
+                        path_length_m=self._path_length(path),
+                    )
+                )
+
+        if not candidates:
+            return None
+
+        candidates.sort(
+            key=lambda candidate: (
+                candidate.path_length_m,
+                candidate.radius_m,
+                abs(candidate.offset_deg),
+            )
+        )
+        best = candidates[0]
+        self._log_debug(
+            'Selected approach goal: '
+            f'goal=({best.goal_x:.2f}, {best.goal_y:.2f}) '
+            f'radius={best.radius_m:.2f} m offset={best.offset_deg:.1f} deg '
+            f'path={best.path_length_m:.2f} m'
+        )
+        return self._pose_stamped_from_xy_yaw(best.goal_x, best.goal_y, best.goal_yaw)
+
+    async def _monitor_approach_navigation(
+        self,
+        goal_handle,
+        approach_goal_pose: PoseStamped,
+        estimate_pose: PoseStamped,
+    ) -> str:
+        while not self.navigator.isTaskComplete():
+            if goal_handle.is_cancel_requested:
+                await self._cancel_navigation()
+                return 'canceled'
+
+            robot_pose = self._lookup_robot_pose()
+            if (
+                robot_pose is not None and
+                self._distance_to_estimate(robot_pose, estimate_pose) <= self.approach_goal_tolerance_m
+            ):
+                await self._cancel_navigation()
+                return 'reached_estimate'
+
+            goal_handle.publish_feedback(
+                self._make_feedback('approaching_stable_estimate', approach_goal_pose)
+            )
+            await self._sleep_async(self.feedback_period_s)
+
+        result = self.navigator.getResult()
+        self._log_debug(f'Approach Nav2 task completed with result={result}.')
+        if result == TaskResult.SUCCEEDED:
+            robot_pose = self._lookup_robot_pose()
+            if (
+                robot_pose is not None and
+                self._distance_to_estimate(robot_pose, estimate_pose) <= self.approach_goal_tolerance_m
+            ):
+                return 'reached_estimate'
+            return 'goal_reached'
+        if result == TaskResult.CANCELED:
+            return 'canceled'
+        return 'failed'
+
+    async def _hold_found_pose(
+        self,
+        goal_handle,
+        fallback_pose: PoseStamped,
+    ) -> str:
+        start_mono = time.monotonic()
+        last_logged_remaining_s: int | None = None
+        self._holding_found_pose = True
+        self._found_pose_ack_phrase = None
+
+        self.get_logger().info(
+            'Leak found. Waiting after Sit until "ok" is heard '
+            f'or {self.found_pose_hold_timeout_s:.1f}s elapses.'
+        )
+
+        try:
+            while rclpy.ok():
+                if goal_handle.is_cancel_requested:
+                    return 'canceled'
+
+                now_mono = time.monotonic()
+                if self._found_pose_ack_phrase is not None:
+                    return 'acknowledged'
+
+                elapsed_s = now_mono - start_mono
+                remaining_s = max(0.0, self.found_pose_hold_timeout_s - elapsed_s)
+                remaining_ceil_s = int(math.ceil(remaining_s))
+                if remaining_ceil_s != last_logged_remaining_s:
+                    last_logged_remaining_s = remaining_ceil_s
+                    self.get_logger().info(
+                        f'Leak-found hold countdown: {remaining_ceil_s}s remaining.'
+                    )
+
+                if remaining_s <= 0.0:
+                    return 'timeout'
+
+                goal_handle.publish_feedback(
+                    self._make_feedback(
+                        f'waiting_after_sit_{remaining_ceil_s}s',
+                        fallback_pose,
+                    )
+                )
+                await self._sleep_async(min(self.feedback_period_s, max(0.05, remaining_s)))
+        finally:
+            self._holding_found_pose = False
+
+    def _release_found_pose(self) -> None:
+        if self.release_to_stand_on_exit:
+            self._publish_sport_request(ROBOT_SPORT_API_ID_STANDUP)
+            self.get_logger().info('Sent StandUp after leak-found sit notification.')
+
+    async def _complete_found_leak_sequence(
+        self,
+        goal_handle,
+        robot_pose: RobotPose2D,
+        fallback_pose: PoseStamped,
+    ) -> tuple[bool, str]:
+        estimate_pose = self._current_estimate_pose(fallback_pose)
+        distance_to_estimate_m = self._distance_to_estimate(robot_pose, estimate_pose)
+        used_final_approach_fallback = False
+        self.get_logger().info(
+            'Stable leak estimate locked at '
+            f'({estimate_pose.pose.position.x:.2f}, {estimate_pose.pose.position.y:.2f}). '
+            f'Current robot distance is {distance_to_estimate_m:.2f} m.'
+        )
+
+        if distance_to_estimate_m > self.approach_goal_tolerance_m:
+            goal_handle.publish_feedback(
+                self._make_feedback('planning_approach_to_estimate', estimate_pose)
+            )
+            self._clear_all_costmaps('final approach planning')
+            approach_goal_pose = self._select_approach_goal(robot_pose, estimate_pose)
+            if approach_goal_pose is None:
+                if not self.sit_on_stable_estimate_without_final_approach:
+                    self.get_logger().warn(
+                        'Stable leak estimate found, but no reachable approach goal '
+                        f'within {self.approach_goal_tolerance_m:.2f} m was available.'
+                    )
+                    return False, 'stable_estimate_approach_unreachable'
+                used_final_approach_fallback = True
+                self.get_logger().warn(
+                    'Stable leak estimate found, but no reachable approach goal '
+                    f'within {self.approach_goal_tolerance_m:.2f} m was available. '
+                    'Using Sit in place as the leak-found fallback signal.'
+                )
+
+            if approach_goal_pose is not None:
+                try:
+                    self.navigator.goToPose(approach_goal_pose)
+                except Exception as exc:
+                    self._warn_throttled(
+                        'nav2_go_to_approach_pose',
+                        f'Nav2 rejected the approach goal for the stable leak estimate: {exc}',
+                        period_s=2.0,
+                    )
+                    if not self.sit_on_stable_estimate_without_final_approach:
+                        return False, 'approach_goal_rejected'
+                    used_final_approach_fallback = True
+                    self.get_logger().warn(
+                        'Approach goal was rejected by Nav2. '
+                        'Using Sit in place as the leak-found fallback signal.'
+                    )
+                else:
+                    approach_outcome = await self._monitor_approach_navigation(
+                        goal_handle,
+                        approach_goal_pose,
+                        estimate_pose,
+                    )
+                    if approach_outcome == 'canceled':
+                        return False, 'canceled'
+                    if approach_outcome not in {'reached_estimate', 'goal_reached'}:
+                        if not self.sit_on_stable_estimate_without_final_approach:
+                            return False, 'approach_failed'
+                        used_final_approach_fallback = True
+                        self.get_logger().warn(
+                            'Approach navigation failed before reaching the leak estimate. '
+                            'Using Sit in place as the leak-found fallback signal.'
+                        )
+
+                    refreshed_pose = self._lookup_robot_pose()
+                    if refreshed_pose is not None:
+                        robot_pose = refreshed_pose
+                    distance_to_estimate_m = self._distance_to_estimate(robot_pose, estimate_pose)
+                    if distance_to_estimate_m > self.approach_goal_tolerance_m:
+                        if not self.sit_on_stable_estimate_without_final_approach:
+                            self.get_logger().warn(
+                                'Approach navigation finished, but the robot is still '
+                                f'{distance_to_estimate_m:.2f} m from the leak estimate '
+                                f'(tolerance {self.approach_goal_tolerance_m:.2f} m).'
+                            )
+                            return False, 'approach_distance_not_met'
+                        used_final_approach_fallback = True
+                        self.get_logger().warn(
+                            'Approach navigation finished, but the robot is still '
+                            f'{distance_to_estimate_m:.2f} m from the leak estimate '
+                            f'(tolerance {self.approach_goal_tolerance_m:.2f} m). '
+                            'Using Sit in place as the leak-found fallback signal.'
+                        )
+
+        if used_final_approach_fallback and distance_to_estimate_m > self.approach_goal_tolerance_m:
+            self.get_logger().info(
+                'Issuing Sit as the leak-found fallback signal from '
+                f'{distance_to_estimate_m:.2f} m away because the final approach '
+                'could not be completed.'
+            )
+        else:
+            self.get_logger().info(
+                f'Robot is within {distance_to_estimate_m:.2f} m of the leak estimate. '
+                'Issuing Sit as the leak-found signal.'
+            )
+
+        self._publish_sport_request(ROBOT_SPORT_API_ID_STOPMOVE)
+        self._publish_sport_request(ROBOT_SPORT_API_ID_SIT)
+        hold_outcome = await self._hold_found_pose(goal_handle, estimate_pose)
+        self._release_found_pose()
+
+        if hold_outcome == 'canceled':
+            return False, 'canceled'
+        if hold_outcome == 'acknowledged':
+            acknowledged_phrase = self._found_pose_ack_phrase or 'ok'
+            self.get_logger().info(
+                f'Leak-found hold acknowledged by transcript "{acknowledged_phrase}".'
+            )
+            if used_final_approach_fallback:
+                return True, 'leak_found_acknowledged_without_final_approach'
+            return True, 'leak_found_acknowledged'
+
+        self.get_logger().info('Leak-found hold timed out; returning to IDLE automatically.')
+        if used_final_approach_fallback:
+            return True, 'leak_found_timeout_without_final_approach'
+        return True, 'leak_found_timeout'
+
+    async def _finish_found_leak_goal(
+        self,
+        goal_handle,
+        robot_pose: RobotPose2D,
+        fallback_pose: PoseStamped,
+    ) -> LocalizeDetectedLeak.Result:
+        success, reason = await self._complete_found_leak_sequence(
+            goal_handle,
+            robot_pose,
+            fallback_pose,
+        )
+        if reason == 'canceled':
+            goal_handle.canceled()
+        else:
+            goal_handle.publish_feedback(self._make_feedback(reason, fallback_pose))
+            goal_handle.succeed()
+        return self._make_result(success, reason, fallback_pose)
 
     def _fresh_map_bearing(self, robot_pose: RobotPose2D) -> float | None:
         if self._last_doa_rad is None:
@@ -585,13 +1019,6 @@ class LocalizeDetectedLeakServer(Node):
                     goal_handle.canceled()
                     return self._make_result(False, 'canceled', fallback_pose)
 
-                if self._estimate_stable and self._latest_estimate is not None:
-                    goal_handle.publish_feedback(
-                        self._make_feedback('stable_estimate_found', fallback_pose)
-                    )
-                    goal_handle.succeed()
-                    return self._make_result(True, 'stable_estimate_available', fallback_pose)
-
                 if self._map_msg is None:
                     self._warn_throttled(
                         'waiting_for_map',
@@ -620,6 +1047,16 @@ class LocalizeDetectedLeakServer(Node):
                 fallback_pose = self._pose_stamped_from_xy_yaw(
                     robot_pose.x, robot_pose.y, robot_pose.yaw
                 )
+
+                if self._estimate_stable and self._latest_estimate is not None:
+                    goal_handle.publish_feedback(
+                        self._make_feedback('stable_estimate_found', fallback_pose)
+                    )
+                    return await self._finish_found_leak_goal(
+                        goal_handle,
+                        robot_pose,
+                        fallback_pose,
+                    )
 
                 if not self._leak_detected:
                     self._warn_throttled(
@@ -728,11 +1165,17 @@ class LocalizeDetectedLeakServer(Node):
                         goal_handle.canceled()
                         return self._make_result(False, 'canceled', fallback_pose)
                     if nav_outcome == 'stable_estimate_ready':
-                        goal_handle.publish_feedback(
-                            self._make_feedback('stable_estimate_found', goal_pose)
+                        refreshed_robot_pose = self._lookup_robot_pose() or robot_pose
+                        refreshed_fallback_pose = self._pose_stamped_from_xy_yaw(
+                            refreshed_robot_pose.x,
+                            refreshed_robot_pose.y,
+                            refreshed_robot_pose.yaw,
                         )
-                        goal_handle.succeed()
-                        return self._make_result(True, 'stable_estimate_available', goal_pose)
+                        return await self._finish_found_leak_goal(
+                            goal_handle,
+                            refreshed_robot_pose,
+                            refreshed_fallback_pose,
+                        )
                     if nav_outcome != 'succeeded':
                         continue
 
@@ -752,11 +1195,17 @@ class LocalizeDetectedLeakServer(Node):
                         goal_handle.canceled()
                         return self._make_result(False, 'canceled', goal_pose)
                     if settle_outcome == 'stable_estimate_ready':
-                        goal_handle.publish_feedback(
-                            self._make_feedback('stable_estimate_found', goal_pose)
+                        refreshed_robot_pose = self._lookup_robot_pose() or robot_pose
+                        refreshed_fallback_pose = self._pose_stamped_from_xy_yaw(
+                            refreshed_robot_pose.x,
+                            refreshed_robot_pose.y,
+                            refreshed_robot_pose.yaw,
                         )
-                        goal_handle.succeed()
-                        return self._make_result(True, 'stable_estimate_available', goal_pose)
+                        return await self._finish_found_leak_goal(
+                            goal_handle,
+                            refreshed_robot_pose,
+                            refreshed_fallback_pose,
+                        )
                     break
 
                 if not leg_succeeded:

@@ -534,7 +534,7 @@ class LeakSearchMissionCoordinator(Node):
                 if phase_success:
                     goal_handle.publish_feedback(
                         self._make_feedback(
-                            'stable_estimate_found',
+                            phase_reason or 'stable_estimate_found',
                             True,
                             fallback_pose,
                             getattr(phase_result.result, 'estimate_pose', None),
@@ -546,10 +546,44 @@ class LeakSearchMissionCoordinator(Node):
                         outcome='stable_estimate_found',
                         reason=phase_reason,
                     )
+                    final_message = 'Leak localized, approached, sat to signal the find, and returned.'
+                    if phase_reason == 'leak_found_acknowledged':
+                        final_message = 'Leak localized, approached, sat to signal the find, and returned after voice acknowledgement.'
+                    elif phase_reason == 'leak_found_timeout':
+                        final_message = (
+                            'Leak localized, approached, sat to signal the find, and auto-returned after 5 seconds.'
+                        )
+                    elif phase_reason == 'leak_found_acknowledged_without_final_approach':
+                        final_message = (
+                            'Leak localized, but the final close approach was unavailable; the robot sat in place to signal the find and returned after voice acknowledgement.'
+                        )
+                    elif phase_reason == 'leak_found_timeout_without_final_approach':
+                        final_message = (
+                            'Leak localized, but the final close approach was unavailable; the robot sat in place to signal the find and auto-returned after 5 seconds.'
+                        )
                     return self._make_result(
                         ERROR_NONE,
                         '',
-                        'Stable leak estimate available from sound localization.',
+                        final_message,
+                    )
+
+                if phase_reason in {
+                    'stable_estimate_approach_unreachable',
+                    'approach_goal_rejected',
+                    'approach_failed',
+                    'approach_distance_not_met',
+                }:
+                    goal_handle.abort()
+                    self._emit_debug_event(
+                        'mission_finished',
+                        outcome='phase_error',
+                        phase='localizing',
+                        reason=phase_reason,
+                    )
+                    return self._make_result(
+                        ERROR_PHASE_FAILED,
+                        phase_reason,
+                        'Stable leak estimate found, but the robot could not complete the final approach.',
                     )
 
                 next_phase = 'exploring'

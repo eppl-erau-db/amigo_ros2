@@ -26,13 +26,32 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration("use_sim_time")
     paths = go2_description_paths()
 
+    slam_scan_gate = Node(
+        package="go2_control",
+        executable="slam_scan_gate_node",
+        name="slam_scan_gate_node",
+        output="screen",
+        parameters=[
+            {
+                "use_sim_time": use_sim_time,
+                "input_scan_topic": "/scan",
+                "output_scan_topic": "/scan_slam",
+                "robot_mode_state_topic": "/robot_mode_state",
+                "blocked_task_modes": ["UPRIGHT"],
+                "resume_delay_s": 1.0,
+            }
+        ],
+    )
     slam_toolbox = Node(
         package="slam_toolbox",
         executable="async_slam_toolbox_node",
         name="slam_toolbox",
         output="screen",
         parameters=[paths["slam_toolbox_config"]],
-        remappings=[("pose", "/slam_toolbox_pose")],
+        remappings=[
+            ("scan", "/scan_slam"),
+            ("pose", "/slam_toolbox_pose"),
+        ],
     )
     nav2_launch = GroupAction(
         actions=[
@@ -52,6 +71,13 @@ def generate_launch_description():
                 }.items(),
             ),
         ]
+    )
+    map_saver_server = Node(
+        package="nav2_map_server",
+        executable="map_saver_server",
+        name="map_saver",
+        output="screen",
+        parameters=[{"use_sim_time": use_sim_time}],
     )
     explore_lite_node = Node(
         package="explore_lite",
@@ -73,8 +99,10 @@ def generate_launch_description():
     return LaunchDescription(
         declare_launch_arguments(ARGUMENT_NAMES, launch_dir) +
         [
+            slam_scan_gate,
             slam_toolbox,
             nav2_launch,
+            map_saver_server,
             explore_lite_node,
         ]
     )

@@ -146,3 +146,51 @@ ros2 run go2_control voice_speaker_enroll_node
 ros2 launch go2_bringup mapping.launch.py voice_control:=true voice_speaker_enable:=true
 
 
+ros2 launch go2_bringup mapping.launch.py \
+  voice_control:=true \
+  launch_profile:=mission_base \
+  person_follow_motion_backend:=obstacles_avoid \
+  person_follow_unitree_network_interface:=eno1 \
+  voice_verifier_enable:=true \
+  person_follow_enable:=true \
+  voice_verifier_reference_embedding_path:=/home/castej-jetson/workspaces/amigo_ros2/models/speaker_ref.npy \
+  voice_verifier_threshold:=0.68 \
+  voice_verifier_debug:=true \
+  voice_debug:=true \
+  voice_command_debug:=true 2>&1 | tee mission_log.txt
+  
+  ros2 launch go2_bringup mapping.launch.py \
+  voice_control:=true \
+  launch_profile:=mission_base \
+  person_follow_motion_backend:=obstacles_avoid \
+  person_follow_unitree_network_interface:=eno1 \
+  person_follow_enable:=true \
+  voice_debug:=true \
+  voice_command_debug:=true 2>&1 | tee mission_log.txt
+  
+ros2 launch go2_bringup mapping.launch.py \
+voice_control:=true \
+person_follow_motion_backend:=obstacles_avoid \
+person_follow_unitree_network_interface:=eno1 \
+person_follow_enable:=true \
+voice_debug:=true \
+voice_command_debug:=true 2>&1 | tee mission_log.txt
+
+
+ros2 launch go2_bringup mapping.launch.py voice_control:=true person_follow_motion_backend:=obstacles_avoid person_follow_unitree_network_interface:=eno1 person_follow_enable:=true voice_debug:=true voice_command_debug:=true search_debug:=true explore_area_debug:=true 2>&1 | tee mission_log.txt
+
+ros2 topic echo /voice/transcript
+ros2 topic echo /voice/command
+ros2 topic echo /voice/debug
+ros2 topic echo /robot_mode_state
+ros2 topic echo /explore/status
+ros2 topic echo /explore/resume
+ros2 topic echo /explore_area/debug
+ros2 topic echo /explore_area/_action/feedback
+ros2 topic echo /explore_area/_action/status
+ros2 topic echo /zed/zed_node/rgb/camera_info --once
+ros2 topic echo /map --once
+
+ros2 action info /explore_area
+ros2 service list | rg '/map_saver/save_map|/zed/zed_node/set_pose|/doghouse/park'
+

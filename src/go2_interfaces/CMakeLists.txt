@@ -17,6 +17,7 @@ find_package(rosidl_default_generators REQUIRED)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "action/LogPose.action"
   "action/ExploreUntilDetected.action"
+  "action/ExploreArea.action"
   "action/LocalizeDetectedLeak.action"
   "msg/RobotModeState.msg"
   "srv/RegionMap.srv"

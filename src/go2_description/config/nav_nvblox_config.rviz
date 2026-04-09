@@ -577,6 +577,18 @@ Visualization Manager:
         Value: /sound_localizer/markers
       Value: true
     - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: Explore Area Landmarks
+      Namespaces:
+        {}
+      Topic:
+        Depth: 5
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /explore_area/landmark_markers
+      Value: true
+    - Class: rviz_default_plugins/MarkerArray
       Enabled: false
       Name: MarkerArray
       Namespaces:

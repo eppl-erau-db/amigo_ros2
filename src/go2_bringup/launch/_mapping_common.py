@@ -35,8 +35,12 @@ VOICE_ARGUMENT_NAMES = [
     "voice_control",
     "voice_transcript_topic",
     "voice_wake_phrase",
+    "voice_instant_hello_phrase",
     "voice_shake_hand_phrase",
+    "voice_ready_phrase",
+    "voice_upright_phrase",
     "voice_search_phrase",
+    "voice_explore_area_phrase",
     "voice_follow_phrase",
     "voice_stop_follow_phrase",
     "voice_stand_up_phrase",
@@ -51,9 +55,20 @@ VOICE_ARGUMENT_NAMES = [
     "voice_stt_max_alternatives",
     "voice_debug",
     "voice_command_debug",
+    "voice_wake_window_s",
     "voice_command_cooldown_s",
     "voice_command_mode",
     "voice_command_topic",
+    "speaker_verification_enabled",
+    "speaker_verification_topic",
+    "speaker_verification_window_s",
+    "voice_verifier_enable",
+    "voice_verifier_model_name_or_path",
+    "voice_verifier_reference_embedding_path",
+    "voice_verifier_threshold",
+    "voice_verifier_window_duration_s",
+    "voice_verifier_eval_period_s",
+    "voice_verifier_debug",
 ]
 
 FOLLOW_ARGUMENT_NAMES = [
@@ -79,6 +94,10 @@ MISSION_ARGUMENT_NAMES = [
     "sound_localizer_enable",
     "search_debug",
     "search_allow_unknown",
+    "explore_area_debug",
+    "explore_area_landmark_config_path",
+    "explore_area_artifact_root",
+    "explore_area_park_at_home_on_complete",
     "startup_motion_mode",
     "startup_motion_gait",
     "startup_motion_wait_s",
@@ -155,6 +174,22 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "true",
             "Deprecated: leak localization now derives unknown-space policy from nav2_mppi_controller.yaml",
         ),
+        "explore_area_debug": (
+            "false",
+            "Enable verbose explore-area mission diagnostics and publish /explore_area/debug events",
+        ),
+        "explore_area_landmark_config_path": (
+            "",
+            "Optional override path for the explore-area ArUco landmark config YAML",
+        ),
+        "explore_area_artifact_root": (
+            "artifacts/explore_area",
+            "Directory where explore-area map and landmark artifacts are written",
+        ),
+        "explore_area_park_at_home_on_complete": (
+            "false",
+            "If true, visit the home_dock landmark and call its parking hook after frontier exploration completes",
+        ),
         "voice_control": (
             "false",
             "Enable voice command node and leak search action server",
@@ -164,21 +199,37 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "Transcript topic (std_msgs/String)",
         ),
         "voice_wake_phrase": ("hey amigo", "Wake phrase that arms the command parser"),
-        "voice_shake_hand_phrase": (
+        "voice_instant_hello_phrase": (
             "hello amigo",
-            "Phrase that triggers the Go2 hello/shake-hand sport action",
+            "Exact no-wake phrase for the idle-only visible-person hello gesture",
+        ),
+        "voice_shake_hand_phrase": (
+            "say hello",
+            "Phrase that triggers the stateful hello greeting behavior",
+        ),
+        "voice_ready_phrase": (
+            "ready",
+            "Phrase that triggers the nod-and-stretch ready sequence",
+        ),
+        "voice_upright_phrase": (
+            "up",
+            "Phrase that enables the hind-leg upright stance",
         ),
         "voice_search_phrase": (
             "look for a leak",
             "Phrase that triggers Search action",
+        ),
+        "voice_explore_area_phrase": (
+            "explore the area",
+            "Phrase that triggers the area exploration mission",
         ),
         "voice_follow_phrase": (
             "follow me",
             "Phrase that enables person-follow mode",
         ),
         "voice_stop_follow_phrase": (
-            "stop following",
-            "Phrase that disables person-follow mode",
+            "stay",
+            "Phrase that returns the robot to IDLE and cancels follow/search",
         ),
         "voice_stand_up_phrase": (
             "stand up",
@@ -219,6 +270,10 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "false",
             "Enable voice command decision debug logs",
         ),
+        "voice_wake_window_s": (
+            "8.0",
+            "How long the wake-command window remains open after the wake acknowledgment",
+        ),
         "voice_command_cooldown_s": (
             "3.0",
             "Per-command cooldown between accepted supervisor voice commands",
@@ -230,6 +285,46 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
         "voice_command_topic": (
             "/voice/command",
             "Topic where parsed voice commands are published",
+        ),
+        "speaker_verification_enabled": (
+            "false",
+            "Gate voice commands on speaker identity verification",
+        ),
+        "speaker_verification_topic": (
+            "/voice/speaker_verified",
+            "Topic (std_msgs/Bool) published by a speaker verification node",
+        ),
+        "speaker_verification_window_s": (
+            "10.0",
+            "How long a speaker verification confirmation remains valid",
+        ),
+        "voice_verifier_enable": (
+            "false",
+            "Launch the WeSpeaker speaker verification node",
+        ),
+        "voice_verifier_model_name_or_path": (
+            "eres2net",
+            "WeSpeaker model name or filesystem path (eres2net=55M params, best accuracy)",
+        ),
+        "voice_verifier_reference_embedding_path": (
+            "",
+            "Path to .npy reference speaker embedding (required when verifier enabled)",
+        ),
+        "voice_verifier_threshold": (
+            "0.55",
+            "Cosine similarity threshold for speaker verification (EMA-smoothed score)",
+        ),
+        "voice_verifier_window_duration_s": (
+            "2.0",
+            "Audio window duration in seconds for speaker embedding",
+        ),
+        "voice_verifier_eval_period_s": (
+            "0.5",
+            "How often (seconds) to evaluate the audio window",
+        ),
+        "voice_verifier_debug": (
+            "false",
+            "Enable debug logging in the speaker verifier node",
         ),
         "person_follow_enable": (
             "true",

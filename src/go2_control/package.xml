@@ -16,6 +16,7 @@
   <depend>go2_interfaces</depend>
   <depend>unitree_api</depend>
   <depend>audio_utils_msgs</depend>
+  <depend>odas_ros_msgs</depend>
   <depend>example_interfaces</depend>
   <depend>geometry_msgs</depend>
   <depend>action_msgs</depend>
@@ -23,9 +24,13 @@
   <depend>std_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>nav_msgs</depend>
+  <depend>nav2_msgs</depend>
+  <depend>robot_localization</depend>
   <depend>cv_bridge</depend>
   <depend>visualization_msgs</depend>
   <depend>explore_lite_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>zed_msgs</depend>
 
   <!-- You had these as exec depends for runtime usage: -->
   <exec_depend>twist_mux</exec_depend>
@@ -40,6 +45,8 @@
   <exec_depend>nav2_simple_commander</exec_depend>
   <exec_depend>slam_toolbox</exec_depend>
   <exec_depend>rplidar_ros2</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
   <test_depend>python3-pytest</test_depend>
 
   <export>
