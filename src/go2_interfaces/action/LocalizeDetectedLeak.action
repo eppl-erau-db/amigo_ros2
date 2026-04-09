@@ -1,0 +1,15 @@
+# LocalizeDetectedLeak.action
+
+# Goal definition
+
+---
+# Result definition
+bool success
+string reason
+geometry_msgs/PoseStamped estimate_pose
+
+---
+# Feedback definition
+string stage
+geometry_msgs/PoseStamped current_estimate
+bool estimate_stable

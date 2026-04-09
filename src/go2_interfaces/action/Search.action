@@ -1,0 +1,19 @@
+# Search.action
+
+# Goal definition
+geometry_msgs/PoseStamped initial_pose
+string behavior_tree
+
+---
+# Result definition
+uint16 NONE=0
+uint16 error_code
+string error_msg
+string final_message
+
+---
+# Feedback definition
+# When searching for objects of interest, provide the object's class and its 3D location.
+string object_class
+geometry_msgs/PoseStamped object_location
+bool search_complete

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>go2_control</name>
+  <version>0.0.0</version>
+  <description>Nodes and services for go2 robot control</description>
+  <maintainer email="jcass358@gmail.com">brimo</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- We build with ament_cmake but also use Python. -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <!-- Dependencies for building/running your Python nodes -->
+  <depend>rclpy</depend>
+  <depend>ament_index_python</depend>
+  <depend>go2_interfaces</depend>
+  <depend>unitree_api</depend>
+  <depend>audio_utils_msgs</depend>
+  <depend>odas_ros_msgs</depend>
+  <depend>example_interfaces</depend>
+  <depend>geometry_msgs</depend>
+  <depend>action_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>nav2_msgs</depend>
+  <depend>robot_localization</depend>
+  <depend>cv_bridge</depend>
+  <depend>visualization_msgs</depend>
+  <depend>explore_lite_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>zed_msgs</depend>
+
+  <!-- You had these as exec depends for runtime usage: -->
+  <exec_depend>twist_mux</exec_depend>
+  <exec_depend>joy</exec_depend>
+  <exec_depend>teleop_twist_joy</exec_depend>
+  <exec_depend>navigation2</exec_depend>
+  <exec_depend>nav2_amcl</exec_depend>
+  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>nav2_map_server</exec_depend>
+  <exec_depend>nav2_util</exec_depend>
+  <exec_depend>tf-transformations</exec_depend>
+  <exec_depend>nav2_simple_commander</exec_depend>
+  <exec_depend>slam_toolbox</exec_depend>
+  <exec_depend>rplidar_ros2</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

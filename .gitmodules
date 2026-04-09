@@ -1,13 +1,28 @@
-[submodule "isaac_ros-dev/src/isaac_ros_nvblox"]
-	path = isaac_ros-dev/src/isaac_ros_nvblox
-	url = https://github.com/JCastel358/isaac_ros_nvblox.git
-[submodule "isaac_ros-dev/src/sllidar_ros2"]
-	path = isaac_ros-dev/src/sllidar_ros2
-	url = https://github.com/Slamtec/sllidar_ros2.git
-[submodule "isaac_ros-dev/src/isaac_ros_common"]
-	path = isaac_ros-dev/src/isaac_ros_common
-	url = https://github.com/JCastel358/isaac_ros_common.git
-	branch = release-3.2
-[submodule "isaac_ros-dev/src/zed-ros2-wrapper"]
-	path = isaac_ros-dev/src/zed-ros2-wrapper
+[submodule "src/robot_localization"]
+	path = src/robot_localization
+	url = https://github.com/JCastel358/robot_localization.git
+	branch = humble-devel
+[submodule "src/zed-ros2-wrapper"]
+	path = src/zed-ros2-wrapper
 	url = https://github.com/JCastel358/zed-ros2-wrapper.git
+[submodule "src/sllidar_ros2"]
+	path = src/sllidar_ros2
+	url = https://github.com/JCastel358/sllidar_ros2.git
+[submodule "src/audio_utils"]
+	path = src/audio_utils
+	url = https://github.com/JCastel358/audio_utils.git
+	branch = ros2
+[submodule "src/odas_ros"]
+	path = src/odas_ros
+	url = https://github.com/JCastel358/odas_ros.git
+	branch = ros2
+[submodule "src/unitree_ros2"]
+	path = src/unitree_ros2
+	url = https://github.com/JCastel358/unitree_ros2.git
+[submodule "src/m-explore-ros2"]
+	path = src/m-explore-ros2
+	url = https://github.com/JCastel358/m-explore-ros2.git
+	branch = main
+[submodule "src/zed-ros2-examples"]
+	path = src/zed-ros2-examples
+	url = https://github.com/JCastel358/zed-ros2-examples.git

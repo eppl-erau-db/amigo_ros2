@@ -1,0 +1,52 @@
+/**:
+  ros__parameters:
+    general:
+      pub_resolution: 'NATIVE'
+      pub_downscale_factor: 1.0
+
+    pos_tracking:
+      # Keep ZED odometry planar and avoid loop-closure odom resets that can
+      # destabilize the EKF when the robot is pitched far from nominal.
+      two_d_mode: true
+      # The ZED wrapper currently rejects an exact 0.0 here because of its
+      # parameter range descriptor, so keep this just above zero.
+      fixed_z_value: 0.01
+      area_memory: false
+      reset_odom_with_loop_closure: false
+
+    object_detection:
+      od_enabled: true
+      enable_tracking: true
+      detection_model: 'MULTI_CLASS_BOX_FAST'
+      max_range: 10.0
+      prediction_timeout: 1.0
+      allow_reduced_precision_inference: true
+
+      # When your custom follow-person model is ready, switch to:
+      # detection_model: 'CUSTOM_YOLOLIKE_BOX_OBJECTS'
+      # custom_onnx_file: '/absolute/path/to/follow_person.onnx'
+      # custom_onnx_input_size: 640
+      # custom_class_count: 1
+
+      class:
+        people:
+          enabled: true
+          confidence_threshold: 45.0
+        vehicle:
+          enabled: false
+          confidence_threshold: 60.0
+        bag:
+          enabled: false
+          confidence_threshold: 40.0
+        animal:
+          enabled: false
+          confidence_threshold: 40.0
+        electronics:
+          enabled: false
+          confidence_threshold: 45.0
+        fruit_vegetable:
+          enabled: false
+          confidence_threshold: 50.0
+        sport:
+          enabled: false
+          confidence_threshold: 30.0

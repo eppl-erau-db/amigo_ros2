@@ -1,0 +1,12 @@
+string task_mode
+string posture_mode
+string source
+string reason
+bool allow_preempt
+---
+bool accepted
+string previous_task_mode
+string previous_posture_mode
+string new_task_mode
+string new_posture_mode
+string message

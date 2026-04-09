@@ -1,0 +1,8 @@
+{
+    "files": ["main.py",
+              "qml/components/MapComponent.qml",
+              "qml/components/MiniMap.qml",
+              "MapViewer/helper.js",
+              "MapViewer/Main.qml",
+              "MapViewer/qmldir"]
+}

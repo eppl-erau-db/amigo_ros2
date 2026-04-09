@@ -1,0 +1,29 @@
+landmarks:
+  swag_station:
+    aruco_id: 19
+    required: true
+    visit_on_first_detection: true
+    standoff_distance_m: 1.0
+    enable_pose_correction: false
+    dwell_time_s: 5.0
+    action_hook: swag_station_dwell
+    # Optional: hardcode the marker pose in the map frame so pose correction
+    # and return-to-marker navigation use a trusted reference.
+    # The orientation format matches the ZED ArUco example: [roll, pitch, yaw].
+    # fixed_map_pose:
+    #   position: [0.0, 0.0, 0.0]
+    #   orientation: [0.0, 0.0, 0.0]
+
+  home_dock:
+    aruco_id: 43
+    required: true
+    visit_on_first_detection: false
+    standoff_distance_m: 1.0
+    action_hook: home_dock_service
+    enable_pose_correction: false
+    trigger_service_name: /doghouse/park
+    # fixed_map_pose:
+    #   position: [0.0, 0.0, 0.0]
+    #   orientation: [0.0, 0.0, 0.0]
+
+save_unconfigured_markers: true

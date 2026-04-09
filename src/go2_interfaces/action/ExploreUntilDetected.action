@@ -1,0 +1,12 @@
+# ExploreUntilDetected.action
+
+# Goal definition
+
+---
+# Result definition
+bool success
+string reason
+
+---
+# Feedback definition
+string stage
