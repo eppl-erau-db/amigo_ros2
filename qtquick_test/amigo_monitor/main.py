@@ -1,6 +1,10 @@
+import math
 import subprocess
 import sys
 import threading
+
+import cv2
+import numpy as np
 
 import rclpy
 import rclpy.time
@@ -11,7 +15,8 @@ from nav_msgs.msg import OccupancyGrid, Odometry
 from rclpy.action import ActionClient
 from rclpy.duration import Duration
 from rclpy.node import Node
-from sensor_msgs.msg import NavSatFix, LaserScan, Imu, PointCloud2, JointState
+from sensor_msgs.msg import NavSatFix, LaserScan, Imu, PointCloud2, JointState, Image, CameraInfo
+from std_msgs.msg import String
 
 from go2_interfaces.action import Search
 
@@ -25,8 +30,9 @@ from PySide6.QtCore import (
     Signal,
     Property,
 )
-from PySide6.QtGui import QGuiApplication
+from PySide6.QtGui import QGuiApplication, QImage
 from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtQuick import QQuickImageProvider
 
 
 # ── Topic definitions ──────────────────────────────────────────────────────────
@@ -43,6 +49,330 @@ MONITORED_TOPICS = [
 # A topic is ONLINE if a message arrived in the last N seconds, IDLE within M seconds, else OFFLINE
 ONLINE_THRESHOLD_SEC = 2.0
 IDLE_THRESHOLD_SEC   = 10.0
+
+
+# ── Camera image provider ──────────────────────────────────────────────────────
+class CameraImageProvider(QQuickImageProvider):
+    """Serves the latest annotated ZED camera frame to QML via image://soundvision/frame."""
+
+    def __init__(self):
+        super().__init__(QQuickImageProvider.ImageType.Image)
+        self._lock = threading.Lock()
+        self._image = QImage(640, 360, QImage.Format.Format_RGB888)
+        self._image.fill(0)  # black placeholder
+
+    def updateFrame(self, bgr_frame: np.ndarray):
+        """Called from the ROS callback thread; converts BGR OpenCV frame to QImage."""
+        rgb = cv2.cvtColor(bgr_frame, cv2.COLOR_BGR2RGB)
+        h, w, ch = rgb.shape
+        qimg = QImage(rgb.data, w, h, ch * w, QImage.Format.Format_RGB888).copy()
+        with self._lock:
+            self._image = qimg
+
+    def requestImage(self, id_str, size, requested_size):
+        with self._lock:
+            return self._image.copy(), self._image.size()
+
+
+# ── Voice command bridge ───────────────────────────────────────────────────────
+class VoiceCommandBridge(QObject):
+    """
+    Subscribes to /voice/command topic and emits signals when the voice command changes.
+    This allows the GUI to display the current voice command and update image subscriptions.
+    """
+
+    currentCommandChanged = Signal()
+
+    def __init__(self, node: Node):
+        super().__init__()
+        self._node = node
+        self._current_command = ""
+        self._lock = threading.Lock()
+
+        node.create_subscription(String, "/voice/command", self._voice_command_cb, 10)
+
+    @Property(str, notify=currentCommandChanged)
+    def currentCommand(self):
+        with self._lock:
+            return self._current_command
+
+    def _voice_command_cb(self, msg: String):
+        with self._lock:
+            command = str(msg.data).strip()
+            if command != self._current_command:
+                self._current_command = command
+                self.currentCommandChanged.emit()
+
+
+# ── Dynamic image source bridge ────────────────────────────────────────────────
+class DynamicImageSourceBridge(QObject):
+    """
+    Subscribes to both the search image and person follow annotated image topics.
+    Switches which image to display based on the current voice command.
+    - If voice command is "follow_me", display /person_follow_vision_node/annotated_image
+    - If voice command is "search", display /zed/zed_node/rgb/image_rect_color with sound annotations
+    - For any other voice command, display /zed/zed_node/rgb/image_rect_color without annotations
+    """
+
+    frameCountChanged = Signal()
+    imageSourceChanged = Signal()
+
+    _SEARCH_IMAGE_TOPIC = "/zed/zed_node/rgb/image_rect_color"
+    _FOLLOW_IMAGE_TOPIC = "/person_follow_vision_node/annotated_image"
+
+    def __init__(self, node: Node, image_provider: CameraImageProvider, voice_bridge: VoiceCommandBridge):
+        super().__init__()
+        self._node = node
+        self._provider = image_provider
+        self._voice_bridge = voice_bridge
+        self._lock = threading.Lock()
+        self._frame_count = 0
+        self._current_image_topic = self._SEARCH_IMAGE_TOPIC
+        self._current_command = ""
+        self._use_annotation = False  # Flag to control whether to show annotations
+
+        # Subscribe to both image topics
+        self._search_image_sub = node.create_subscription(Image, self._SEARCH_IMAGE_TOPIC, self._search_image_cb, 1)
+        self._follow_image_sub = node.create_subscription(Image, self._FOLLOW_IMAGE_TOPIC, self._follow_image_cb, 1)
+
+        # Connect voice command changes
+        voice_bridge.currentCommandChanged.connect(self._on_voice_command_changed)
+
+    @Property(int, notify=frameCountChanged)
+    def frameCount(self):
+        with self._lock:
+            return self._frame_count
+
+    @Property(str, notify=imageSourceChanged)
+    def currentImageSource(self):
+        with self._lock:
+            return self._current_image_topic
+
+    @Slot()
+    def _on_voice_command_changed(self):
+        """Called when voice command changes; update which image stream to use."""
+        command = self._voice_bridge.currentCommand
+        with self._lock:
+            if command != self._current_command:
+                self._current_command = command
+                # Switch image source and annotation mode based on command
+                if command == "follow_me":
+                    self._current_image_topic = self._FOLLOW_IMAGE_TOPIC
+                    self._use_annotation = True
+                elif command == "search":
+                    self._current_image_topic = self._SEARCH_IMAGE_TOPIC
+                    self._use_annotation = True
+                else:
+                    # For all other commands, show plain image without annotations
+                    self._current_image_topic = self._SEARCH_IMAGE_TOPIC
+                    self._use_annotation = False
+                self.imageSourceChanged.emit()
+
+    def _search_image_cb(self, msg: Image):
+        """Process search image (ZED RGB camera feed, can have annotations depending on mode)."""
+        if msg.encoding not in ("bgr8", "rgb8", "bgra8", "rgba8"):
+            return
+
+        arr = np.frombuffer(msg.data, dtype=np.uint8).reshape((msg.height, msg.width, -1))
+        if msg.encoding == "rgb8":
+            frame = cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
+        elif msg.encoding == "bgra8":
+            frame = cv2.cvtColor(arr, cv2.COLOR_BGRA2BGR)
+        elif msg.encoding == "rgba8":
+            frame = cv2.cvtColor(arr, cv2.COLOR_RGBA2BGR)
+        else:
+            frame = arr.copy()
+
+        # Only update if this is the active source
+        with self._lock:
+            if self._current_image_topic == self._SEARCH_IMAGE_TOPIC:
+                self._provider.updateFrame(frame)
+                self._frame_count += 1
+                self.frameCountChanged.emit()
+
+    def _follow_image_cb(self, msg: Image):
+        """Process follow image (annotated from person_follow_vision_node)."""
+        if msg.encoding not in ("bgr8", "rgb8", "bgra8", "rgba8"):
+            return
+
+        arr = np.frombuffer(msg.data, dtype=np.uint8).reshape((msg.height, msg.width, -1))
+        if msg.encoding == "rgb8":
+            frame = cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
+        elif msg.encoding == "bgra8":
+            frame = cv2.cvtColor(arr, cv2.COLOR_BGRA2BGR)
+        elif msg.encoding == "rgba8":
+            frame = cv2.cvtColor(arr, cv2.COLOR_RGBA2BGR)
+        else:
+            frame = arr.copy()
+
+        # Only update if this is the active source
+        with self._lock:
+            if self._current_image_topic == self._FOLLOW_IMAGE_TOPIC:
+                self._provider.updateFrame(frame)
+                self._frame_count += 1
+                self.frameCountChanged.emit()
+
+
+# ── Sound vision bridge ────────────────────────────────────────────────────────
+class SoundVisionBridge(QObject):
+    """
+    Subscribes to the ZED camera image and /sound_localizer/current_estimate.
+    Transforms the map-frame sound position into camera pixel coordinates via TF,
+    draws a distance-scaled OpenCV circle marker, and signals QML to refresh.
+    Only applies annotations when the voice command is "search".
+    """
+
+    frameCountChanged = Signal()
+
+    _IMAGE_TOPIC    = "/zed/zed_node/rgb/image_rect_color"
+    _CAMINFO_TOPIC  = "/zed/zed_node/rgb/camera_info"
+    _ESTIMATE_TOPIC = "/sound_localizer/current_estimate"
+    _ESTIMATE_STALE_S = 5.0
+
+    def __init__(self, node: Node, image_provider: CameraImageProvider, voice_bridge: VoiceCommandBridge):
+        super().__init__()
+        self._node     = node
+        self._provider = image_provider
+        self._voice_bridge = voice_bridge
+        self._lock     = threading.Lock()
+        self._frame_count = 0
+
+        # Camera intrinsics (populated from camera_info)
+        self._fx = self._fy = self._cx = self._cy = None
+        self._camera_frame: str | None = None
+
+        # Latest sound estimate in map frame
+        self._estimate_x: float | None = None
+        self._estimate_y: float | None = None
+        self._estimate_stamp = None
+
+        self._tf_buf      = tf2_ros.Buffer(cache_time=Duration(seconds=10.0))
+        self._tf_listener = tf2_ros.TransformListener(self._tf_buf, node)
+
+        node.create_subscription(CameraInfo, self._CAMINFO_TOPIC, self._caminfo_cb, 1)
+        node.create_subscription(Image,      self._IMAGE_TOPIC,   self._image_cb,   1)
+        node.create_subscription(PoseStamped, self._ESTIMATE_TOPIC, self._estimate_cb, 10)
+
+    @Property(int, notify=frameCountChanged)
+    def frameCount(self):
+        return self._frame_count
+
+    def _caminfo_cb(self, msg: CameraInfo):
+        with self._lock:
+            self._fx = msg.k[0]
+            self._fy = msg.k[4]
+            self._cx = msg.k[2]
+            self._cy = msg.k[5]
+            self._camera_frame = msg.header.frame_id
+
+    def _estimate_cb(self, msg: PoseStamped):
+        with self._lock:
+            self._estimate_x = msg.pose.position.x
+            self._estimate_y = msg.pose.position.y
+            self._estimate_stamp = self._node.get_clock().now()
+
+    def _image_cb(self, msg: Image):
+        if msg.encoding not in ("bgr8", "rgb8", "bgra8", "rgba8"):
+            return
+
+        arr = np.frombuffer(msg.data, dtype=np.uint8).reshape((msg.height, msg.width, -1))
+        if msg.encoding == "rgb8":
+            frame = cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
+        elif msg.encoding == "bgra8":
+            frame = cv2.cvtColor(arr, cv2.COLOR_BGRA2BGR)
+        elif msg.encoding == "rgba8":
+            frame = cv2.cvtColor(arr, cv2.COLOR_RGBA2BGR)
+        else:
+            frame = arr.copy()
+
+        self._annotate_and_publish(frame)
+
+    def _annotate_and_publish(self, frame: np.ndarray):
+        # Only apply annotations if the voice command is "search"
+        if self._voice_bridge.currentCommand != "search":
+            # No annotation mode - just display the plain image
+            self._provider.updateFrame(frame)
+            self._frame_count += 1
+            self.frameCountChanged.emit()
+            return
+
+        with self._lock:
+            fx, fy, cx, cy   = self._fx, self._fy, self._cx, self._cy
+            cam_frame         = self._camera_frame
+            est_x, est_y      = self._estimate_x, self._estimate_y
+            est_stamp         = self._estimate_stamp
+
+        now = self._node.get_clock().now()
+        have_estimate = (
+            est_x is not None
+            and est_stamp is not None
+            and (now - est_stamp).nanoseconds / 1e9 < self._ESTIMATE_STALE_S
+        )
+        have_intrinsics = fx is not None and cam_frame is not None
+
+        annotated = False
+        if have_estimate and have_intrinsics:
+            try:
+                tf_stamped = self._tf_buf.lookup_transform(
+                    cam_frame, "map", rclpy.time.Time())
+
+                t  = tf_stamped.transform
+                tx = t.translation.x
+                ty = t.translation.y
+                tz = t.translation.z
+                qx, qy, qz, qw = t.rotation.x, t.rotation.y, t.rotation.z, t.rotation.w
+
+                # Quaternion → rotation matrix
+                R = np.array([
+                    [1 - 2*(qy*qy + qz*qz), 2*(qx*qy - qz*qw), 2*(qx*qz + qy*qw)],
+                    [2*(qx*qy + qz*qw),     1 - 2*(qx*qx + qz*qz), 2*(qy*qz - qx*qw)],
+                    [2*(qx*qz - qy*qw),     2*(qy*qz + qx*qw), 1 - 2*(qx*qx + qy*qy)],
+                ])
+
+                p_map = np.array([est_x, est_y, 0.0])
+                p_cam = R @ p_map + np.array([tx, ty, tz])
+                X, Y, Z = p_cam
+
+                if Z > 0.1:
+                    u = int(fx * X / Z + cx)
+                    v = int(fy * Y / Z + cy)
+                    dist_m  = math.sqrt(X*X + Y*Y + Z*Z)
+                    yaw_deg = math.degrees(math.atan2(X, Z))
+                    radius  = max(15, int(fx * 0.25 / Z))
+
+                    color = (0, 200, 255)
+                    cv2.circle(frame, (u, v), radius, color, 3)
+                    cv2.circle(frame, (u, v), 4, color, -1)
+                    label = f"Sound  {dist_m:.1f}m  {yaw_deg:+.0f}deg"
+                    text_y = max(20, v - radius - 8)
+                    cv2.putText(
+                        frame, label,
+                        (max(0, u - radius), text_y),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
+                    cv2.putText(
+                        frame, "SOUND LOCALIZED",
+                        (20, 32),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.8, color, 2)
+                    annotated = True
+                else:
+                    cv2.putText(
+                        frame, "SOUND BEHIND CAMERA",
+                        (20, 32),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (100, 100, 255), 2)
+                    annotated = True
+
+            except Exception:
+                pass
+
+        if not annotated:
+            cv2.putText(
+                frame, "NO SOUND ESTIMATE",
+                (20, 32),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (60, 60, 60), 2)
+
+        self._provider.updateFrame(frame)
+        self._frame_count += 1
+        self.frameCountChanged.emit()
 
 
 # ── Health model ───────────────────────────────────────────────────────────────
@@ -400,13 +730,21 @@ def main():
     app    = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
 
-    health_model    = TopicHealthModel(node)
-    anomaly_bridge  = AnomalyBridge()
-    command_bridge  = CommandBridge(node)
+    health_model        = TopicHealthModel(node)
+    anomaly_bridge      = AnomalyBridge()
+    command_bridge      = CommandBridge(node)
+    image_provider      = CameraImageProvider()
+    voice_bridge        = VoiceCommandBridge(node)
+    dynamic_image_bridge = DynamicImageSourceBridge(node, image_provider, voice_bridge)
+    sound_vision_bridge = SoundVisionBridge(node, image_provider, voice_bridge)
 
-    engine.rootContext().setContextProperty("healthModel",    health_model)
-    engine.rootContext().setContextProperty("anomalyBridge",  anomaly_bridge)
-    engine.rootContext().setContextProperty("commandBridge",  command_bridge)
+    engine.addImageProvider("soundvision", image_provider)
+    engine.rootContext().setContextProperty("healthModel",        health_model)
+    engine.rootContext().setContextProperty("anomalyBridge",      anomaly_bridge)
+    engine.rootContext().setContextProperty("commandBridge",      command_bridge)
+    engine.rootContext().setContextProperty("soundVisionBridge",  sound_vision_bridge)
+    engine.rootContext().setContextProperty("voiceCommandBridge", voice_bridge)
+    engine.rootContext().setContextProperty("dynamicImageBridge", dynamic_image_bridge)
 
     # Refresh health status every second
     health_timer = QTimer()
