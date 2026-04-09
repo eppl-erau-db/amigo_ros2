@@ -7,10 +7,13 @@ ApplicationWindow {
     title: "AMIGO Monitor"
     visible: true
     width: 1100
-    height: 920
+    height: 1280
     minimumWidth: 860
     minimumHeight: 700
     color: "#0f0f12"
+
+    property int svFrameCount: 0
+    Binding { target: appWindow; property: "svFrameCount"; value: dynamicImageBridge.frameCount } // qmllint disable unqualified
 
     // ── Shared helpers ─────────────────────────────────────────────────────────
     function statusColor(status) {
@@ -138,7 +141,65 @@ ApplicationWindow {
             color: "#22222a"
         }
 
-        // ── Two-panel main content ─────────────────────────────────────────────
+        // ── Voice Command Display ──────────────────────────────────────────────
+        Rectangle {
+            Layout.fillWidth: true
+            height: 50
+            radius: 8
+            color: "#18181c"
+            border.width: 1
+            border.color: "#2e2e36"
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.margins: 12
+                spacing: 10
+
+                Text {
+                    text: "🎤"
+                    font.pointSize: 14
+                    color: "#0088ff"
+                }
+
+                Text {
+                    text: "Voice Command:"
+                    font.pointSize: 11
+                    color: "#555560"
+                    font.bold: true
+                }
+
+                Text {
+                    text: voiceCommandBridge.currentCommand || "—"  // qmllint disable unqualified
+                    font.pointSize: 12
+                    font.family: "monospace"
+                    color: {
+                        const cmd = voiceCommandBridge.currentCommand  // qmllint disable unqualified
+                        if (cmd === "follow_me") return "#00ff66"
+                        if (cmd === "search") return "#ff6633"
+                        if (cmd === "stand_up") return "#0088ff"
+                        if (cmd === "lay_down") return "#cc88ff"
+                        return "#aaaaaa"
+                    }
+                    font.bold: true
+                }
+
+                Item { Layout.fillWidth: true }
+
+                Text {
+                    text: "Image Source: " + (dynamicImageBridge.currentImageSource.includes("annotated") ? "Person Follow" : "Search")  // qmllint disable unqualified
+                    font.pointSize: 10
+                    color: "#888890"
+                    font.family: "monospace"
+                }
+            }
+        }
+
+        // ── Divider ────────────────────────────────────────────────────────────
+        Rectangle {
+            Layout.fillWidth: true
+            height: 1
+            color: "#22222a"
+        }
         RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -756,6 +817,171 @@ ApplicationWindow {
                                     color: "#44444e"
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // ── SOUND VISION ──────────────────────────────────────────────────────
+        Rectangle {
+            id: soundVisionPanel
+            Layout.fillWidth: true
+            Layout.preferredHeight: 320
+            radius: 14
+            color: "#18181c"
+            border.width: 1
+            border.color: "#2e2e36"
+
+            // Subtle cyan top tint
+            Rectangle {
+                width: parent.width; height: 60
+                radius: parent.radius
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "#1000ccff" }
+                    GradientStop { position: 1.0; color: "#00000000" }
+                }
+            }
+
+            ColumnLayout {
+                anchors.fill: parent
+                anchors.margins: 18
+                spacing: 10
+
+                // Header
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 10
+                    Text { text: "◎"; font.pointSize: 13; color: "#00ccff" }
+                    Text {
+                        text: "Sound Vision"
+                        font.bold: true
+                        font.pointSize: 15
+                        color: "#ffffff"
+                    }
+                    Rectangle {
+                        Layout.fillWidth: true
+                        height: 1
+                        color: "#2a2a32"
+                        Layout.leftMargin: 4
+                    }
+                    Text {
+                        text: "/sound_localizer/current_estimate"
+                        font.pointSize: 8
+                        color: "#2a2a38"
+                        font.family: "monospace"
+                    }
+                }
+
+                // Camera feed + side info
+                RowLayout {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    spacing: 14
+
+                    // Camera image box (16:9)
+                    Rectangle {
+                        Layout.fillHeight: true
+                        Layout.preferredWidth: Math.round(height * 16.0 / 9.0)
+                        color: "#080810"
+                        radius: 6
+                        border.width: 1
+                        border.color: "#1e1e28"
+                        clip: true
+
+                        Image {
+                            anchors.fill: parent
+                            source: "image://soundvision/frame?" + appWindow.svFrameCount
+                            cache: false
+                            fillMode: Image.PreserveAspectFit
+                            smooth: true
+                        }
+
+                        // "No feed" overlay when frame count is 0
+                        Text {
+                            visible: appWindow.svFrameCount === 0
+                            anchors.centerIn: parent
+                            text: "Waiting for camera…"
+                            font.pointSize: 10
+                            color: "#333340"
+                        }
+                    }
+
+                    // Side info panel
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        spacing: 10
+
+                        // Topic info
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            spacing: 4
+                            Text {
+                                text: "Image source"
+                                font.pointSize: 9
+                                color: "#444450"
+                            }
+                            Text {
+                                text: dynamicImageBridge.currentImageSource  // qmllint disable unqualified
+                                font.pointSize: 8
+                                font.family: "monospace"
+                                color: "#2a2a38"
+                                Layout.fillWidth: true
+                                elide: Text.ElideRight
+                            }
+                        }
+
+                        Rectangle {
+                            Layout.fillWidth: true
+                            height: 1
+                            color: "#1e1e26"
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            spacing: 4
+                            Text {
+                                text: "Annotation"
+                                font.pointSize: 9
+                                color: "#444450"
+                            }
+                            Text {
+                                text: "Distance-scaled circle projected from map frame via TF"
+                                font.pointSize: 8
+                                color: "#2a2a38"
+                                Layout.fillWidth: true
+                                wrapMode: Text.Wrap
+                            }
+                        }
+
+                        Item { Layout.fillHeight: true }
+
+                        // Frame counter / live indicator
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 6
+
+                            Rectangle {
+                                width: 8; height: 8; radius: 4
+                                color: appWindow.svFrameCount > 0 ? "#00ccff" : "#333340"
+
+                                SequentialAnimation on opacity {
+                                    running: appWindow.svFrameCount > 0
+                                    loops: Animation.Infinite
+                                    NumberAnimation { from: 1.0; to: 0.2; duration: 900 }
+                                    NumberAnimation { from: 0.2; to: 1.0; duration: 900 }
+                                }
+                            }
+
+                            Text {
+                                text: appWindow.svFrameCount > 0
+                                    ? "Live  —  frame " + appWindow.svFrameCount
+                                    : "Offline"
+                                font.pointSize: 9
+                                font.bold: true
+                                color: appWindow.svFrameCount > 0 ? "#00ccff" : "#333340"
                             }
                         }
                     }
