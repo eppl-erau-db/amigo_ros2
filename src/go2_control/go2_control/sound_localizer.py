@@ -196,6 +196,7 @@ class SoundLocalizer(Node):
         self._estimate_history: Deque[EstimateSample] = deque(maxlen=self.estimate_history_size)
         self._latest_estimate: Optional[Tuple[float, float]] = None
         self._estimate_stable = False
+        self._estimate_locked = False
         self._last_pair: Optional[Tuple[Measurement, Measurement]] = None
 
         self._warn_times_ns: dict[str, int] = {}
@@ -282,12 +283,26 @@ class SoundLocalizer(Node):
         self._estimate_history.clear()
         self._latest_estimate = None
         self._estimate_stable = False
+        self._estimate_locked = False
         self._last_pair = None
         self._publish_valid(False)
         self._publish_stable(False)
         self._publish_empty_arrays()
         self._clear_markers()
         self.get_logger().info(f"Reset sound-localization session: {reason}")
+
+    def _lock_stable_estimate(self) -> None:
+        if self._estimate_locked or self._latest_estimate is None:
+            return
+
+        self._estimate_locked = True
+        self._estimate_stable = True
+        self._publish_stable(True)
+        self.get_logger().info(
+            "Locked stable sound estimate after "
+            f"{self.stable_required_consecutive_estimates} consecutive matching estimates. "
+            "Stopping new sound measurements."
+        )
 
     def _publish_markers(self, robot_pose: RobotPose2D) -> None:
         if not self.publish_markers or self._latest_estimate is None:
@@ -311,7 +326,7 @@ class SoundLocalizer(Node):
         estimate_marker.color.r = 1.0
         estimate_marker.color.g = 0.35
         estimate_marker.color.b = 0.10
-        estimate_marker.color.a = 0.90
+        estimate_marker.color.a = 1.0 if self._estimate_locked else 0.55
         markers.markers.append(estimate_marker)
 
         robot_path_marker = Marker()
@@ -603,6 +618,11 @@ class SoundLocalizer(Node):
         return True, "stable"
 
     def _update_stability_state(self) -> str:
+        if self._estimate_locked:
+            self._estimate_stable = True
+            self._publish_stable(True)
+            return "locked"
+
         is_stable, reason = self._evaluate_stability()
         if is_stable != self._estimate_stable:
             if is_stable:
@@ -683,12 +703,16 @@ class SoundLocalizer(Node):
     def _timer_cb(self) -> None:
         robot_pose = self._lookup_robot_pose()
         if robot_pose is not None and self._latest_estimate is not None:
-            self._update_stability_state()
+            stability_reason = self._update_stability_state()
+            if stability_reason == "stable":
+                self._lock_stable_estimate()
             self._publish_outputs(robot_pose)
 
         if not self._leak_detected:
             return
         if robot_pose is None:
+            return
+        if self._estimate_locked:
             return
 
         current_measurement = self._build_measurement(robot_pose)
@@ -740,6 +764,8 @@ class SoundLocalizer(Node):
             )
         )
         stability_reason = self._update_stability_state()
+        if stability_reason == "stable":
+            self._lock_stable_estimate()
         self._publish_outputs(robot_pose)
 
         est_x, est_y = estimate_xy
