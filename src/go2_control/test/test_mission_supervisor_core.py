@@ -37,6 +37,20 @@ def test_follow_request_while_laying_is_rejected() -> None:
     assert decision.state == state
 
 
+def test_stay_request_while_following_returns_idle() -> None:
+    state = SupervisorState(
+        task_mode=TaskModes.FOLLOW,
+        posture_mode=PostureModes.STANDING,
+        motion_enabled=True,
+    )
+    decision = request_voice_command(state, "stay")
+
+    assert decision.accepted is True
+    assert decision.state.task_mode == TaskModes.IDLE
+    assert decision.state.motion_enabled is False
+    assert SupervisorOps.PUBLISH_ZERO_MOTION in decision.operations
+
+
 def test_stand_up_request_only_allowed_while_laying() -> None:
     standing_reject = request_voice_command(SupervisorState(), "stand_up")
     laying_accept = request_voice_command(

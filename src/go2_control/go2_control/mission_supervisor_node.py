@@ -28,6 +28,7 @@ from go2_control.mission_supervisor_core import (
     complete_posture_transition,
     complete_search,
     enter_fault,
+    normalize_voice_command,
     request_mode_change,
     request_voice_command,
     select_motion_routing,
@@ -264,7 +265,8 @@ class MissionSupervisorNode(Node):
         self.follow_cmd_pub.publish(msg)
 
     def _cooldown_applies(self, command: str) -> bool:
-        return command not in {"stop_follow", "lay_down", "stand_up"}
+        normalized = normalize_voice_command(command)
+        return normalized not in {"stop_follow", "lay_down", "stand_up"}
 
     def _voice_command_cb(self, msg: String) -> None:
         command = str(msg.data).strip()
@@ -374,6 +376,11 @@ class MissionSupervisorNode(Node):
             self._execute_operation(operation)
 
     def _execute_operation(self, operation: str) -> None:
+        # Each operation constant is defined in SupervisorOps and declared in
+        # behavior_registry.BehaviorDescriptor.operations.  When adding a new
+        # behavior, add its operation constant to SupervisorOps, register it in
+        # BUILTIN_BEHAVIORS, and add the handler branch here.
+        # See ADDING_BEHAVIORS.md for the full checklist.
         if operation == SupervisorOps.START_SEARCH:
             self._start_search()
             return

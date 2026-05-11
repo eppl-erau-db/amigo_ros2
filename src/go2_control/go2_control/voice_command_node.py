@@ -83,9 +83,14 @@ class VoiceCommandNode(Node):
             self.declare_parameter("stop_follow_phrase", "stop following").value,
             self.declare_parameter(
                 "stop_follow_phrases",
-                ["stop follow me", "cancel follow", "stop tracking me"],
+                ["stop follow me", "cancel follow", "stop tracking me", "stay"],
             ).value,
             fallback="stop following",
+        )
+        self._wake_free_stop_follow_phrases_norm = self._build_phrase_list(
+            self.declare_parameter("wake_free_stop_follow_phrase", "stay").value,
+            self.declare_parameter("wake_free_stop_follow_phrases", [""]).value,
+            fallback="stay",
         )
 
         self._enabled_command_groups, unknown_groups = self._parse_command_mode(self.command_mode)
@@ -244,6 +249,15 @@ class VoiceCommandNode(Node):
             return
         self._last_transcript_norm = transcript
         self._last_transcript_time = now
+
+        if "follow" in self._enabled_command_groups:
+            matched_phrase = self._match_exact_phrase(
+                transcript,
+                self._wake_free_stop_follow_phrases_norm,
+            )
+            if matched_phrase is not None:
+                self._publish_command("stop_follow", transcript, matched_phrase)
+                return
 
         if "sport_test" in self._enabled_command_groups:
             matched_phrase = self._match_exact_phrase(transcript, self._shake_hand_phrases_norm)

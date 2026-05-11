@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, replace
 
+from go2_control.behavior_registry import BUILTIN_BEHAVIORS
+
 
 class TaskModes:
     IDLE = "IDLE"
@@ -96,7 +98,7 @@ def normalize_voice_command(raw_command: str | None) -> str:
         return ""
     if token in {"follow", "follow_me", "person_follow"}:
         return VoiceCommands.FOLLOW
-    if token in {"stop_follow", "stop"}:
+    if token in {"stop_follow", "stop", "stay"}:
         return VoiceCommands.STOP_FOLLOW
     if token in {"search", "look_for_a_leak"}:
         return VoiceCommands.SEARCH
@@ -523,3 +525,30 @@ def select_motion_routing(
         return MotionRouting(follow_bridge_source="follow")
 
     return MotionRouting()
+
+
+# ---------------------------------------------------------------------------
+# Registry-aware helpers
+# ---------------------------------------------------------------------------
+
+KNOWN_TASK_MODES: set[str] = {TaskModes.IDLE} | {
+    b.task_mode for b in BUILTIN_BEHAVIORS if b.task_mode is not None
+}
+
+
+def normalize_voice_command_from_registry(raw_command: str | None) -> str:
+    """Normalize a raw voice command using the behavior registry.
+
+    Falls back to the legacy ``normalize_voice_command`` for any command
+    not found in the registry.  This allows new behaviors to be recognized
+    purely by adding a ``BehaviorDescriptor``.
+    """
+    if raw_command is None:
+        return ""
+    token = str(raw_command).strip().lower()
+    if not token:
+        return ""
+    for behavior in BUILTIN_BEHAVIORS:
+        if token == behavior.voice_command or token == behavior.name:
+            return behavior.voice_command
+    return normalize_voice_command(raw_command)

@@ -178,7 +178,7 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
         ),
         "voice_stop_follow_phrase": (
             "stop following",
-            "Phrase that disables person-follow mode",
+            'Primary phrase that disables person-follow mode; "stay" is also accepted',
         ),
         "voice_stand_up_phrase": (
             "stand up",
