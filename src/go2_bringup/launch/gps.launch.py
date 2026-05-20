@@ -139,35 +139,6 @@ def generate_launch_description():
         condition=IfCondition(initial_pose),
     )
 
-    zed_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory("zed_wrapper"),
-                         "launch", "zed_camera.launch.py")
-        ),
-        launch_arguments={
-            "camera_name":          "zed",
-            "camera_model":         "zedxm",
-            "base_frame":      "base_link",
-            "odometry_frame":  "odom",
-            # ---------- IMU / mag ----------
-            "publish_tf":       "false", 
-            "publish_map_tf":       "false", 
-            "publish_imu_tf":       "false",   # EKF will handle TFs
-            "pub_sensors_tf":       "false",
-            "imu_fusion":           "true",    # <─ gyroscope+accel+mag
-            "sensors_fusion":       "true",
-            # Optional: raise sensor rate
-            "sensors_pub_rate":     "200",     # Hz
-        }.items()
-    )
-
-    # Relay IMU so *anything* still listening on /imu/data keeps working
-    imu_relay = Node(
-        package="topic_tools", executable="relay",
-        name="zed_imu_to_imu_data",
-        arguments=["/zed/zed_node/imu/data", "/imu/data"],
-        output="screen"
-    )
     #
     # ──────────────── Robot_localization (dual EKF + NavSat) ────────────────
     # Commented out 11/14 to test Dual EKF + Navsat separately
@@ -231,8 +202,6 @@ def generate_launch_description():
     ld.add_action(start_go2_lidar)
     ld.add_action(start_teleop_node)
     # ld.add_action(start_teleop_node)
-    # ld.add_action(zed_launch)
-    # ld.add_action(imu_relay)
     # Optional helpers
     ld.add_action(rviz_local_node)
     # ld.add_action(set_initial_pose)

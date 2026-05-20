@@ -102,7 +102,7 @@ BUILTIN_BEHAVIORS: tuple[BehaviorDescriptor, ...] = (
         deactivation_ops=("publish_zero_motion",),
         motion_source="follow",
         cooldown_exempt=False,
-        description="Person-following mode using ZED camera detection.",
+        description="Person-following mode using the configured detector pipeline.",
     ),
     BehaviorDescriptor(
         name="stop_follow",

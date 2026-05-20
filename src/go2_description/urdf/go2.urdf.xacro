@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="go2" xmlns:xacro="http://www.ros.org/wiki/xacro">
   
-  <xacro:arg name="camera_name"   default="zed"/>
-  <xacro:arg name="camera_model"  default="zedxm"/>   <!-- zed, zed2i, zedm, zedx, zedxm … -->
-  <xacro:arg name="use_zed_localization" default="false"/>
+  <xacro:arg name="camera_name" default="camera"/>
+  <xacro:arg name="camera_model" default="d455"/>
+  <xacro:arg name="camera_xyz" default="0.350 0.000 0.200"/>
+  <xacro:arg name="camera_rpy" default="0.000 0.000 0.000"/>
   
   
   <link
@@ -1384,33 +1385,89 @@
       xyz="0 0 0" />
   </joint> -->
 
-  <xacro:include
-          filename="$(find zed_wrapper)/urdf/zed_macro.urdf.xacro"/>
-
-  <xacro:zed_camera name="zed"
-                    model="zedxm">
-
-    <!-- block required by the macro, but we don’t need it -->
-    <gnss_origin/>
-  </xacro:zed_camera>
-
-  <!-- ZED publishes TF -> base_link (we don't use this) -->
-  <xacro:if value="$(arg use_zed_localization)">
-    <joint name="zed_mount" type="fixed">
-      <parent link="zed_camera_link"/>
-      <child  link="base_link"/>
-      <origin xyz="0.32 0.0 0.0725" rpy="0 0 0"/>
+  <xacro:macro name="realsense_stream_frames" params="name stream parent xyz">
+    <link name="${name}_${stream}_frame"/>
+    <joint name="${name}_${stream}_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${name}_${stream}_frame"/>
+      <origin xyz="${xyz}" rpy="0 0 0"/>
     </joint>
-  </xacro:if>
+    <link name="${name}_${stream}_optical_frame"/>
+    <joint name="${name}_${stream}_optical_joint" type="fixed">
+      <parent link="${name}_${stream}_frame"/>
+      <child link="${name}_${stream}_optical_frame"/>
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679"/>
+    </joint>
+  </xacro:macro>
 
-  <!-- EKF publishes odom, camera is child of base_link -->
-  <xacro:unless value="$(arg use_zed_localization)">
-    <joint name="zed_mount" type="fixed">
+  <xacro:macro name="realsense_imu_frames" params="name parent">
+    <link name="${name}_accel_frame"/>
+    <joint name="${name}_accel_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${name}_accel_frame"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    <link name="${name}_accel_optical_frame"/>
+    <joint name="${name}_accel_optical_joint" type="fixed">
+      <parent link="${name}_accel_frame"/>
+      <child link="${name}_accel_optical_frame"/>
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679"/>
+    </joint>
+    <link name="${name}_gyro_frame"/>
+    <joint name="${name}_gyro_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${name}_gyro_frame"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    <link name="${name}_gyro_optical_frame"/>
+    <joint name="${name}_gyro_optical_joint" type="fixed">
+      <parent link="${name}_gyro_frame"/>
+      <child link="${name}_gyro_optical_frame"/>
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679"/>
+    </joint>
+    <link name="${name}_imu_optical_frame"/>
+    <joint name="${name}_imu_optical_joint" type="fixed">
+      <parent link="${name}_gyro_optical_frame"/>
+      <child link="${name}_imu_optical_frame"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="realsense_camera_frames" params="name xyz rpy">
+    <link name="${name}_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.090 0.025 0.025"/>
+        </geometry>
+        <material name="camera_color">
+          <color rgba="0.1 0.1 0.1 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.090 0.025 0.025"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${name}_joint" type="fixed">
       <parent link="base_link"/>
-      <child  link="zed_camera_link"/>
-      <origin xyz="0.32 0.0 0.0725" rpy="0 0 0"/>
+      <child link="${name}_link"/>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
     </joint>
-  </xacro:unless>
+    <xacro:realsense_stream_frames name="${name}" stream="depth" parent="${name}_link" xyz="0 0 0"/>
+    <xacro:realsense_stream_frames name="${name}" stream="color" parent="${name}_link" xyz="0 0 0"/>
+    <!-- D455 IR imagers: infra1 is left, infra2 is right. Values are meters. -->
+    <xacro:realsense_stream_frames name="${name}" stream="infra1" parent="${name}_link" xyz="0.36 0.05 0.20"/>
+    <xacro:realsense_stream_frames name="${name}" stream="infra2" parent="${name}_link" xyz="0.36 -0.05 0.20"/>
+    <xacro:realsense_imu_frames name="${name}" parent="${name}_link"/>
+  </xacro:macro>
+
+  <xacro:realsense_camera_frames
+    name="$(arg camera_name)"
+    xyz="$(arg camera_xyz)"
+    rpy="$(arg camera_rpy)"/>
 
 
 </robot>

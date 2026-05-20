@@ -10,7 +10,7 @@ ekf_filter_node:
         transform_timeout: 0.0
         print_diagnostics: false
         debug: false
-        debug_out_file: /path/to/debug/file.txt
+        debug_out_file: /tmp/go2_local_odom_ekf_debug.txt
         publish_tf: true
         publish_acceleration: false
         reset_on_time_jump: false
@@ -39,26 +39,29 @@ ekf_filter_node:
         odom0_pose_rejection_threshold: 5.0
         odom0_twist_rejection_threshold: 5.0
 
-        odom1: /zed/zed_node/odom
-        odom1_config: [true, true, false,
-                       false, false, true,
-                       true,  true,  false,
-                       false, false, true,
-                       false, false, false]
-        odom1_queue_size: 10
-        odom1_nodelay: false
-        odom1_differential: false
-        odom1_relative: true
-        odom1_pose_rejection_threshold: 5.0
-        odom1_twist_rejection_threshold: 5.0
+        # Keep the EKF single-source by default for 2D slam_toolbox mapping.
+        # Fusing VSLAM absolute pose with Unitree/LiDAR odometry can make the
+        # odom->base_footprint estimate jump when the two sources disagree.
+        # odom1: /vslam/odom
+        # odom1_config: [true, true, false,
+        #                false, false, true,
+        #                true,  true,  false,
+        #                false, false, true,
+        #                false, false, false]
+        # odom1_queue_size: 10
+        # odom1_nodelay: false
+        # odom1_differential: false
+        # odom1_relative: true
+        # odom1_pose_rejection_threshold: 5.0
+        # odom1_twist_rejection_threshold: 5.0
 
 
         imu0: imu/data_raw
         imu0_config: [false, false, false,
-                        true,  true,  true,
-                        false, false, false,
-                        true,  true,  true,
-                        true,  true,  true]
+                       false, false, false,
+                       false, false, false,
+                       false, false, true,
+                       false, false, false]
         imu0_nodelay: false
         imu0_differential: false
         imu0_relative: false
@@ -66,20 +69,10 @@ ekf_filter_node:
         imu0_pose_rejection_threshold: 0.8                 # Note the difference in parameter names
         imu0_twist_rejection_threshold: 0.8                #
         imu0_linear_acceleration_rejection_threshold: 0.8  #
-        imu0_remove_gravitational_acceleration: true
+        imu0_remove_gravitational_acceleration: false
 
-        imu1: /zed/zed_node/imu/data
-        imu1_queue_size: 50
-        imu1_nodelay: false
-        imu1_differential: false
-        imu1_relative: false
-        imu1_remove_gravitational_acceleration: false   # ZED already handles this
-        imu1_pose_rejection_threshold: 0.8
-        imu1_twist_rejection_threshold: 0.8
-        # # x y z  r   p   yaw  vx vy vz  vr  vp  wy   ax ay az
-        imu1_config: [false,false,false,  true,true,false,  false,false,false,  true,true,true,  false,false,false]
 
-        use_control: true
+        use_control: false
         stamped_control: false
         control_timeout: 0.2
         control_config: [true, true, false, false, false, true]

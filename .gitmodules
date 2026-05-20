@@ -2,9 +2,6 @@
 	path = src/robot_localization
 	url = https://github.com/JCastel358/robot_localization.git
 	branch = humble-devel
-[submodule "src/zed-ros2-wrapper"]
-	path = src/zed-ros2-wrapper
-	url = https://github.com/JCastel358/zed-ros2-wrapper.git
 [submodule "src/sllidar_ros2"]
 	path = src/sllidar_ros2
 	url = https://github.com/JCastel358/sllidar_ros2.git
@@ -23,6 +20,6 @@
 	path = src/m-explore-ros2
 	url = https://github.com/JCastel358/m-explore-ros2.git
 	branch = main
-[submodule "src/zed-ros2-examples"]
-	path = src/zed-ros2-examples
-	url = https://github.com/JCastel358/zed-ros2-examples.git
+[submodule "sdk/unitree_sdk2"]
+	path = sdk/unitree_sdk2
+	url = https://github.com/unitreerobotics/unitree_sdk2.git

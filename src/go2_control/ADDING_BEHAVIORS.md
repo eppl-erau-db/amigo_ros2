@@ -322,11 +322,10 @@ capabilities:
   `go2_driver` package for motion mode and gait changes.
 
 ### Camera / Perception
-- **ZED camera:** Launched in `mapping_base.launch.py`.  Provides RGB,
-  depth, and object detection.  Person detection uses the ZED body tracking
-  SDK (configured via `zed_follow_params_path`).
-- **Custom detection:** Subscribe to ZED image/depth topics and run your
-  own detector node.
+- **RealSense camera:** Launched in `mapping_base.launch.py`. Provides color,
+  depth, stereo infrared, and point cloud topics.
+- **Custom detection:** Subscribe to the RealSense image/depth topics and run
+  your own detector node when person-follow perception is added.
 
 ### Audio / Sound
 - **ODAS microphone array:** Provides direction-of-arrival (DoA) and

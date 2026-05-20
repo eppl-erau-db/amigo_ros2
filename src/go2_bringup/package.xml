@@ -17,9 +17,16 @@
   <exec_depend>go2_control</exec_depend>
   <exec_depend>go2_person_follow</exec_depend>
   <exec_depend>go2_description</exec_depend>
+  <exec_depend>go2_driver</exec_depend>
+  <exec_depend>odas_ros</exec_depend>
+  <exec_depend>audio_utils_msgs</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
-  <exec_depend>rplidar_ros2</exec_depend>
+  <exec_depend>rclcpp_components</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>sllidar_ros2</exec_depend>
   <exec_depend>robot_localization</exec_depend>
+  <exec_depend>realsense2_camera</exec_depend>
+  <exec_depend>isaac_ros_visual_slam</exec_depend>
 
   <!-- Nav2 stack -->
   <exec_depend>navigation2</exec_depend>
@@ -27,13 +34,6 @@
   <exec_depend>nav2_bringup</exec_depend>
   <exec_depend>nav2_map_server</exec_depend>
   <exec_depend>nav2_util</exec_depend>
-
-  <!-- ZED + RTAB-Map -->
-  <exec_depend>zed_wrapper</exec_depend>      <!-- Stereolabs camera driver -->
-  <exec_depend>rtabmap_sync</exec_depend>
-  <exec_depend>rtabmap_odom</exec_depend>
-  <exec_depend>rtabmap_slam</exec_depend>
-  <exec_depend>rtabmap_viz</exec_depend>
 
   <!-- Test dependencies -->
   <test_depend>ament_lint_auto</test_depend>

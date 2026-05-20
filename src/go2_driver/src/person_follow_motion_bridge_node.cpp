@@ -12,6 +12,8 @@
 #include <unitree/robot/go2/obstacles_avoid/obstacles_avoid_client.hpp>
 #include <unitree/robot/go2/sport/sport_client.hpp>
 
+#include "network_interface_utils.hpp"
+
 namespace
 {
 enum class MotionBackend
@@ -85,11 +87,12 @@ public:
 
         RCLCPP_INFO(
             this->get_logger(),
-            "Person follow motion bridge ready. backend=%s cmd_vel_topic=%s robot_mode_state_topic=%s network_interface=%s",
+            "Person follow motion bridge ready. backend=%s cmd_vel_topic=%s robot_mode_state_topic=%s requested_network_interface=%s resolved_network_interface=%s",
             backend_name_.c_str(),
             cmd_vel_topic_.c_str(),
             robot_mode_state_topic_.c_str(),
-            network_interface_.empty() ? "<auto>" : network_interface_.c_str());
+            network_interface_.empty() ? "<auto>" : network_interface_.c_str(),
+            resolved_network_interface_.empty() ? "<auto>" : resolved_network_interface_.c_str());
     }
 
     ~PersonFollowMotionBridgeNode() override
@@ -110,13 +113,31 @@ private:
             backend_name_.c_str(),
             network_interface_.empty() ? "<auto>" : network_interface_.c_str());
 
-        if (network_interface_.empty()) {
-            unitree::robot::ChannelFactory::Instance()->Init(0);
-        } else {
-            unitree::robot::ChannelFactory::Instance()->Init(0, network_interface_);
+        const auto network_interface = go2_driver::network_interface::resolve(network_interface_);
+        resolved_network_interface_ = network_interface.selected;
+        if (network_interface.changed) {
+            const std::string available_suffix = network_interface.available_interfaces.empty()
+                ? ""
+                : " (available: " + network_interface.available_interfaces + ")";
+            RCLCPP_WARN(
+                this->get_logger(),
+                "Requested Unitree network interface \"%s\" is not available%s. %s: %s.",
+                network_interface.requested.c_str(),
+                available_suffix.c_str(),
+                network_interface.reason.c_str(),
+                resolved_network_interface_.empty() ? "<auto>" : resolved_network_interface_.c_str());
         }
 
-        RCLCPP_INFO(this->get_logger(), "Unitree ChannelFactory initialized.");
+        if (resolved_network_interface_.empty()) {
+            unitree::robot::ChannelFactory::Instance()->Init(0);
+        } else {
+            unitree::robot::ChannelFactory::Instance()->Init(0, resolved_network_interface_);
+        }
+
+        RCLCPP_INFO(
+            this->get_logger(),
+            "Unitree ChannelFactory initialized with network_interface=%s.",
+            resolved_network_interface_.empty() ? "<auto>" : resolved_network_interface_.c_str());
 
         switch (backend_) {
         case MotionBackend::kSportFreeAvoid:
@@ -356,6 +377,7 @@ private:
     std::string cmd_vel_topic_;
     std::string robot_mode_state_topic_;
     std::string network_interface_;
+    std::string resolved_network_interface_;
     double command_timeout_s_;
 
     bool sdk_initialized_ = false;

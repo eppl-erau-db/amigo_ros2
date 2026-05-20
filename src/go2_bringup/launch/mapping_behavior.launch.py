@@ -20,6 +20,7 @@ from _mapping_common import (
     declare_launch_arguments,
     derive_nav2_settings,
     go2_description_paths,
+    with_cyclonedds_warning_filter,
 )
 
 
@@ -54,12 +55,16 @@ def generate_launch_description():
     person_follow_unitree_command_timeout_s = LaunchConfiguration(
         "person_follow_unitree_command_timeout_s"
     )
+    person_follow_detections_topic = LaunchConfiguration("person_follow_detections_topic")
+    person_follow_color_topic = LaunchConfiguration("person_follow_color_topic")
+    person_follow_depth_topic = LaunchConfiguration("person_follow_depth_topic")
+    person_follow_camera_info_topic = LaunchConfiguration("person_follow_camera_info_topic")
+    person_follow_target_label = LaunchConfiguration("person_follow_target_label")
     startup_motion_mode = LaunchConfiguration("startup_motion_mode")
     startup_motion_gait = LaunchConfiguration("startup_motion_gait")
     startup_motion_wait_s = LaunchConfiguration("startup_motion_wait_s")
     startup_motion_retries = LaunchConfiguration("startup_motion_retries")
     startup_motion_retry_interval_s = LaunchConfiguration("startup_motion_retry_interval_s")
-    zed_follow_params_path = LaunchConfiguration("zed_follow_params_path")
 
     paths = go2_description_paths()
     nav2_settings = derive_nav2_settings(paths["nav2_cfg"])
@@ -104,12 +109,12 @@ def generate_launch_description():
         name="explore_until_detected_server",
         output="screen",
         parameters=[{"use_sim_time": use_sim_time}],
+        arguments=with_cyclonedds_warning_filter(),
         condition=leak_stack_condition,
     )
     localize_phase_server = Node(
         package="go2_control",
         executable="localize_detected_leak_action_server",
-        name="localize_detected_leak_server",
         output="screen",
         parameters=[
             {
@@ -121,6 +126,7 @@ def generate_launch_description():
                 "global_inflation_radius_m": nav2_settings["global_inflation_radius_m"],
             }
         ],
+        arguments=with_cyclonedds_warning_filter(),
         condition=leak_stack_condition,
     )
     search_action_server = Node(
@@ -137,6 +143,7 @@ def generate_launch_description():
                 "localize_action_name": "localize_detected_leak",
             }
         ],
+        arguments=with_cyclonedds_warning_filter(),
         condition=leak_stack_condition,
     )
     sound_localizer_node = Node(
@@ -160,6 +167,7 @@ def generate_launch_description():
                 "enable_reasonableness_filter": False,
             }
         ],
+        arguments=with_cyclonedds_warning_filter(),
         condition=leak_stack_condition,
     )
     mission_supervisor_node = Node(
@@ -193,6 +201,7 @@ def generate_launch_description():
                 "stand_up_settle_s": 2.5,
             }
         ],
+        arguments=with_cyclonedds_warning_filter(),
     )
     person_follow_node = Node(
         package="go2_person_follow",
@@ -203,10 +212,14 @@ def generate_launch_description():
             {
                 "use_sim_time": use_sim_time,
                 "robot_mode_state_topic": "/robot_mode_state",
-                "image_topic": "/zed/zed_node/rgb/image_rect_color",
-                "objects_topic": "/zed/zed_node/obj_det/objects",
+                "detections_topic": person_follow_detections_topic,
+                "color_image_topic": person_follow_color_topic,
+                "depth_image_topic": person_follow_depth_topic,
+                "camera_info_topic": person_follow_camera_info_topic,
+                "target_label": person_follow_target_label,
             }
         ],
+        arguments=with_cyclonedds_warning_filter(),
         condition=IfCondition(person_follow_enable),
     )
     person_follow_controller_node = Node(
@@ -236,6 +249,7 @@ def generate_launch_description():
                 "use_local_costmap_safety": person_follow_use_local_costmap_safety_value,
             }
         ],
+        arguments=with_cyclonedds_warning_filter(),
         condition=IfCondition(person_follow_enable),
     )
     person_follow_motion_bridge_node = Node(
@@ -252,6 +266,7 @@ def generate_launch_description():
                 "command_timeout_s": person_follow_unitree_command_timeout_s,
             }
         ],
+        arguments=with_cyclonedds_warning_filter(),
         additional_env=person_follow_motion_bridge_env,
         condition=person_follow_unitree_backend_condition,
     )

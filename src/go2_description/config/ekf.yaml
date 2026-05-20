@@ -148,12 +148,10 @@ ekf_filter_node:
         # odom1_pose_rejection_threshold: 5.0
         # odom1_twist_rejection_threshold: 5.0
 
-        # imu0: /zed/zed_node/imu/data
         # imu0_queue_size: 50
         # imu0_nodelay: false
         # imu0_differential: false
         # imu0_relative: false
-        # imu0_remove_gravitational_acceleration: false   # ZED already handles this
         # imu0_pose_rejection_threshold: 0.8
         # imu0_twist_rejection_threshold: 0.8
         # # x y z  r   p   yaw  vx vy vz  vr  vp  wy   ax ay az

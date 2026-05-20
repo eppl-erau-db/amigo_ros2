@@ -15,6 +15,34 @@ from launch.substitutions import LaunchConfiguration, PythonExpression
 CORE_ARGUMENT_NAMES = [
     "launch_profile",
     "use_sim_time",
+    "debug_odometry",
+]
+
+SENSOR_ARGUMENT_NAMES = [
+    "realsense_enable",
+    "realsense_camera_name",
+    "realsense_serial_no",
+    "realsense_device_type",
+    "realsense_enable_color",
+    "realsense_enable_depth",
+    "realsense_enable_infra",
+    "realsense_enable_imu",
+    "realsense_enable_sync",
+    "realsense_align_depth",
+    "realsense_pointcloud_enable",
+    "realsense_publish_tf",
+    "realsense_initial_reset",
+    "realsense_color_profile",
+    "realsense_depth_profile",
+    "realsense_infra_profile",
+    "realsense_emitter_enabled",
+    "realsense_wait_for_device_timeout",
+    "realsense_reconnect_timeout",
+    "camera_model",
+    "camera_xyz",
+    "camera_rpy",
+    "vslam_enable",
+    "vslam_odom_topic",
 ]
 
 AUDIO_ARGUMENT_NAMES = [
@@ -72,7 +100,11 @@ FOLLOW_ARGUMENT_NAMES = [
     "person_follow_unitree_cmd_vel_topic",
     "person_follow_unitree_network_interface",
     "person_follow_unitree_command_timeout_s",
-    "zed_follow_params_path",
+    "person_follow_detections_topic",
+    "person_follow_color_topic",
+    "person_follow_depth_topic",
+    "person_follow_camera_info_topic",
+    "person_follow_target_label",
 ]
 
 MISSION_ARGUMENT_NAMES = [
@@ -88,11 +120,36 @@ MISSION_ARGUMENT_NAMES = [
 
 ALL_ARGUMENT_NAMES = (
     CORE_ARGUMENT_NAMES +
+    SENSOR_ARGUMENT_NAMES +
     AUDIO_ARGUMENT_NAMES +
     VOICE_ARGUMENT_NAMES +
     FOLLOW_ARGUMENT_NAMES +
     MISSION_ARGUMENT_NAMES
 )
+
+RMW_CYCLONEDDS_LOG_LEVEL = "rmw_cyclonedds_cpp:=error"
+
+
+def conditional_log_level_arg(node_name: str, flag_name: str = "debug_odometry") -> PythonExpression:
+    return PythonExpression(
+        [
+            "'",
+            node_name,
+            ":=debug' if '",
+            LaunchConfiguration(flag_name),
+            "'.lower() in ['1', 'true', 'yes', 'on'] else '",
+            node_name,
+            ":=info'",
+        ]
+    )
+
+
+def with_cyclonedds_warning_filter(arguments=None, log_levels=None) -> list:
+    base_arguments = list(arguments or [])
+    ros_arguments = ["--ros-args", "--log-level", RMW_CYCLONEDDS_LOG_LEVEL]
+    for log_level in list(log_levels or []):
+        ros_arguments.extend(["--log-level", log_level])
+    return base_arguments + ros_arguments
 
 
 def _default_vosk_model_path(launch_dir: str) -> str:
@@ -116,6 +173,40 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
     return {
         "launch_profile": ("all", "Launch profile: all, mission_base, or operator_tools"),
         "use_sim_time": ("false", "Use simulated clock if true"),
+        "debug_odometry": (
+            "false",
+            "Enable verbose odometry, EKF, slam_toolbox, and launch workflow diagnostics",
+        ),
+        "realsense_enable": ("true", "Start the RealSense camera component"),
+        "realsense_camera_name": ("camera", "RealSense node name and topic/frame prefix"),
+        "realsense_serial_no": ("", "Optional RealSense serial number"),
+        "realsense_device_type": ("", "Optional RealSense device type filter"),
+        "realsense_enable_color": ("true", "Enable RealSense color stream"),
+        "realsense_enable_depth": ("true", "Enable RealSense depth stream"),
+        "realsense_enable_infra": ("true", "Enable RealSense infra1/infra2 streams"),
+        "realsense_enable_imu": ("false", "Enable RealSense gyro/accel and united IMU topic"),
+        "realsense_enable_sync": ("true", "Enable RealSense hardware/software sync mode"),
+        "realsense_align_depth": ("true", "Enable aligned depth-to-color stream"),
+        "realsense_pointcloud_enable": ("true", "Publish the RealSense depth/color point cloud"),
+        "realsense_publish_tf": ("false", "Let the RealSense driver publish TF; normally false because robot_state_publisher owns camera TF"),
+        "realsense_initial_reset": ("false", "Reset the RealSense camera at startup"),
+        "realsense_color_profile": ("640,360,30", "RealSense color profile width,height,fps"),
+        "realsense_depth_profile": ("640,360,30", "RealSense depth profile width,height,fps"),
+        "realsense_infra_profile": ("640,360,30", "RealSense infra profile width,height,fps"),
+        "realsense_emitter_enabled": ("0", "RealSense depth emitter mode"),
+        "realsense_wait_for_device_timeout": ("-1.0", "Seconds to wait for a RealSense device"),
+        "realsense_reconnect_timeout": ("6.0", "Seconds between RealSense reconnect attempts"),
+        "camera_model": ("d455", "RealSense camera model label used by robot description"),
+        "camera_xyz": ("0.350 0.000 0.200", "RealSense xyz relative to base_link"),
+        "camera_rpy": ("0.000 0.000 0.000", "RealSense rpy relative to base_link"),
+        "vslam_enable": (
+            "false",
+            "Start Isaac Visual SLAM for diagnostics; EKF does not fuse it by default",
+        ),
+        "vslam_odom_topic": (
+            "/vslam/odom",
+            "Optional odometry topic published by the visual SLAM node",
+        ),
         "odas_enable": ("true", "Include and run odas_ros/odas.launch.xml"),
         "odas_configuration_path": (
             os.path.join(
@@ -232,8 +323,8 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "Topic where parsed voice commands are published",
         ),
         "person_follow_enable": (
-            "true",
-            "Enable the person-follow perception and control stack",
+            "false",
+            "Enable the person-follow perception and control stack; disabled until a detector is available",
         ),
         "person_follow_distance_m": (
             "0.75",
@@ -291,6 +382,26 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "0.5",
             "How long the Unitree follow-motion bridge waits before sending a stop command",
         ),
+        "person_follow_detections_topic": (
+            "/detections_output",
+            "Future detector topic consumed by the follow perception node",
+        ),
+        "person_follow_color_topic": (
+            "/camera/color/image_raw",
+            "RealSense color topic for future follow perception",
+        ),
+        "person_follow_depth_topic": (
+            "/camera/aligned_depth_to_color/image_raw",
+            "RealSense aligned depth topic for future follow perception",
+        ),
+        "person_follow_camera_info_topic": (
+            "/camera/color/camera_info",
+            "RealSense camera info topic for future follow perception",
+        ),
+        "person_follow_target_label": (
+            "person",
+            "Future detector label to follow",
+        ),
         "startup_motion_mode": (
             "none",
             "Optional Unitree motion service to select at launch",
@@ -310,14 +421,6 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
         "startup_motion_retry_interval_s": (
             "2.0",
             "Delay between startup motion switcher retry attempts",
-        ),
-        "zed_follow_params_path": (
-            os.path.join(
-                get_package_share_directory("go2_bringup"),
-                "config",
-                "zed_follow_person.yaml",
-            ),
-            "ROS params override YAML for the ZED follow-person object-detection pipeline",
         ),
     }
 

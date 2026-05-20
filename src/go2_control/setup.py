@@ -74,7 +74,6 @@ setup(
             'search_action_server = go2_control.search_action_server:main',
             'mod_waypoint_follower = go2_control.mod_waypoint_follower:main',
             'gps_waypoint_logger = go2_control.gps_waypoint_logger:main',
-            'picture_taker = go2_control.picture_taker:main',
             'logged_waypoint_follower = go2_control.logged_waypoint_follower:main',
             'rounds_coordinator = go2_control.rounds_coordinator:main',
             'pose_click_logger = go2_control.pose_click_logger:main',

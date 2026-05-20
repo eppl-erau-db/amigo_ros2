@@ -20,6 +20,7 @@ from _mapping_common import (
     AUDIO_ARGUMENT_NAMES,
     VOICE_ARGUMENT_NAMES,
     declare_launch_arguments,
+    with_cyclonedds_warning_filter,
 )
 
 
@@ -151,6 +152,7 @@ def generate_launch_description():
                 ["'", voice_control, "' == 'true' and '", voice_stt_enable, "' == 'true'"]
             )
         ),
+        arguments=with_cyclonedds_warning_filter(),
     )
     voice_command_node = Node(
         package="go2_control",
@@ -187,6 +189,7 @@ def generate_launch_description():
             }
         ],
         condition=IfCondition(voice_control),
+        arguments=with_cyclonedds_warning_filter(),
     )
 
     return LaunchDescription(

@@ -220,28 +220,28 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        zed_camera_center:
+        camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        zed_camera_link:
+        camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        zed_left_camera_frame:
+        camera_infra1_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        zed_left_camera_optical_frame:
+        camera_infra1_optical_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        zed_right_camera_frame:
+        camera_infra2_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        zed_right_camera_optical_frame:
+        camera_infra2_optical_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -324,17 +324,17 @@ Visualization Manager:
           Value: false
         utlidar_imu:
           Value: false
-        zed_camera_center:
+        camera_link:
           Value: false
-        zed_camera_link:
+        camera_link:
           Value: false
-        zed_left_camera_frame:
+        camera_infra1_frame:
           Value: false
-        zed_left_camera_optical_frame:
+        camera_infra1_optical_frame:
           Value: false
-        zed_right_camera_frame:
+        camera_infra2_frame:
           Value: false
-        zed_right_camera_optical_frame:
+        camera_infra2_optical_frame:
           Value: false
       Marker Scale: 1
       Name: TF
@@ -387,13 +387,13 @@ Visualization Manager:
                   {}
                 utlidar_imu:
                   {}
-                zed_camera_link:
-                  zed_camera_center:
-                    zed_left_camera_frame:
-                      zed_left_camera_optical_frame:
+                camera_link:
+                  camera_link:
+                    camera_infra1_frame:
+                      camera_infra1_optical_frame:
                         {}
-                    zed_right_camera_frame:
-                      zed_right_camera_optical_frame:
+                    camera_infra2_frame:
+                      camera_infra2_optical_frame:
                         {}
       Update Interval: 0
       Value: true

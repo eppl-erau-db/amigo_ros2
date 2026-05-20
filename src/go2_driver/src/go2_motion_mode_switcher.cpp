@@ -13,6 +13,8 @@
 #include <unitree/robot/go2/robot_state/robot_state_client.hpp>
 #include <unitree/robot/go2/sport/sport_client.hpp>
 
+#include "network_interface_utils.hpp"
+
 namespace
 {
 
@@ -418,13 +420,28 @@ int main(int argc, char **argv)
 
         sleep_seconds(options.wait_s);
 
-        if (options.network_interface.empty()) {
+        const auto network_interface = go2_driver::network_interface::resolve(
+            options.network_interface);
+        if (network_interface.changed) {
+            std::cerr
+                << "Requested Unitree network interface \""
+                << network_interface.requested
+                << "\" is not available";
+            if (!network_interface.available_interfaces.empty()) {
+                std::cerr << " (available: " << network_interface.available_interfaces << ")";
+            }
+            std::cerr << ". " << network_interface.reason << ": "
+                      << (network_interface.selected.empty() ? "<auto>" : network_interface.selected)
+                      << ".\n";
+        }
+
+        if (network_interface.selected.empty()) {
             unitree::robot::ChannelFactory::Instance()->Init(0);
             std::cout << "Initialized Unitree ChannelFactory with auto-selected network interface.\n";
         } else {
-            unitree::robot::ChannelFactory::Instance()->Init(0, options.network_interface);
+            unitree::robot::ChannelFactory::Instance()->Init(0, network_interface.selected);
             std::cout << "Initialized Unitree ChannelFactory with network interface \""
-                      << options.network_interface << "\".\n";
+                      << network_interface.selected << "\".\n";
         }
 
         bool success = false;
