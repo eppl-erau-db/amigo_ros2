@@ -3,8 +3,18 @@
   
   <xacro:arg name="camera_name" default="camera"/>
   <xacro:arg name="camera_model" default="d455"/>
-  <xacro:arg name="camera_xyz" default="0.350 0.000 0.200"/>
+  <xacro:arg name="camera_xyz" default="0.340 0.000 0.200"/>
   <xacro:arg name="camera_rpy" default="0.000 0.000 0.000"/>
+  <xacro:arg name="camera_rig_enable" default="false"/>
+  <xacro:arg name="camera0_xyz" default="0.340 0.000 0.200"/>
+  <xacro:arg name="camera0_rpy" default="0.000 0.000 0.000"/>
+  <xacro:arg name="camera1_xyz" default="0.265 0.0601 0.200"/>
+  <xacro:arg name="camera1_rpy" default="0.000 0.000 1.57079632679"/>
+  <xacro:arg name="camera2_xyz" default="0.265 -0.0601 0.200"/>
+  <xacro:arg name="camera2_rpy" default="0.000 0.000 -1.57079632679"/>
+  <xacro:property name="d455_ir_left_y" value="0.050"/>
+  <xacro:property name="d455_ir_right_y" value="-0.050"/>
+  <xacro:property name="d455_color_y" value="-0.012"/>
   
   
   <link
@@ -1456,18 +1466,34 @@
       <child link="${name}_link"/>
       <origin xyz="${xyz}" rpy="${rpy}"/>
     </joint>
-    <xacro:realsense_stream_frames name="${name}" stream="depth" parent="${name}_link" xyz="0 0 0"/>
-    <xacro:realsense_stream_frames name="${name}" stream="color" parent="${name}_link" xyz="0 0 0"/>
-    <!-- D455 IR imagers: infra1 is left, infra2 is right. Values are meters. -->
-    <xacro:realsense_stream_frames name="${name}" stream="infra1" parent="${name}_link" xyz="0.36 0.05 0.20"/>
-    <xacro:realsense_stream_frames name="${name}" stream="infra2" parent="${name}_link" xyz="0.36 -0.05 0.20"/>
+    <!-- D455 camera_link is modeled at the stereo center. Infra/depth offsets are local to that link. -->
+    <xacro:realsense_stream_frames name="${name}" stream="depth" parent="${name}_link" xyz="0 ${d455_ir_left_y} 0"/>
+    <xacro:realsense_stream_frames name="${name}" stream="color" parent="${name}_link" xyz="0 ${d455_color_y} 0"/>
+    <xacro:realsense_stream_frames name="${name}" stream="infra1" parent="${name}_link" xyz="0 ${d455_ir_left_y} 0"/>
+    <xacro:realsense_stream_frames name="${name}" stream="infra2" parent="${name}_link" xyz="0 ${d455_ir_right_y} 0"/>
     <xacro:realsense_imu_frames name="${name}" parent="${name}_link"/>
   </xacro:macro>
 
-  <xacro:realsense_camera_frames
-    name="$(arg camera_name)"
-    xyz="$(arg camera_xyz)"
-    rpy="$(arg camera_rpy)"/>
+  <xacro:if value="$(arg camera_rig_enable)">
+    <xacro:realsense_camera_frames
+      name="camera0"
+      xyz="$(arg camera0_xyz)"
+      rpy="$(arg camera0_rpy)"/>
+    <xacro:realsense_camera_frames
+      name="camera1"
+      xyz="$(arg camera1_xyz)"
+      rpy="$(arg camera1_rpy)"/>
+    <xacro:realsense_camera_frames
+      name="camera2"
+      xyz="$(arg camera2_xyz)"
+      rpy="$(arg camera2_rpy)"/>
+  </xacro:if>
+  <xacro:unless value="$(arg camera_rig_enable)">
+    <xacro:realsense_camera_frames
+      name="$(arg camera_name)"
+      xyz="$(arg camera_xyz)"
+      rpy="$(arg camera_rpy)"/>
+  </xacro:unless>
 
 
 </robot>

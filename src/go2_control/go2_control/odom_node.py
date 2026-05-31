@@ -32,12 +32,19 @@ class OdomNode(Node):
         self.parent_frame = str(self.declare_parameter("parent_frame", "odom").value)
         self.child_frame = str(self.declare_parameter("child_frame", "base_footprint").value)
         self.planarize = bool(self.declare_parameter("planarize", True).value)
+        self.restamp_with_current_time = bool(
+            self.declare_parameter("restamp_with_current_time", False).value
+        )
         self.debug_odometry = bool(self.declare_parameter("debug_odometry", False).value)
         self.debug_interval_s = float(self.declare_parameter("debug_interval_s", 1.0).value)
         self.warn_pose_jump_m = float(self.declare_parameter("warn_pose_jump_m", 1.0).value)
         self.warn_yaw_jump_rad = float(self.declare_parameter("warn_yaw_jump_rad", 1.0).value)
+        self.warn_stamp_skew_s = float(
+            self.declare_parameter("warn_stamp_skew_s", 0.25).value
+        )
 
         self._last_debug_log_ns = 0
+        self._last_stamp_skew_warn_ns = 0
         self._last_pose: tuple[float, float, float, float] | None = None
 
         self.odom_subscriber = self.create_subscription(
@@ -49,9 +56,10 @@ class OdomNode(Node):
         self.odometry_publisher = self.create_publisher(Odometry, self.odom_topic, 10)
 
         mode = "planarized" if self.planarize else "passthrough"
+        stamp_mode = "restamped" if self.restamp_with_current_time else "source-stamped"
         self.get_logger().info(
             f"odom_node started: {self.source_odom_topic} -> {self.odom_topic} "
-            f"({self.parent_frame}->{self.child_frame}, {mode})"
+            f"({self.parent_frame}->{self.child_frame}, {mode}, {stamp_mode})"
         )
         if self.debug_odometry:
             self.get_logger().info(
@@ -60,7 +68,11 @@ class OdomNode(Node):
 
     def odom_callback(self, msg: Odometry):
         odom_msg = Odometry()
-        odom_msg.header.stamp = self._stamp_or_now(msg)
+        source_stamp = self._stamp_or_now(msg)
+        if self.restamp_with_current_time:
+            odom_msg.header.stamp = self.get_clock().now().to_msg()
+        else:
+            odom_msg.header.stamp = source_stamp
         odom_msg.header.frame_id = self.parent_frame
         odom_msg.child_frame_id = self.child_frame
 
@@ -89,18 +101,44 @@ class OdomNode(Node):
         odom_msg.twist.covariance = msg.twist.covariance
 
         self.odometry_publisher.publish(odom_msg)
-        self._log_debug_sample(msg, odom_msg, source_yaw)
+        self._warn_stamp_skew(source_stamp)
+        self._log_debug_sample(msg, odom_msg, source_yaw, source_stamp)
 
     def _stamp_or_now(self, msg: Odometry):
         if msg.header.stamp.sec == 0 and msg.header.stamp.nanosec == 0:
             return self.get_clock().now().to_msg()
         return msg.header.stamp
 
-    def _log_debug_sample(self, source_msg: Odometry, odom_msg: Odometry, source_yaw: float) -> None:
+    def _stamp_seconds(self, stamp) -> float:
+        return stamp.sec + (stamp.nanosec * 1.0e-9)
+
+    def _warn_stamp_skew(self, source_stamp) -> None:
+        if source_stamp.sec == 0 and source_stamp.nanosec == 0:
+            return
+        now_ns = self.get_clock().now().nanoseconds
+        source_ns = (source_stamp.sec * 1_000_000_000) + source_stamp.nanosec
+        skew_s = (now_ns - source_ns) / 1.0e9
+        if abs(skew_s) <= self.warn_stamp_skew_s:
+            return
+        if now_ns - self._last_stamp_skew_warn_ns < int(5.0 * 1.0e9):
+            return
+        self._last_stamp_skew_warn_ns = now_ns
+        message = f"source odometry stamp skew is {skew_s:.3f}s relative to ROS time"
+        if self.restamp_with_current_time:
+            message += "; mapping launch restamps this topic before EKF fusion"
+        self.get_logger().warning(message)
+
+    def _log_debug_sample(
+        self,
+        source_msg: Odometry,
+        odom_msg: Odometry,
+        source_yaw: float,
+        source_stamp,
+    ) -> None:
         x = odom_msg.pose.pose.position.x
         y = odom_msg.pose.pose.position.y
         yaw = _yaw_from_quaternion(odom_msg.pose.pose.orientation)
-        stamp = odom_msg.header.stamp.sec + (odom_msg.header.stamp.nanosec * 1.0e-9)
+        stamp = self._stamp_seconds(odom_msg.header.stamp)
 
         if self._last_pose is not None:
             last_x, last_y, last_yaw, last_stamp = self._last_pose
@@ -129,6 +167,8 @@ class OdomNode(Node):
             "odom sample: "
             f"source_frame={source_msg.header.frame_id or '<empty>'} "
             f"out_frame={odom_msg.header.frame_id}->{odom_msg.child_frame_id} "
+            f"source_stamp={self._stamp_seconds(source_stamp):.3f} "
+            f"out_stamp={stamp:.3f} "
             f"x={x:.3f} y={y:.3f} z={odom_msg.pose.pose.position.z:.3f} "
             f"source_yaw={source_yaw:.3f} out_yaw={yaw:.3f} "
             f"delta={distance_delta:.3f}m yaw_delta={yaw_delta:.3f}rad dt={time_delta:.3f}s"

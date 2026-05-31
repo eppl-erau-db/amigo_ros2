@@ -16,6 +16,7 @@ from go2_control.mission_supervisor_core import (  # noqa: E402
     request_mode_change,
     request_voice_command,
     select_motion_routing,
+    sync_observed_posture,
 )
 
 
@@ -51,17 +52,54 @@ def test_stay_request_while_following_returns_idle() -> None:
     assert SupervisorOps.PUBLISH_ZERO_MOTION in decision.operations
 
 
-def test_stand_up_request_only_allowed_while_laying() -> None:
-    standing_reject = request_voice_command(SupervisorState(), "stand_up")
+def test_stand_up_request_reissues_from_initial_standing_assumption() -> None:
+    standing_recovery = request_voice_command(SupervisorState(), "stand_up")
     laying_accept = request_voice_command(
         SupervisorState(posture_mode=PostureModes.LAYING),
         "stand_up",
     )
 
-    assert standing_reject.accepted is False
+    assert standing_recovery.accepted is True
+    assert standing_recovery.state.posture_mode == PostureModes.TRANSITION_TO_STAND
+    assert standing_recovery.state.detail == "stand_up_recovery_requested"
+    assert SupervisorOps.SEND_STAND_UP in standing_recovery.operations
     assert laying_accept.accepted is True
     assert laying_accept.state.posture_mode == PostureModes.TRANSITION_TO_STAND
     assert SupervisorOps.SEND_STAND_UP in laying_accept.operations
+
+
+def test_observed_laying_posture_updates_initial_standing_assumption() -> None:
+    state = sync_observed_posture(SupervisorState(), PostureModes.LAYING)
+
+    assert state.posture_mode == PostureModes.LAYING
+    assert state.task_mode == TaskModes.IDLE
+    assert state.motion_enabled is False
+
+    stand_up = request_voice_command(state, "stand_up")
+    assert stand_up.accepted is True
+    assert SupervisorOps.SEND_STAND_UP in stand_up.operations
+
+
+def test_observed_laying_posture_stops_active_follow() -> None:
+    following = SupervisorState(
+        task_mode=TaskModes.FOLLOW,
+        posture_mode=PostureModes.STANDING,
+        motion_enabled=True,
+    )
+
+    state = sync_observed_posture(following, PostureModes.LAYING)
+
+    assert state.posture_mode == PostureModes.LAYING
+    assert state.task_mode == TaskModes.IDLE
+    assert state.motion_enabled is False
+
+
+def test_observed_posture_does_not_override_transition() -> None:
+    transitioning = SupervisorState(posture_mode=PostureModes.TRANSITION_TO_STAND)
+
+    state = sync_observed_posture(transitioning, PostureModes.LAYING)
+
+    assert state == transitioning
 
 
 def test_shake_hand_request_from_idle_is_accepted() -> None:

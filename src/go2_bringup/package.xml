@@ -27,6 +27,9 @@
   <exec_depend>robot_localization</exec_depend>
   <exec_depend>realsense2_camera</exec_depend>
   <exec_depend>isaac_ros_visual_slam</exec_depend>
+  <exec_depend>isaac_ros_yolov8</exec_depend>
+  <exec_depend>isaac_ros_dnn_image_encoder</exec_depend>
+  <exec_depend>isaac_ros_tensor_rt</exec_depend>
 
   <!-- Nav2 stack -->
   <exec_depend>navigation2</exec_depend>
@@ -34,6 +37,7 @@
   <exec_depend>nav2_bringup</exec_depend>
   <exec_depend>nav2_map_server</exec_depend>
   <exec_depend>nav2_util</exec_depend>
+  <exec_depend>spatio_temporal_voxel_layer</exec_depend>
 
   <!-- Test dependencies -->
   <test_depend>ament_lint_auto</test_depend>

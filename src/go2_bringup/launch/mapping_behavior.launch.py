@@ -55,10 +55,12 @@ def generate_launch_description():
     person_follow_unitree_command_timeout_s = LaunchConfiguration(
         "person_follow_unitree_command_timeout_s"
     )
+    person_follow_unitree_gait = LaunchConfiguration("person_follow_unitree_gait")
     person_follow_detections_topic = LaunchConfiguration("person_follow_detections_topic")
     person_follow_color_topic = LaunchConfiguration("person_follow_color_topic")
     person_follow_depth_topic = LaunchConfiguration("person_follow_depth_topic")
     person_follow_camera_info_topic = LaunchConfiguration("person_follow_camera_info_topic")
+    person_follow_target_class_id = LaunchConfiguration("person_follow_target_class_id")
     person_follow_target_label = LaunchConfiguration("person_follow_target_label")
     startup_motion_mode = LaunchConfiguration("startup_motion_mode")
     startup_motion_gait = LaunchConfiguration("startup_motion_gait")
@@ -74,8 +76,16 @@ def generate_launch_description():
         startup_motion_mode,
         value_type=str,
     )
+    person_follow_target_class_id_value = ParameterValue(
+        person_follow_target_class_id,
+        value_type=str,
+    )
     person_follow_use_local_costmap_safety_value = ParameterValue(
-        PythonExpression(["'", person_follow_motion_backend, "' == 'legacy'"]),
+        PythonExpression([
+            "'",
+            person_follow_motion_backend,
+            "'.strip().lower() in ['legacy', 'sport', 'unitree_sport']",
+        ]),
         value_type=bool,
     )
     person_follow_unitree_backend_condition = IfCondition(
@@ -216,6 +226,7 @@ def generate_launch_description():
                 "color_image_topic": person_follow_color_topic,
                 "depth_image_topic": person_follow_depth_topic,
                 "camera_info_topic": person_follow_camera_info_topic,
+                "target_class_id": person_follow_target_class_id_value,
                 "target_label": person_follow_target_label,
             }
         ],
@@ -264,6 +275,7 @@ def generate_launch_description():
                 "robot_mode_state_topic": "/robot_mode_state",
                 "network_interface": person_follow_unitree_network_interface,
                 "command_timeout_s": person_follow_unitree_command_timeout_s,
+                "follow_gait": person_follow_unitree_gait,
             }
         ],
         arguments=with_cyclonedds_warning_filter(),

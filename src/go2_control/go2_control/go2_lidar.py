@@ -2,22 +2,49 @@
 
 import rclpy
 from rclpy.node import Node
+from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import PointCloud2
 from std_msgs.msg import Header
+
 
 class Go2LidarNode(Node):
     def __init__(self):
         super().__init__("go2_lidar")
 
-        self.go2_lidar_subscriber = self.create_subscription(PointCloud2, "/utlidar/cloud", self.go2_lidar_callback, 10)
-        self.go2_lidar_publisher = self.create_publisher(PointCloud2, 'pointcloud', 10)
-        self.get_logger().info("go2 lidar node has started")
+        self.source_topic = str(self.declare_parameter("source_topic", "/utlidar/cloud_base").value)
+        self.output_topic = str(self.declare_parameter("output_topic", "/pointcloud").value)
+        self.frame_id = str(self.declare_parameter("frame_id", "base_link").value)
+        self.restamp_with_current_time = bool(
+            self.declare_parameter("restamp_with_current_time", True).value
+        )
+
+        self.go2_lidar_subscriber = self.create_subscription(
+            PointCloud2,
+            self.source_topic,
+            self.go2_lidar_callback,
+            qos_profile_sensor_data,
+        )
+        self.go2_lidar_publisher = self.create_publisher(
+            PointCloud2,
+            self.output_topic,
+            qos_profile_sensor_data,
+        )
+        self.get_logger().info(
+            "go2 lidar relay started: "
+            f"{self.source_topic} -> {self.output_topic}, "
+            f"frame_id={self.frame_id or '<preserve>'}, "
+            f"restamp_with_current_time={self.restamp_with_current_time}"
+        )
 
     def go2_lidar_callback(self, msg):
         new_msg = PointCloud2()
         new_msg.header = Header()
-        new_msg.header.frame_id = "radar"
-        new_msg.header.stamp = self.get_clock().now().to_msg()
+        new_msg.header.frame_id = self.frame_id or msg.header.frame_id
+        new_msg.header.stamp = (
+            self.get_clock().now().to_msg()
+            if self.restamp_with_current_time
+            else msg.header.stamp
+        )
         new_msg.height = msg.height
         new_msg.width = msg.width
         new_msg.fields = msg.fields

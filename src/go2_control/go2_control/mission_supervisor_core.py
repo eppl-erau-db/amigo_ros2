@@ -399,6 +399,29 @@ def _request_posture(
             "Transitioning to LAYING.",
         )
 
+    if (
+        state.posture_mode == PostureModes.STANDING
+        and state.task_mode == TaskModes.IDLE
+        and not state.motion_enabled
+        and state.pending_task_mode is None
+    ):
+        return _accepted(
+            replace(
+                state,
+                task_mode=TaskModes.IDLE,
+                posture_mode=PostureModes.TRANSITION_TO_STAND,
+                motion_enabled=False,
+                pending_task_mode=None,
+            ),
+            source,
+            "stand_up_recovery_requested",
+            (
+                SupervisorOps.PUBLISH_ZERO_MOTION,
+                SupervisorOps.SEND_STAND_UP,
+            ),
+            "Reissuing stand-up command.",
+        )
+
     if state.posture_mode != PostureModes.LAYING:
         return _rejected(
             state,
@@ -490,6 +513,46 @@ def complete_posture_transition(
         return enter_fault(state, detail or "stand_up_transition_failed")
 
     return state
+
+
+def sync_observed_posture(
+    state: SupervisorState,
+    posture_mode: str,
+    *,
+    source: str = "robot_state",
+    detail: str = "",
+) -> SupervisorState:
+    observed_posture = normalize_posture_mode(posture_mode)
+    if observed_posture not in {PostureModes.STANDING, PostureModes.LAYING}:
+        return state
+
+    if state.posture_mode in {
+        PostureModes.TRANSITION_TO_LAY,
+        PostureModes.TRANSITION_TO_STAND,
+    }:
+        return state
+
+    if state.posture_mode == observed_posture:
+        return state
+
+    next_task_mode = state.task_mode
+    next_motion_enabled = state.motion_enabled
+    next_pending_task_mode = state.pending_task_mode
+    if observed_posture == PostureModes.LAYING:
+        next_task_mode = TaskModes.IDLE
+        next_motion_enabled = False
+        next_pending_task_mode = None
+
+    return replace(
+        state,
+        task_mode=next_task_mode,
+        posture_mode=observed_posture,
+        motion_enabled=next_motion_enabled,
+        pending_task_mode=next_pending_task_mode,
+        transition_id=state.transition_id + 1,
+        source=source,
+        detail=detail or f"observed_posture_{observed_posture.lower()}",
+    )
 
 
 def enter_fault(state: SupervisorState, detail: str) -> SupervisorState:

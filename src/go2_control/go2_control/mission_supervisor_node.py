@@ -16,6 +16,7 @@ from rclpy.node import Node
 from std_msgs.msg import String
 import tf2_ros
 from unitree_api.msg import Request as UnitreeRequest
+from unitree_go.msg import SportModeState
 
 from go2_interfaces.action import Search
 from go2_interfaces.msg import RobotModeState
@@ -32,6 +33,7 @@ from go2_control.mission_supervisor_core import (
     request_mode_change,
     request_voice_command,
     select_motion_routing,
+    sync_observed_posture,
 )
 
 
@@ -50,6 +52,9 @@ class MissionSupervisorNode(Node):
         )
         self.robot_mode_state_topic = str(
             self.declare_parameter("robot_mode_state_topic", "/robot_mode_state").value
+        )
+        self.sport_mode_state_topic = str(
+            self.declare_parameter("sport_mode_state_topic", "/lf/sportmodestate").value
         )
         self.mode_service_name = str(
             self.declare_parameter("mode_service_name", "~/set_mode").value
@@ -147,6 +152,9 @@ class MissionSupervisorNode(Node):
         self.tflistener = tf2_ros.TransformListener(self.tfbuf, self)
 
         self.create_subscription(String, self.voice_command_topic, self._voice_command_cb, 10)
+        self.create_subscription(
+            SportModeState, self.sport_mode_state_topic, self._sport_mode_state_cb, 10
+        )
         self.create_subscription(Twist, self.nav_candidate_topic, self._nav_candidate_cb, 10)
         self.create_subscription(
             Twist, self.follow_candidate_topic, self._follow_candidate_cb, 10
@@ -160,6 +168,7 @@ class MissionSupervisorNode(Node):
             "Mission supervisor ready. "
             f"voice_command_topic={self.voice_command_topic} "
             f"robot_mode_state_topic={self.robot_mode_state_topic} "
+            f"sport_mode_state_topic={self.sport_mode_state_topic} "
             f"search_action={self.search_action_name} "
             f"follow_backend={self.follow_motion_backend}"
         )
@@ -267,6 +276,40 @@ class MissionSupervisorNode(Node):
     def _cooldown_applies(self, command: str) -> bool:
         normalized = normalize_voice_command(command)
         return normalized not in {"stop_follow", "lay_down", "stand_up"}
+
+    @staticmethod
+    def _posture_from_sport_mode(mode: int) -> str | None:
+        if mode == 5:
+            return PostureModes.LAYING
+        if mode in {0, 1, 2, 3, 8}:
+            return PostureModes.STANDING
+        return None
+
+    def _sport_mode_state_cb(self, msg: SportModeState) -> None:
+        observed_posture = self._posture_from_sport_mode(int(msg.mode))
+        if observed_posture is None:
+            return
+
+        current_state = self._current_state()
+        new_state = sync_observed_posture(
+            current_state,
+            observed_posture,
+            source="sport_mode_state",
+            detail=f"observed_sport_mode_{int(msg.mode)}",
+        )
+        if new_state == current_state:
+            return
+
+        self._replace_state(
+            new_state,
+            event_name="observed_posture_sync",
+            detail=new_state.detail,
+            zero_motion=observed_posture == PostureModes.LAYING,
+        )
+        self.get_logger().info(
+            f"Observed robot posture {observed_posture} from "
+            f"{self.sport_mode_state_topic} mode={int(msg.mode)}."
+        )
 
     def _voice_command_cb(self, msg: String) -> None:
         command = str(msg.data).strip()

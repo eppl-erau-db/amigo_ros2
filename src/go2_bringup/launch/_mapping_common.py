@@ -41,8 +41,18 @@ SENSOR_ARGUMENT_NAMES = [
     "camera_model",
     "camera_xyz",
     "camera_rpy",
+    "camera_rig_enable",
+    "camera0_xyz",
+    "camera0_rpy",
+    "camera1_xyz",
+    "camera1_rpy",
+    "camera2_xyz",
+    "camera2_rpy",
     "vslam_enable",
     "vslam_odom_topic",
+    "utlidar_pointcloud_source_topic",
+    "utlidar_pointcloud_topic",
+    "utlidar_pointcloud_frame_id",
 ]
 
 AUDIO_ARGUMENT_NAMES = [
@@ -100,10 +110,12 @@ FOLLOW_ARGUMENT_NAMES = [
     "person_follow_unitree_cmd_vel_topic",
     "person_follow_unitree_network_interface",
     "person_follow_unitree_command_timeout_s",
+    "person_follow_unitree_gait",
     "person_follow_detections_topic",
     "person_follow_color_topic",
     "person_follow_depth_topic",
     "person_follow_camera_info_topic",
+    "person_follow_target_class_id",
     "person_follow_target_label",
 ]
 
@@ -197,8 +209,18 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
         "realsense_wait_for_device_timeout": ("-1.0", "Seconds to wait for a RealSense device"),
         "realsense_reconnect_timeout": ("6.0", "Seconds between RealSense reconnect attempts"),
         "camera_model": ("d455", "RealSense camera model label used by robot description"),
-        "camera_xyz": ("0.350 0.000 0.200", "RealSense xyz relative to base_link"),
-        "camera_rpy": ("0.000 0.000 0.000", "RealSense rpy relative to base_link"),
+        "camera_xyz": ("0.340 0.000 0.200", "Single RealSense camera center xyz relative to base_link"),
+        "camera_rpy": ("0.000 0.000 0.000", "Single RealSense camera rpy relative to base_link"),
+        "camera_rig_enable": (
+            "false",
+            "Publish camera0/camera1/camera2 rig frames instead of the single camera_name frame tree",
+        ),
+        "camera0_xyz": ("0.340 0.000 0.200", "Front RealSense center xyz relative to base_link"),
+        "camera0_rpy": ("0.000 0.000 0.000", "Front RealSense rpy relative to base_link"),
+        "camera1_xyz": ("0.265 0.0601 0.200", "Left RealSense center xyz relative to base_link"),
+        "camera1_rpy": ("0.000 0.000 1.57079632679", "Left RealSense rpy relative to base_link"),
+        "camera2_xyz": ("0.265 -0.0601 0.200", "Right RealSense center xyz relative to base_link"),
+        "camera2_rpy": ("0.000 0.000 -1.57079632679", "Right RealSense rpy relative to base_link"),
         "vslam_enable": (
             "false",
             "Start Isaac Visual SLAM for diagnostics; EKF does not fuse it by default",
@@ -206,6 +228,18 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
         "vslam_odom_topic": (
             "/vslam/odom",
             "Optional odometry topic published by the visual SLAM node",
+        ),
+        "utlidar_pointcloud_source_topic": (
+            "/utlidar/cloud_base",
+            "Unitree 3D lidar PointCloud2 source relayed for Nav2 obstacle avoidance",
+        ),
+        "utlidar_pointcloud_topic": (
+            "/pointcloud",
+            "Restamped 3D lidar PointCloud2 topic consumed by the Nav2 local costmap",
+        ),
+        "utlidar_pointcloud_frame_id": (
+            "base_link",
+            "Frame stamped on the relayed 3D lidar cloud; empty preserves the source frame",
         ),
         "odas_enable": ("true", "Include and run odas_ros/odas.launch.xml"),
         "odas_configuration_path": (
@@ -335,7 +369,7 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "Allowed standoff band around the desired follow distance in meters",
         ),
         "person_follow_max_vx_mps": (
-            "0.60",
+            "1.00",
             "Maximum forward follow speed in meters per second",
         ),
         "person_follow_max_vy_mps": (
@@ -351,7 +385,7 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "Allow strafing in follow mode instead of rotate-first centering",
         ),
         "person_follow_candidate_horizon_s": (
-            "0.80",
+            "1.20",
             "Short-horizon safety simulation window for follow controller commands",
         ),
         "person_follow_reacquire_timeout_s": (
@@ -367,8 +401,8 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "Enable extra person-follow controller debug logging",
         ),
         "person_follow_motion_backend": (
-            "sport_free_avoid",
-            "Follow motion backend: legacy, sport_free_avoid, or obstacles_avoid",
+            "sport",
+            "Follow motion backend: legacy, sport, sport_free_avoid, or obstacles_avoid",
         ),
         "person_follow_unitree_cmd_vel_topic": (
             "/person_follow/cmd_vel",
@@ -381,6 +415,10 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
         "person_follow_unitree_command_timeout_s": (
             "0.5",
             "How long the Unitree follow-motion bridge waits before sending a stop command",
+        ),
+        "person_follow_unitree_gait": (
+            "static_walk",
+            "Unitree gait applied when follow motion becomes active: static_walk, economic, classic_walk, free_walk, walk_upright, trot_run, or none",
         ),
         "person_follow_detections_topic": (
             "/detections_output",
@@ -398,9 +436,13 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "/camera/color/camera_info",
             "RealSense camera info topic for future follow perception",
         ),
+        "person_follow_target_class_id": (
+            "0",
+            "Detector class ID to follow; YOLOv8 COCO person is 0",
+        ),
         "person_follow_target_label": (
             "person",
-            "Future detector label to follow",
+            "Detector label fallback to follow",
         ),
         "startup_motion_mode": (
             "none",

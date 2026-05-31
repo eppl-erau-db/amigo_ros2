@@ -48,8 +48,18 @@ ARGUMENT_NAMES = [
     "camera_model",
     "camera_xyz",
     "camera_rpy",
+    "camera_rig_enable",
+    "camera0_xyz",
+    "camera0_rpy",
+    "camera1_xyz",
+    "camera1_rpy",
+    "camera2_xyz",
+    "camera2_rpy",
     "vslam_enable",
     "vslam_odom_topic",
+    "utlidar_pointcloud_source_topic",
+    "utlidar_pointcloud_topic",
+    "utlidar_pointcloud_frame_id",
     "person_follow_unitree_network_interface",
     "startup_motion_mode",
     "startup_motion_gait",
@@ -206,6 +216,9 @@ def generate_launch_description():
     startup_motion_wait_s = LaunchConfiguration("startup_motion_wait_s")
     startup_motion_retries = LaunchConfiguration("startup_motion_retries")
     startup_motion_retry_interval_s = LaunchConfiguration("startup_motion_retry_interval_s")
+    utlidar_pointcloud_source_topic = LaunchConfiguration("utlidar_pointcloud_source_topic")
+    utlidar_pointcloud_topic = LaunchConfiguration("utlidar_pointcloud_topic")
+    utlidar_pointcloud_frame_id = LaunchConfiguration("utlidar_pointcloud_frame_id")
 
     paths = go2_description_paths()
     motion_mode_switcher_executable = os.path.join(
@@ -228,6 +241,20 @@ def generate_launch_description():
                 LaunchConfiguration("camera_xyz"),
                 "' camera_rpy:='",
                 LaunchConfiguration("camera_rpy"),
+                "' camera_rig_enable:=",
+                LaunchConfiguration("camera_rig_enable"),
+                " camera0_xyz:='",
+                LaunchConfiguration("camera0_xyz"),
+                "' camera0_rpy:='",
+                LaunchConfiguration("camera0_rpy"),
+                "' camera1_xyz:='",
+                LaunchConfiguration("camera1_xyz"),
+                "' camera1_rpy:='",
+                LaunchConfiguration("camera1_rpy"),
+                "' camera2_xyz:='",
+                LaunchConfiguration("camera2_xyz"),
+                "' camera2_rpy:='",
+                LaunchConfiguration("camera2_rpy"),
                 "'",
             ]
         ),
@@ -266,6 +293,8 @@ def generate_launch_description():
                 "odom_topic": "/utlidar_odom",
                 "parent_frame": "odom",
                 "child_frame": "base_footprint",
+                "restamp_with_current_time": True,
+                "warn_stamp_skew_s": 0.25,
             }
         ],
         arguments=with_cyclonedds_warning_filter(
@@ -303,6 +332,15 @@ def generate_launch_description():
         executable="go2_lidar",
         name="go2_lidar",
         output="screen",
+        parameters=[
+            {
+                "use_sim_time": use_sim_time,
+                "source_topic": utlidar_pointcloud_source_topic,
+                "output_topic": utlidar_pointcloud_topic,
+                "frame_id": utlidar_pointcloud_frame_id,
+                "restamp_with_current_time": True,
+            }
+        ],
         arguments=with_cyclonedds_warning_filter(),
     )
     lidar_node = Node(
@@ -360,7 +398,7 @@ def generate_launch_description():
                 msg=(
                     "[mapping_base] debug_odometry enabled: robot_state_publisher owns "
                     "base_footprint->base_link, odom_node planarizes /utlidar/robot_odom, "
-                    "and EKF publishes /odom plus odom->base_footprint"
+                    "restamps it onto ROS time, and EKF publishes /odom plus odom->base_footprint"
                 ),
             ),
             robot_state_pub,

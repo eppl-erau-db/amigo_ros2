@@ -1,6 +1,6 @@
 # Go2 Mapping Launch Commands
 
-This file tracks the current workflow in `src/go2_bringup/launch/mapping.launch.py`.
+This file tracks the current workflow in `src/go2_bringup/launch/mapping.launch.py` and the RealSense YOLOv8 person-follow launcher.
 
 ## Setup
 
@@ -11,11 +11,19 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 source install/setup.bash
 ```
 
-On the Jetson workspace used during robot runs, the second line is usually:
+On the Jetson workspace used during robot runs, the second line is usually whichever built Go2 workspace is active, for example:
 
 ```bash
-source /home/castej-jetson/workspaces/amigo_ros2/install/setup.bash
+source /home/castej-jetson/workspaces/amigo_ros2_relasense/install/setup.bash
 ```
+
+For the new YOLOv8 person-follow workflow, also make sure the Isaac ROS workspace has the TensorRT engine:
+
+```bash
+ls /home/castej/workspaces/isaac_ros-dev/isaac_ros_assets/models/yolov8/yolov8s.plan
+```
+
+If the workspace paths differ on the robot, set `AMIGO_ROS2_WS`, `ISAAC_ROS_WS`, or `YOLO_ENGINE_FILE` before using the startup script below.
 
 ## Launch Profiles
 
@@ -54,6 +62,9 @@ source /home/castej-jetson/workspaces/amigo_ros2/install/setup.bash
    - Starts `mission_supervisor_node`.
    - Starts person-follow perception and control when `person_follow_enable:=true`.
    - Starts the Unitree follow motion bridge when person-follow is enabled and `person_follow_motion_backend` is not `legacy`.
+   - Subscribes person-follow perception to Isaac YOLOv8 detections on `/detections_output`.
+
+YOLOv8 is intentionally launched separately from `mapping.launch.py`. The mapping stack owns the RealSense camera; `yolov8_person_detection.launch.py` only subscribes to the existing `/camera/color/image_raw` and `/camera/color/camera_info` topics and publishes `/detections_output`.
 
 `launch_profile:=all` and `launch_profile:=operator_tools` also start:
 
@@ -79,9 +90,32 @@ ros2 launch go2_bringup mapping.launch.py voice_control:=true
 Headless mission stack without RViz/log-pose operator tools:
 
 ```bash
-ros2 launch go2_bringup mapping.launch.py \
+ros2 launch src/go2_bringup/launch/mapping.launch.py \
   launch_profile:=mission_base \
   voice_control:=true
+```
+
+Recommended full RealSense YOLOv8 person-follow startup from this workspace:
+
+```bash
+cd /home/castej/workspaces/amigo_ros2_relasense
+scripts/launch_mapping_follow_yolov8.sh \
+  launch_profile:=mission_base \
+  person_follow_unitree_network_interface:=eno1
+```
+
+The script starts two coordinated processes and stops both on shutdown:
+
+- Go2 mapping stack with `person_follow_enable:=true` and `voice_control:=true`.
+- Isaac YOLOv8 graph using the existing RealSense color topics and `${ISAAC_ROS_WS}/isaac_ros_assets/models/yolov8/yolov8s.plan`.
+
+Override paths when needed:
+
+```bash
+AMIGO_ROS2_WS=/home/castej/workspaces/amigo_ros2_relasense \
+ISAAC_ROS_WS=/home/castej/workspaces/isaac_ros-dev \
+YOLO_ENGINE_FILE=/home/castej/workspaces/isaac_ros-dev/isaac_ros_assets/models/yolov8/yolov8s.plan \
+scripts/launch_mapping_follow_yolov8.sh launch_profile:=mission_base
 ```
 
 Operator tools only, when the mission stack is already running:
@@ -140,49 +174,116 @@ ros2 action info /localize_detected_leak
 
 ## Person Follow
 
-Current defaults are RealSense-oriented. The current `person_follow_vision_node` is a no-detector stub, so it publishes `target_visible=false` until a detector adapter is installed.
+Person-follow now uses Isaac ROS YOLOv8 detections plus RealSense aligned depth. The mapping stack still launches and owns the RealSense camera; YOLOv8 runs as a separate graph that subscribes to `/camera/color/image_raw` and `/camera/color/camera_info`.
 
-Enable person-follow with the default `sport_free_avoid` backend:
+The default Unitree follow backend is `sport`, with `person_follow_unitree_gait:=static_walk`. That matches this workspace's stock startup gait (`startup_motion_gait:=static_walk`) and avoids enabling Unitree `FreeAvoid` when follow mode starts. Use `person_follow_unitree_gait:=economic` if you want the economic gait instead.
+
+Recommended one-command launch:
 
 ```bash
-ros2 launch go2_bringup mapping.launch.py \
-  voice_control:=true \
-  person_follow_enable:=true \
+cd /home/castej/workspaces/amigo_ros2_relasense
+scripts/launch_mapping_follow_yolov8.sh \
+  launch_profile:=mission_base \
   person_follow_unitree_network_interface:=eno1
 ```
 
-Use the obstacle-avoidance backend:
+After startup, say:
+
+```text
+hey amigo, follow me
+```
+
+Stop follow mode with:
+
+```text
+hey amigo, stop following
+```
+
+The follow adapter defaults to YOLOv8 COCO person class `0`:
 
 ```bash
 ros2 launch go2_bringup mapping.launch.py \
   voice_control:=true \
   person_follow_enable:=true \
-  person_follow_motion_backend:=obstacles_avoid \
+  person_follow_target_class_id:=0 \
+  person_follow_motion_backend:=sport \
+  person_follow_unitree_gait:=static_walk \
+  person_follow_unitree_network_interface:=eno1
+```
+
+That command only starts mapping/follow control. It must be paired with the YOLOv8 graph below unless you use `scripts/launch_mapping_follow_yolov8.sh`.
+
+Manual two-terminal launch, useful for debugging:
+
+Terminal 1, Go2 mapping stack:
+
+```bash
+cd /home/castej/workspaces/amigo_ros2_relasense
+source /opt/ros/jazzy/setup.bash
+source install/setup.bash
+ros2 launch src/go2_bringup/launch/mapping.launch.py \
+  launch_profile:=mission_base \
+  voice_control:=true \
+  person_follow_enable:=true \
+  person_follow_motion_backend:=sport \
+  person_follow_unitree_gait:=economic \
+  person_follow_unitree_network_interface:=eno1
+```
+
+Terminal 2, Isaac YOLOv8 graph:
+
+```bash
+cd /home/castej/workspaces/amigo_ros2_relasense
+export ISAAC_ROS_WS=/home/castej/workspaces/isaac_ros-dev
+source /var/lib/isaac-ros-cli/isaac-ros/bin/activate
+source /opt/ros/jazzy/setup.bash
+source ${ISAAC_ROS_WS}/install/setup.bash
+source install/setup.bash
+ros2 launch src/go2_bringup/launch/yolov8_person_detection.launch.py \
+  engine_file_path:=${ISAAC_ROS_WS}/isaac_ros_assets/models/yolov8/yolov8s.plan
+```
+
+Do not launch Isaac's `realsense_mono_rect` fragment for this workflow; `mapping_base.launch.py` already starts the RealSense node. The startup script and manual debugging commands use launch-file paths instead of `ros2 launch go2_bringup ...` so an Isaac workspace that also contains a `go2_bringup` package cannot shadow this workspace's launch files.
+
+Use the economic gait with the default plain Sport backend:
+
+```bash
+scripts/launch_mapping_follow_yolov8.sh \
+  launch_profile:=mission_base \
+  person_follow_motion_backend:=sport \
+  person_follow_unitree_gait:=economic \
+  person_follow_unitree_network_interface:=eno1
+```
+
+Use Unitree avoidance backends only when you explicitly want them. `sport_free_avoid` calls `SportClient::FreeAvoid(true)` and can change the robot into Unitree's avoidance/AI gait; `obstacles_avoid` uses the Unitree ObstaclesAvoid service.
+
+```bash
+scripts/launch_mapping_follow_yolov8.sh \
+  launch_profile:=mission_base \
+  person_follow_motion_backend:=sport_free_avoid \
+  person_follow_unitree_gait:=none \
   person_follow_unitree_network_interface:=eno1
 ```
 
 Use the legacy local-costmap safety path without the Unitree follow motion bridge:
 
 ```bash
-ros2 launch go2_bringup mapping.launch.py \
-  voice_control:=true \
-  person_follow_enable:=true \
+scripts/launch_mapping_follow_yolov8.sh \
+  launch_profile:=mission_base \
   person_follow_motion_backend:=legacy
 ```
-
-Start in a specific Unitree motion mode/gait:
+launch_profile:=mission_base \
+Start the base stack in a specific Unitree motion mode/gait before follow is enabled:
 
 ```bash
-ros2 launch go2_bringup mapping.launch.py \
-  voice_control:=true \
-  person_follow_enable:=true \
+scripts/launch_mapping_follow_yolov8.sh \
   person_follow_unitree_network_interface:=eno1 \
   startup_motion_mode:=normal \
   startup_motion_gait:=economic
 ```
 
 Supported startup motion modes are `normal`, `sport_mode`, `ai`, `ai_sport`, `release`, and `none`.
-Supported startup gaits are `static_walk`, `economic`, `classic_walk`, `free_walk`, `walk_upright`, `trot_run`, and `none`.
+Supported startup and follow gaits are `static_walk`, `economic`, `classic_walk`, `free_walk`, `walk_upright`, `trot_run`, and `none`.
 
 ## Topics To Watch
 
@@ -224,9 +325,11 @@ ros2 topic echo /global_costmap/costmap
 ros2 topic echo /tf
 ```
 
-Person follow:
+Person follow and YOLOv8:
 
 ```bash
+ros2 topic info /detections_output
+ros2 topic echo /detections_output
 ros2 topic echo /person_follow_vision_node/target_point
 ros2 topic echo /person_follow_vision_node/target_visible
 ros2 topic echo /person_follow_vision_node/target_id
@@ -242,8 +345,11 @@ ros2 topic echo /person_follow_controller_node/safety_status
 ## Current Notes
 
 - `voice_control` defaults to `false`; pass `voice_control:=true` for voice commands and Vosk STT.
-- `person_follow_enable` defaults to `false`.
-- `realsense_enable` defaults to `true`.
+- `person_follow_enable` defaults to `false`; the startup script passes `person_follow_enable:=true` automatically.
+- `person_follow_target_class_id` defaults to `0`, the YOLOv8 COCO person class.
+- `person_follow_motion_backend` defaults to `sport`, not `sport_free_avoid`, so follow mode does not enable Unitree FreeAvoid/AI gait by default.
+- `person_follow_unitree_gait` defaults to `static_walk`; set it to `economic` for economic gait or `none` to leave the current gait untouched.
+- `realsense_enable` defaults to `true`; do not launch a second RealSense source from Isaac examples.
 - `odas_enable`, `odas_enable_leak_classifier`, and `sound_localizer_enable` default to `true`.
 - ZED-specific arguments such as `zed_follow_params_path` are not part of the current `mapping.launch.py` workflow.
 - `voice_speaker_enable` is not declared by the current mapping launch arguments.

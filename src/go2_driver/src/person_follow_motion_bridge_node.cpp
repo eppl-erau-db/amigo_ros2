@@ -1,5 +1,7 @@
+#include <algorithm>
 #include <chrono>
 #include <cmath>
+#include <cctype>
 #include <functional>
 #include <memory>
 #include <stdexcept>
@@ -18,17 +20,17 @@ namespace
 {
 enum class MotionBackend
 {
+    kSport,
     kSportFreeAvoid,
     kObstaclesAvoid,
 };
 
 MotionBackend parse_backend(const std::string &backend_name)
 {
-    if (
-        backend_name == "sport" ||
-        backend_name == "sport_free_avoid" ||
-        backend_name == "unitree_sport"
-    ) {
+    if (backend_name == "sport" || backend_name == "unitree_sport") {
+        return MotionBackend::kSport;
+    }
+    if (backend_name == "sport_free_avoid" || backend_name == "unitree_sport_free_avoid") {
         return MotionBackend::kSportFreeAvoid;
     }
     if (
@@ -41,7 +43,82 @@ MotionBackend parse_backend(const std::string &backend_name)
 
     throw std::runtime_error(
         "Unsupported backend \"" + backend_name +
-        "\". Expected sport_free_avoid or obstacles_avoid.");
+        "\". Expected sport, sport_free_avoid or obstacles_avoid.");
+}
+
+std::string normalize_token(std::string value)
+{
+    std::transform(
+        value.begin(),
+        value.end(),
+        value.begin(),
+        [](unsigned char ch) {
+            if (ch == '-' || ch == ' ') {
+                return static_cast<unsigned char>('_');
+            }
+            return static_cast<unsigned char>(std::tolower(ch));
+        });
+    return value;
+}
+
+std::string canonical_gait(const std::string &gait)
+{
+    const std::string normalized = normalize_token(gait);
+    if (
+        normalized.empty() ||
+        normalized == "none" ||
+        normalized == "off" ||
+        normalized == "skip")
+    {
+        return "none";
+    }
+    if (normalized == "static" || normalized == "static_walk") {
+        return "static_walk";
+    }
+    if (
+        normalized == "economic" ||
+        normalized == "economic_gait" ||
+        normalized == "endurance")
+    {
+        return "economic_gait";
+    }
+    if (normalized == "classic" || normalized == "classic_walk") {
+        return "classic_walk";
+    }
+    if (normalized == "free" || normalized == "free_walk") {
+        return "free_walk";
+    }
+    if (normalized == "upright" || normalized == "walk_upright") {
+        return "walk_upright";
+    }
+    if (normalized == "trot" || normalized == "trot_run") {
+        return "trot_run";
+    }
+    return normalized;
+}
+
+int32_t send_gait_command(unitree::robot::go2::SportClient &sport_client, const std::string &gait)
+{
+    const std::string selected_gait = canonical_gait(gait);
+    if (selected_gait == "static_walk") {
+        return sport_client.StaticWalk();
+    }
+    if (selected_gait == "economic_gait") {
+        return sport_client.EconomicGait();
+    }
+    if (selected_gait == "classic_walk") {
+        return sport_client.ClassicWalk(true);
+    }
+    if (selected_gait == "free_walk") {
+        return sport_client.FreeWalk();
+    }
+    if (selected_gait == "walk_upright") {
+        return sport_client.WalkUpright(true);
+    }
+    if (selected_gait == "trot_run") {
+        return sport_client.TrotRun();
+    }
+    return -1;
 }
 
 bool is_follow_motion_state(const go2_interfaces::msg::RobotModeState &state_msg)
@@ -59,9 +136,10 @@ class PersonFollowMotionBridgeNode : public rclcpp::Node
 public:
     PersonFollowMotionBridgeNode()
     : Node("person_follow_motion_bridge_node"),
-      backend_name_(this->declare_parameter<std::string>("backend", "sport_free_avoid")),
+      backend_name_(this->declare_parameter<std::string>("backend", "sport")),
       backend_(parse_backend(backend_name_)),
       cmd_vel_topic_(this->declare_parameter<std::string>("cmd_vel_topic", "/person_follow/cmd_vel")),
+      follow_gait_(canonical_gait(this->declare_parameter<std::string>("follow_gait", "static_walk"))),
       robot_mode_state_topic_(
           this->declare_parameter<std::string>(
               "robot_mode_state_topic",
@@ -87,8 +165,9 @@ public:
 
         RCLCPP_INFO(
             this->get_logger(),
-            "Person follow motion bridge ready. backend=%s cmd_vel_topic=%s robot_mode_state_topic=%s requested_network_interface=%s resolved_network_interface=%s",
+            "Person follow motion bridge ready. backend=%s follow_gait=%s cmd_vel_topic=%s robot_mode_state_topic=%s requested_network_interface=%s resolved_network_interface=%s",
             backend_name_.c_str(),
+            follow_gait_.c_str(),
             cmd_vel_topic_.c_str(),
             robot_mode_state_topic_.c_str(),
             network_interface_.empty() ? "<auto>" : network_interface_.c_str(),
@@ -140,6 +219,7 @@ private:
             resolved_network_interface_.empty() ? "<auto>" : resolved_network_interface_.c_str());
 
         switch (backend_) {
+        case MotionBackend::kSport:
         case MotionBackend::kSportFreeAvoid:
             sport_client_ = std::make_unique<unitree::robot::go2::SportClient>();
             sport_client_->SetTimeout(10.0F);
@@ -170,7 +250,13 @@ private:
         follow_motion_active_ = should_be_active;
         if (follow_motion_active_) {
             stale_stop_sent_ = false;
-            enable_backend();
+            if (!enable_backend()) {
+                RCLCPP_ERROR(
+                    this->get_logger(),
+                    "Follow motion became active, but Unitree backend %s did not enable.",
+                    backend_name_.c_str());
+                return;
+            }
             send_motion_command(0.0F, 0.0F, 0.0F, true);
             RCLCPP_INFO(
                 this->get_logger(),
@@ -241,8 +327,14 @@ private:
 
         bool success = false;
         switch (backend_) {
+        case MotionBackend::kSport:
+            success = (sport_client_ != nullptr && apply_follow_gait(true));
+            break;
         case MotionBackend::kSportFreeAvoid:
-            success = (sport_client_ != nullptr && sport_client_->FreeAvoid(true) == 0);
+            success = (
+                sport_client_ != nullptr &&
+                sport_client_->FreeAvoid(true) == 0 &&
+                apply_follow_gait(true));
             break;
         case MotionBackend::kObstaclesAvoid:
             success = (
@@ -273,6 +365,19 @@ private:
         bool success = false;
         std::string failure_detail;
         switch (backend_) {
+        case MotionBackend::kSport:
+            if (sport_client_ == nullptr) {
+                failure_detail = "sport client unavailable";
+                break;
+            }
+            {
+                const int32_t stop_move_result = sport_client_->StopMove();
+                success = (stop_move_result == 0);
+                if (!success) {
+                    failure_detail = "StopMove=" + std::to_string(stop_move_result);
+                }
+            }
+            break;
         case MotionBackend::kSportFreeAvoid:
             if (sport_client_ == nullptr) {
                 failure_detail = "sport client unavailable";
@@ -331,6 +436,42 @@ private:
         backend_enabled_ = false;
     }
 
+    bool apply_follow_gait(bool log_failures)
+    {
+        if (follow_gait_ == "none") {
+            return true;
+        }
+        if (sport_client_ == nullptr) {
+            if (log_failures) {
+                RCLCPP_ERROR(
+                    this->get_logger(),
+                    "Cannot apply follow gait %s because the SportClient is unavailable.",
+                    follow_gait_.c_str());
+            }
+            return false;
+        }
+
+        const int32_t result = send_gait_command(*sport_client_, follow_gait_);
+        if (result == 0) {
+            RCLCPP_INFO(
+                this->get_logger(),
+                "Applied Unitree follow gait %s for backend %s.",
+                follow_gait_.c_str(),
+                backend_name_.c_str());
+            return true;
+        }
+
+        if (log_failures) {
+            RCLCPP_ERROR(
+                this->get_logger(),
+                "Failed to apply Unitree follow gait %s for backend %s (result=%d).",
+                follow_gait_.c_str(),
+                backend_name_.c_str(),
+                result);
+        }
+        return false;
+    }
+
     void send_motion_command(float vx, float vy, float wz, bool log_failures)
     {
         if (!sdk_initialized_ || !backend_enabled_) {
@@ -339,6 +480,7 @@ private:
 
         const int32_t result = [this, vx, vy, wz]() {
             switch (backend_) {
+            case MotionBackend::kSport:
             case MotionBackend::kSportFreeAvoid:
                 if (sport_client_ == nullptr) {
                     return -1;
@@ -375,6 +517,7 @@ private:
     std::string backend_name_;
     MotionBackend backend_;
     std::string cmd_vel_topic_;
+    std::string follow_gait_;
     std::string robot_mode_state_topic_;
     std::string network_interface_;
     std::string resolved_network_interface_;
