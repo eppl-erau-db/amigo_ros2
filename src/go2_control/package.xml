@@ -6,8 +6,7 @@
   <maintainer email="jcass358@gmail.com">brimo</maintainer>
   <license>Apache-2.0</license>
 
-  <!-- We build with ament_cmake but also use Python. -->
-  <buildtool_depend>ament_cmake</buildtool_depend>
+  <!-- Pure ament_python package (setup.py, no CMakeLists). -->
   <buildtool_depend>ament_python</buildtool_depend>
 
   <!-- Dependencies for building/running your Python nodes -->
@@ -21,7 +20,12 @@
   <depend>action_msgs</depend>
   <depend>tf2_ros</depend>
   <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
   <depend>sensor_msgs</depend>
+  <depend>sensor_msgs_py</depend>
+  <depend>python3-numpy</depend>
+  <depend>python3-opencv</depend>
+  <depend>python3-yaml</depend>
   <depend>nav_msgs</depend>
   <depend>cv_bridge</depend>
   <depend>visualization_msgs</depend>
@@ -39,7 +43,7 @@
   <exec_depend>tf-transformations</exec_depend>
   <exec_depend>nav2_simple_commander</exec_depend>
   <exec_depend>slam_toolbox</exec_depend>
-  <exec_depend>rplidar_ros2</exec_depend>
+  <exec_depend>sllidar_ros2</exec_depend>
   <test_depend>python3-pytest</test_depend>
 
   <export>

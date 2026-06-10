@@ -86,6 +86,9 @@ setup(
             'sound_localizer = go2_control.sound_localizer:main',
             'explore_until_detected_action_server = go2_control.explore_until_detected_action_server:main',
             'localize_detected_leak_action_server = go2_control.localize_detected_leak_action_server:main',
+            'aruco_detector_node = go2_control.aruco_detector_node:main',
+            'map_marker_recorder_node = go2_control.map_marker_recorder_node:main',
+            'deliver_swag_action_server = go2_control.deliver_swag_action_server:main',
 
         ],
     },

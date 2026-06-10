@@ -5,8 +5,9 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# Set CMAKE_PREFIX_PATH
-set(CMAKE_PREFIX_PATH "/workspaces/isaac_ros-dev/src/unitree_ros2/cyclonedds_ws/src/unitree" ${CMAKE_PREFIX_PATH})
+# unitree_go / unitree_api are built in this same workspace
+# (src/unitree_ros2/cyclonedds_ws/src/unitree/*) and resolved via the
+# normal colcon/ament prefix path -- no hardcoded path needed.
 
 # find dependencies
 find_package(ament_cmake REQUIRED)

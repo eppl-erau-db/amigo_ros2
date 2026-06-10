@@ -9,6 +9,8 @@ class TaskModes:
     IDLE = "IDLE"
     FOLLOW = "FOLLOW"
     SEARCH = "SEARCH"
+    EXPLORE = "EXPLORE"
+    DELIVER = "DELIVER"
 
 
 class PostureModes:
@@ -25,6 +27,10 @@ class VoiceCommands:
     SHAKE_HAND = "shake_hand"
     LAY_DOWN = "lay_down"
     STAND_UP = "stand_up"
+    EXPLORE = "explore"
+    DONE_EXPLORING = "done_exploring"
+    DELIVER = "deliver_swag"
+    HANDOFF_DONE = "handoff_done"
 
 
 class SupervisorOps:
@@ -34,6 +40,11 @@ class SupervisorOps:
     SEND_HELLO = "send_hello"
     SEND_STAND_DOWN = "send_stand_down"
     SEND_STAND_UP = "send_stand_up"
+    START_EXPLORE = "start_explore"
+    SAVE_EXPLORE_MAP = "save_explore_map"
+    START_DELIVER = "start_deliver"
+    CANCEL_DELIVER = "cancel_deliver"
+    SIGNAL_HANDOFF_DONE = "signal_handoff_done"
 
 
 @dataclass(frozen=True)
@@ -74,6 +85,10 @@ def normalize_task_mode(raw_mode: str | None) -> str | None:
         return TaskModes.FOLLOW
     if token in {"SEARCH"}:
         return TaskModes.SEARCH
+    if token in {"EXPLORE", "EXPLORE_AREA"}:
+        return TaskModes.EXPLORE
+    if token in {"DELIVER", "DELIVER_SWAG"}:
+        return TaskModes.DELIVER
     return token
 
 
@@ -108,6 +123,14 @@ def normalize_voice_command(raw_command: str | None) -> str:
         return VoiceCommands.LAY_DOWN
     if token in {"stand_up", "get_up"}:
         return VoiceCommands.STAND_UP
+    if token in {"explore", "explore_area", "lets_explore", "let_s_explore"}:
+        return VoiceCommands.EXPLORE
+    if token in {"done_exploring", "stop_exploring", "finish_exploring"}:
+        return VoiceCommands.DONE_EXPLORING
+    if token in {"deliver_swag", "deliver", "deliver_the_swag"}:
+        return VoiceCommands.DELIVER
+    if token in {"handoff_done", "all_done", "delivery_done", "hand_off_done"}:
+        return VoiceCommands.HANDOFF_DONE
     return token
 
 
@@ -185,6 +208,24 @@ def request_voice_command(
             source=source,
             allow_preempt=allow_preempt,
         )
+    if normalized == VoiceCommands.EXPLORE:
+        return request_mode_change(
+            state,
+            requested_task_mode=TaskModes.EXPLORE,
+            source=source,
+            allow_preempt=allow_preempt,
+        )
+    if normalized == VoiceCommands.DONE_EXPLORING:
+        return _request_done_exploring(state, source)
+    if normalized == VoiceCommands.DELIVER:
+        return request_mode_change(
+            state,
+            requested_task_mode=TaskModes.DELIVER,
+            source=source,
+            allow_preempt=allow_preempt,
+        )
+    if normalized == VoiceCommands.HANDOFF_DONE:
+        return _request_handoff_done(state, source)
     return _rejected(state, f'Unsupported voice command "{command}".')
 
 
@@ -265,13 +306,63 @@ def _request_shake_hand(
     )
 
 
+def _request_done_exploring(state: SupervisorState, source: str) -> TransitionDecision:
+    """Finish an explore session: save the map + marker table, return to IDLE."""
+    if state.faulted:
+        return _rejected(state, "Supervisor is faulted and cannot accept new requests.")
+    if state.task_mode != TaskModes.EXPLORE:
+        return _rejected(state, "Not currently exploring; nothing to save.")
+
+    return _accepted(
+        replace(
+            state,
+            task_mode=TaskModes.IDLE,
+            motion_enabled=False,
+            pending_task_mode=None,
+        ),
+        source,
+        "done_exploring",
+        (
+            SupervisorOps.PUBLISH_ZERO_MOTION,
+            SupervisorOps.SAVE_EXPLORE_MAP,
+        ),
+        "Saving explored map and marker table; returning to IDLE.",
+    )
+
+
+def _request_handoff_done(state: SupervisorState, source: str) -> TransitionDecision:
+    """Acknowledge the swag hand-off so the active delivery proceeds to drop-off.
+
+    This is a side-signal to the in-progress mission, NOT a mode change: the task
+    stays DELIVER.
+    """
+    if state.faulted:
+        return _rejected(state, "Supervisor is faulted and cannot accept new requests.")
+    if state.task_mode != TaskModes.DELIVER:
+        return _rejected(state, "No swag delivery in progress.")
+
+    return _accepted(
+        replace(state),
+        source,
+        "handoff_done_signaled",
+        (SupervisorOps.SIGNAL_HANDOFF_DONE,),
+        "Hand-off acknowledged; continuing delivery.",
+    )
+
+
 def _request_task(
     state: SupervisorState,
     task_mode: str,
     source: str,
     allow_preempt: bool,
 ) -> TransitionDecision:
-    if task_mode not in {TaskModes.IDLE, TaskModes.FOLLOW, TaskModes.SEARCH}:
+    if task_mode not in {
+        TaskModes.IDLE,
+        TaskModes.FOLLOW,
+        TaskModes.SEARCH,
+        TaskModes.EXPLORE,
+        TaskModes.DELIVER,
+    }:
         return _rejected(state, f'Unsupported task mode "{task_mode}".')
 
     if task_mode == TaskModes.IDLE:
@@ -287,6 +378,20 @@ def _request_task(
                     SupervisorOps.CANCEL_SEARCH,
                 ),
                 "Canceling Search and returning to IDLE.",
+            )
+
+        if state.task_mode == TaskModes.DELIVER:
+            if not allow_preempt:
+                return _rejected(state, "Delivery is active and preemption is disabled.")
+            return _accepted(
+                replace(state, motion_enabled=False, pending_task_mode=TaskModes.IDLE),
+                source,
+                "canceling_deliver_for_idle",
+                (
+                    SupervisorOps.PUBLISH_ZERO_MOTION,
+                    SupervisorOps.CANCEL_DELIVER,
+                ),
+                "Canceling swag delivery and returning to IDLE.",
             )
 
         if state.task_mode == TaskModes.IDLE and state.pending_task_mode is None and not state.motion_enabled:
@@ -333,6 +438,24 @@ def _request_task(
                 "Canceling Search before enabling Follow.",
             )
 
+        if state.task_mode == TaskModes.DELIVER:
+            if not allow_preempt:
+                return _rejected(state, "Delivery is active and preemption is disabled.")
+            return _accepted(
+                replace(
+                    state,
+                    motion_enabled=False,
+                    pending_task_mode=TaskModes.FOLLOW,
+                ),
+                source,
+                "canceling_deliver_for_follow",
+                (
+                    SupervisorOps.PUBLISH_ZERO_MOTION,
+                    SupervisorOps.CANCEL_DELIVER,
+                ),
+                "Canceling swag delivery before enabling Follow.",
+            )
+
         return _accepted(
             replace(
                 state,
@@ -345,6 +468,54 @@ def _request_task(
             (SupervisorOps.PUBLISH_ZERO_MOTION,),
             "Follow mode is now active.",
         )
+
+    if task_mode == TaskModes.EXPLORE:
+        if state.task_mode in {TaskModes.SEARCH, TaskModes.DELIVER}:
+            return _rejected(
+                state,
+                f"Stop the active {state.task_mode} task before exploring the area.",
+            )
+        if state.task_mode == TaskModes.EXPLORE and state.pending_task_mode is None:
+            return _rejected(state, "Explore mode is already active.")
+        # Manual-drive mapping: no motion routing and no zero-motion publish so the
+        # supervisor does not fight the operator's handheld remote.
+        return _accepted(
+            replace(
+                state,
+                task_mode=TaskModes.EXPLORE,
+                motion_enabled=False,
+                pending_task_mode=None,
+            ),
+            source,
+            "explore_active",
+            (SupervisorOps.START_EXPLORE,),
+            "Explore mode is now active. Drive the robot with the remote.",
+        )
+
+    if task_mode == TaskModes.DELIVER:
+        if state.task_mode == TaskModes.SEARCH:
+            return _rejected(state, "Stop the leak search before delivering swag.")
+        if state.task_mode == TaskModes.DELIVER and state.pending_task_mode is None and state.motion_enabled:
+            return _rejected(state, "Deliver mode is already active.")
+        return _accepted(
+            replace(
+                state,
+                task_mode=TaskModes.DELIVER,
+                motion_enabled=True,
+                pending_task_mode=None,
+            ),
+            source,
+            "deliver_active",
+            (
+                SupervisorOps.PUBLISH_ZERO_MOTION,
+                SupervisorOps.START_DELIVER,
+            ),
+            "Deliver mode is now active.",
+        )
+
+    # task_mode == SEARCH
+    if state.task_mode == TaskModes.DELIVER:
+        return _rejected(state, "Stop the swag delivery before searching for a leak.")
 
     if state.task_mode == TaskModes.SEARCH and state.pending_task_mode is None and state.motion_enabled:
         return _rejected(state, "Search mode is already active.")
@@ -382,6 +553,8 @@ def _request_posture(
         operations = [SupervisorOps.PUBLISH_ZERO_MOTION]
         if state.task_mode == TaskModes.SEARCH and allow_preempt:
             operations.append(SupervisorOps.CANCEL_SEARCH)
+        if state.task_mode == TaskModes.DELIVER and allow_preempt:
+            operations.append(SupervisorOps.CANCEL_DELIVER)
 
         operations.append(SupervisorOps.SEND_STAND_DOWN)
 
@@ -459,6 +632,46 @@ def complete_search(state: SupervisorState, *, detail: str = "") -> SupervisorSt
     )
 
 
+def complete_deliver(state: SupervisorState, *, detail: str = "") -> SupervisorState:
+    """Finalize the swag-delivery task (mirrors ``complete_search``).
+
+    Honors a pending FOLLOW/IDLE preemption; otherwise returns to IDLE.
+    """
+    if state.faulted:
+        return state
+
+    if state.pending_task_mode == TaskModes.FOLLOW:
+        return replace(
+            state,
+            task_mode=TaskModes.FOLLOW,
+            motion_enabled=state.posture_mode == PostureModes.STANDING,
+            pending_task_mode=None,
+            transition_id=state.transition_id + 1,
+            detail=detail or "follow_active_after_deliver_cancel",
+        )
+
+    if state.pending_task_mode == TaskModes.IDLE:
+        return replace(
+            state,
+            task_mode=TaskModes.IDLE,
+            motion_enabled=False,
+            pending_task_mode=None,
+            transition_id=state.transition_id + 1,
+            detail=detail or "idle_after_deliver_cancel",
+        )
+
+    if state.task_mode != TaskModes.DELIVER:
+        return state
+
+    return replace(
+        state,
+        task_mode=TaskModes.IDLE,
+        motion_enabled=False,
+        transition_id=state.transition_id + 1,
+        detail=detail or "deliver_finished",
+    )
+
+
 def complete_posture_transition(
     state: SupervisorState,
     *,
@@ -517,6 +730,9 @@ def select_motion_routing(
         return MotionRouting()
 
     if state.task_mode == TaskModes.SEARCH:
+        return MotionRouting(base_source="nav")
+
+    if state.task_mode == TaskModes.DELIVER:
         return MotionRouting(base_source="nav")
 
     if state.task_mode == TaskModes.FOLLOW:

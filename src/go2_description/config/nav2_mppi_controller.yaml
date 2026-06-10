@@ -47,54 +47,10 @@ bt_navigator:
     odom_topic: /odom
     bt_loop_duration: 10
     default_server_timeout: 20
-    plugin_lib_names:
-      - nav2_compute_path_to_pose_action_bt_node
-      - nav2_compute_path_through_poses_action_bt_node
-      - nav2_smooth_path_action_bt_node
-      - nav2_follow_path_action_bt_node
-      - nav2_spin_action_bt_node
-      - nav2_wait_action_bt_node
-      - nav2_assisted_teleop_action_bt_node
-      - nav2_back_up_action_bt_node
-      - nav2_drive_on_heading_bt_node
-      - nav2_clear_costmap_service_bt_node
-      - nav2_is_stuck_condition_bt_node
-      - nav2_goal_reached_condition_bt_node
-      - nav2_goal_updated_condition_bt_node
-      - nav2_globally_updated_goal_condition_bt_node
-      - nav2_is_path_valid_condition_bt_node
-      - nav2_initial_pose_received_condition_bt_node
-      - nav2_reinitialize_global_localization_service_bt_node
-      - nav2_rate_controller_bt_node
-      - nav2_distance_controller_bt_node
-      - nav2_speed_controller_bt_node
-      - nav2_truncate_path_action_bt_node
-      - nav2_truncate_path_local_action_bt_node
-      - nav2_goal_updater_node_bt_node
-      - nav2_recovery_node_bt_node
-      - nav2_pipeline_sequence_bt_node
-      - nav2_round_robin_node_bt_node
-      - nav2_transform_available_condition_bt_node
-      - nav2_time_expired_condition_bt_node
-      - nav2_path_expiring_timer_condition
-      - nav2_distance_traveled_condition_bt_node
-      - nav2_single_trigger_bt_node
-      - nav2_goal_updated_controller_bt_node
-      - nav2_is_battery_low_condition_bt_node
-      - nav2_navigate_through_poses_action_bt_node
-      - nav2_navigate_to_pose_action_bt_node
-      - nav2_remove_passed_goals_action_bt_node
-      - nav2_planner_selector_bt_node
-      - nav2_controller_selector_bt_node
-      - nav2_goal_checker_selector_bt_node
-      - nav2_controller_cancel_bt_node
-      - nav2_path_longer_on_approach_bt_node
-      - nav2_wait_cancel_bt_node
-      - nav2_spin_cancel_bt_node
-      - nav2_back_up_cancel_bt_node
-      - nav2_assisted_teleop_cancel_bt_node
-      - nav2_drive_on_heading_cancel_bt_node
-      - nav2_is_battery_charging_condition_bt_node
+    # NOTE: Jazzy auto-registers all built-in BT nodes. Listing them in
+    # plugin_lib_names re-registers them and crashes bt_navigator with
+    # "ID [ComputePathToPose] already registered". Only add plugin_lib_names
+    # back for CUSTOM / third-party BT nodes (none here).
 
 bt_navigator_navigate_through_poses_rclcpp_node:
   ros__parameters:
@@ -107,6 +63,10 @@ bt_navigator_navigate_to_pose_rclcpp_node:
 controller_server:
   ros__parameters:
     use_sim_time: False
+    # Jazzy can default Nav2 velocity output to geometry_msgs/TwistStamped; the
+    # go2 driver + motion arbiter use plain geometry_msgs/Twist. Force Twist so
+    # Nav2-driven motion still reaches the robot.
+    enable_stamped_cmd_vel: False
     controller_frequency: 20.0
     progress_checker_plugin: "progress_checker"
     goal_checker_plugins: ["stopped_goal_checker"]
@@ -114,8 +74,8 @@ controller_server:
     # Progress checker parameters
     progress_checker:
       plugin: "nav2_controller::SimpleProgressChecker"
-      required_movement_radius: 0.35
-      movement_time_allowance: 12.0
+      required_movement_radius: 0.20   # was 0.35 — tolerate a slow rotate-in-place
+      movement_time_allowance: 15.0    # was 12.0
     stopped_goal_checker:
       plugin: "nav2_controller::StoppedGoalChecker"
       trans_stopped_velocity: 0.10
@@ -123,27 +83,66 @@ controller_server:
       xy_goal_tolerance: 0.15
       yaw_goal_tolerance: 0.20
     FollowPath:
-      plugin: "nav2_mppi_controller::MPPIController"
-      time_steps: 32
+      # Rotation Shim wraps MPPI: when a new path's initial heading differs from the
+      # robot's current heading by more than angular_dist_threshold, the shim rotates
+      # the robot IN PLACE toward the path heading first, then hands every control tick
+      # to the primary controller (MPPI). Fixes the failure where explore/leak goals are
+      # ~80-90 deg LATERAL and MPPI had to rotate AND translate simultaneously — it would
+      # hesitate/oscillate (worse at the measured ~9.4 Hz) and trip the progress checker.
+      # During the in-place turn MPPI is not even called, so its slow solve doesn't matter.
+      plugin: "nav2_rotation_shim_controller::RotationShimController"
+      primary_controller: "nav2_mppi_controller::MPPIController"
+      angular_dist_threshold: 0.785        # ~45 deg; above this heading error, rotate in place first
+      forward_sampling_distance: 0.5       # look-ahead distance on the path to pick the target heading
+      rotate_to_heading_angular_vel: 2.0   # in-place rotate speed; <= MPPI wz_max (2.5)
+      max_angular_accel: 5.0               # <= behavior_server rotational_acc_lim (6.0)
+      rotate_to_goal_heading: false        # let MPPI's GoalAngleCritic set the final yaw (explore goals have no meaningful heading)
+      simulate_ahead_time: 1.0
+      # ----- primary controller (MPPI) parameters live in this SAME flat namespace -----
+      # batch_size 800->400 + time_steps 32->24: MPPI is single-threaded (no OpenMP/CUDA;
+      # verified via ldd) on the Jetson Thor ARM core, so 800x32 rollouts + the footprint
+      # ObstaclesCritic ran the control loop at ~9.4 Hz (half the 20 Hz target). Halving the
+      # rollouts and horizon recovers ~20 Hz; 24*0.05 = 1.2 s horizon (0.72 m at vx_max 0.6)
+      # is ample for indoor short goals. (Nav2 has NO GPU controller, so spare GPU is unused.)
+      time_steps: 24
       model_dt: 0.05
-      batch_size: 800
+      batch_size: 400
       # Noises
-      vx_std: 0.2
+      vx_std: 0.3
       vy_std: 0.2                   # <= add for Omni
-      wz_std: 0.4
+      wz_std: 0.6
 
       # Limits (tune to your comfort / Go2 limits)
-      vx_max: 3.0
-      vx_min: -0.35
-      vy_max: 0.1                   # <= allow some lateral
-      wz_max: 2.0
+      # Indoor exploration limits for a Go2 driven as a differential base.
+      # vx_max lowered from 3.0 m/s: at 3 m/s the 1.6 s MPPI horizon (4.8 m)
+      # overran the 3 m local-costmap radius and left almost no stopping headroom.
+      # Reverse DISABLED (vx_min 0.0). vx_min is a HARD optimizer clip
+      # (optimizer.cpp applyControlSequenceConstraints: vx = clip(vx, vx_min, vx_max)),
+      # so 0.0 makes a reverse command impossible and ALSO flips PathAngleCritic to
+      # reversing_allowed_=false (FORWARD_PREFERENCE) which rewards rotating to face the goal.
+      # WHY: with reverse enabled (was -0.25) the dog walked BACKWARD on "look for a leak" —
+      # explore_lite picks the nearest frontier with NO direction term + identity orientation
+      # (frontier_search.cpp cost = potential_scale*dist - gain_scale*size), so the first
+      # frontier is often directly BEHIND; MPPI then just followed the path in reverse instead
+      # of turning around. PreferForwardCritic only BIASES (soft, gated near goal) and could
+      # not overcome PathAlign(14)/PathFollow(5)/Goal(5) on a behind-goal — only vx_min=0
+      # reliably forces rotate-then-forward. Dead-end back-out is still available via the
+      # behavior_server `backup` RECOVERY (fires after a ~15s progress-checker stall), just not
+      # continuously. To re-enable continuous reverse, set vx_min -0.25 AND raise
+      # PreferForwardCritic weight (>=20) — but expect occasional backing toward behind-goals.
+      # No strafe (vy_max 0.0) — Go2 under nav2 Twist is differential; a lateral DOF it can't
+      # use deadlocks MPPI.
+      vx_max: 1.0
+      vx_min: 0.0
+      vy_max: 0.0
+      wz_max: 2.5
 
       iteration_count: 1
       prune_distance: 1.7
       transform_tolerance: 0.2
       temperature: 0.3
       gamma: 0.015
-      motion_model: "Omni" # try "Omni"
+      motion_model: "DiffDrive" # Go2 under nav2 Twist control does not true-strafe
       visualize: false
       reset_period: 1.0 # (only in Humble)
       regenerate_noises: false
@@ -168,7 +167,7 @@ controller_server:
       PreferForwardCritic:
         enabled: true
         cost_power: 1
-        cost_weight: 5.0
+        cost_weight: 1.0           # was 5.0 — let the base rotate to face side goals
         threshold_to_consider: 0.5
       ObstaclesCritic:
         enabled: true
@@ -222,10 +221,14 @@ local_costmap:
       height: 6
       resolution: 0.05
       transform_tolerance: 1.0
-      footprint: "[ [0.360, 0.200], [0.360, -0.200], [-0.800, -0.200], [-0.800, 0.200] ]"
+      # Go2 body ~0.72 x 0.40 m, centered on base_link. The old rear corners at
+      # x=-0.80 made a 1.16 m, rear-biased footprint (circumscribed 0.82 m): the
+      # MPPI ObstaclesCritic (consider_footprint:true) and behavior_server Spin
+      # then saw the robot perpetually in collision ("Collision Ahead - Exiting Spin").
+      footprint: "[ [0.360, 0.200], [0.360, -0.200], [-0.360, -0.200], [-0.360, 0.200] ]"
       mark_threshold: 2
       always_send_full_costmap: True
-      plugins: ['obstacle_layer','3d_lidar_layer', 'inflation_layer']
+      plugins: ['obstacle_layer', 'lidar3d_layer', 'inflation_layer']  # lidar3d_layer now fed by the ZED 2i cloud (L1/go2_lidar stays OFF)
 
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
@@ -250,27 +253,27 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: True
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.55
+        cost_scaling_factor: 5.0    # was 3.0 — steeper = thinner band so MPPI's ObstaclesCritic
+        inflation_radius: 0.40      # was 0.55   doesn't avoid a wide zone and can thread gaps
 
-      3d_lidar_layer:
+      lidar3d_layer:
         plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"
         enabled: true
-        voxel_decay: 3.0
-        observation_persistence: 0.3
-        expected_update_rate: 8.0
+        voxel_decay: 0.5              # was 3.0 — fade fast so any depth phantom self-clears in ~1 s
+        observation_persistence: 0.0 # was 0.3
+        expected_update_rate: 0.0    # was 8.0 — don't evict on rate; the ZED COMPACT cloud can be bursty
         decay_model: 1
         voxel_size: 0.05
         z_voxels: 10
-        max_obstacle_height: 0.7
+        max_obstacle_height: 0.6     # was 0.7
         origin_z: 0.1
         mark_threshold: 3
         update_footprint_enabled: true
         combination_method: 0
-        publish_voxel_map: false
+        publish_voxel_map: true      # DEBUG: publishes /local_costmap/voxel_grid so you can SEE marks in RViz; set back to false once tuned
         transform_tolerance: 0.5
 
-        observation_sources: front3d #, velodyne
+        observation_sources: front3d_go2 #, velodyne
 
         velodyne:
           data_type: PointCloud2
@@ -294,33 +297,66 @@ local_costmap:
 
         front3d:
           #enabled: true #default true, can be toggled on/off with associated service call
+          # SOURCE = ZED 2i depth cloud (the L1/go2_lidar republisher is OFF). Forward-only
+          # ~110°x70° FOV; the near blind spot (~0.3-0.5 m at the feet) is covered by the 2D
+          # /scan obstacle_layer + the footprint. See L1 diagnosis notes before re-adding the L1.
           data_type: PointCloud2
-          topic: /pointcloud
-          sensor_frame: radar
+          topic: /zed/zed_node/point_cloud/cloud_registered
+          sensor_frame: zed_left_camera_frame   # the cloud's own frame; TF: base_link->zed_camera_link->zed_left_camera_frame
           marking: true
           clearing: true
 
-          obstacle_range: 8.0           # very responsive near-field
-          raytrace_range: 12.0           # slightly larger for clearing
+          obstacle_range: 3.0            # was 8.0 — ZED depth degrades past ~3-4 m
+          raytrace_range: 4.0            # was 12.0 — clear just beyond the marking range
 
-          min_obstacle_height: 0.05
-          max_obstacle_height: 0.75       # Go2 body clearance; bump if you want taller obstacles
+          min_obstacle_height: 0.10      # was 0.05 — drop floor-grazing depth noise
+          max_obstacle_height: 0.60      # was 0.75
 
-          model_type: 1                  # 3D LiDAR
-          horizontal_fov_angle: 6.283    # 360°
-          vertical_fov_angle: 1.571      # 90° total
+          model_type: 1                  # depth sensor (frustum FOV clearing model)
+          horizontal_fov_angle: 1.92     # was 6.283 — ZED 2i ~110° H (don't clear where it can't see)
+          vertical_fov_angle: 1.22       # was 1.571 — ZED 2i ~70° V
           vertical_fov_padding: 0.05
           clear_after_reading: true
-          # expected_update_rate: 0.0 # default 0, if not updating at this rate at least, remove from buffer
-          observation_persistence: 1.0
+          observation_persistence: 0.0   # was 1.0 — don't linger phantoms
 
-          min_z: 0.05                    # L1 near blind spot
-          max_z: 20.0   
+          min_z: 0.10                    # was 0.05 — height (odom frame) floor cutoff; drops the ground plane
+          max_z: 2.0                     # was 20.0
+        
+        front3d_go2:
+          #enabled: true #default true, can be toggled on/off with associated service call
+          # SOURCE = ZED 2i depth cloud (the L1/go2_lidar republisher is OFF). Forward-only
+          # ~110°x70° FOV; the near blind spot (~0.3-0.5 m at the feet) is covered by the 2D
+          # /scan obstacle_layer + the footprint. See L1 diagnosis notes before re-adding the L1.
+          data_type: PointCloud2
+          topic: /utlidar/cloud_base
+          sensor_frame: base_link   # the cloud's own frame; TF: base_link->zed_camera_link->zed_left_camera_frame
+          marking: true
+          clearing: true
+
+          obstacle_range: 4.0            # was 8.0 — ZED depth degrades past ~3-4 m
+          raytrace_range: 6.0            # was 12.0 — clear just beyond the marking range
+
+          min_obstacle_height: 0.10      # was 0.05 — drop floor-grazing depth noise
+          max_obstacle_height: 0.75      # was 0.75
+
+          model_type: 1                  # depth sensor (frustum FOV clearing model)
+          horizontal_fov_angle: 6.283    # was 6.283 — ZED 2i ~110° H (don't clear where it can't see)
+          vertical_fov_angle: 1.571       # was 1.571 — ZED 2i ~70° V
+          vertical_fov_padding: 0.05
+          clear_after_reading: true
+          observation_persistence: 0.0   # was 1.0 — don't linger phantoms
+
+          min_z: 0.10                    # was 0.05 — height (odom frame) floor cutoff; drops the ground plane
+          max_z: 2.0 
 
 global_costmap:
   global_costmap:
     ros__parameters:
-      footprint_padding: 0.2
+      # footprint_padding STACKS on robot_radius (0.30): at 0.2 the global inscribed
+      # radius was 0.50 m, so cells within 0.50 m of any wall became lethal-for-planning
+      # (INSCRIBED_INFLATED_OBSTACLE) and gaps < ~1.0 m were fully closed. 0.0 -> inscribed
+      # = robot_radius (0.30 m) -> routes through gaps > ~0.60 m (robot is ~0.40 m wide).
+      footprint_padding: 0.0
       transform_tolerance: 0.5
       update_frequency: 5.0
       publish_frequency: 2.0
@@ -361,52 +397,17 @@ global_costmap:
         #     obstacle_max_range: 2.5
         #     obstacle_min_range: 0.0
 
-      voxel_layer:
-        plugin: "nav2_costmap_2d::VoxelLayer"
-        mark_threshold: 5
-        enabled: true
-        origin_z: 0.0
-        z_resolution: 0.2
-        z_voxels: 12
-        max_obstacle_height: 0.75
-        publish_voxel_map: false
-        # Combine with static map using "max" semantics
-        combination_method: 0
-
-        observation_sources: zed_points #velodyne 
-
-        velodyne:
-            topic: /velodyne_points
-            data_type: PointCloud2
-            expected_update_rate: 0.0
-            observation_persistence: 0.0
-            min_obstacle_height: 0.05
-            max_obstacle_height: 0.75
-            obstacle_min_range: 0.0
-            obstacle_max_range: 25.0
-            raytrace_min_range: 0.0
-            raytrace_max_range: 30.0
-            clearing: true
-            marking: true
-
-        zed_points:
-            topic: /zed/zed_node/point_cloud/cloud_registered
-            data_type: PointCloud2
-            # expected_update_rate: 0.0
-            # observation_persistence: 0.0
-            min_obstacle_height: 0.05
-            max_obstacle_height: 0.75
-            obstacle_min_range: 0.1
-            obstacle_max_range: 10.0
-            raytrace_min_range: 0.1
-            raytrace_max_range: 12.0
-            clearing: true
-            marking: true
+      # NOTE: the global costmap intentionally uses ONLY static_layer (the /scan-built
+      # SLAM /map) + inflation. The ZED camera is deliberately NOT a global obstacle
+      # source: its depth-cloud noise would leave permanent phantom walls in this
+      # persistent (rolling_window:False) map. A VoxelLayer/zed_points block used to live
+      # here but was never in `plugins` (so it was already inactive) — removed to avoid
+      # confusion. Camera/3D-lidar obstacle avoidance happens in the LOCAL costmap.
 
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 15.0
-        inflation_radius: 0.55
+        cost_scaling_factor: 15.0      # steep -> thin soft band, gaps stay cheap to traverse
+        inflation_radius: 0.40         # was 0.55 — soft buffer just above the 0.30 m inscribed
         inflate_unknown: false
 
 map_server:
@@ -428,7 +429,7 @@ planner_server:
     use_sim_time: False
     planner_plugins: ["GridBased"]
     GridBased:
-      plugin: "nav2_smac_planner/SmacPlanner2D"
+      plugin: "nav2_smac_planner::SmacPlanner2D"
       tolerance: 0.125                      # tolerance for planning if unable to reach exact pose, in meters
       downsample_costmap: false             # whether or not to downsample the map
       downsampling_factor: 1                # multiplier for the resolution of the costmap layer (e.g. 2 on a 5cm costmap would be 10cm)
@@ -461,21 +462,21 @@ behavior_server:
     cycle_frequency: 10.0
     behavior_plugins: ["spin", "backup", "drive_on_heading", "assisted_teleop", "wait"]
     spin:
-      plugin: "nav2_behaviors/Spin"
+      plugin: "nav2_behaviors::Spin"
     backup:
-      plugin: "nav2_behaviors/BackUp"
+      plugin: "nav2_behaviors::BackUp"
     drive_on_heading:
-      plugin: "nav2_behaviors/DriveOnHeading"
+      plugin: "nav2_behaviors::DriveOnHeading"
     wait:
-      plugin: "nav2_behaviors/Wait"
+      plugin: "nav2_behaviors::Wait"
     assisted_teleop:
-      plugin: "nav2_behaviors/AssistedTeleop"
+      plugin: "nav2_behaviors::AssistedTeleop"
     global_frame: odom
     robot_base_frame: base_footprint
     transform_tolerance: 0.1
     use_sim_time: false
     simulate_ahead_time: 2.0
-    max_rotational_vel: 1.8
+    max_rotational_vel: 2.5
     min_rotational_vel: 0.2
     rotational_acc_lim: 6.0
 
@@ -497,14 +498,80 @@ waypoint_follower:
 velocity_smoother:
   ros__parameters:
     use_sim_time: False
+    enable_stamped_cmd_vel: False   # keep plain geometry_msgs/Twist (see controller_server note)
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
-    max_velocity: [3.0, 3.0, 2.0]
-    min_velocity: [-3.0, -3.0, -2.0]
-    max_accel: [3.5, 3.5, 6.0]
-    max_decel: [-3.5, -3.5, -6.0]
+    # Mirror the DiffDrive controller limits: forward-only, no strafe, slow indoors.
+    max_velocity: [1.0, 0.0, 2.5]
+    min_velocity: [0.0, 0.0, -2.5]   # vx 0.0 mirrors MPPI vx_min=0.0 (reverse disabled; see controller note)
+    max_accel: [1.5, 0.0, 5.0]
+    max_decel: [-1.5, 0.0, -5.0]
     odom_topic: "odom"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]
     velocity_timeout: 1.0
+
+# Jazzy's navigation_launch.py always starts collision_monitor and the lifecycle
+# manager aborts the whole Nav2 bringup if it has no valid config (Humble didn't
+# launch it, so this section is new). Minimal footprint-approach config; its output
+# cmd_vel is remapped to /motion/candidate/nav by mapping_nav.launch.py.
+collision_monitor:
+  ros__parameters:
+    base_frame_id: "base_footprint"
+    odom_frame_id: "odom"
+    cmd_vel_in_topic: "cmd_vel_smoothed"
+    cmd_vel_out_topic: "cmd_vel"
+    state_topic: "collision_monitor_state"
+    transform_tolerance: 0.2
+    source_timeout: 1.0
+    base_shift_correction: True
+    stop_pub_timeout: 2.0
+    polygons: ["FootprintApproach"]
+    FootprintApproach:
+      type: "polygon"
+      action_type: "approach"
+      footprint_topic: "/local_costmap/published_footprint"
+      time_before_collision: 1.2
+      simulation_time_step: 0.1
+      min_points: 6
+      visualize: False
+      enabled: True
+    observation_sources: ["scan", "l1_cloud"]
+    scan:
+      type: "scan"
+      topic: "/scan"
+      min_height: 0.15
+      max_height: 2.0
+      enabled: True
+    # L1 3D lidar as a SECOND collision source so the footprint-approach guard brakes for LOW
+    # obstacles the high 2D /scan plane misses — including ones CLOSE to the robot, where the
+    # forward-mounted ZED is blind (~0.3 m near zone). Reads the sensor DIRECTLY (not the costmap),
+    # so it still protects the robot right after a local-costmap clear.
+    # Uses raw /utlidar/cloud_base directly: visually confirmed the Unitree firmware already excludes
+    # the robot's own body/legs (a self-box gap around the robot), so there are no self-returns to
+    # latch a false collision — go2_lidar's republish/self-filter is NOT needed here.
+    # The floor is dropped by min_height: base_frame_id is base_footprint, which is LEVEL (EKF
+    # two_d_mode + base_to_base_tf carries pitch onto base_link), so a true floor return sits at
+    # z~=0 regardless of body pitch — so this won't get the pitch floor-phantoms the costmap STVL did.
+    # type MUST be "pointcloud" (the collision_monitor source-KIND keyword), NOT "PointCloud2" (that
+    # is the ROS message type, used only in the costmap's data_type field) — a wrong type here fails
+    # configuration and aborts the whole Nav2 bringup. min/max_height are in base_footprint (floor=0).
+    l1_cloud:
+      type: "pointcloud"
+      topic: "/utlidar/cloud_base"
+      min_height: 0.10           # was 0.05 — drop the floor (matches costmap min_z 0.10); raise toward 0.12 if you get floor false-stops, lower if you need to catch shorter obstacles
+      max_height: 0.55
+      enabled: True
+
+# Jazzy's navigation_launch.py also starts docking_server (opennav_docking) under
+# the same lifecycle_manager. With no dock_plugins it fails to configure and the
+# manager aborts the ENTIRE Nav2 bringup ("Charging dock plugins not given!"),
+# leaving every Nav2 server inactive. We don't dock, so give it a minimal valid
+# plugin (built-in SimpleChargingDock) just so configuration succeeds.
+docking_server:
+  ros__parameters:
+    controller_frequency: 50.0
+    dock_plugins: ["simple_charging_dock"]
+    simple_charging_dock:
+      plugin: "opennav_docking::SimpleChargingDock"

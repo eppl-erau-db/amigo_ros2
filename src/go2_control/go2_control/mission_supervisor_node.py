@@ -14,17 +14,19 @@ from rclpy.action import ActionClient
 from rclpy.duration import Duration
 from rclpy.node import Node
 from std_msgs.msg import String
+from std_srvs.srv import Trigger
 import tf2_ros
 from unitree_api.msg import Request as UnitreeRequest
 
-from go2_interfaces.action import Search
+from go2_interfaces.action import DeliverSwag, Search
 from go2_interfaces.msg import RobotModeState
-from go2_interfaces.srv import SetRobotMode
+from go2_interfaces.srv import SaveExploreMap, SetRobotMode
 from go2_control.mission_supervisor_core import (
     PostureModes,
     SupervisorOps,
     SupervisorState,
     TaskModes,
+    complete_deliver,
     complete_posture_transition,
     complete_search,
     enter_fault,
@@ -82,6 +84,21 @@ class MissionSupervisorNode(Node):
         self.search_server_wait_s = max(
             0.1, float(self.declare_parameter("search_server_wait_s", 1.0).value)
         )
+        self.deliver_action_name = str(
+            self.declare_parameter("deliver_action_name", "deliver_swag").value
+        )
+        self.deliver_server_wait_s = max(
+            0.1, float(self.declare_parameter("deliver_server_wait_s", 1.0).value)
+        )
+        self.save_map_service_name = str(
+            self.declare_parameter("save_map_service_name", "/explore/save_map").value
+        )
+        self.handoff_service_name = str(
+            self.declare_parameter("handoff_service_name", "/deliver/handoff_done").value
+        )
+        self.explore_map_name = str(
+            self.declare_parameter("explore_map_name", "").value
+        )
         self.command_cooldown_s = max(
             0.0, float(self.declare_parameter("command_cooldown_s", 3.0).value)
         )
@@ -128,12 +145,18 @@ class MissionSupervisorNode(Node):
         self._search_goal_in_flight = False
         self._search_cancel_requested = False
         self._active_search_goal_handle = None
+        self._deliver_goal_in_flight = False
+        self._deliver_cancel_requested = False
+        self._active_deliver_goal_handle = None
         self._posture_timer = None
         self._stand_up_recovery_thread: threading.Thread | None = None
         self._stand_up_recovery_lock = threading.Lock()
         self._motion_mode_switcher_executable = self._resolve_motion_mode_switcher_executable()
 
         self.search_client = ActionClient(self, Search, self.search_action_name)
+        self.deliver_client = ActionClient(self, DeliverSwag, self.deliver_action_name)
+        self.save_map_client = self.create_client(SaveExploreMap, self.save_map_service_name)
+        self.handoff_client = self.create_client(Trigger, self.handoff_service_name)
         self.sport_req_pub = self.create_publisher(UnitreeRequest, self.sport_request_topic, 10)
         self.mode_state_pub = self.create_publisher(
             RobotModeState, self.robot_mode_state_topic, 10
@@ -266,7 +289,13 @@ class MissionSupervisorNode(Node):
 
     def _cooldown_applies(self, command: str) -> bool:
         normalized = normalize_voice_command(command)
-        return normalized not in {"stop_follow", "lay_down", "stand_up"}
+        return normalized not in {
+            "stop_follow",
+            "lay_down",
+            "stand_up",
+            "done_exploring",
+            "handoff_done",
+        }
 
     def _voice_command_cb(self, msg: String) -> None:
         command = str(msg.data).strip()
@@ -297,6 +326,17 @@ class MissionSupervisorNode(Node):
                 reason="search_server_unavailable",
             )
             self.get_logger().warn("Voice search command rejected because the Search server is unavailable.")
+            return
+
+        if command == "deliver_swag" and not self._deliver_request_is_available():
+            self._emit_event(
+                "voice_command_rejected",
+                command=command,
+                reason="deliver_server_unavailable",
+            )
+            self.get_logger().warn(
+                "Voice deliver command rejected because the DeliverSwag server is unavailable."
+            )
             return
 
         decision = request_voice_command(
@@ -395,6 +435,21 @@ class MissionSupervisorNode(Node):
             return
         if operation == SupervisorOps.SEND_STAND_UP:
             self._start_stand_up_transition()
+            return
+        if operation == SupervisorOps.START_EXPLORE:
+            self._start_explore()
+            return
+        if operation == SupervisorOps.SAVE_EXPLORE_MAP:
+            self._save_explore_map()
+            return
+        if operation == SupervisorOps.START_DELIVER:
+            self._start_deliver()
+            return
+        if operation == SupervisorOps.CANCEL_DELIVER:
+            self._cancel_deliver("supervisor_preempt")
+            return
+        if operation == SupervisorOps.SIGNAL_HANDOFF_DONE:
+            self._signal_handoff_done()
             return
 
     def _search_request_is_available(self) -> bool:
@@ -522,6 +577,167 @@ class MissionSupervisorNode(Node):
             event_name="search_finished",
             detail=detail or f"status={status}",
         )
+
+    # ------------------------------------------------------------ explore
+    def _start_explore(self) -> None:
+        # The map_marker_recorder_node arms itself off RobotModeState (task_mode
+        # EXPLORE), so there is nothing to dispatch here beyond the event. The
+        # operator drives the robot manually with the Unitree handheld remote.
+        self._emit_event("explore_started", detail="Recording map + ArUco markers.")
+
+    def _save_explore_map(self) -> None:
+        if not self.save_map_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().warn(
+                f'SaveExploreMap service "{self.save_map_service_name}" unavailable; map not saved.'
+            )
+            self._emit_event("explore_save_skipped", reason="service_unavailable")
+            return
+        request = SaveExploreMap.Request()
+        request.map_name = self.explore_map_name
+        self._emit_event("explore_save_requested", map_name=self.explore_map_name)
+        future = self.save_map_client.call_async(request)
+        future.add_done_callback(self._on_save_map_response)
+
+    def _on_save_map_response(self, future) -> None:
+        try:
+            response = future.result()
+        except Exception as exc:
+            self.get_logger().error(f"SaveExploreMap call failed: {exc}")
+            self._emit_event("explore_save_failed", reason=str(exc))
+            return
+        self.get_logger().info(
+            f"SaveExploreMap success={response.success} path={response.map_path} "
+            f"msg={response.message}"
+        )
+        self._emit_event(
+            "explore_save_complete",
+            success=bool(response.success),
+            map_path=str(response.map_path),
+            detail=str(response.message),
+        )
+
+    # ------------------------------------------------------------ deliver
+    def _deliver_request_is_available(self) -> bool:
+        state = self._current_state()
+        if state.task_mode == TaskModes.DELIVER:
+            return True
+        return self.deliver_client.wait_for_server(timeout_sec=self.deliver_server_wait_s)
+
+    def _signal_handoff_done(self) -> None:
+        if not self.handoff_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().warn(
+                f'Hand-off service "{self.handoff_service_name}" unavailable.'
+            )
+            self._emit_event("handoff_signal_skipped", reason="service_unavailable")
+            return
+        future = self.handoff_client.call_async(Trigger.Request())
+        future.add_done_callback(
+            lambda f: self._emit_event("handoff_signal_sent", detail="all_done")
+        )
+
+    def _start_deliver(self) -> None:
+        if self._deliver_goal_in_flight or self._active_deliver_goal_handle is not None:
+            self._emit_event("deliver_dispatch_skipped", reason="already_active")
+            return
+
+        if not self.deliver_client.wait_for_server(timeout_sec=self.deliver_server_wait_s):
+            self.get_logger().warn(
+                f'DeliverSwag action server "{self.deliver_action_name}" is unavailable.'
+            )
+            self._replace_state(
+                complete_deliver(self._current_state(), detail="deliver_server_unavailable"),
+                event_name="deliver_dispatch_failed",
+                detail="Deliver server unavailable.",
+            )
+            return
+
+        goal = DeliverSwag.Goal()
+        goal.map_name = self.explore_map_name
+
+        self._deliver_goal_in_flight = True
+        self._deliver_cancel_requested = False
+        self._emit_event("deliver_dispatch_started", action=self.deliver_action_name)
+        send_future = self.deliver_client.send_goal_async(goal)
+        send_future.add_done_callback(self._on_deliver_goal_response)
+
+    def _cancel_deliver(self, reason: str) -> None:
+        self._deliver_cancel_requested = True
+
+        if self._active_deliver_goal_handle is None:
+            self._emit_event(
+                "deliver_cancel_pending",
+                reason=reason,
+                waiting_for_goal_handle=self._deliver_goal_in_flight,
+            )
+            return
+
+        try:
+            cancel_future = self._active_deliver_goal_handle.cancel_goal_async()
+            cancel_future.add_done_callback(self._on_deliver_cancel_response)
+            self._emit_event("deliver_cancel_requested", reason=reason)
+        except Exception as exc:
+            self.get_logger().error(f"Failed to request DeliverSwag cancel: {exc}")
+            fault_state = enter_fault(self._current_state(), f"deliver_cancel_failed: {exc}")
+            self._replace_state(fault_state, event_name="deliver_cancel_failed", detail=str(exc))
+
+    def _on_deliver_cancel_response(self, future) -> None:
+        try:
+            cancel_response = future.result()
+        except Exception as exc:
+            self.get_logger().error(f"DeliverSwag cancel response failed: {exc}")
+            return
+        self._emit_event(
+            "deliver_cancel_response",
+            goals_canceling=len(getattr(cancel_response, "goals_canceling", [])),
+        )
+
+    def _on_deliver_goal_response(self, future) -> None:
+        try:
+            goal_handle = future.result()
+        except Exception as exc:
+            self._deliver_goal_in_flight = False
+            self._active_deliver_goal_handle = None
+            self.get_logger().error(f"Failed to send DeliverSwag goal: {exc}")
+            self._replace_state(
+                complete_deliver(self._current_state(), detail=f"deliver_send_failed: {exc}"),
+                event_name="deliver_send_failed",
+                detail=str(exc),
+            )
+            return
+
+        self._deliver_goal_in_flight = False
+        if goal_handle is None or not goal_handle.accepted:
+            self._active_deliver_goal_handle = None
+            self._replace_state(
+                complete_deliver(self._current_state(), detail="deliver_goal_rejected"),
+                event_name="deliver_goal_rejected",
+                detail="Deliver goal rejected.",
+            )
+            return
+
+        self._active_deliver_goal_handle = goal_handle
+        self._emit_event("deliver_goal_accepted", action=self.deliver_action_name)
+        if self._deliver_cancel_requested:
+            self._cancel_deliver("pending_preempt_after_accept")
+        result_future = goal_handle.get_result_async()
+        result_future.add_done_callback(self._on_deliver_result)
+
+    def _on_deliver_result(self, future) -> None:
+        self._active_deliver_goal_handle = None
+        self._deliver_goal_in_flight = False
+        self._deliver_cancel_requested = False
+
+        try:
+            wrapped_result = future.result()
+            status = int(wrapped_result.status)
+            result = wrapped_result.result
+            detail = str(getattr(result, "reason", "")) or f"deliver_status_{status}"
+        except Exception as exc:
+            status = -1
+            detail = f"deliver_result_failed: {exc}"
+
+        new_state = complete_deliver(self._current_state(), detail=detail)
+        self._replace_state(new_state, event_name="deliver_finished", detail=detail)
 
     def _send_sport_request(self, api_id: int) -> None:
         request = UnitreeRequest()

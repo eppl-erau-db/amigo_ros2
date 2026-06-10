@@ -706,6 +706,20 @@ class SoundLocalizer(Node):
             stability_reason = self._update_stability_state()
             if stability_reason == "stable":
                 self._lock_stable_estimate()
+            elif not self._estimate_locked:
+                # Surface the live blocker even when no new estimate is being
+                # produced (e.g. insufficient baseline movement / stale DoA), so a
+                # stuck localization is diagnosable from the logs.
+                self._warn_throttled(
+                    "stability_blocked",
+                    "Leak estimate not yet stable: "
+                    f"reason={stability_reason} (need "
+                    f"{self.stable_required_consecutive_estimates} consecutive "
+                    f"estimates with baseline>={self.stable_min_baseline_m:.2f}m, "
+                    f"bearing_sep>={self.stable_min_bearing_separation_deg:.0f}deg, "
+                    f"spread<={self.stable_centroid_radius_m:.2f}m).",
+                    5.0,
+                )
             self._publish_outputs(robot_pose)
 
         if not self._leak_detected:

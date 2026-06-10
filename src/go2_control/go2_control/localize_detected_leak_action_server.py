@@ -2,16 +2,21 @@
 from __future__ import annotations
 
 import math
+import os
+import random
+import subprocess
 import time
 from dataclasses import dataclass
 from typing import Optional
 
 import rclpy
+from ament_index_python.packages import PackageNotFoundError, get_package_prefix
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 from nav_msgs.msg import OccupancyGrid, Path as NavPath
 from rclpy.action import ActionServer, CancelResponse, GoalResponse
 from rclpy.duration import Duration
+from rclpy.executors import SingleThreadedExecutor
 from rclpy.node import Node
 from rclpy.task import Future
 from rclpy.time import Time
@@ -19,13 +24,27 @@ from std_msgs.msg import Bool, Int32
 from tf2_ros import Buffer, TransformException, TransformListener
 from unitree_api.msg import Request as UnitreeRequest
 
+from go2_control.localize_baseline_core import (
+    perpendicular_baseline_component,
+    perpendicular_fraction,
+    rank_baseline_candidates,
+)
+from go2_control.person_follow_controller_core import (
+    FootprintParams,
+    GridMap2D,
+    Pose2D,
+    SafetyOracleParams,
+    footprint_in_collision,
+)
 from go2_interfaces.action import LocalizeDetectedLeak
 
 
 EPS = 1.0e-6
+ROBOT_SPORT_API_ID_BALANCESTAND = 1002
 ROBOT_SPORT_API_ID_STOPMOVE = 1003
 ROBOT_SPORT_API_ID_STANDUP = 1004
 ROBOT_SPORT_API_ID_SIT = 1009
+ROBOT_SPORT_API_ID_RISESIT = 1010
 
 
 @dataclass(frozen=True)
@@ -45,6 +64,9 @@ class CandidateGoal:
     goal_y: float
     endpoint_x: float
     endpoint_y: float
+    # Signed move component along the leak bearing: > 0 toward the leak (forward),
+    # < 0 away (the dog would reverse). Used to avoid rearward baseline treks.
+    parallel_component_m: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -127,7 +149,7 @@ class LocalizeDetectedLeakServer(Node):
             }
         )
         self.found_pose_hold_duration_s = max(
-            0.0, float(self.declare_parameter('found_pose_hold_duration_s', 2.0).value)
+            0.0, float(self.declare_parameter('found_pose_hold_duration_s', 3.0).value)
         )
         self.release_to_stand_on_exit = bool(
             self.declare_parameter('release_to_stand_on_exit', True).value
@@ -189,8 +211,117 @@ class LocalizeDetectedLeakServer(Node):
             self.declare_parameter('debug_search', False).value
         )
 
+        # --- Sampling-based baseline pose selection (doc eqs. 9-13) ---
+        self.local_costmap_topic = str(
+            self.declare_parameter(
+                'local_costmap_topic', '/local_costmap/costmap'
+            ).value
+        )
+        self.local_costmap_occupied_threshold = int(
+            self.declare_parameter('local_costmap_occupied_threshold', 50).value
+        )
+        self.perp_baseline_target_m = max(
+            0.1, float(self.declare_parameter('perp_baseline_target_m', 0.5).value)
+        )
+        self.weak_geometry_min_m = max(
+            0.05,
+            min(
+                self.perp_baseline_target_m,
+                float(self.declare_parameter('weak_geometry_min_m', 0.25).value),
+            ),
+        )
+        self.sample_num = max(
+            1, int(self.declare_parameter('sample_num', 80).value)
+        )
+        self.max_path_checks_per_leg = max(
+            1, int(self.declare_parameter('max_path_checks_per_leg', 20).value)
+        )
+        self.sample_radius_m = max(
+            0.5, float(self.declare_parameter('sample_radius_m', 1.5).value)
+        )
+        self.sample_min_radius_m = max(
+            0.1,
+            min(
+                self.sample_radius_m,
+                float(self.declare_parameter('sample_min_radius_m', 0.4).value),
+            ),
+        )
+        self.costmap_clear_enabled = bool(
+            self.declare_parameter('costmap_clear_enabled', True).value
+        )
+        self.costmap_repopulate_wait_s = max(
+            0.0, float(self.declare_parameter('costmap_repopulate_wait_s', 1.0).value)
+        )
+        self.sample_seed = int(self.declare_parameter('sample_seed', 1).value)
+
+        # --- Oriented-footprint feasibility check for the final-approach goal ---
+        # _select_approach_goal's clearance check only scans a CIRCLE against the
+        # static /map, which misses low obstacles (e.g. the leak source) that the
+        # L1 lidar paints into the LOCAL costmap and that MPPI's ObstaclesCritic
+        # (consider_footprint:true) refuses to drive onto. Without this, an approach
+        # goal can be planner-valid yet footprint-infeasible -> the dog boxes itself
+        # against it ("Failed to make progress" forever). Defaults MIRROR the Nav2
+        # local_costmap footprint in nav2_mppi_controller.yaml ([[0.36,0.20],...]).
+        self.approach_footprint_forward_m = max(
+            0.05, float(self.declare_parameter('approach_footprint_forward_m', 0.36).value)
+        )
+        self.approach_footprint_rear_m = max(
+            0.05, float(self.declare_parameter('approach_footprint_rear_m', 0.36).value)
+        )
+        self.approach_footprint_half_width_m = max(
+            0.05, float(self.declare_parameter('approach_footprint_half_width_m', 0.20).value)
+        )
+        self.approach_footprint_padding_m = max(
+            0.0, float(self.declare_parameter('approach_footprint_padding_m', 0.05).value)
+        )
+        self._approach_safety_params = SafetyOracleParams(
+            occupied_threshold=self.local_costmap_occupied_threshold,
+            footprint=FootprintParams(
+                forward_extent_m=self.approach_footprint_forward_m,
+                rear_extent_m=self.approach_footprint_rear_m,
+                half_width_m=self.approach_footprint_half_width_m,
+                padding_m=self.approach_footprint_padding_m,
+            ),
+        )
+
+        # --- Recovery from the leak-found Sit (doc/SDK: RiseSit -> BalanceStand -> gait) ---
+        self.rise_sit_settle_s = max(
+            0.0, float(self.declare_parameter('rise_sit_settle_s', 1.5).value)
+        )
+        self.balance_settle_s = max(
+            0.0, float(self.declare_parameter('balance_settle_s', 1.0).value)
+        )
+        self.gait_restore_enabled = bool(
+            self.declare_parameter('gait_restore_enabled', True).value
+        )
+        self.gait_restore_network_interface = str(
+            self.declare_parameter('gait_restore_network_interface', '').value
+        )
+        self.gait_restore_motion_mode = str(
+            self.declare_parameter('gait_restore_motion_mode', 'normal').value
+        )
+        self.gait_restore_gait = str(
+            self.declare_parameter('gait_restore_gait', 'static_walk').value
+        )
+        self.gait_restore_wait_s = max(
+            0.0, float(self.declare_parameter('gait_restore_wait_s', 0.0).value)
+        )
+        self.gait_restore_retries = max(
+            1, int(self.declare_parameter('gait_restore_retries', 4).value)
+        )
+        self.gait_restore_retry_interval_s = max(
+            0.0,
+            float(self.declare_parameter('gait_restore_retry_interval_s', 0.75).value),
+        )
+
+        self._rng = random.Random(self.sample_seed)
+        self._motion_mode_switcher_executable = (
+            self._resolve_motion_mode_switcher_executable()
+        )
+
         self._goal_active = False
         self._map_msg: OccupancyGrid | None = None
+        self._local_costmap_msg: OccupancyGrid | None = None
         self._leak_detected = False
         self._last_doa_rad: float | None = None
         self._last_doa_time_mono = 0.0
@@ -207,6 +338,9 @@ class LocalizeDetectedLeakServer(Node):
         )
 
         self.create_subscription(OccupancyGrid, self.map_topic, self._map_cb, 10)
+        self.create_subscription(
+            OccupancyGrid, self.local_costmap_topic, self._local_costmap_cb, 10
+        )
         self.create_subscription(Bool, self.leak_topic, self._leak_cb, 10)
         self.create_subscription(Int32, self.doa_topic, self._doa_cb, 10)
         self.create_subscription(Bool, self.estimate_valid_topic, self._estimate_valid_cb, 10)
@@ -242,6 +376,29 @@ class LocalizeDetectedLeakServer(Node):
 
     def _map_cb(self, msg: OccupancyGrid) -> None:
         self._map_msg = msg
+
+    def _local_costmap_cb(self, msg: OccupancyGrid) -> None:
+        self._local_costmap_msg = msg
+
+    def _resolve_motion_mode_switcher_executable(self) -> str | None:
+        if not self.gait_restore_enabled:
+            return None
+        try:
+            prefix = get_package_prefix('go2_driver')
+        except PackageNotFoundError:
+            self.get_logger().warn(
+                'gait_restore_enabled=true, but package "go2_driver" was not found; '
+                'gait will not be restored after the leak-found sit.'
+            )
+            return None
+        executable = os.path.join(prefix, 'lib', 'go2_driver', 'go2_motion_mode_switcher')
+        if not os.path.exists(executable):
+            self.get_logger().warn(
+                f'gait_restore_enabled=true, but "{executable}" is unavailable; '
+                'gait will not be restored after the leak-found sit.'
+            )
+            return None
+        return executable
 
     def _leak_cb(self, msg: Bool) -> None:
         self._leak_detected = bool(msg.data)
@@ -455,6 +612,14 @@ class LocalizeDetectedLeakServer(Node):
                     )
                     continue
 
+                if not self._goal_footprint_is_free(goal_x, goal_y, goal_yaw):
+                    self._log_debug(
+                        'Rejected approach candidate because the robot footprint '
+                        'overlaps a LOCAL-costmap obstacle MPPI would refuse: '
+                        f'goal=({goal_x:.2f}, {goal_y:.2f}) radius={radius_m:.2f} m'
+                    )
+                    continue
+
                 candidates.append(
                     ApproachGoalCandidate(
                         goal_x=goal_x,
@@ -537,7 +702,7 @@ class LocalizeDetectedLeakServer(Node):
         last_logged_remaining_s: int | None = None
         self.get_logger().info(
             'Leak found. Holding Sit for '
-            f'{self.found_pose_hold_duration_s:.1f}s before StandUp.'
+            f'{self.found_pose_hold_duration_s:.1f}s before RiseSit.'
         )
 
         while rclpy.ok():
@@ -566,10 +731,59 @@ class LocalizeDetectedLeakServer(Node):
 
         return 'canceled'
 
-    def _release_found_pose(self) -> None:
-        if self.release_to_stand_on_exit:
-            self._publish_sport_request(ROBOT_SPORT_API_ID_STANDUP)
-            self.get_logger().info('Sent StandUp after leak-found sit notification.')
+    async def _release_found_pose(self) -> None:
+        """Recover from the leak-found Sit and restore a walk-ready stance.
+
+        The Go2 SDK pairs Sit (1009) with RiseSit (1010) as its inverse; StandUp
+        (1004) is NOT the correct recovery from a seated pose. After rising we
+        settle into BalanceStand (1002) and then restore the walking gait via the
+        go2_motion_mode_switcher (the same mechanism the mission supervisor uses
+        for its stand-up recovery).
+        """
+        if not self.release_to_stand_on_exit:
+            return
+        self._publish_sport_request(ROBOT_SPORT_API_ID_RISESIT)
+        self.get_logger().info('Sent RiseSit to recover from the leak-found sit.')
+        await self._sleep_async(self.rise_sit_settle_s)
+        self._publish_sport_request(ROBOT_SPORT_API_ID_BALANCESTAND)
+        self.get_logger().info('Sent BalanceStand to settle after RiseSit.')
+        await self._sleep_async(self.balance_settle_s)
+        self._restore_gait()
+
+    def _restore_gait(self) -> None:
+        if not self.gait_restore_enabled or not self._motion_mode_switcher_executable:
+            return
+        command = [self._motion_mode_switcher_executable]
+        if self.gait_restore_network_interface:
+            command += ['--network-interface', self.gait_restore_network_interface]
+        command += [
+            '--motion-mode', self.gait_restore_motion_mode,
+            '--gait', self.gait_restore_gait,
+            '--wait', str(self.gait_restore_wait_s),
+            '--retries', str(self.gait_restore_retries),
+            '--retry-interval', str(self.gait_restore_retry_interval_s),
+        ]
+        self.get_logger().info(
+            'Restoring gait after leak-found recovery: '
+            f'motion_mode="{self.gait_restore_motion_mode}" '
+            f'gait="{self.gait_restore_gait}".'
+        )
+        try:
+            completed = subprocess.run(command, capture_output=True, text=True, timeout=30.0)
+        except Exception as exc:
+            self._warn_throttled(
+                'gait_restore_failed',
+                f'Gait restore subprocess failed to run: {exc}',
+                period_s=5.0,
+            )
+            return
+        if completed.returncode != 0:
+            self._warn_throttled(
+                'gait_restore_failed',
+                f'Gait restore returned code {completed.returncode}: '
+                f'{completed.stderr.strip()}',
+                period_s=5.0,
+            )
 
     async def _complete_found_leak_sequence(
         self,
@@ -591,6 +805,11 @@ class LocalizeDetectedLeakServer(Node):
                 self._make_feedback('planning_approach_to_estimate', estimate_pose)
             )
             self._clear_all_costmaps('final approach planning')
+            if self.costmap_clear_enabled:
+                # Give the LOCAL costmap a beat to repopulate from the L1 lidar
+                # after the clear, so _select_approach_goal's footprint check sees
+                # the real obstacles instead of a momentarily-empty grid.
+                await self._sleep_async(self.costmap_repopulate_wait_s)
             approach_goal_pose = self._select_approach_goal(robot_pose, estimate_pose)
             if approach_goal_pose is None:
                 if not self.sit_on_stable_estimate_without_final_approach:
@@ -677,7 +896,7 @@ class LocalizeDetectedLeakServer(Node):
         self._publish_sport_request(ROBOT_SPORT_API_ID_STOPMOVE)
         self._publish_sport_request(ROBOT_SPORT_API_ID_SIT)
         hold_outcome = await self._hold_after_sit(goal_handle, estimate_pose)
-        self._release_found_pose()
+        await self._release_found_pose()
 
         if hold_outcome == 'canceled':
             return False, 'canceled'
@@ -763,6 +982,29 @@ class LocalizeDetectedLeakServer(Node):
                         return False, 'unknown'
                     return False, f'occupied:{cell_value}'
         return True, 'clear'
+
+    def _goal_footprint_is_free(
+        self, goal_x: float, goal_y: float, goal_yaw: float
+    ) -> bool:
+        """True if the robot's ORIENTED footprint at the approach goal is clear of
+        obstacles in the L1-fed LOCAL costmap. This complements the static-/map
+        circular clearance check: the local costmap carries the low obstacles
+        (leak source, supports, low walls) that MPPI's footprint ObstaclesCritic
+        will refuse to drive onto. Degrades to True (allow) when the local costmap
+        or its TF is unavailable, so selection falls back to the prior behavior."""
+        grid_info = self._local_costmap_grid()
+        if grid_info is None:
+            return True
+        grid, costmap_frame = grid_info
+        tf = self._lookup_transform_2d(costmap_frame, self.map_frame)
+        if tf is None:
+            return True
+        tx, ty, tyaw = tf
+        cos_t, sin_t = math.cos(tyaw), math.sin(tyaw)
+        ox = (cos_t * goal_x) - (sin_t * goal_y) + tx
+        oy = (sin_t * goal_x) + (cos_t * goal_y) + ty
+        pose = Pose2D(ox, oy, wrap_pi(goal_yaw + tyaw))
+        return not footprint_in_collision(pose, grid, self._approach_safety_params)
 
     @staticmethod
     def _path_length(path: NavPath) -> float:
@@ -892,6 +1134,199 @@ class LocalizeDetectedLeakServer(Node):
             )
         )
         return candidates
+
+    def _lookup_transform_2d(
+        self, target_frame: str, source_frame: str
+    ) -> tuple[float, float, float] | None:
+        """Return (tx, ty, yaw) that maps a point in ``source_frame`` to ``target_frame``."""
+        try:
+            tf_msg = self.tf_buffer.lookup_transform(target_frame, source_frame, Time())
+        except TransformException as exc:
+            self._warn_throttled(
+                f'tf_lookup_{target_frame}_{source_frame}',
+                f'TF lookup {target_frame}<-{source_frame} failed: {exc}',
+                period_s=3.0,
+            )
+            return None
+        translation = tf_msg.transform.translation
+        yaw = yaw_from_quaternion(tf_msg.transform.rotation)
+        return float(translation.x), float(translation.y), yaw
+
+    def _local_costmap_grid(self) -> tuple[GridMap2D, str] | None:
+        msg = self._local_costmap_msg
+        if msg is None:
+            return None
+        grid = GridMap2D(
+            resolution=float(msg.info.resolution),
+            width=int(msg.info.width),
+            height=int(msg.info.height),
+            origin_x=float(msg.info.origin.position.x),
+            origin_y=float(msg.info.origin.position.y),
+            data=tuple(int(value) for value in msg.data),
+        )
+        return grid, str(msg.header.frame_id) or self.map_frame
+
+    async def _fetch_fresh_local_costmap(self) -> tuple[GridMap2D, str] | None:
+        """Clear the local costmap to drop motion-smear, then return a fresh grid."""
+        if self.costmap_clear_enabled:
+            try:
+                self.navigator.clearLocalCostmap()
+            except Exception as exc:
+                self._warn_throttled(
+                    'nav2_clear_local_costmap',
+                    f'Failed to clear the Nav2 local costmap before sampling: {exc}',
+                    period_s=5.0,
+                )
+            await self._sleep_async(self.costmap_repopulate_wait_s)
+        return self._local_costmap_grid()
+
+    async def _sample_baseline_candidates(
+        self, robot_pose: RobotPose2D, first_bearing_map_rad: float
+    ) -> list[CandidateGoal]:
+        """Sampling-based, geometry-aware baseline pose selection (doc eqs. 9-13).
+
+        Samples free space from the (de-smeared) Nav2 local costmap, keeps poses
+        that Nav2 can actually plan a path to, scores each by the perpendicular
+        component of the net displacement relative to the leak bearing, and returns
+        candidates ordered so the one with the largest usable perpendicular baseline
+        (preferring those >= perp_baseline_target_m) is first. Falls back to the
+        legacy deterministic generator if the local costmap / TF is unavailable.
+        """
+        fresh = await self._fetch_fresh_local_costmap()
+        if fresh is None:
+            self._warn_throttled(
+                'no_local_costmap',
+                'Local costmap unavailable; falling back to static-map baseline goals.',
+                period_s=5.0,
+            )
+            return self._generate_candidate_goals(robot_pose, first_bearing_map_rad)
+
+        grid, costmap_frame = fresh
+        tf_odom_from_map = self._lookup_transform_2d(costmap_frame, self.map_frame)
+        if tf_odom_from_map is None:
+            return self._generate_candidate_goals(robot_pose, first_bearing_map_rad)
+        tx, ty, tyaw = tf_odom_from_map
+        cos_t, sin_t = math.cos(tyaw), math.sin(tyaw)
+
+        # Phase 1: cheap costmap-only sampling of free poses + predicted geometry.
+        # (pred_bperp, parallel, travel, gx, gy, heading)
+        free_samples: list[tuple[float, float, float, float, float, float]] = []
+        seen: set[tuple[int, int]] = set()
+        r_min_sq = self.sample_min_radius_m ** 2
+        r_max_sq = self.sample_radius_m ** 2
+        cos_b, sin_b = math.cos(first_bearing_map_rad), math.sin(first_bearing_map_rad)
+        for _ in range(self.sample_num * 6):
+            if len(free_samples) >= self.sample_num:
+                break
+            radius = math.sqrt(self._rng.uniform(r_min_sq, r_max_sq))
+            angle = self._rng.uniform(-math.pi, math.pi)
+            gx = robot_pose.x + (radius * math.cos(angle))
+            gy = robot_pose.y + (radius * math.sin(angle))
+            key = (int(round(gx * 20.0)), int(round(gy * 20.0)))  # 0.05 m grid dedupe
+            if key in seen:
+                continue
+            seen.add(key)
+            # Map -> costmap (odom) frame for the free-space test.
+            ox = (cos_t * gx) - (sin_t * gy) + tx
+            oy = (sin_t * gx) + (cos_t * gy) + ty
+            if grid.is_occupied(ox, oy, self.local_costmap_occupied_threshold):
+                continue
+            dx, dy = gx - robot_pose.x, gy - robot_pose.y
+            pred_bperp = perpendicular_baseline_component(dx, dy, first_bearing_map_rad)
+            parallel = (dx * cos_b) + (dy * sin_b)  # >0 toward leak (forward), <0 reverse
+            travel = math.hypot(dx, dy)
+            heading = math.atan2(dy, dx)
+            free_samples.append((pred_bperp, parallel, travel, gx, gy, heading))
+
+        # Per eq. 13 we want the SHORTEST move that still reaches the target, and we
+        # prefer stepping toward the leak over reversing. So path-check the samples
+        # that already predict >= target first, toward-leak first, shortest first.
+        target = self.perp_baseline_target_m
+        free_samples.sort(
+            key=lambda s: (s[0] < target, s[1] < 0.0, s[2])  # meets-target, toward-leak, short
+        )
+
+        start_pose = self._pose_stamped_from_xy_yaw(
+            robot_pose.x, robot_pose.y, robot_pose.yaw
+        )
+        candidates: list[CandidateGoal] = []
+        path_checks = 0
+        meeting_target = 0
+        for pred_bperp, parallel, travel, gx, gy, heading in free_samples:
+            if path_checks >= self.max_path_checks_per_leg:
+                break
+            if meeting_target >= 3:
+                break
+            goal_pose = self._pose_stamped_from_xy_yaw(gx, gy, heading)
+            path_checks += 1
+            path = self._path_for_goal(start_pose, goal_pose)
+            if path is None or not getattr(path, 'poses', []):
+                continue
+            endpoint = path.poses[-1].pose.position
+            ex, ey = float(endpoint.x), float(endpoint.y)
+            achieved_baseline_m = self._perpendicular_baseline(
+                robot_pose, ex, ey, first_bearing_map_rad
+            )
+            if achieved_baseline_m >= self.perp_baseline_target_m:
+                meeting_target += 1
+            parallel_component_m = (
+                (ex - robot_pose.x) * cos_b + (ey - robot_pose.y) * sin_b
+            )
+            candidates.append(
+                CandidateGoal(
+                    heading_map_rad=heading,
+                    travel_distance_m=travel,
+                    achieved_perpendicular_baseline_m=achieved_baseline_m,
+                    path_length_m=self._path_length(path),
+                    goal_x=gx,
+                    goal_y=gy,
+                    endpoint_x=ex,
+                    endpoint_y=ey,
+                    parallel_component_m=parallel_component_m,
+                )
+            )
+
+        ranked = rank_baseline_candidates(
+            candidates, self.perp_baseline_target_m, self.weak_geometry_min_m
+        )
+        if ranked:
+            best = ranked[0]
+            disp = math.hypot(best.endpoint_x - robot_pose.x, best.endpoint_y - robot_pose.y)
+            perp_pct = 100.0 * perpendicular_fraction(
+                best.endpoint_x - robot_pose.x,
+                best.endpoint_y - robot_pose.y,
+                first_bearing_map_rad,
+            )
+            self.get_logger().info(
+                'Baseline sampling: %d free / %d reachable samples; chose B_perp=%.2f m '
+                '(%.0f%% perpendicular, travel=%.2f m, %s, target=%.2f m).'
+                % (
+                    len(free_samples),
+                    len(candidates),
+                    best.achieved_perpendicular_baseline_m,
+                    perp_pct,
+                    disp,
+                    'toward-leak' if best.parallel_component_m >= 0.0 else 'reverse',
+                    self.perp_baseline_target_m,
+                )
+            )
+            if best.achieved_perpendicular_baseline_m < self.perp_baseline_target_m:
+                self._warn_throttled(
+                    'weak_baseline_geometry',
+                    'Weak baseline geometry: best achievable B_perp='
+                    f'{best.achieved_perpendicular_baseline_m:.2f} m < target '
+                    f'{self.perp_baseline_target_m:.2f} m. Taking it and gathering '
+                    'another measurement leg.',
+                    period_s=3.0,
+                )
+        else:
+            self._warn_throttled(
+                'no_baseline_candidate',
+                f'No reachable baseline candidate from {len(free_samples)} free samples '
+                f'reached the weak-geometry minimum {self.weak_geometry_min_m:.2f} m.',
+                period_s=3.0,
+            )
+        return ranked
 
     async def _cancel_navigation(self) -> None:
         try:
@@ -1054,7 +1489,7 @@ class LocalizeDetectedLeakServer(Node):
                 goal_handle.publish_feedback(
                     self._make_feedback('planning_baseline', fallback_pose)
                 )
-                candidates = self._generate_candidate_goals(
+                candidates = await self._sample_baseline_candidates(
                     robot_pose, first_bearing_map_rad
                 )
                 if self.debug_search:
@@ -1167,9 +1602,20 @@ class LocalizeDetectedLeakServer(Node):
 def main() -> None:
     rclpy.init()
     node = LocalizeDetectedLeakServer()
+    # Spin on a DEDICATED executor, not rclpy's global one. The embedded
+    # nav2_simple_commander BasicNavigator calls rclpy.spin_until_future_complete()
+    # internally (getPath / goToPose / isTaskComplete), and that uses the GLOBAL
+    # executor. On Jazzy, if this node is also driven by the global executor
+    # (rclpy.spin), the nested spin raises "Executor is already spinning" and every
+    # path/goal request fails (the perpendicular-baseline candidates never validate).
+    # Isolating this node onto its own executor leaves the global executor free for
+    # the navigator's blocking calls.
+    executor = SingleThreadedExecutor()
+    executor.add_node(node)
     try:
-        rclpy.spin(node)
+        executor.spin()
     finally:
+        executor.shutdown()
         node.destroy_node()
         if rclpy.ok():
             rclpy.shutdown()

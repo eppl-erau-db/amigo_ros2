@@ -27,6 +27,7 @@ AUDIO_ARGUMENT_NAMES = [
     "odas_echo_cancelled_signal_topic",
     "odas_enable_leak_classifier",
     "odas_leak_classifier_debug",
+    "odas_leak_classifier_params_file",
     "odas_doa_zero_offset_deg",
     "odas_log_level",
 ]
@@ -86,12 +87,42 @@ MISSION_ARGUMENT_NAMES = [
     "startup_motion_retry_interval_s",
 ]
 
+# "Explore the area" mapping + "deliver swag" delivery stack (ArUco detector,
+# map/marker recorder, arm replay, delivery action server).
+SWAG_ARGUMENT_NAMES = [
+    "swag_enable",
+    "swag_debug",
+    "aruco_marker_size_m",
+    "aruco_dictionary",
+    "aruco_image_topic",
+    "aruco_camera_info_topic",
+    "aruco_detect_rate_hz",
+    "swag_maps_dir",
+    "swag_map_name",
+    "arm_enable",
+    "arm_dry_run",
+    "arm_scripts_dir",
+    "deliver_use_arm",
+    "deliver_arm_stub_wait_s",
+    "deliver_pickup_marker_id",
+    "deliver_delivery_marker_id",
+    "deliver_approach_standoff_m",
+    "deliver_align_standoff_m",
+]
+
+# Navigation / SLAM map persistence.
+NAV_ARGUMENT_NAMES = [
+    "slam_map_file",
+]
+
 ALL_ARGUMENT_NAMES = (
     CORE_ARGUMENT_NAMES +
     AUDIO_ARGUMENT_NAMES +
     VOICE_ARGUMENT_NAMES +
     FOLLOW_ARGUMENT_NAMES +
-    MISSION_ARGUMENT_NAMES
+    MISSION_ARGUMENT_NAMES +
+    SWAG_ARGUMENT_NAMES +
+    NAV_ARGUMENT_NAMES
 )
 
 
@@ -141,6 +172,14 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "false",
             "Enable debug logs in ODAS leak classifier",
         ),
+        "odas_leak_classifier_params_file": (
+            os.path.join(
+                get_package_share_directory("odas_ros"),
+                "config",
+                "leak_classifier_params.yaml",
+            ),
+            "YAML of tunable leak-classifier thresholds (hi_lo/voice latch, holds, flux)",
+        ),
         "odas_doa_zero_offset_deg": (
             "129.0",
             "ODAS DoA zero-offset calibration (degrees)",
@@ -156,7 +195,7 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "Deprecated: leak localization now derives unknown-space policy from nav2_mppi_controller.yaml",
         ),
         "voice_control": (
-            "false",
+            "true",
             "Enable voice command node and leak search action server",
         ),
         "voice_transcript_topic": (
@@ -276,7 +315,7 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "Enable extra person-follow controller debug logging",
         ),
         "person_follow_motion_backend": (
-            "sport_free_avoid",
+            "obstacles_avoid",
             "Follow motion backend: legacy, sport_free_avoid, or obstacles_avoid",
         ),
         "person_follow_unitree_cmd_vel_topic": (
@@ -284,8 +323,8 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
             "Velocity topic consumed by the Unitree follow-motion bridge",
         ),
         "person_follow_unitree_network_interface": (
-            "",
-            "Optional network interface passed to Unitree SDK2 clients",
+            "enP2p1s0",
+            "Network interface for Unitree SDK2 clients (Go2 link on Jetson Thor; was empty/enp* on Orin)",
         ),
         "person_follow_unitree_command_timeout_s": (
             "0.5",
@@ -318,6 +357,91 @@ def build_argument_specs(launch_dir: str) -> dict[str, tuple[str, str]]:
                 "zed_follow_person.yaml",
             ),
             "ROS params override YAML for the ZED follow-person object-detection pipeline",
+        ),
+        "swag_enable": (
+            "true",
+            "Enable the explore-mapping + deliver-swag stack (ArUco detector, map/marker recorder, delivery server)",
+        ),
+        "swag_debug": (
+            "false",
+            "Verbose debug logging for the explore/deliver stack (aruco detector, recorder, deliver server, arm)",
+        ),
+        "aruco_marker_size_m": (
+            "0.20",
+            "Printed ArUco marker side length in meters (must match the physical markers; 200 mm here)",
+        ),
+        "aruco_dictionary": (
+            "DICT_6X6_1000",
+            "OpenCV ArUco dictionary name (the venue markers are DICT_6X6_1000)",
+        ),
+        "aruco_image_topic": (
+            "/zed/zed_node/rgb/color/rect/image",
+            "Rectified RGB image topic fed to the ArUco detector "
+            "(NITROS zed-ros2-wrapper naming; was rgb/image_rect_color)",
+        ),
+        "aruco_camera_info_topic": (
+            "/zed/zed_node/rgb/color/rect/camera_info",
+            "CameraInfo topic providing intrinsics for ArUco pose estimation "
+            "(NITROS zed-ros2-wrapper naming; was rgb/camera_info)",
+        ),
+        "aruco_detect_rate_hz": (
+            "5.0",
+            "Max ArUco detection rate in Hz (throttles image processing)",
+        ),
+        "swag_maps_dir": (
+            os.path.expanduser("~/amigo_maps"),
+            "Directory where explore saves the map + ArUco sidecar and deliver loads them",
+        ),
+        "swag_map_name": (
+            "venue",
+            "Base name for the saved/loaded explore map + marker table",
+        ),
+        "arm_enable": (
+            "true",
+            "Launch the CubeMars arm replay service node (go2_arm)",
+        ),
+        "arm_dry_run": (
+            "true",
+            "Run the arm replay node in dry-run (validate + time-simulate, no CAN). Set false to drive the real arm",
+        ),
+        "arm_scripts_dir": (
+            os.path.expanduser("~/amigo_arm_scripts"),
+            "Directory of recorded arm trajectory CSVs (pickup.csv, deliver.csv, dropoff.csv)",
+        ),
+        "deliver_use_arm": (
+            "true",
+            "If false, the delivery mission SKIPS the arm service and just waits "
+            "deliver_arm_stub_wait_s at each pickup/deliver/dropoff step (for testing without the arm mounted)",
+        ),
+        "deliver_arm_stub_wait_s": (
+            "3.0",
+            "Seconds to wait at each arm step when deliver_use_arm:=false",
+        ),
+        "deliver_pickup_marker_id": (
+            "0",
+            "ArUco marker id at the swag pick-up station",
+        ),
+        "deliver_delivery_marker_id": (
+            "1",
+            "ArUco marker id at the swag delivery station",
+        ),
+        "deliver_approach_standoff_m": (
+            "1.5",
+            "Distance (m) in front of a marker for the Nav2 staging pose during deliver, on the "
+            "marker's outward normal and facing it. Keeps the marker in the camera FOV; lower "
+            "toward ~0.5 m once the arm must physically reach the station.",
+        ),
+        "deliver_align_standoff_m": (
+            "1.5",
+            "Final visual-servo standoff (m) directly in front of the marker (the servo trims to "
+            "bearing 0, i.e. 0 m lateral). The robot ends here and pauses. Keep <= approach so the "
+            "servo trims rather than drives in. Lower for an actual arm pickup.",
+        ),
+        "slam_map_file": (
+            "",
+            "Optional base path of a saved slam_toolbox serialized map (no extension) to "
+            "load + continue/localize on at startup, for cross-session 'deliver swag' "
+            "(e.g. ~/amigo_maps/venue). Empty = build a fresh map (normal mapping mode).",
         ),
     }
 

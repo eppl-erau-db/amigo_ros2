@@ -2,7 +2,7 @@
 <robot name="go2" xmlns:xacro="http://www.ros.org/wiki/xacro">
   
   <xacro:arg name="camera_name"   default="zed"/>
-  <xacro:arg name="camera_model"  default="zedxm"/>   <!-- zed, zed2i, zedm, zedx, zedxm … -->
+  <xacro:arg name="camera_model"  default="zed2i"/>   <!-- zed, zed2i, zedm, zedx, zedxm … -->
   <xacro:arg name="use_zed_localization" default="false"/>
   
   
@@ -44,19 +44,12 @@
     </collision>
   </link>
 
-  <joint name="base_footprint_joint" type="fixed">
-    <parent link="base_footprint"/>
-    <child link="base_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
-  <link name="base_footprint">
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0" />
-      <geometry>
-        <box size="0.3762 0.0935 0.114" />
-      </geometry>
-    </collision>
-    </link>
+  <!-- base_footprint -> base_link is intentionally NOT declared here. It is
+       published dynamically by the base_to_base_tf node (carrying body z + roll/pitch).
+       Declaring it as a fixed URDF joint made robot_state_publisher ALSO broadcast it
+       on /tf_static (identity, no tilt), duplicating/contradicting the dynamic edge.
+       base_link is therefore the URDF root; odom->base_footprint (EKF) and
+       base_footprint->base_link (base_to_base_tf) come from /tf at runtime. -->
 
   <link
     name="Head_upper">
@@ -1388,7 +1381,7 @@
           filename="$(find zed_wrapper)/urdf/zed_macro.urdf.xacro"/>
 
   <xacro:zed_camera name="zed"
-                    model="zedxm">
+                    model="$(arg camera_model)">
 
     <!-- block required by the macro, but we don’t need it -->
     <gnss_origin/>

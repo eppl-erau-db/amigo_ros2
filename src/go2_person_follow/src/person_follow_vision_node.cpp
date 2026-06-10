@@ -40,7 +40,7 @@ public:
   {
     enabled_ = this->declare_parameter("enabled_on_start", false);
     image_topic_ = this->declare_parameter<std::string>(
-      "image_topic", "/zed/zed_node/rgb/image_rect_color");
+      "image_topic", "/zed/zed_node/rgb/color/rect/image");
     objects_topic_ = this->declare_parameter<std::string>(
       "objects_topic", "/zed/zed_node/obj_det/objects");
     robot_mode_state_topic_ = this->declare_parameter<std::string>(

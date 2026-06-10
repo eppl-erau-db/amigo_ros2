@@ -1,0 +1,30 @@
+[Unit]
+Description=Amigo Go2 mission stack (headless mapping.launch.py via amigo_autostart.sh)
+Documentation=file:///home/castej/workspaces/amigo_ros2/launch_commands.md
+# Wait for networking so the enP2p1s0 link to the Unitree Go2 is up before DDS starts.
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=castej
+Group=castej
+WorkingDirectory=/home/castej/workspaces/amigo_ros2
+
+# Give the Jetson a moment after boot for enP2p1s0, the ZED (USB) and the
+# ReSpeaker (USB ALSA) to enumerate before the stack starts probing them.
+ExecStartPre=/bin/sleep 15
+ExecStart=/home/castej/workspaces/amigo_ros2/amigo_autostart.sh
+
+# ros2 launch shuts its child nodes down cleanly on SIGINT (same as Ctrl-C);
+# only the main process is signalled, then the whole cgroup is reaped on timeout.
+KillMode=mixed
+KillSignal=SIGINT
+TimeoutStopSec=30
+
+# Restart the stack if it exits non-zero (unattended robot).
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

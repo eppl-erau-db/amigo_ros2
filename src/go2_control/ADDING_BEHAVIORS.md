@@ -342,6 +342,61 @@ capabilities:
 - Subscribe to `/robot_mode_state` (`go2_interfaces/msg/RobotModeState`)
   to know the current task mode, posture, and whether motion is enabled.
 
+### Fiducials (ArUco)
+- `aruco_detector_node` (go2_control) detects `DICT_6X6_100` markers in the ZED
+  rectified RGB image (`solvePnP` with `camera_info` intrinsics + `marker_size_m`)
+  and publishes `visualization_msgs/MarkerArray` with `marker.id` set, in two
+  frames: `/aruco/markers_map` (map frame, for recording/staging) and
+  `/aruco/markers_base` (base frame, for live visual servoing — no localization
+  error). It also broadcasts `aruco_<id>` TF. The ZED `zed_aruco_localization`
+  example is **not** reusable for this — it only resets the ZED's own pose and
+  never publishes per-marker poses.
+
+### Arm (CubeMars AK45 over gs_usb CAN)
+- `go2_arm` package: `arm_replay_node` hosts `PlayArmScript` (`go2_interfaces/srv`,
+  request `string script` → replays `<scripts_dir>/<script>.csv`). Record new
+  trajectories with `ros2 run go2_arm arm_record --name <name>`. Use
+  `dry_run:=true` to validate/time-simulate without the CAN bus. Driver
+  (`go2_arm/ak45_motor.py`) guards the `gs_usb` import so dry-run works without
+  the library/hardware.
+
+### Map + marker persistence
+- slam_toolbox exposes `save_map` (occupancy grid) and `serialize_map`
+  (posegraph/.data) services — call them at runtime, no relaunch needed.
+  `map_marker_recorder_node` does this + writes a `<map>.aruco.yaml` marker
+  sidecar on its `SaveExploreMap` service. To localize on a saved map in a fresh
+  session, launch with `slam_map_file:=<base>` (deserializes the posegraph).
+
+### Pure, unit-testable helpers
+- Keep geometry/IO logic out of ROS nodes so it can be tested without rclpy:
+  `delivery_geometry.py` (staging pose, visual-servo command),
+  `aruco_map_store.py` (marker accumulation + sidecar IO),
+  `go2_arm/arm_trajectory.py` (CSV load + a hardware-free replay loop via
+  injected callables). Mirror this for new behaviors.
+
+### Worked multi-file example
+- The **explore + deliver-swag** behaviors are a full worked example of a
+  multi-step Nav2 + perception + actuator mission (action-server orchestration,
+  fiducial alignment, an external actuator service, map persistence, a side-
+  signal voice command). See [`docs/EXPLORE_DELIVER_SWAG.md`](../../docs/EXPLORE_DELIVER_SWAG.md)
+  and `deliver_swag_action_server.py`.
+
+#### Patterns worth copying from it
+- **Side-signal voice command** (no mode change): "all done" → `handoff_done`
+  fires `SIGNAL_HANDOFF_DONE` while staying in DELIVER (modeled like
+  `shake_hand`; see `_request_handoff_done`). Use this when a command should
+  nudge an in-flight mission, not switch tasks.
+- **Reusing the `nav` motion route**: a new Nav2 behavior just needs
+  `select_motion_routing(state) → MotionRouting(base_source="nav")` for its mode;
+  it can publish either Nav2 output OR its own Twist to `/motion/candidate/nav`
+  (cancel Nav2 first when taking over for a servo).
+- **Don't fight an external motion source**: EXPLORE omits `publish_zero_motion`
+  and returns empty `MotionRouting` so the operator's handheld remote drives the
+  robot while ROS only maps.
+- **Preemption parity**: when adding a cancelable task, add it to the IDLE /
+  FOLLOW / LAY-DOWN preemption branches and give it a `complete_<task>()` that
+  honors `pending_task_mode` — mirror `complete_search`/`complete_deliver`.
+
 ---
 
 ## Voice Pipeline Integration
@@ -362,6 +417,12 @@ Phrase flow for a new behavior:
 ---
 
 ## Prompt for Coding Agents
+
+> **A fuller, maintained onboarding prompt** (with the build/iteration model, the auto-memory
+> system, and broader project context) lives in [`docs/AGENT_PROMPTS.md`](../../docs/AGENT_PROMPTS.md)
+> — see "Prompt 2 — Adding capabilities / behaviors". Prefer that for a fresh agent; the snippet
+> below is the minimal version. Both are living documents: if you learn something broadly useful,
+> append it.
 
 Copy the section below and provide it to a coding agent when asking it to
 add a new behavior:

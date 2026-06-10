@@ -57,7 +57,7 @@ def generate_launch_description():
                 "xacro ",
                 paths["urdf_path"],
                 " camera_name:=zed",
-                " camera_model:=zedxm",
+                " camera_model:=zed2i",
                 " use_zed_localization:=false",
             ]
         ),
@@ -118,7 +118,7 @@ def generate_launch_description():
         ),
         launch_arguments={
             "camera_name": "zed",
-            "camera_model": "zedxm",
+            "camera_model": "zed2i",
             "publish_tf": "false",
             "publish_map_tf": "false",
             "publish_imu_tf": "false",
@@ -137,6 +137,17 @@ def generate_launch_description():
                 "serial_baudrate": 256000,
                 "frame_id": "laser",
                 "inverted": False,
+                # angle_compensate bins samples onto a FIXED uniform grid so every
+                # /scan has the same length. slam_toolbox REQUIRES this: with
+                # angle_compensate:False the over-speeding lidar (~12.6 Hz) emits a
+                # VARIABLE number of raw samples per rev (795, 801, 788 ...), and
+                # slam_toolbox rejected every one ("LaserRangeScan contains 795 range
+                # readings, expected 1022") -> the map never built. True trades a small,
+                # drifting angular gap (the over-speed leaves some grid cells empty, which
+                # SLAM treats as no-return and ignores) for fixed-length scans SLAM accepts.
+                # The 3D L1 lidar (go2_lidar -> /pointcloud) now covers obstacle gaps.
+                # Ideal long-term fix: slow the lidar motor to its rated 10 Hz so the grid
+                # is fully sampled with no empty cells.
                 "angle_compensate": True,
                 "scan_mode": "Sensitivity",
             }
@@ -174,6 +185,6 @@ def generate_launch_description():
             ekf_node,
             zed_launch,
             lidar_node,
-            lidar_pub,
+            
         ]
     )

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>go2_arm</name>
+  <version>0.0.0</version>
+  <description>Drivers and ROS 2 nodes for the CubeMars AK45 arm mounted on the Go2 (record + replay over gs_usb CAN).</description>
+  <maintainer email="jcass358@gmail.com">brimo</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- Pure ament_python package (setup.py, no CMakeLists). -->
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <depend>rclpy</depend>
+  <depend>go2_interfaces</depend>
+
+  <!-- The CubeMars arm is driven over a gs_usb USB-CAN adapter. The 'gs_usb'
+       Python package is installed via pip ("pip install gs_usb") and has no
+       rosdep key, so it is documented here rather than declared as a <depend>.
+       arm_replay_node runs in dry_run without it. -->
+
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

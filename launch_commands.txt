@@ -1,3 +1,6 @@
+>>> SUPERSEDED: see launch_commands.md (readable, includes the explore + deliver-swag commands,
+>>> the swag_debug flag, and topics/services to watch). This .txt is kept as a backup.
+
 reggular launch:
 
 ros2 launch go2_bringup mapping.launch.py launch_profile:=all voice_control:=true
@@ -145,4 +148,15 @@ ros2 launch go2_bringup mapping.launch.py   launch_profile:=mission_base   voice
 ros2 run go2_control voice_speaker_enroll_node
 ros2 launch go2_bringup mapping.launch.py voice_control:=true voice_speaker_enable:=true
 
+
+
+
+one important thing when launching mapping.launch.py, i need it to have these launch parameters as defaults:
+voice_control:=true \
+person_follow_enable:=true \
+launch_profile: i need this to always launch rviz unless is specifically tell it not to, it just makes it easier to debug.
+person_follow_unitree_gait:=static_walk \ (i need it to always follow me in this static_walk or be in endurance mode, not the new ai gait (I would like to use the new AI gait but for some reason it stuters alot, and when it needs to yaw its almost like it doesnt have enough force to do so and it stays in that one place attempting to yaw, can you look up online if there are any mentions of this and how i can go about fixing this? like git it more force when yawing or something)
+also there is a start-up gait parameter i belive, i need that to be the non -ai gait for now until we solve the ai gait issue.
+also lets try person_follow_motion_backend:=obstacles_avoid \ to see if i can use that (if its non ai gait stuff)
+also please take a look at the launch command text file and update that to a .md file for better readability and update it with latest usefule params
 

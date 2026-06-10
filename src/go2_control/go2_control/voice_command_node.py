@@ -92,6 +92,30 @@ class VoiceCommandNode(Node):
             self.declare_parameter("wake_free_stop_follow_phrases", [""]).value,
             fallback="stay",
         )
+        self._explore_phrases_norm = self._build_phrase_list(
+            self.declare_parameter("explore_phrase", "explore the area").value,
+            self.declare_parameter(
+                "explore_phrases", ["lets explore the area", "let s explore the area"]
+            ).value,
+            fallback="explore the area",
+        )
+        self._done_exploring_phrases_norm = self._build_phrase_list(
+            self.declare_parameter("done_exploring_phrase", "done exploring").value,
+            self.declare_parameter(
+                "done_exploring_phrases", ["we are done exploring", "were done exploring"]
+            ).value,
+            fallback="done exploring",
+        )
+        self._deliver_phrases_norm = self._build_phrase_list(
+            self.declare_parameter("deliver_phrase", "deliver swag").value,
+            self.declare_parameter("deliver_phrases", ["deliver the swag"]).value,
+            fallback="deliver swag",
+        )
+        self._handoff_done_phrases_norm = self._build_phrase_list(
+            self.declare_parameter("handoff_done_phrase", "all done").value,
+            self.declare_parameter("handoff_done_phrases", ["all finished", "we are all done"]).value,
+            fallback="all done",
+        )
 
         self._enabled_command_groups, unknown_groups = self._parse_command_mode(self.command_mode)
         if unknown_groups:
@@ -150,13 +174,19 @@ class VoiceCommandNode(Node):
             if not token:
                 continue
             if token in {"all", "multi", "hybrid"}:
-                enabled_groups.update({"search", "sport_test", "follow"})
+                enabled_groups.update(
+                    {"search", "sport_test", "follow", "explore", "deliver"}
+                )
             elif token == "search":
                 enabled_groups.add("search")
             elif token in {"sport", "sport_test"}:
                 enabled_groups.add("sport_test")
             elif token in {"follow", "follow_me", "person_follow"}:
                 enabled_groups.add("follow")
+            elif token in {"explore", "mapping"}:
+                enabled_groups.add("explore")
+            elif token in {"deliver", "delivery", "deliver_swag"}:
+                enabled_groups.add("deliver")
             else:
                 unknown_groups.append(token)
 
@@ -309,6 +339,27 @@ class VoiceCommandNode(Node):
             matched_phrase = self._match_intent_phrase(transcript, self._search_phrases_norm)
             if matched_phrase is not None:
                 self._publish_command("search", transcript, matched_phrase)
+                return
+
+        if "explore" in self._enabled_command_groups:
+            # Match the more specific "done exploring" before "explore the area".
+            matched_phrase = self._match_intent_phrase(transcript, self._done_exploring_phrases_norm)
+            if matched_phrase is not None:
+                self._publish_command("done_exploring", transcript, matched_phrase)
+                return
+            matched_phrase = self._match_intent_phrase(transcript, self._explore_phrases_norm)
+            if matched_phrase is not None:
+                self._publish_command("explore", transcript, matched_phrase)
+                return
+
+        if "deliver" in self._enabled_command_groups:
+            matched_phrase = self._match_intent_phrase(transcript, self._handoff_done_phrases_norm)
+            if matched_phrase is not None:
+                self._publish_command("handoff_done", transcript, matched_phrase)
+                return
+            matched_phrase = self._match_intent_phrase(transcript, self._deliver_phrases_norm)
+            if matched_phrase is not None:
+                self._publish_command("deliver_swag", transcript, matched_phrase)
                 return
 
         if self.debug_decisions:

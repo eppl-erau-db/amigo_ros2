@@ -18,9 +18,12 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "action/LogPose.action"
   "action/ExploreUntilDetected.action"
   "action/LocalizeDetectedLeak.action"
+  "action/DeliverSwag.action"
   "msg/RobotModeState.msg"
   "srv/RegionMap.srv"
   "srv/SetRobotMode.srv"
+  "srv/PlayArmScript.srv"
+  "srv/SaveExploreMap.srv"
   "action/Search.action"
   DEPENDENCIES builtin_interfaces geometry_msgs nav_msgs # or any other interface package needed
 )

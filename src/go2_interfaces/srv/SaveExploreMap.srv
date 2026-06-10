@@ -1,0 +1,11 @@
+# Request: persist the SLAM map and the recorded ArUco-marker table built during
+# an "explore the area" session. 'map_name' is the base name to save under
+# (e.g. "venue"); empty → use the recorder node's default name.
+string map_name
+---
+# Response
+bool success
+string message
+# Absolute path of the saved occupancy-grid map yaml (the .aruco.yaml sidecar and
+# slam_toolbox .posegraph/.data are written alongside it).
+string map_path

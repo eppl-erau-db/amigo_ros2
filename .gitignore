@@ -117,3 +117,13 @@ isaac_ros-dev/src/go2_description/maps/lab_map_vslam/
 
 isaac_ros-dev/isaac_ros_assets/
 
+# Unitree SDK2 prebuilt binaries (84MB of .a/.so libs; kept local-only)
+/sdk/
+
+# Standalone bench/working scratch (not ROS packages; real code lives in src/go2_arm)
+/arm/
+/EKF/
+
+# pytest cache
+.pytest_cache/
+
