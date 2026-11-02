@@ -1377,33 +1377,34 @@
       xyz="0 0 0" />
   </joint> -->
 
-  <xacro:include
+  <!-- Remember to uncomment everything below when using ZED  -->
+
+  <!-- <xacro:include
           filename="$(find zed_wrapper)/urdf/zed_macro.urdf.xacro"/>
 
   <xacro:zed_camera name="zed"
                     model="$(arg camera_model)">
 
-    <!-- block required by the macro, but we don’t need it -->
     <gnss_origin/>
-  </xacro:zed_camera>
+  </xacro:zed_camera> -->
 
   <!-- ZED publishes TF -> base_link (we don't use this) -->
-  <xacro:if value="$(arg use_zed_localization)">
+  <!-- <xacro:if value="$(arg use_zed_localization)">
     <joint name="zed_mount" type="fixed">
       <parent link="zed_camera_link"/>
       <child  link="base_link"/>
       <origin xyz="0.32 0.0 0.0725" rpy="0 0 0"/>
     </joint>
-  </xacro:if>
+  </xacro:if> -->
 
   <!-- EKF publishes odom, camera is child of base_link -->
-  <xacro:unless value="$(arg use_zed_localization)">
+  <!-- <xacro:unless value="$(arg use_zed_localization)">
     <joint name="zed_mount" type="fixed">
       <parent link="base_link"/>
       <child  link="zed_camera_link"/>
       <origin xyz="0.32 0.0 0.0725" rpy="0 0 0"/>
     </joint>
-  </xacro:unless>
+  </xacro:unless> -->
 
 
 </robot>

@@ -26,22 +26,25 @@ ARGUMENT_NAMES = [
     "startup_motion_wait_s",
     "startup_motion_retries",
     "startup_motion_retry_interval_s",
-    "zed_follow_params_path",
+    # "zed_follow_params_path",
 ]
 
 
 def generate_launch_description():
     launch_dir = os.path.dirname(__file__)
     use_sim_time = LaunchConfiguration("use_sim_time")
-    person_follow_unitree_network_interface = LaunchConfiguration(
-        "person_follow_unitree_network_interface"
-    )
+
+    # STARTUP MOTION 
+
+    # person_follow_unitree_network_interface = LaunchConfiguration(
+    #     "person_follow_unitree_network_interface"
+    # )
     startup_motion_mode = LaunchConfiguration("startup_motion_mode")
-    startup_motion_gait = LaunchConfiguration("startup_motion_gait")
-    startup_motion_wait_s = LaunchConfiguration("startup_motion_wait_s")
-    startup_motion_retries = LaunchConfiguration("startup_motion_retries")
-    startup_motion_retry_interval_s = LaunchConfiguration("startup_motion_retry_interval_s")
-    zed_follow_params_path = LaunchConfiguration("zed_follow_params_path")
+    # startup_motion_gait = LaunchConfiguration("startup_motion_gait")
+    # startup_motion_wait_s = LaunchConfiguration("startup_motion_wait_s")
+    # startup_motion_retries = LaunchConfiguration("startup_motion_retries")
+    # startup_motion_retry_interval_s = LaunchConfiguration("startup_motion_retry_interval_s")
+    # zed_follow_params_path = LaunchConfiguration("zed_follow_params_path")
 
     paths = go2_description_paths()
     motion_mode_switcher_executable = os.path.join(
@@ -56,9 +59,10 @@ def generate_launch_description():
             [
                 "xacro ",
                 paths["urdf_path"],
-                " camera_name:=zed",
-                " camera_model:=zed2i",
-                " use_zed_localization:=false",
+                #   xacro selected in _mapping_common.py
+                # " camera_name:=zed",
+                # " camera_model:=zed2i",
+                # " use_zed_localization:=false",
             ]
         ),
         value_type=str,
@@ -103,6 +107,7 @@ def generate_launch_description():
         executable="ekf_node",
         name="ekf_filter_node",
         output="screen",
+        # EKF config file stored in go2_description declared in _mapping_common.py
         parameters=[paths["ekf_cfg"], {"use_sim_time": use_sim_time}],
         remappings=[("odometry/filtered", "odometry/filtered")],
     )
@@ -112,65 +117,75 @@ def generate_launch_description():
         name="go2_lidar",
         output="screen",
     )
-    zed_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory("zed_wrapper"), "launch", "zed_camera.launch.py")
-        ),
-        launch_arguments={
-            "camera_name": "zed",
-            "camera_model": "zed2i",
-            "publish_tf": "false",
-            "publish_map_tf": "false",
-            "publish_imu_tf": "false",
-            "ros_params_override_path": zed_follow_params_path,
-        }.items(),
-    )
-    lidar_node = Node(
-        name="sllidar_node",
-        package="sllidar_ros2",
-        executable="sllidar_node",
-        output="screen",
-        parameters=[
-            {
-                "channel_type": "serial",
-                "serial_port": "/dev/ttyUSB0",
-                "serial_baudrate": 256000,
-                "frame_id": "laser",
-                "inverted": False,
-                # angle_compensate bins samples onto a FIXED uniform grid so every
-                # /scan has the same length. slam_toolbox REQUIRES this: with
-                # angle_compensate:False the over-speeding lidar (~12.6 Hz) emits a
-                # VARIABLE number of raw samples per rev (795, 801, 788 ...), and
-                # slam_toolbox rejected every one ("LaserRangeScan contains 795 range
-                # readings, expected 1022") -> the map never built. True trades a small,
-                # drifting angular gap (the over-speed leaves some grid cells empty, which
-                # SLAM treats as no-return and ignores) for fixed-length scans SLAM accepts.
-                # The 3D L1 lidar (go2_lidar -> /pointcloud) now covers obstacle gaps.
-                # Ideal long-term fix: slow the lidar motor to its rated 10 Hz so the grid
-                # is fully sampled with no empty cells.
-                "angle_compensate": True,
-                "scan_mode": "Sensitivity",
-            }
-        ],
-        remappings=[("/laserscan", "/scan")],
-    )
+
+    # ZED & LiDAR
+
+    # zed_launch = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource(
+    #         os.path.join(get_package_share_directory("zed_wrapper"), "launch", "zed_camera.launch.py")
+    #     ),
+    #     launch_arguments={
+    #         "camera_name": "zed",
+    #         "camera_model": "zed2i",
+    #         "publish_tf": "false",
+    #         "publish_map_tf": "false",
+    #         "publish_imu_tf": "false",
+    #         "ros_params_override_path": zed_follow_params_path,
+    #     }.items(),
+    # )
+    # lidar_node = Node(
+    #     name="sllidar_node",
+    #     package="sllidar_ros2",
+    #     executable="sllidar_node",
+    #     output="screen",
+    #     parameters=[
+    #         {
+    #             "channel_type": "serial",
+    #             "serial_port": "/dev/ttyUSB0",
+    #             "serial_baudrate": 256000,
+    #             "frame_id": "laser",
+    #             "inverted": False,
+    #             # angle_compensate bins samples onto a FIXED uniform grid so every
+    #             # /scan has the same length. slam_toolbox REQUIRES this: with
+    #             # angle_compensate:False the over-speeding lidar (~12.6 Hz) emits a
+    #             # VARIABLE number of raw samples per rev (795, 801, 788 ...), and
+    #             # slam_toolbox rejected every one ("LaserRangeScan contains 795 range
+    #             # readings, expected 1022") -> the map never built. True trades a small,
+    #             # drifting angular gap (the over-speed leaves some grid cells empty, which
+    #             # SLAM treats as no-return and ignores) for fixed-length scans SLAM accepts.
+    #             # The 3D L1 lidar (go2_lidar -> /pointcloud) now covers obstacle gaps.
+    #             # Ideal long-term fix: slow the lidar motor to its rated 10 Hz so the grid
+    #             # is fully sampled with no empty cells.
+    #             "angle_compensate": True,
+    #             "scan_mode": "Sensitivity",
+    #         }
+    #     ],            # startup_motion_mode,
+            # "--gait",
+    #     remappings=[("/laserscan", "/scan")],
+    # )
     startup_motion_switcher = ExecuteProcess(
         cmd=[
             motion_mode_switcher_executable,
             "--network-interface",
-            person_follow_unitree_network_interface,
-            "--motion-mode",
-            startup_motion_mode,
-            "--gait",
-            startup_motion_gait,
-            "--wait",
-            startup_motion_wait_s,
-            "--retries",
-            startup_motion_retries,
-            "--retry-interval",
-            startup_motion_retry_interval_s,
+            # person_follow_unitree_network_interface,
+            # "--motion-mode",
+            # startup_motion_mode,
+            # "--gait",
+            # startup_motion_gait,
+            # "--wait",
+            # startup_motion_wait_s,
+            # "--retries",
+            # startup_motion_retries,
+            # "--retry-interval",
+            # startup_motion_retry_interval_s,
         ],
         output="screen",
+    )
+
+    rviz2 = Node(
+        package="rviz2",
+        executable="rviz2",
+        arguments=["-d", paths["rviz_cfg"]],
     )
 
     return LaunchDescription(
@@ -183,8 +198,9 @@ def generate_launch_description():
             state_pub,
             odom_node,
             ekf_node,
-            zed_launch,
-            lidar_node,
-            
+            lidar_pub,
+            # zed_launch,
+            # lidar_node,
+            rviz2
         ]
     )

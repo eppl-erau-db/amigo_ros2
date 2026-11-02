@@ -570,7 +570,8 @@ def go2_description_paths() -> dict[str, str]:
         "urdf_path": os.path.join(pkg_go2_desc, "urdf", "go2.urdf.xacro"),
         "rviz_cfg": os.path.join(pkg_go2_desc, "config", "nav_nvblox_config.rviz"),
         "nav2_cfg": os.path.join(pkg_go2_desc, "config", "nav2_mppi_controller.yaml"),
-        "ekf_cfg": os.path.join(pkg_go2_desc, "config", "local_odom_ekf.yaml"),
+        "ekf_cfg": os.path.join(pkg_go2_desc, "config", "ekf.yaml"),
+        #"ekf_cfg": os.path.join(pkg_go2_desc, "config", "local_odom_ekf.yaml"),
         "slam_toolbox_config": os.path.join(
             get_package_share_directory("go2_description"),
             "config",

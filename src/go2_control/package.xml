@@ -7,7 +7,7 @@
   <license>Apache-2.0</license>
 
   <!-- Pure ament_python package (setup.py, no CMakeLists). -->
-  <buildtool_depend>ament_python</buildtool_depend>
+  <!-- <buildtool_depend>ament_python</buildtool_depend> -->
 
   <!-- Dependencies for building/running your Python nodes -->
   <depend>rclpy</depend>
@@ -40,7 +40,7 @@
   <exec_depend>nav2_bringup</exec_depend>
   <exec_depend>nav2_map_server</exec_depend>
   <exec_depend>nav2_util</exec_depend>
-  <exec_depend>tf-transformations</exec_depend>
+  <!-- <exec_depend>tf-transformations</exec_depend> -->
   <exec_depend>nav2_simple_commander</exec_depend>
   <exec_depend>slam_toolbox</exec_depend>
   <exec_depend>sllidar_ros2</exec_depend>

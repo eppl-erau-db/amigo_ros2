@@ -25,7 +25,8 @@ find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_eigen REQUIRED)
 
-set(UNITREE_SDK_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../../sdk/unitree_sdk2")
+# set(UNITREE_SDK_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../../sdk/unitree_sdk2")
+set(UNITREE_SDK_ROOT "$ENV{HOME}/unitree_sdk2-main")
 set(UNITREE_SDK_THIRDPARTY_ROOT "${UNITREE_SDK_ROOT}/thirdparty")
 find_library(
   UNITREE_SDK2_LIB
