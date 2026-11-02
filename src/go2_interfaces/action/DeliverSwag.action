@@ -1,0 +1,12 @@
+# Goal: run the swag-delivery mission (pickup -> deliver -> hand-off -> drop-off).
+# 'map_name' optionally selects a saved marker set / map; empty → use the live
+# recorder table if present, else the default sidecar on disk.
+string map_name
+---
+# Result
+bool success
+string reason
+---
+# Feedback: human-readable mission stage, e.g. "nav_to_pickup", "aligning_pickup",
+# "arm_pickup", "nav_to_delivery", "await_handoff", "arm_dropoff".
+string stage

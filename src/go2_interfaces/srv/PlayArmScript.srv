@@ -1,0 +1,12 @@
+# Request: replay a pre-recorded arm trajectory on the mounted CubeMars arm.
+# 'script' is the trajectory name (e.g. "pickup", "deliver", "dropoff"); the
+# arm node resolves it to <scripts_dir>/<script>.csv.
+string script
+# Optional playback speed multiplier. <= 0 → use the node's default speed.
+float32 speed
+---
+# Response (returned only after the replay + final-pose settle completes).
+bool success
+string message
+# Wall-clock duration of the replay in seconds (0 in dry-run).
+float32 duration_s
