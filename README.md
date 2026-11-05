@@ -47,15 +47,64 @@ rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
+### Install ONNX Runtime
+#### (This is necessary for audio_utils)
+
+```bash
+cd /tmp
+wget https://github.com/microsoft/onnxruntime/releases/download/v1.15.1/onnxruntime-linux-aarch64-1.15.1.tgz
+tar xf onnxruntime-linux-aarch64-1.15.1.tgz
+cd onnxruntime-linux-aarch64-1.15.1
+
+sudo cp lib/libonnxruntime.so.1.15.1 /usr/local/lib/
+sudo ln -sf libonnxruntime.so.1.15.1 /usr/local/lib/libonnxruntime.so
+sudo mkdir -p /usr/local/include/onnxruntime/core/session
+sudo cp include/* /usr/local/include/onnxruntime/
+sudo cp include/* /usr/local/include/onnxruntime/core/session/
+sudo ldconfig
+```
+
+### Required Step Pending Release - Install Unitree Go2 SDK as a binary package
+
+#### 1. Download Source [here](https://github.com/unitreerobotics/unitree_sdk2)
+
+#### 2. Extract to Home dir ~/workspaces/unitree_sdk2-main
+
+```bash
+```
+
+#### 3. Install Deps
+
+```bash
+sudo apt-get update
+sudo apt-get install -y cmake g++ build-essential libyaml-cpp-dev libeigen3-dev libboost-all-dev libfmt-dev
+```
+
+#### 4. Build as a Binary Package
+
+```bash
+cd ~/unitree_sdk2-main/
+mkdir build
+cd build
+cmake ..
+sudo make install
+```
+
 ### ZED SDK (if using ZED)
 
 Install the Stereolabs ZED SDK before building so `zed-ros2-wrapper` can compile. Follow the Stereolabs installation guide for your platform.
 
-### Build the workspace
+### Build the workspace 
+#### If using ZED SDK 
 
 ```bash
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install
+```
+
+#### If not using ZED SDK
+```bash
+colcon build --symlink-install --colcon-ignore-regex ".*zed_" 
 ```
 
 ### Source the environment
