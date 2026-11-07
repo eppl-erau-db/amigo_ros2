@@ -102,12 +102,19 @@ def generate_launch_description():
         name="go2_driver_node",
         output="screen",
     )
+    imu_node = Node(
+        package="wit_ros2_imu",
+        executable="wit_ros2_imu",
+        name="wit_ros2_imu",
+        output="screen",
+        remappings=[("/imu/data_raw", "/imu/data")],
+    )
     ekf_node = Node(
         package="robot_localization",
         executable="ekf_node",
         name="ekf_filter_node",
         output="screen",
-        # EKF config file stored in go2_description declared in _mapping_common.py
+        # EKF config file stored in go2_bringup declared in go2_bringup->_mapping_common.py
         parameters=[paths["ekf_cfg"], {"use_sim_time": use_sim_time}],
         remappings=[("odometry/filtered", "odometry/filtered")],
     )
@@ -120,49 +127,48 @@ def generate_launch_description():
 
     # ZED & LiDAR
 
-    # zed_launch = IncludeLaunchDescription(
-    #     PythonLaunchDescriptionSource(
-    #         os.path.join(get_package_share_directory("zed_wrapper"), "launch", "zed_camera.launch.py")
-    #     ),
-    #     launch_arguments={
-    #         "camera_name": "zed",
-    #         "camera_model": "zed2i",
-    #         "publish_tf": "false",
-    #         "publish_map_tf": "false",
-    #         "publish_imu_tf": "false",
-    #         "ros_params_override_path": zed_follow_params_path,
-    #     }.items(),
-    # )
-    # lidar_node = Node(
-    #     name="sllidar_node",
-    #     package="sllidar_ros2",
-    #     executable="sllidar_node",
-    #     output="screen",
-    #     parameters=[
-    #         {
-    #             "channel_type": "serial",
-    #             "serial_port": "/dev/ttyUSB0",
-    #             "serial_baudrate": 256000,
-    #             "frame_id": "laser",
-    #             "inverted": False,
-    #             # angle_compensate bins samples onto a FIXED uniform grid so every
-    #             # /scan has the same length. slam_toolbox REQUIRES this: with
-    #             # angle_compensate:False the over-speeding lidar (~12.6 Hz) emits a
-    #             # VARIABLE number of raw samples per rev (795, 801, 788 ...), and
-    #             # slam_toolbox rejected every one ("LaserRangeScan contains 795 range
-    #             # readings, expected 1022") -> the map never built. True trades a small,
-    #             # drifting angular gap (the over-speed leaves some grid cells empty, which
-    #             # SLAM treats as no-return and ignores) for fixed-length scans SLAM accepts.
-    #             # The 3D L1 lidar (go2_lidar -> /pointcloud) now covers obstacle gaps.
-    #             # Ideal long-term fix: slow the lidar motor to its rated 10 Hz so the grid
-    #             # is fully sampled with no empty cells.
-    #             "angle_compensate": True,
-    #             "scan_mode": "Sensitivity",
-    #         }
-    #     ],            # startup_motion_mode,
-            # "--gait",
-    #     remappings=[("/laserscan", "/scan")],
-    # )
+    zed_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(get_package_share_directory("zed_wrapper"), "launch", "zed_camera.launch.py")
+        ),
+        launch_arguments={
+            "camera_name": "zed",
+            "camera_model": "zed2i",
+            "publish_tf": "false",
+            "publish_map_tf": "false",
+            "publish_imu_tf": "false",
+            "ros_params_override_path": zed_follow_params_path,
+        }.items(),
+    )
+    lidar_node = Node(
+        name="sllidar_node",
+        package="sllidar_ros2",
+        executable="sllidar_node",
+        output="screen",
+        parameters=[
+            {
+                "channel_type": "serial",
+                "serial_port": "/dev/ttyUSB0",
+                "serial_baudrate": 256000,
+                "frame_id": "laser",
+                "inverted": False,
+                # angle_compensate bins samples onto a FIXED uniform grid so every
+                # /scan has the same length. slam_toolbox REQUIRES this: with
+                # angle_compensate:False the over-speeding lidar (~12.6 Hz) emits a
+                # VARIABLE number of raw samples per rev (795, 801, 788 ...), and
+                # slam_toolbox rejected every one ("LaserRangeScan contains 795 range
+                # readings, expected 1022") -> the map never built. True trades a small,
+                # drifting angular gap (the over-speed leaves some grid cells empty, which
+                # SLAM treats as no-return and ignores) for fixed-length scans SLAM accepts.
+                # The 3D L1 lidar (go2_lidar -> /pointcloud) now covers obstacle gaps.
+                # Ideal long-term fix: slow the lidar motor to its rated 10 Hz so the grid
+                # is fully sampled with no empty cells.
+                "angle_compensate": True,
+                "scan_mode": "Sensitivity",
+            }
+        ],
+        remappings=[("/laserscan", "/scan")],
+    )
     startup_motion_switcher = ExecuteProcess(
         cmd=[
             motion_mode_switcher_executable,
@@ -194,13 +200,14 @@ def generate_launch_description():
             robot_state_pub,
             base_tf,
             go2_driver,
+            imu_node,
             startup_motion_switcher,
             state_pub,
             odom_node,
             ekf_node,
             lidar_pub,
             # zed_launch,
-            # lidar_node,
+            lidar_node,
             rviz2
         ]
     )

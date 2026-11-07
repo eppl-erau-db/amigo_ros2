@@ -241,7 +241,7 @@ def generate_launch_description():
     ld.add_action(dual_ekf_navsat_launch)
     # ld.add_action(nav2_launch)
     ld.add_action(rviz_demo_launch)
-    # ld.add_action(mapviz_launch)
+    ld.add_action(mapviz_launch)
 
     return ld
 

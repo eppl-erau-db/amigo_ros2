@@ -38,6 +38,11 @@ git clone --recurse-submodules https://github.com/eppl-erau-db/amigo_ros2.git
 cd amigo_ros2
 git submodule update --init --recursive
 ```
+### Set up Virtual Environment for Go2 SDK 
+#### The SDK referenced at the bottom contains dependencies that you wouldn't want system-wide
+
+```bash
+```
 
 ### Install dependencies
 
@@ -64,13 +69,26 @@ sudo cp include/* /usr/local/include/onnxruntime/core/session/
 sudo ldconfig
 ```
 
-### Required Step Pending Release - Install Unitree Go2 SDK as a binary package
+### Setup Unitree Go2 SDK and ethernet connection using [this guide](https://support.unitree.com/home/en/developer/ROS2_service)
+
+### Install Unitree Go2 SDK as a binary package
 
 #### 1. Download Source [here](https://github.com/unitreerobotics/unitree_sdk2)
 
-#### 2. Extract to Home dir ~/workspaces/unitree_sdk2-main
+#### 2. Clone into home directory and rename to ~/unitree_sdk2-main
 
+##### There are steps to install the sdk in /opt. Follow the steps on their docs
+
+#### 3. Steps on the Unitree SDK Repo
 ```bash
+sudo apt-get update
+sudo apt-get install -y cmake g++ build-essential libyaml-cpp-dev libeigen3-dev libboost-all-dev libfmt-dev
+
+cd ~/unitree_sdk2-main/
+mkdir build
+cd build
+cmake ..
+sudo make install
 ```
 
 #### 3. Install Deps
@@ -88,6 +106,35 @@ mkdir build
 cd build
 cmake ..
 sudo make install
+```
+
+### Test SDK
+
+#### Add URI
+
+```bash
+sudo nmcli con up go2
+sudo nmcli con add type ethernet ifname enP2p1s0 con-name go2 ipv4.method manual ipv4.addresses 192.168.123.99/24
+```
+
+#### Delete URI
+
+```bash
+sudo nmcli con delete <URI>
+```
+
+#### Set environment variables
+
+```bash
+export CONN_TYPE=cyclonedds ROBOT_IP=192.168.123.161 RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+export CYCLONEDDS_URI='<CycloneDDS><Domain><General><Interfaces><NetworkInterface name="enP2p1s0" priority="default" multicast="default"/></Interfaces></General></Domain></CycloneDDS>'
+```
+#### Verify the CycloneDDS URI
+
+```bash
+nmcli -t -f NAME,UUID con show | grep go2
+ip -br addr show enP2p1s0; nmcli -t -f NAME,DEVICE,STATE con show | grep -i -E "go2|enP2p1s0"; ping -c 3 -W 1 -I enP2p1s0 192.168.123.161 2>&1 | tail -3
 ```
 
 ### ZED SDK (if using ZED)
